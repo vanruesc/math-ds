@@ -1,0 +1,6003 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/2d/index.js",
+    "memberof": null,
+    "longname": "src/2d/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "content": "/**\r\n * Mathematical data structures of the 2D domain.\r\n *\r\n * @module math-ds/2d\r\n */\r\n\r\nexport { Vector2 } from \"./vector2.js\";\r\n"
+  },
+  {
+    "__docId__": 1,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/2d/vector2.js",
+    "memberof": null,
+    "longname": "src/2d/vector2.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "content": "/**\r\n * A vector with two components.\r\n */\r\n\r\nexport class Vector2 {\r\n\r\n\t/**\r\n\t * Constructs a new vector.\r\n\t *\r\n\t * @param {Number} [x=0] - The x value.\r\n\t * @param {Number} [y=0] - The y value.\r\n\t */\r\n\r\n\tconstructor(x = 0, y = 0) {\r\n\r\n\t\t/**\r\n\t\t * The x component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.x = x;\r\n\r\n\t\t/**\r\n\t\t * The y component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.y = y;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this vector\r\n\t *\r\n\t * @param {Number} x - The x value.\r\n\t * @param {Number} y - The y value.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tset(x, y) {\r\n\r\n\t\tthis.x = x;\r\n\t\tthis.y = y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the values of another vector.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tcopy(v) {\r\n\r\n\t\tthis.x = v.x;\r\n\t\tthis.y = v.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies values from an array.\r\n\t *\r\n\t * @param {Array} array - An array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tfromArray(array, offset = 0) {\r\n\r\n\t\tthis.x = array[offset];\r\n\t\tthis.y = array[offset + 1];\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Stores this vector in an array.\r\n\t *\r\n\t * @param {Array} [array] - A target array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Vector2} The array.\r\n\t */\r\n\r\n\ttoArray(array = [], offset = 0) {\r\n\r\n\t\tarray[offset] = this.x;\r\n\t\tarray[offset + 1] = this.y;\r\n\r\n\t\treturn array;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if this vector equals the given one.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Boolean} Whether this vector equals the given one.\r\n\t */\r\n\r\n\tequals(v) {\r\n\r\n\t\treturn (v.x === this.x && v.y === this.y);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this vector.\r\n\t *\r\n\t * @return {Vector2} A clone of this vector.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor(this.x, this.y);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a vector to this one.\r\n\t *\r\n\t * @param {Vector2} v - The vector to add.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tadd(v) {\r\n\r\n\t\tthis.x += v.x;\r\n\t\tthis.y += v.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a scaled vector to this one.\r\n\t *\r\n\t * @param {Vector2} v - The vector to scale and add.\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\taddScaledVector(v, s) {\r\n\r\n\t\tthis.x += v.x * s;\r\n\t\tthis.y += v.y * s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a scalar to this vector.\r\n\t *\r\n\t * @param {Number} s - The scalar to add.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\taddScalar(s) {\r\n\r\n\t\tthis.x += s;\r\n\t\tthis.y += s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the sum of two given vectors.\r\n\t *\r\n\t * @param {Vector2} a - A vector.\r\n\t * @param {Vector2} b - Another vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\taddVectors(a, b) {\r\n\r\n\t\tthis.x = a.x + b.x;\r\n\t\tthis.y = a.y + b.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Subtracts a vector from this vector.\r\n\t *\r\n\t * @param {Vector2} v - The vector to subtract.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tsub(v) {\r\n\r\n\t\tthis.x -= v.x;\r\n\t\tthis.y -= v.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Subtracts a scalar to this vector.\r\n\t *\r\n\t * @param {Number} s - The scalar to subtract.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tsubScalar(s) {\r\n\r\n\t\tthis.x -= s;\r\n\t\tthis.y -= s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the difference between two given vectors.\r\n\t *\r\n\t * @param {Vector2} a - A vector.\r\n\t * @param {Vector2} b - A second vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tsubVectors(a, b) {\r\n\r\n\t\tthis.x = a.x - b.x;\r\n\t\tthis.y = a.y - b.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies this vector with another vector.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tmultiply(v) {\r\n\r\n\t\tthis.x *= v.x;\r\n\t\tthis.y *= v.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies this vector with a given scalar.\r\n\t *\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tmultiplyScalar(s) {\r\n\r\n\t\tif(isFinite(s)) {\r\n\r\n\t\t\tthis.x *= s;\r\n\t\t\tthis.y *= s;\r\n\r\n\t\t} else {\r\n\r\n\t\t\tthis.x = 0;\r\n\t\t\tthis.y = 0;\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the product of two given vectors.\r\n\t *\r\n\t * @param {Vector2} a - A vector.\r\n\t * @param {Vector2} b - Another vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tmultiplyVectors(a, b) {\r\n\r\n\t\tthis.x = a.x * b.x;\r\n\t\tthis.y = a.y * b.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Divides this vector by another vector.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tdivide(v) {\r\n\r\n\t\tthis.x /= v.x;\r\n\t\tthis.y /= v.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Divides this vector by a given scalar.\r\n\t *\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tdivideScalar(s) {\r\n\r\n\t\treturn this.multiplyScalar(1 / s);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the quotient of two given vectors.\r\n\t *\r\n\t * @param {Vector2} a - A vector.\r\n\t * @param {Vector2} b - Another vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tdivideVectors(a, b) {\r\n\r\n\t\tthis.x = a.x / b.x;\r\n\t\tthis.y = a.y / b.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Negates this vector.\r\n\t *\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tnegate() {\r\n\r\n\t\tthis.x = -this.x;\r\n\t\tthis.y = -this.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the dot product with another vector.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Number} The dot product.\r\n\t */\r\n\r\n\tdot(v) {\r\n\r\n\t\treturn this.x * v.x + this.y * v.y;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the squared length of this vector.\r\n\t *\r\n\t * @return {Number} The squared length.\r\n\t */\r\n\r\n\tlengthSq() {\r\n\r\n\t\treturn this.x * this.x + this.y * this.y;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the length of this vector.\r\n\t *\r\n\t * @return {Number} The length.\r\n\t */\r\n\r\n\tlength() {\r\n\r\n\t\treturn Math.sqrt(this.x * this.x + this.y * this.y);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the distance to a given vector.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Number} The distance.\r\n\t */\r\n\r\n\tdistanceTo(v) {\r\n\r\n\t\treturn Math.sqrt(this.distanceToSquared(v));\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the squared distance to a given vector.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Number} The squared distance.\r\n\t */\r\n\r\n\tdistanceToSquared(v) {\r\n\r\n\t\tconst dx = this.x - v.x;\r\n\t\tconst dy = this.y - v.y;\r\n\r\n\t\treturn dx * dx + dy * dy;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Normalizes this vector.\r\n\t *\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tnormalize() {\r\n\r\n\t\treturn this.divideScalar(this.length());\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adopts the min value for each component of this vector and the given one.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tmin(v) {\r\n\r\n\t\tthis.x = Math.min(this.x, v.x);\r\n\t\tthis.y = Math.min(this.y, v.y);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * adopts the max value for each component of this vector and the given one.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tmax(v) {\r\n\r\n\t\tthis.x = Math.max(this.x, v.x);\r\n\t\tthis.y = Math.max(this.y, v.y);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clamps this vector.\r\n\t *\r\n\t * @param {Vector2} min - A vector, assumed to be smaller than max.\r\n\t * @param {Vector2} max - A vector, assumed to be greater than min.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tclamp(min, max) {\r\n\r\n\t\tthis.x = Math.max(min.x, Math.min(max.x, this.x));\r\n\t\tthis.y = Math.max(min.y, Math.min(max.y, this.y));\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n}\r\n"
+  },
+  {
+    "__docId__": 2,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Vector2",
+    "memberof": "src/2d/vector2.js",
+    "longname": "src/2d/vector2.js~Vector2",
+    "access": null,
+    "export": true,
+    "importPath": "math-ds/src/2d/vector2.js",
+    "importStyle": "{Vector2}",
+    "description": "A vector with two components.",
+    "lineNumber": 5,
+    "interface": false
+  },
+  {
+    "__docId__": 3,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#constructor",
+    "access": null,
+    "description": "Constructs a new vector.",
+    "lineNumber": 14,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "x",
+        "description": "The x value."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "y",
+        "description": "The y value."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 4,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": "The x component.",
+    "lineNumber": 22,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 5,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": "The y component.",
+    "lineNumber": 30,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 6,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "set",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#set",
+    "access": null,
+    "description": "Sets the values of this vector",
+    "lineNumber": 42,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "x",
+        "description": "The x value."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "The y value."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 7,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 44,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 8,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 45,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 9,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "copy",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#copy",
+    "access": null,
+    "description": "Copies the values of another vector.",
+    "lineNumber": 58,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 10,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 60,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 11,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 61,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 12,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "fromArray",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#fromArray",
+    "access": null,
+    "description": "Copies values from an array.",
+    "lineNumber": 75,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "array",
+        "description": "An array."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "offset",
+        "description": "An offset."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 13,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 77,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 14,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 78,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 15,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "toArray",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#toArray",
+    "access": null,
+    "description": "Stores this vector in an array.",
+    "lineNumber": 92,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "array",
+        "description": "A target array."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "offset",
+        "description": "An offset."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "The array."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 16,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "equals",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#equals",
+    "access": null,
+    "description": "Checks if this vector equals the given one.",
+    "lineNumber": 108,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "Whether this vector equals the given one."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 17,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clone",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#clone",
+    "access": null,
+    "description": "Clones this vector.",
+    "lineNumber": 120,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "A clone of this vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 18,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "add",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#add",
+    "access": null,
+    "description": "Adds a vector to this one.",
+    "lineNumber": 133,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "The vector to add."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 19,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 135,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 20,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 136,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 21,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addScaledVector",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#addScaledVector",
+    "access": null,
+    "description": "Adds a scaled vector to this one.",
+    "lineNumber": 150,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "The vector to scale and add."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "s",
+        "description": "A scalar."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 22,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 152,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 23,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 153,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 24,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addScalar",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#addScalar",
+    "access": null,
+    "description": "Adds a scalar to this vector.",
+    "lineNumber": 166,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "s",
+        "description": "The scalar to add."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 25,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 168,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 26,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 169,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 27,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addVectors",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#addVectors",
+    "access": null,
+    "description": "Sets this vector to the sum of two given vectors.",
+    "lineNumber": 183,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "a",
+        "description": "A vector."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "b",
+        "description": "Another vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 28,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 185,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 29,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 186,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 30,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "sub",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#sub",
+    "access": null,
+    "description": "Subtracts a vector from this vector.",
+    "lineNumber": 199,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "The vector to subtract."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 31,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 201,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 32,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 202,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 33,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "subScalar",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#subScalar",
+    "access": null,
+    "description": "Subtracts a scalar to this vector.",
+    "lineNumber": 215,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "s",
+        "description": "The scalar to subtract."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 34,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 217,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 35,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 218,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 36,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "subVectors",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#subVectors",
+    "access": null,
+    "description": "Sets this vector to the difference between two given vectors.",
+    "lineNumber": 232,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "a",
+        "description": "A vector."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "b",
+        "description": "A second vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 37,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 234,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 38,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 235,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 39,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "multiply",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#multiply",
+    "access": null,
+    "description": "Multiplies this vector with another vector.",
+    "lineNumber": 248,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 40,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 250,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 41,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 251,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 42,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "multiplyScalar",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#multiplyScalar",
+    "access": null,
+    "description": "Multiplies this vector with a given scalar.",
+    "lineNumber": 264,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "s",
+        "description": "A scalar."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 43,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 268,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 44,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 269,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 45,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 273,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 46,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 274,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 47,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "multiplyVectors",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#multiplyVectors",
+    "access": null,
+    "description": "Sets this vector to the product of two given vectors.",
+    "lineNumber": 290,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "a",
+        "description": "A vector."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "b",
+        "description": "Another vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 48,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 292,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 49,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 293,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 50,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "divide",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#divide",
+    "access": null,
+    "description": "Divides this vector by another vector.",
+    "lineNumber": 306,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 51,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 308,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 309,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "divideScalar",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#divideScalar",
+    "access": null,
+    "description": "Divides this vector by a given scalar.",
+    "lineNumber": 322,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "s",
+        "description": "A scalar."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 54,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "divideVectors",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#divideVectors",
+    "access": null,
+    "description": "Sets this vector to the quotient of two given vectors.",
+    "lineNumber": 336,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "a",
+        "description": "A vector."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "b",
+        "description": "Another vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 55,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 338,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 339,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "negate",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#negate",
+    "access": null,
+    "description": "Negates this vector.",
+    "lineNumber": 351,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 58,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 353,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 354,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 60,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "dot",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#dot",
+    "access": null,
+    "description": "Calculates the dot product with another vector.",
+    "lineNumber": 367,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "The dot product."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 61,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "lengthSq",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#lengthSq",
+    "access": null,
+    "description": "Calculates the squared length of this vector.",
+    "lineNumber": 379,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "The squared length."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 62,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "length",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#length",
+    "access": null,
+    "description": "Calculates the length of this vector.",
+    "lineNumber": 391,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "The length."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 63,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "distanceTo",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#distanceTo",
+    "access": null,
+    "description": "Calculates the distance to a given vector.",
+    "lineNumber": 404,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "The distance."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 64,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "distanceToSquared",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#distanceToSquared",
+    "access": null,
+    "description": "Calculates the squared distance to a given vector.",
+    "lineNumber": 417,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "The squared distance."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 65,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "normalize",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#normalize",
+    "access": null,
+    "description": "Normalizes this vector.",
+    "lineNumber": 432,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 66,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "min",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#min",
+    "access": null,
+    "description": "Adopts the min value for each component of this vector and the given one.",
+    "lineNumber": 445,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 67,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 447,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 68,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 448,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 69,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "max",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#max",
+    "access": null,
+    "description": "adopts the max value for each component of this vector and the given one.",
+    "lineNumber": 461,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 70,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 463,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 71,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 464,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 72,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clamp",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#clamp",
+    "access": null,
+    "description": "Clamps this vector.",
+    "lineNumber": 478,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "min",
+        "description": "A vector, assumed to be smaller than max."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Vector2"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "max",
+        "description": "A vector, assumed to be greater than min."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector2"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 73,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 480,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 74,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/2d/vector2.js~Vector2",
+    "longname": "src/2d/vector2.js~Vector2#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 481,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 75,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/3d/box3.js",
+    "memberof": null,
+    "longname": "src/3d/box3.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import { Vector3 } from \"./vector3.js\";\r\n\r\n/**\r\n * A 3D box.\r\n */\r\n\r\nexport class Box3 {\r\n\r\n\t/**\r\n\t * Constructs a new box.\r\n\t *\r\n\t * @param {Vector3} [min] - The lower bounds.\r\n\t * @param {Vector3} [max] - The upper bounds.\r\n\t */\r\n\r\n\tconstructor(\r\n\t\tmin = new Vector3(Infinity, Infinity, Infinity),\r\n\t\tmax = new Vector3(-Infinity, -Infinity, -Infinity)\r\n\t) {\r\n\r\n\t\t/**\r\n\t\t * The lower bounds.\r\n\t\t *\r\n\t\t * @type {Vector3}\r\n\t\t */\r\n\r\n\t\tthis.min = min;\r\n\r\n\t\t/**\r\n\t\t * The upper bounds.\r\n\t\t *\r\n\t\t * @type {Vector3}\r\n\t\t */\r\n\r\n\t\tthis.max = max;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this box.\r\n\t *\r\n\t * @param {Number} min - The lower bounds.\r\n\t * @param {Number} max - The upper bounds.\r\n\t * @return {Box3} This box.\r\n\t */\r\n\r\n\tset(min, max) {\r\n\r\n\t\tthis.min.copy(min);\r\n\t\tthis.max.copy(max);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the values of a given box.\r\n\t *\r\n\t * @param {Box3} b - A box.\r\n\t * @return {Box3} This box.\r\n\t */\r\n\r\n\tcopy(b) {\r\n\r\n\t\tthis.min.copy(b.min);\r\n\t\tthis.max.copy(b.max);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this matrix.\r\n\t *\r\n\t * @return {Box3} A clone of this matrix.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor().copy(this);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Expands this box by the given point.\r\n\t *\r\n\t * @param {Vector3} p - A point.\r\n\t * @return {Box3} This box.\r\n\t */\r\n\r\n\texpandByPoint(p) {\r\n\r\n\t\tthis.min.min(p);\r\n\t\tthis.max.max(p);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Expands this box by combining it with the given one.\r\n\t *\r\n\t * @param {Box3} b - A box.\r\n\t * @return {Box3} This box.\r\n\t */\r\n\r\n\tunion(b) {\r\n\r\n\t\tthis.min.min(b.min);\r\n\t\tthis.max.max(b.max);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Defines this box by the given points.\r\n\t *\r\n\t * @param {Vector3[]} points - The points.\r\n\t * @return {Box3} This box.\r\n\t */\r\n\r\n\tsetFromPoints(points) {\r\n\r\n\t\tlet i, l;\r\n\r\n\t\tfor(i = 0, l = points.length; i < l; ++i) {\r\n\r\n\t\t\tthis.expandByPoint(points[i]);\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Defines this box by the given center and size.\r\n\t *\r\n\t * @param {Vector3} center - The center.\r\n\t * @param {Number} size - The size.\r\n\t * @return {Box3} This box.\r\n\t */\r\n\r\n\tsetFromCenterAndSize(center, size) {\r\n\r\n\t\tconst halfSize = size.clone().multiplyScalar(0.5);\r\n\r\n\t\tthis.min.copy(center).sub(halfSize);\r\n\t\tthis.max.copy(center).add(halfSize);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if this box intersects with the given one.\r\n\t *\r\n\t * @param {Box3} box - A box.\r\n\t * @return {Boolean} Whether the boxes intersect.\r\n\t */\r\n\r\n\tintersectsBox(box) {\r\n\r\n\t\treturn !(\r\n\t\t\tbox.max.x < this.min.x || box.min.x > this.max.x ||\r\n\t\t\tbox.max.y < this.min.y || box.min.y > this.max.y ||\r\n\t\t\tbox.max.z < this.min.z || box.min.z > this.max.z\r\n\t\t);\r\n\r\n\t}\r\n\r\n}\r\n"
+  },
+  {
+    "__docId__": 76,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Box3",
+    "memberof": "src/3d/box3.js",
+    "longname": "src/3d/box3.js~Box3",
+    "access": null,
+    "export": true,
+    "importPath": "math-ds/src/3d/box3.js",
+    "importStyle": "{Box3}",
+    "description": "A 3D box.",
+    "lineNumber": 7,
+    "interface": false
+  },
+  {
+    "__docId__": 77,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/3d/box3.js~Box3",
+    "longname": "src/3d/box3.js~Box3#constructor",
+    "access": null,
+    "description": "Constructs a new box.",
+    "lineNumber": 16,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "min",
+        "description": "The lower bounds."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "max",
+        "description": "The upper bounds."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 78,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "min",
+    "memberof": "src/3d/box3.js~Box3",
+    "longname": "src/3d/box3.js~Box3#min",
+    "access": null,
+    "description": "The lower bounds.",
+    "lineNumber": 27,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 79,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "max",
+    "memberof": "src/3d/box3.js~Box3",
+    "longname": "src/3d/box3.js~Box3#max",
+    "access": null,
+    "description": "The upper bounds.",
+    "lineNumber": 35,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 80,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "set",
+    "memberof": "src/3d/box3.js~Box3",
+    "longname": "src/3d/box3.js~Box3#set",
+    "access": null,
+    "description": "Sets the values of this box.",
+    "lineNumber": 47,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "min",
+        "description": "The lower bounds."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "max",
+        "description": "The upper bounds."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Box3"
+      ],
+      "spread": false,
+      "description": "This box."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 81,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "copy",
+    "memberof": "src/3d/box3.js~Box3",
+    "longname": "src/3d/box3.js~Box3#copy",
+    "access": null,
+    "description": "Copies the values of a given box.",
+    "lineNumber": 63,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Box3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "b",
+        "description": "A box."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Box3"
+      ],
+      "spread": false,
+      "description": "This box."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 82,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clone",
+    "memberof": "src/3d/box3.js~Box3",
+    "longname": "src/3d/box3.js~Box3#clone",
+    "access": null,
+    "description": "Clones this matrix.",
+    "lineNumber": 78,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Box3"
+      ],
+      "spread": false,
+      "description": "A clone of this matrix."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 83,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "expandByPoint",
+    "memberof": "src/3d/box3.js~Box3",
+    "longname": "src/3d/box3.js~Box3#expandByPoint",
+    "access": null,
+    "description": "Expands this box by the given point.",
+    "lineNumber": 91,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "p",
+        "description": "A point."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Box3"
+      ],
+      "spread": false,
+      "description": "This box."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 84,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "union",
+    "memberof": "src/3d/box3.js~Box3",
+    "longname": "src/3d/box3.js~Box3#union",
+    "access": null,
+    "description": "Expands this box by combining it with the given one.",
+    "lineNumber": 107,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Box3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "b",
+        "description": "A box."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Box3"
+      ],
+      "spread": false,
+      "description": "This box."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 85,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setFromPoints",
+    "memberof": "src/3d/box3.js~Box3",
+    "longname": "src/3d/box3.js~Box3#setFromPoints",
+    "access": null,
+    "description": "Defines this box by the given points.",
+    "lineNumber": 123,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "points",
+        "description": "The points."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Box3"
+      ],
+      "spread": false,
+      "description": "This box."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 86,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setFromCenterAndSize",
+    "memberof": "src/3d/box3.js~Box3",
+    "longname": "src/3d/box3.js~Box3#setFromCenterAndSize",
+    "access": null,
+    "description": "Defines this box by the given center and size.",
+    "lineNumber": 145,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "center",
+        "description": "The center."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "size",
+        "description": "The size."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Box3"
+      ],
+      "spread": false,
+      "description": "This box."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 87,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "intersectsBox",
+    "memberof": "src/3d/box3.js~Box3",
+    "longname": "src/3d/box3.js~Box3#intersectsBox",
+    "access": null,
+    "description": "Checks if this box intersects with the given one.",
+    "lineNumber": 163,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Box3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "box",
+        "description": "A box."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "Whether the boxes intersect."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 88,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/3d/index.js",
+    "memberof": null,
+    "longname": "src/3d/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "content": "/**\r\n * Mathematical data structures of the 3D domain.\r\n *\r\n * @module math-ds/3d\r\n */\r\n\r\nexport { Box3 } from \"./box3.js\";\r\nexport { Matrix3 } from \"./matrix3.js\";\r\nexport { SymmetricMatrix3 } from \"./symmetric-matrix3.js\";\r\nexport { Vector3 } from \"./vector3.js\";\r\n"
+  },
+  {
+    "__docId__": 89,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/3d/matrix3.js",
+    "memberof": null,
+    "longname": "src/3d/matrix3.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "content": "/**\r\n * A 3x3 matrix.\r\n */\r\n\r\nexport class Matrix3 {\r\n\r\n\t/**\r\n\t * Constructs a new matrix.\r\n\t */\r\n\r\n\tconstructor() {\r\n\r\n\t\t/**\r\n\t\t * The matrix elements.\r\n\t\t *\r\n\t\t * @type {Float32Array}\r\n\t\t */\r\n\r\n\t\tthis.elements = new Float32Array([\r\n\r\n\t\t\t1, 0, 0,\r\n\t\t\t0, 1, 0,\r\n\t\t\t0, 0, 1\r\n\r\n\t\t]);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this matrix.\r\n\t *\r\n\t * @param {Number} m00 - The value of the first row, first column.\r\n\t * @param {Number} m01 - The value of the first row, second column.\r\n\t * @param {Number} m02 - The value of the first row, third column.\r\n\t * @param {Number} m10 - The value of the second row, first column.\r\n\t * @param {Number} m11 - The value of the second row, second column.\r\n\t * @param {Number} m12 - The value of the second row, third column.\r\n\t * @param {Number} m20 - The value of the third row, first column.\r\n\t * @param {Number} m21 - The value of the third row, second column.\r\n\t * @param {Number} m22 - The value of the third row, third column.\r\n\t * @return {Matrix3} This matrix.\r\n\t */\r\n\r\n\tset(m00, m01, m02, m10, m11, m12, m20, m21, m22) {\r\n\r\n\t\tconst te = this.elements;\r\n\r\n\t\tte[0] = m00; te[3] = m01; te[6] = m02;\r\n\t\tte[1] = m10; te[4] = m11; te[7] = m12;\r\n\t\tte[2] = m20; te[5] = m21; te[8] = m22;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this matrix to the identity matrix.\r\n\t *\r\n\t * @return {Matrix3} This matrix.\r\n\t */\r\n\r\n\tidentity() {\r\n\r\n\t\tthis.set(\r\n\r\n\t\t\t1, 0, 0,\r\n\t\t\t0, 1, 0,\r\n\t\t\t0, 0, 1\r\n\r\n\t\t);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the values of a given matrix.\r\n\t *\r\n\t * @param {Matrix3} m - A matrix.\r\n\t * @return {Matrix3} This matrix.\r\n\t */\r\n\r\n\tcopy(m) {\r\n\r\n\t\tconst me = m.elements;\r\n\r\n\t\treturn this.set(\r\n\r\n\t\t\tme[0], me[3], me[6],\r\n\t\t\tme[1], me[4], me[7],\r\n\t\t\tme[2], me[5], me[8]\r\n\r\n\t\t);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this matrix.\r\n\t *\r\n\t * @return {Matrix3} A clone of this matrix.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor().copy(this);\r\n\r\n\t}\r\n\r\n}\r\n"
+  },
+  {
+    "__docId__": 90,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Matrix3",
+    "memberof": "src/3d/matrix3.js",
+    "longname": "src/3d/matrix3.js~Matrix3",
+    "access": null,
+    "export": true,
+    "importPath": "math-ds/src/3d/matrix3.js",
+    "importStyle": "{Matrix3}",
+    "description": "A 3x3 matrix.",
+    "lineNumber": 5,
+    "interface": false
+  },
+  {
+    "__docId__": 91,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/3d/matrix3.js~Matrix3",
+    "longname": "src/3d/matrix3.js~Matrix3#constructor",
+    "access": null,
+    "description": "Constructs a new matrix.",
+    "lineNumber": 11,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 92,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "elements",
+    "memberof": "src/3d/matrix3.js~Matrix3",
+    "longname": "src/3d/matrix3.js~Matrix3#elements",
+    "access": null,
+    "description": "The matrix elements.",
+    "lineNumber": 19,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Float32Array"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 93,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "set",
+    "memberof": "src/3d/matrix3.js~Matrix3",
+    "longname": "src/3d/matrix3.js~Matrix3#set",
+    "access": null,
+    "description": "Sets the values of this matrix.",
+    "lineNumber": 44,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m00",
+        "description": "The value of the first row, first column."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m01",
+        "description": "The value of the first row, second column."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m02",
+        "description": "The value of the first row, third column."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m10",
+        "description": "The value of the second row, first column."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m11",
+        "description": "The value of the second row, second column."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m12",
+        "description": "The value of the second row, third column."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m20",
+        "description": "The value of the third row, first column."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m21",
+        "description": "The value of the third row, second column."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m22",
+        "description": "The value of the third row, third column."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Matrix3"
+      ],
+      "spread": false,
+      "description": "This matrix."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 94,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "identity",
+    "memberof": "src/3d/matrix3.js~Matrix3",
+    "longname": "src/3d/matrix3.js~Matrix3#identity",
+    "access": null,
+    "description": "Sets this matrix to the identity matrix.",
+    "lineNumber": 62,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Matrix3"
+      ],
+      "spread": false,
+      "description": "This matrix."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 95,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "copy",
+    "memberof": "src/3d/matrix3.js~Matrix3",
+    "longname": "src/3d/matrix3.js~Matrix3#copy",
+    "access": null,
+    "description": "Copies the values of a given matrix.",
+    "lineNumber": 83,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Matrix3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m",
+        "description": "A matrix."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Matrix3"
+      ],
+      "spread": false,
+      "description": "This matrix."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 96,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clone",
+    "memberof": "src/3d/matrix3.js~Matrix3",
+    "longname": "src/3d/matrix3.js~Matrix3#clone",
+    "access": null,
+    "description": "Clones this matrix.",
+    "lineNumber": 103,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Matrix3"
+      ],
+      "spread": false,
+      "description": "A clone of this matrix."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 97,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/3d/symmetric-matrix3.js",
+    "memberof": null,
+    "longname": "src/3d/symmetric-matrix3.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "content": "/**\r\n * A symmetric 3x3 matrix.\r\n */\r\n\r\nexport class SymmetricMatrix3 {\r\n\r\n\t/**\r\n\t * Constructs a new symmetric matrix.\r\n\t */\r\n\r\n\tconstructor() {\r\n\r\n\t\t/**\r\n\t\t * The matrix elements.\r\n\t\t *\r\n\t\t * @type {Float32Array}\r\n\t\t */\r\n\r\n\t\tthis.elements = new Float32Array([\r\n\r\n\t\t\t1, 0, 0,\r\n\t\t\t1, 0,\r\n\t\t\t1\r\n\r\n\t\t]);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this matrix.\r\n\t *\r\n\t * @param {Number} m00 - The value of the first row, first column.\r\n\t * @param {Number} m01 - The value of the first row, second column and the second row, first column.\r\n\t * @param {Number} m02 - The value of the first row, third column and the third row, first column.\r\n\t * @param {Number} m11 - The value of the second row, second column.\r\n\t * @param {Number} m12 - The value of the second row, third column and third row, second column.\r\n\t * @param {Number} m22 - The value of the third row, third column.\r\n\t * @return {SymmetricMatrix3} This matrix.\r\n\t */\r\n\r\n\tset(m00, m01, m02, m11, m12, m22) {\r\n\r\n\t\tconst e = this.elements;\r\n\r\n\t\te[0] = m00;\r\n\t\te[1] = m01; e[3] = m11;\r\n\t\te[2] = m02; e[4] = m12; e[5] = m22;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this matrix to the identity matrix.\r\n\t *\r\n\t * @return {SymmetricMatrix3} This matrix.\r\n\t */\r\n\r\n\tidentity() {\r\n\r\n\t\tthis.set(\r\n\r\n\t\t\t1, 0, 0,\r\n\t\t\t1, 0,\r\n\t\t\t1\r\n\r\n\t\t);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the values of a given symmetric matrix.\r\n\t *\r\n\t * @param {SymmetricMatrix3} m - A matrix.\r\n\t * @return {SymmetricMatrix3} This matrix.\r\n\t */\r\n\r\n\tcopy(m) {\r\n\r\n\t\tconst me = m.elements;\r\n\r\n\t\tthis.set(\r\n\r\n\t\t\tme[0], me[1], me[2],\r\n\t\t\tme[3], me[4],\r\n\t\t\tme[5]\r\n\r\n\t\t);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this matrix.\r\n\t *\r\n\t * @return {SymmetricMatrix3} A clone of this matrix.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor().copy(this);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies this symmetric matrix into a given 3x3 matrix.\r\n\t *\r\n\t * @param {Matrix3} m - The target matrix.\r\n\t */\r\n\r\n\ttoMatrix3(m) {\r\n\r\n\t\tconst me = m.elements;\r\n\r\n\t\tm.set(\r\n\r\n\t\t\tme[0], me[1], me[2],\r\n\t\t\tme[1], me[3], me[4],\r\n\t\t\tme[2], me[4], me[5]\r\n\r\n\t\t);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds the values of a given symmetric matrix to this one.\r\n\t *\r\n\t * @param {SymmetricMatrix3} m - A matrix.\r\n\t * @return {SymmetricMatrix3} This matrix.\r\n\t */\r\n\r\n\tadd(m) {\r\n\r\n\t\tconst te = this.elements;\r\n\t\tconst me = m.elements;\r\n\r\n\t\tte[0] += me[0];\r\n\t\tte[1] += me[1]; te[3] += me[3];\r\n\t\tte[2] += me[2]; te[4] += me[4]; te[5] += me[5];\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the Frobenius norm of this matrix.\r\n\t *\r\n\t * @return {Number} The norm of this matrix.\r\n\t */\r\n\r\n\tnorm() {\r\n\r\n\t\tconst e = this.elements;\r\n\r\n\t\tconst m01m01 = e[1] * e[1];\r\n\t\tconst m02m02 = e[2] * e[2];\r\n\t\tconst m12m12 = e[4] * e[4];\r\n\r\n\t\treturn Math.sqrt(\r\n\r\n\t\t\te[0] * e[0] + m01m01 + m02m02 +\r\n\t\t\tm01m01 + e[3] * e[3] + m12m12 +\r\n\t\t\tm02m02 + m12m12 + e[5] * e[5]\r\n\r\n\t\t);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the absolute sum of all matrix components except for the main\r\n\t * diagonal.\r\n\t *\r\n\t * @return {Number} The offset of this matrix.\r\n\t */\r\n\r\n\toff() {\r\n\r\n\t\tconst e = this.elements;\r\n\r\n\t\treturn Math.sqrt(2 * (\r\n\r\n\t\t\t// Diagonal = [0, 3, 5].\r\n\t\t\te[1] * e[1] + e[2] * e[2] + e[4] * e[4]\r\n\r\n\t\t));\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Applies this symmetric matrix to a vector.\r\n\t *\r\n\t * @param {Vector3} v - The vector to modify.\r\n\t * @return {Vector3} The modified vector.\r\n\t */\r\n\r\n\tapplyToVector3(v) {\r\n\r\n\t\tconst x = v.x, y = v.y, z = v.z;\r\n\t\tconst e = this.elements;\r\n\r\n\t\tv.x = e[0] * x + e[1] * y + e[2] * z;\r\n\t\tv.y = e[1] * x + e[3] * y + e[4] * z;\r\n\t\tv.z = e[2] * x + e[4] * y + e[5] * z;\r\n\r\n\t\treturn v;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the linear index of an element from this matrix.\r\n\t *\r\n\t * Let N be the dimension of the symmetric matrix:\r\n\t *\r\n\t *     index = N * (N - 1) / 2 - (N - i) * (N - i - 1) / 2 + j\r\n\t *\r\n\t * @param {Number} i - The row.\r\n\t * @param {Number} j - The column.\r\n\t * @return {Number} The index into the elements of this matrix.\r\n\t */\r\n\r\n\tstatic calculateIndex(i, j) {\r\n\r\n\t\treturn (3 - (3 - i) * (2 - i) / 2 + j);\r\n\r\n\t}\r\n\r\n}\r\n"
+  },
+  {
+    "__docId__": 98,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "SymmetricMatrix3",
+    "memberof": "src/3d/symmetric-matrix3.js",
+    "longname": "src/3d/symmetric-matrix3.js~SymmetricMatrix3",
+    "access": null,
+    "export": true,
+    "importPath": "math-ds/src/3d/symmetric-matrix3.js",
+    "importStyle": "{SymmetricMatrix3}",
+    "description": "A symmetric 3x3 matrix.",
+    "lineNumber": 5,
+    "interface": false
+  },
+  {
+    "__docId__": 99,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/3d/symmetric-matrix3.js~SymmetricMatrix3",
+    "longname": "src/3d/symmetric-matrix3.js~SymmetricMatrix3#constructor",
+    "access": null,
+    "description": "Constructs a new symmetric matrix.",
+    "lineNumber": 11,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 100,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "elements",
+    "memberof": "src/3d/symmetric-matrix3.js~SymmetricMatrix3",
+    "longname": "src/3d/symmetric-matrix3.js~SymmetricMatrix3#elements",
+    "access": null,
+    "description": "The matrix elements.",
+    "lineNumber": 19,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Float32Array"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 101,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "set",
+    "memberof": "src/3d/symmetric-matrix3.js~SymmetricMatrix3",
+    "longname": "src/3d/symmetric-matrix3.js~SymmetricMatrix3#set",
+    "access": null,
+    "description": "Sets the values of this matrix.",
+    "lineNumber": 41,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m00",
+        "description": "The value of the first row, first column."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m01",
+        "description": "The value of the first row, second column and the second row, first column."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m02",
+        "description": "The value of the first row, third column and the third row, first column."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m11",
+        "description": "The value of the second row, second column."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m12",
+        "description": "The value of the second row, third column and third row, second column."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m22",
+        "description": "The value of the third row, third column."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "SymmetricMatrix3"
+      ],
+      "spread": false,
+      "description": "This matrix."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 102,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "identity",
+    "memberof": "src/3d/symmetric-matrix3.js~SymmetricMatrix3",
+    "longname": "src/3d/symmetric-matrix3.js~SymmetricMatrix3#identity",
+    "access": null,
+    "description": "Sets this matrix to the identity matrix.",
+    "lineNumber": 59,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "SymmetricMatrix3"
+      ],
+      "spread": false,
+      "description": "This matrix."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 103,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "copy",
+    "memberof": "src/3d/symmetric-matrix3.js~SymmetricMatrix3",
+    "longname": "src/3d/symmetric-matrix3.js~SymmetricMatrix3#copy",
+    "access": null,
+    "description": "Copies the values of a given symmetric matrix.",
+    "lineNumber": 80,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "SymmetricMatrix3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m",
+        "description": "A matrix."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "SymmetricMatrix3"
+      ],
+      "spread": false,
+      "description": "This matrix."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 104,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clone",
+    "memberof": "src/3d/symmetric-matrix3.js~SymmetricMatrix3",
+    "longname": "src/3d/symmetric-matrix3.js~SymmetricMatrix3#clone",
+    "access": null,
+    "description": "Clones this matrix.",
+    "lineNumber": 102,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "SymmetricMatrix3"
+      ],
+      "spread": false,
+      "description": "A clone of this matrix."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 105,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "toMatrix3",
+    "memberof": "src/3d/symmetric-matrix3.js~SymmetricMatrix3",
+    "longname": "src/3d/symmetric-matrix3.js~SymmetricMatrix3#toMatrix3",
+    "access": null,
+    "description": "Copies this symmetric matrix into a given 3x3 matrix.",
+    "lineNumber": 114,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Matrix3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m",
+        "description": "The target matrix."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 106,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "add",
+    "memberof": "src/3d/symmetric-matrix3.js~SymmetricMatrix3",
+    "longname": "src/3d/symmetric-matrix3.js~SymmetricMatrix3#add",
+    "access": null,
+    "description": "Adds the values of a given symmetric matrix to this one.",
+    "lineNumber": 135,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "SymmetricMatrix3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m",
+        "description": "A matrix."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "SymmetricMatrix3"
+      ],
+      "spread": false,
+      "description": "This matrix."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 107,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "norm",
+    "memberof": "src/3d/symmetric-matrix3.js~SymmetricMatrix3",
+    "longname": "src/3d/symmetric-matrix3.js~SymmetricMatrix3#norm",
+    "access": null,
+    "description": "Calculates the Frobenius norm of this matrix.",
+    "lineNumber": 154,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "The norm of this matrix."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 108,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "off",
+    "memberof": "src/3d/symmetric-matrix3.js~SymmetricMatrix3",
+    "longname": "src/3d/symmetric-matrix3.js~SymmetricMatrix3#off",
+    "access": null,
+    "description": "Calculates the absolute sum of all matrix components except for the main\ndiagonal.",
+    "lineNumber": 179,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "The offset of this matrix."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 109,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "applyToVector3",
+    "memberof": "src/3d/symmetric-matrix3.js~SymmetricMatrix3",
+    "longname": "src/3d/symmetric-matrix3.js~SymmetricMatrix3#applyToVector3",
+    "access": null,
+    "description": "Applies this symmetric matrix to a vector.",
+    "lineNumber": 199,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "The vector to modify."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "The modified vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 110,
+    "kind": "method",
+    "static": true,
+    "variation": null,
+    "name": "calculateIndex",
+    "memberof": "src/3d/symmetric-matrix3.js~SymmetricMatrix3",
+    "longname": "src/3d/symmetric-matrix3.js~SymmetricMatrix3.calculateIndex",
+    "access": null,
+    "description": "Calculates the linear index of an element from this matrix.\n\nLet N be the dimension of the symmetric matrix:\n\n    index = N * (N - 1) / 2 - (N - i) * (N - i - 1) / 2 + j",
+    "lineNumber": 224,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "i",
+        "description": "The row."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "j",
+        "description": "The column."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "The index into the elements of this matrix."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 111,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/3d/vector3.js",
+    "memberof": null,
+    "longname": "src/3d/vector3.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "content": "/**\r\n * A vector with three components.\r\n */\r\n\r\nexport class Vector3 {\r\n\r\n\t/**\r\n\t * Constructs a new vector.\r\n\t *\r\n\t * @param {Number} [x=0] - The x value.\r\n\t * @param {Number} [y=0] - The y value.\r\n\t * @param {Number} [z=0] - The z value.\r\n\t */\r\n\r\n\tconstructor(x = 0, y = 0, z = 0) {\r\n\r\n\t\t/**\r\n\t\t * The x component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.x = x;\r\n\r\n\t\t/**\r\n\t\t * The y component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.y = y;\r\n\r\n\t\t/**\r\n\t\t * The z component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.z = z;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this vector\r\n\t *\r\n\t * @param {Number} x - The x value.\r\n\t * @param {Number} y - The y value.\r\n\t * @param {Number} z - The z value.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tset(x, y, z) {\r\n\r\n\t\tthis.x = x;\r\n\t\tthis.y = y;\r\n\t\tthis.z = z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the values of another vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tcopy(v) {\r\n\r\n\t\tthis.x = v.x;\r\n\t\tthis.y = v.y;\r\n\t\tthis.z = v.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies values from an array.\r\n\t *\r\n\t * @param {Array} array - An array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tfromArray(array, offset = 0) {\r\n\r\n\t\tthis.x = array[offset];\r\n\t\tthis.y = array[offset + 1];\r\n\t\tthis.z = array[offset + 2];\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Stores this vector in an array.\r\n\t *\r\n\t * @param {Array} [array] - A target array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Vector3} The array.\r\n\t */\r\n\r\n\ttoArray(array = [], offset = 0) {\r\n\r\n\t\tarray[offset] = this.x;\r\n\t\tarray[offset + 1] = this.y;\r\n\t\tarray[offset + 2] = this.z;\r\n\r\n\t\treturn array;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if this vector equals the given one.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Boolean} Whether this vector equals the given one.\r\n\t */\r\n\r\n\tequals(v) {\r\n\r\n\t\treturn (v.x === this.x && v.y === this.y && v.z === this.z);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this vector.\r\n\t *\r\n\t * @return {Vector3} A clone of this vector.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor(this.x, this.y, this.z);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a vector to this one.\r\n\t *\r\n\t * @param {Vector3} v - The vector to add.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tadd(v) {\r\n\r\n\t\tthis.x += v.x;\r\n\t\tthis.y += v.y;\r\n\t\tthis.z += v.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a scaled vector to this one.\r\n\t *\r\n\t * @param {Vector3} v - The vector to scale and add.\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\taddScaledVector(v, s) {\r\n\r\n\t\tthis.x += v.x * s;\r\n\t\tthis.y += v.y * s;\r\n\t\tthis.z += v.z * s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a scalar to this vector.\r\n\t *\r\n\t * @param {Number} s - The scalar to add.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\taddScalar(s) {\r\n\r\n\t\tthis.x += s;\r\n\t\tthis.y += s;\r\n\t\tthis.z += s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the sum of two given vectors.\r\n\t *\r\n\t * @param {Vector3} a - A vector.\r\n\t * @param {Vector3} b - Another vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\taddVectors(a, b) {\r\n\r\n\t\tthis.x = a.x + b.x;\r\n\t\tthis.y = a.y + b.y;\r\n\t\tthis.z = a.z + b.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Subtracts a vector from this vector.\r\n\t *\r\n\t * @param {Vector3} v - The vector to subtract.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsub(v) {\r\n\r\n\t\tthis.x -= v.x;\r\n\t\tthis.y -= v.y;\r\n\t\tthis.z -= v.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Subtracts a scalar to this vector.\r\n\t *\r\n\t * @param {Number} s - The scalar to subtract.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsubScalar(s) {\r\n\r\n\t\tthis.x -= s;\r\n\t\tthis.y -= s;\r\n\t\tthis.z -= s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the difference between two given vectors.\r\n\t *\r\n\t * @param {Vector3} a - A vector.\r\n\t * @param {Vector3} b - A second vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsubVectors(a, b) {\r\n\r\n\t\tthis.x = a.x - b.x;\r\n\t\tthis.y = a.y - b.y;\r\n\t\tthis.z = a.z - b.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies this vector with another vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tmultiply(v) {\r\n\r\n\t\tthis.x *= v.x;\r\n\t\tthis.y *= v.y;\r\n\t\tthis.z *= v.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies this vector with a given scalar.\r\n\t *\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tmultiplyScalar(s) {\r\n\r\n\t\tif(isFinite(s)) {\r\n\r\n\t\t\tthis.x *= s;\r\n\t\t\tthis.y *= s;\r\n\t\t\tthis.z *= s;\r\n\r\n\t\t} else {\r\n\r\n\t\t\tthis.x = 0;\r\n\t\t\tthis.y = 0;\r\n\t\t\tthis.z = 0;\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the product of two given vectors.\r\n\t *\r\n\t * @param {Vector3} a - A vector.\r\n\t * @param {Vector3} b - Another vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tmultiplyVectors(a, b) {\r\n\r\n\t\tthis.x = a.x * b.x;\r\n\t\tthis.y = a.y * b.y;\r\n\t\tthis.z = a.z * b.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Divides this vector by another vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tdivide(v) {\r\n\r\n\t\tthis.x /= v.x;\r\n\t\tthis.y /= v.y;\r\n\t\tthis.z /= v.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Divides this vector by a given scalar.\r\n\t *\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tdivideScalar(s) {\r\n\r\n\t\treturn this.multiplyScalar(1 / s);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the quotient of two given vectors.\r\n\t *\r\n\t * @param {Vector3} a - A vector.\r\n\t * @param {Vector3} b - Another vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tdivideVectors(a, b) {\r\n\r\n\t\tthis.x = a.x / b.x;\r\n\t\tthis.y = a.y / b.y;\r\n\t\tthis.z = a.z / b.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Negates this vector.\r\n\t *\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tnegate() {\r\n\r\n\t\tthis.x = -this.x;\r\n\t\tthis.y = -this.y;\r\n\t\tthis.z = -this.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the dot product with another vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Number} The dot product.\r\n\t */\r\n\r\n\tdot(v) {\r\n\r\n\t\treturn this.x * v.x + this.y * v.y + this.z * v.z;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the squared length of this vector.\r\n\t *\r\n\t * @return {Number} The squared length.\r\n\t */\r\n\r\n\tlengthSq() {\r\n\r\n\t\treturn this.x * this.x + this.y * this.y + this.z * this.z;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the length of this vector.\r\n\t *\r\n\t * @return {Number} The length.\r\n\t */\r\n\r\n\tlength() {\r\n\r\n\t\treturn Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the distance to a given vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Number} The distance.\r\n\t */\r\n\r\n\tdistanceTo(v) {\r\n\r\n\t\treturn Math.sqrt(this.distanceToSquared(v));\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the squared distance to a given vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Number} The squared distance.\r\n\t */\r\n\r\n\tdistanceToSquared(v) {\r\n\r\n\t\tconst dx = this.x - v.x;\r\n\t\tconst dy = this.y - v.y;\r\n\t\tconst dz = this.z - v.z;\r\n\r\n\t\treturn dx * dx + dy * dy + dz * dz;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Normalizes this vector.\r\n\t *\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tnormalize() {\r\n\r\n\t\treturn this.divideScalar(this.length());\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adopts the min value for each component of this vector and the given one.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tmin(v) {\r\n\r\n\t\tthis.x = Math.min(this.x, v.x);\r\n\t\tthis.y = Math.min(this.y, v.y);\r\n\t\tthis.z = Math.min(this.z, v.z);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * adopts the max value for each component of this vector and the given one.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tmax(v) {\r\n\r\n\t\tthis.x = Math.max(this.x, v.x);\r\n\t\tthis.y = Math.max(this.y, v.y);\r\n\t\tthis.z = Math.max(this.z, v.z);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clamps this vector.\r\n\t *\r\n\t * @param {Vector3} min - A vector, assumed to be smaller than max.\r\n\t * @param {Vector3} max - A vector, assumed to be greater than min.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tclamp(min, max) {\r\n\r\n\t\tthis.x = Math.max(min.x, Math.min(max.x, this.x));\r\n\t\tthis.y = Math.max(min.y, Math.min(max.y, this.y));\r\n\t\tthis.z = Math.max(min.z, Math.min(max.z, this.z));\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Applies a matrix to this vector.\r\n\t *\r\n\t * @param {Matrix3} m - A matrix.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tapplyMatrix3(m) {\r\n\r\n\t\tconst x = this.x, y = this.y, z = this.z;\r\n\t\tconst e = m.elements;\r\n\r\n\t\tthis.x = e[0] * x + e[3] * y + e[6] * z;\r\n\t\tthis.y = e[1] * x + e[4] * y + e[7] * z;\r\n\t\tthis.z = e[2] * x + e[5] * y + e[8] * z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Applies a matrix to this vector.\r\n\t *\r\n\t * @param {Matrix4} m - A matrix.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tapplyMatrix4(m) {\r\n\r\n\t\tconst x = this.x, y = this.y, z = this.z;\r\n\t\tconst e = m.elements;\r\n\r\n\t\tthis.x = e[0] * x + e[4] * y + e[8] * z + e[12];\r\n\t\tthis.y = e[1] * x + e[5] * y + e[9] * z + e[13];\r\n\t\tthis.z = e[2] * x + e[6] * y + e[10] * z + e[14];\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n}\r\n"
+  },
+  {
+    "__docId__": 112,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Vector3",
+    "memberof": "src/3d/vector3.js",
+    "longname": "src/3d/vector3.js~Vector3",
+    "access": null,
+    "export": true,
+    "importPath": "math-ds/src/3d/vector3.js",
+    "importStyle": "{Vector3}",
+    "description": "A vector with three components.",
+    "lineNumber": 5,
+    "interface": false
+  },
+  {
+    "__docId__": 113,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#constructor",
+    "access": null,
+    "description": "Constructs a new vector.",
+    "lineNumber": 15,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "x",
+        "description": "The x value."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "y",
+        "description": "The y value."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "z",
+        "description": "The z value."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 114,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": "The x component.",
+    "lineNumber": 23,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 115,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": "The y component.",
+    "lineNumber": 31,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 116,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": "The z component.",
+    "lineNumber": 39,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 117,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "set",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#set",
+    "access": null,
+    "description": "Sets the values of this vector",
+    "lineNumber": 52,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "x",
+        "description": "The x value."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "The y value."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "z",
+        "description": "The z value."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 118,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 54,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 119,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 55,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 120,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 56,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 121,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "copy",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#copy",
+    "access": null,
+    "description": "Copies the values of another vector.",
+    "lineNumber": 69,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 122,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 71,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 123,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 72,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 124,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 73,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 125,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "fromArray",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#fromArray",
+    "access": null,
+    "description": "Copies values from an array.",
+    "lineNumber": 87,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "array",
+        "description": "An array."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "offset",
+        "description": "An offset."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 126,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 89,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 127,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 90,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 128,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 91,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 129,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "toArray",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#toArray",
+    "access": null,
+    "description": "Stores this vector in an array.",
+    "lineNumber": 105,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "array",
+        "description": "A target array."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "offset",
+        "description": "An offset."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "The array."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 130,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "equals",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#equals",
+    "access": null,
+    "description": "Checks if this vector equals the given one.",
+    "lineNumber": 122,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "Whether this vector equals the given one."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 131,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clone",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#clone",
+    "access": null,
+    "description": "Clones this vector.",
+    "lineNumber": 134,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "A clone of this vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 132,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "add",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#add",
+    "access": null,
+    "description": "Adds a vector to this one.",
+    "lineNumber": 147,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "The vector to add."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 133,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 149,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 134,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 150,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 135,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 151,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 136,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addScaledVector",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#addScaledVector",
+    "access": null,
+    "description": "Adds a scaled vector to this one.",
+    "lineNumber": 165,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "The vector to scale and add."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "s",
+        "description": "A scalar."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 137,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 167,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 138,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 168,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 139,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 169,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 140,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addScalar",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#addScalar",
+    "access": null,
+    "description": "Adds a scalar to this vector.",
+    "lineNumber": 182,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "s",
+        "description": "The scalar to add."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 141,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 184,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 142,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 185,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 143,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 186,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 144,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addVectors",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#addVectors",
+    "access": null,
+    "description": "Sets this vector to the sum of two given vectors.",
+    "lineNumber": 200,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "a",
+        "description": "A vector."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "b",
+        "description": "Another vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 145,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 202,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 146,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 203,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 147,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 204,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 148,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "sub",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#sub",
+    "access": null,
+    "description": "Subtracts a vector from this vector.",
+    "lineNumber": 217,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "The vector to subtract."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 149,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 219,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 150,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 220,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 151,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 221,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 152,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "subScalar",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#subScalar",
+    "access": null,
+    "description": "Subtracts a scalar to this vector.",
+    "lineNumber": 234,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "s",
+        "description": "The scalar to subtract."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 153,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 236,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 154,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 237,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 155,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 238,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 156,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "subVectors",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#subVectors",
+    "access": null,
+    "description": "Sets this vector to the difference between two given vectors.",
+    "lineNumber": 252,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "a",
+        "description": "A vector."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "b",
+        "description": "A second vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 157,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 254,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 158,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 255,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 159,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 256,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 160,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "multiply",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#multiply",
+    "access": null,
+    "description": "Multiplies this vector with another vector.",
+    "lineNumber": 269,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 161,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 271,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 162,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 272,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 163,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 273,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 164,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "multiplyScalar",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#multiplyScalar",
+    "access": null,
+    "description": "Multiplies this vector with a given scalar.",
+    "lineNumber": 286,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "s",
+        "description": "A scalar."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 165,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 290,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 166,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 291,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 167,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 292,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 168,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 296,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 169,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 297,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 170,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 298,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 171,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "multiplyVectors",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#multiplyVectors",
+    "access": null,
+    "description": "Sets this vector to the product of two given vectors.",
+    "lineNumber": 314,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "a",
+        "description": "A vector."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "b",
+        "description": "Another vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 172,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 316,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 173,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 317,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 174,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 318,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 175,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "divide",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#divide",
+    "access": null,
+    "description": "Divides this vector by another vector.",
+    "lineNumber": 331,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 176,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 333,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 177,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 334,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 178,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 335,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 179,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "divideScalar",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#divideScalar",
+    "access": null,
+    "description": "Divides this vector by a given scalar.",
+    "lineNumber": 348,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "s",
+        "description": "A scalar."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 180,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "divideVectors",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#divideVectors",
+    "access": null,
+    "description": "Sets this vector to the quotient of two given vectors.",
+    "lineNumber": 362,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "a",
+        "description": "A vector."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "b",
+        "description": "Another vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 181,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 364,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 182,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 365,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 183,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 366,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 184,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "negate",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#negate",
+    "access": null,
+    "description": "Negates this vector.",
+    "lineNumber": 378,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 185,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 380,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 186,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 381,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 187,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 382,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 188,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "dot",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#dot",
+    "access": null,
+    "description": "Calculates the dot product with another vector.",
+    "lineNumber": 395,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "The dot product."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 189,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "lengthSq",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#lengthSq",
+    "access": null,
+    "description": "Calculates the squared length of this vector.",
+    "lineNumber": 407,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "The squared length."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 190,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "length",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#length",
+    "access": null,
+    "description": "Calculates the length of this vector.",
+    "lineNumber": 419,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "The length."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 191,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "distanceTo",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#distanceTo",
+    "access": null,
+    "description": "Calculates the distance to a given vector.",
+    "lineNumber": 432,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "The distance."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 192,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "distanceToSquared",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#distanceToSquared",
+    "access": null,
+    "description": "Calculates the squared distance to a given vector.",
+    "lineNumber": 445,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "The squared distance."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 193,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "normalize",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#normalize",
+    "access": null,
+    "description": "Normalizes this vector.",
+    "lineNumber": 461,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 194,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "min",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#min",
+    "access": null,
+    "description": "Adopts the min value for each component of this vector and the given one.",
+    "lineNumber": 474,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 195,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 476,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 196,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 477,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 197,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 478,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 198,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "max",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#max",
+    "access": null,
+    "description": "adopts the max value for each component of this vector and the given one.",
+    "lineNumber": 491,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "A vector."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 199,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 493,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 200,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 494,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 201,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 495,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 202,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clamp",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#clamp",
+    "access": null,
+    "description": "Clamps this vector.",
+    "lineNumber": 509,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "min",
+        "description": "A vector, assumed to be smaller than max."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Vector3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "max",
+        "description": "A vector, assumed to be greater than min."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 203,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 511,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 204,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 512,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 205,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 513,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 206,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "applyMatrix3",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#applyMatrix3",
+    "access": null,
+    "description": "Applies a matrix to this vector.",
+    "lineNumber": 526,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Matrix3"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m",
+        "description": "A matrix."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 207,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 531,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 208,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 532,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 209,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 533,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 210,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "applyMatrix4",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#applyMatrix4",
+    "access": null,
+    "description": "Applies a matrix to this vector.",
+    "lineNumber": 546,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Matrix4"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "m",
+        "description": "A matrix."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vector3"
+      ],
+      "spread": false,
+      "description": "This vector."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 211,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 551,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 212,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 552,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 213,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "z",
+    "memberof": "src/3d/vector3.js~Vector3",
+    "longname": "src/3d/vector3.js~Vector3#z",
+    "access": null,
+    "description": null,
+    "lineNumber": 553,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 214,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/index.js",
+    "memberof": null,
+    "longname": "src/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "content": "/**\r\n * Mathematical data structures.\r\n *\r\n * @module math-ds\r\n */\r\n\r\nexport { Vector2 } from \"./2d\";\r\n\r\nexport {\r\n\tBox3,\r\n\tMatrix3,\r\n\tSymmetricMatrix3,\r\n\tVector3\r\n} from \"./3d\";\r\n"
+  },
+  {
+    "__docId__": 216,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 217,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 218,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 219,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 220,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 221,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 222,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 223,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 224,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 225,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 226,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 227,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 228,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 229,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 230,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 231,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 232,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 233,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 234,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 235,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 236,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 237,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 238,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 239,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 240,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 241,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 242,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 243,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 244,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 245,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 246,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 247,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 248,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 249,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 250,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 251,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 252,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 253,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 254,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 255,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 256,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 257,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 258,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 259,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 260,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 261,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 262,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 264,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 265,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 266,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 267,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 268,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 269,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 270,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 271,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "AudioContext",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~AudioContext",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  }
+]

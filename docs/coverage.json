@@ -1,0 +1,32 @@
+{
+  "coverage": "100%",
+  "expectCount": 101,
+  "actualCount": 101,
+  "files": {
+    "src/3d/box3.js": {
+      "expectCount": 12,
+      "actualCount": 12,
+      "undocumentLines": []
+    },
+    "src/3d/matrix3.js": {
+      "expectCount": 7,
+      "actualCount": 7,
+      "undocumentLines": []
+    },
+    "src/3d/symmetric-matrix3.js": {
+      "expectCount": 13,
+      "actualCount": 13,
+      "undocumentLines": []
+    },
+    "src/2d/vector2.js": {
+      "expectCount": 33,
+      "actualCount": 33,
+      "undocumentLines": []
+    },
+    "src/3d/vector3.js": {
+      "expectCount": 36,
+      "actualCount": 36,
+      "undocumentLines": []
+    }
+  }
+}

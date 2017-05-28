@@ -1,0 +1,69 @@
+{
+	"name": "math-ds",
+	"version": "0.0.0",
+	"description": "Mathematical data structures.",
+	"homepage": "https://github.com/vanruesc/math-ds",
+	"main": "build/math-ds.js",
+	"module": "src/index.js",
+	"license": "Zlib",
+
+	"keywords": [
+		"mathematical",
+		"data",
+		"structures",
+		"vector",
+		"matrix",
+		"2d",
+		"3d"
+	],
+
+	"author": {
+		"name": "Raoul van Rüschen",
+		"email": "vanruesc@outlook.de"
+	},
+
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/vanruesc/math-ds.git"
+	},
+
+	"bugs": {
+		"url": "https://github.com/vanruesc/math-ds/issues"
+	},
+
+	"files": [
+		"src",
+		"build"
+	],
+
+	"scripts": {
+		"test": "grunt --production"
+	},
+
+	"engines": {
+		"node": ">=4.0.0",
+		"npm": ">=4.0.0"
+	},
+
+	"dependencies": {},
+
+	"devDependencies": {
+		"babel-preset-es2015-rollup": "3.0.x",
+		"grunt": "1.x.x",
+		"grunt-cli": "1.2.x",
+		"grunt-contrib-nodeunit": "1.0.x",
+		"grunt-contrib-uglify": "3.0.x",
+		"grunt-esdoc": "0.x.x",
+		"grunt-eslint": "19.0.x",
+		"grunt-rollup": "1.0.x",
+		"jit-grunt": "0.10.x",
+		"load-grunt-config": "0.19.x",
+		"rollup-plugin-babel": "2.7.x",
+		"rollup-plugin-node-resolve": "3.0.x",
+		"time-grunt": "1.4.x"
+	},
+
+	"peerDependencies": {
+		"grunt": ">=0.4.0"
+	}
+}
