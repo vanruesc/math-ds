@@ -1,5 +1,5 @@
 /**
- * math-ds v0.0.0 build May 28 2017
+ * math-ds v0.0.1 build Aug 02 2017
  * https://github.com/vanruesc/math-ds
  * Copyright 2017 Raoul van Rüschen, Zlib
  */
@@ -7,7 +7,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (factory((global.MATHDS = global.MATHDS || {})));
+  (factory((global.MATHDS = {})));
 }(this, (function (exports) { 'use strict';
 
   var classCallCheck = function (instance, Constructor) {
@@ -864,11 +864,331 @@
   	return SymmetricMatrix3;
   }();
 
+  var Vector3$1 = function () {
+  	function Vector3() {
+  		var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  		var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  		var z = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+  		classCallCheck(this, Vector3);
+
+
+  		this.x = x;
+
+  		this.y = y;
+
+  		this.z = z;
+  	}
+
+  	createClass(Vector3, [{
+  		key: "set",
+  		value: function set$$1(x, y, z) {
+
+  			this.x = x;
+  			this.y = y;
+  			this.z = z;
+
+  			return this;
+  		}
+  	}, {
+  		key: "copy",
+  		value: function copy(v) {
+
+  			this.x = v.x;
+  			this.y = v.y;
+  			this.z = v.z;
+
+  			return this;
+  		}
+  	}, {
+  		key: "fromArray",
+  		value: function fromArray(array) {
+  			var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+
+  			this.x = array[offset];
+  			this.y = array[offset + 1];
+  			this.z = array[offset + 2];
+
+  			return this;
+  		}
+  	}, {
+  		key: "toArray",
+  		value: function toArray$$1() {
+  			var array = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  			var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+
+  			array[offset] = this.x;
+  			array[offset + 1] = this.y;
+  			array[offset + 2] = this.z;
+
+  			return array;
+  		}
+  	}, {
+  		key: "equals",
+  		value: function equals(v) {
+
+  			return v.x === this.x && v.y === this.y && v.z === this.z;
+  		}
+  	}, {
+  		key: "clone",
+  		value: function clone() {
+
+  			return new this.constructor(this.x, this.y, this.z);
+  		}
+  	}, {
+  		key: "add",
+  		value: function add(v) {
+
+  			this.x += v.x;
+  			this.y += v.y;
+  			this.z += v.z;
+
+  			return this;
+  		}
+  	}, {
+  		key: "addScaledVector",
+  		value: function addScaledVector(v, s) {
+
+  			this.x += v.x * s;
+  			this.y += v.y * s;
+  			this.z += v.z * s;
+
+  			return this;
+  		}
+  	}, {
+  		key: "addScalar",
+  		value: function addScalar(s) {
+
+  			this.x += s;
+  			this.y += s;
+  			this.z += s;
+
+  			return this;
+  		}
+  	}, {
+  		key: "addVectors",
+  		value: function addVectors(a, b) {
+
+  			this.x = a.x + b.x;
+  			this.y = a.y + b.y;
+  			this.z = a.z + b.z;
+
+  			return this;
+  		}
+  	}, {
+  		key: "sub",
+  		value: function sub(v) {
+
+  			this.x -= v.x;
+  			this.y -= v.y;
+  			this.z -= v.z;
+
+  			return this;
+  		}
+  	}, {
+  		key: "subScalar",
+  		value: function subScalar(s) {
+
+  			this.x -= s;
+  			this.y -= s;
+  			this.z -= s;
+
+  			return this;
+  		}
+  	}, {
+  		key: "subVectors",
+  		value: function subVectors(a, b) {
+
+  			this.x = a.x - b.x;
+  			this.y = a.y - b.y;
+  			this.z = a.z - b.z;
+
+  			return this;
+  		}
+  	}, {
+  		key: "multiply",
+  		value: function multiply(v) {
+
+  			this.x *= v.x;
+  			this.y *= v.y;
+  			this.z *= v.z;
+
+  			return this;
+  		}
+  	}, {
+  		key: "multiplyScalar",
+  		value: function multiplyScalar(s) {
+
+  			if (isFinite(s)) {
+
+  				this.x *= s;
+  				this.y *= s;
+  				this.z *= s;
+  			} else {
+
+  				this.x = 0;
+  				this.y = 0;
+  				this.z = 0;
+  			}
+
+  			return this;
+  		}
+  	}, {
+  		key: "multiplyVectors",
+  		value: function multiplyVectors(a, b) {
+
+  			this.x = a.x * b.x;
+  			this.y = a.y * b.y;
+  			this.z = a.z * b.z;
+
+  			return this;
+  		}
+  	}, {
+  		key: "divide",
+  		value: function divide(v) {
+
+  			this.x /= v.x;
+  			this.y /= v.y;
+  			this.z /= v.z;
+
+  			return this;
+  		}
+  	}, {
+  		key: "divideScalar",
+  		value: function divideScalar(s) {
+
+  			return this.multiplyScalar(1 / s);
+  		}
+  	}, {
+  		key: "divideVectors",
+  		value: function divideVectors(a, b) {
+
+  			this.x = a.x / b.x;
+  			this.y = a.y / b.y;
+  			this.z = a.z / b.z;
+
+  			return this;
+  		}
+  	}, {
+  		key: "negate",
+  		value: function negate() {
+
+  			this.x = -this.x;
+  			this.y = -this.y;
+  			this.z = -this.z;
+
+  			return this;
+  		}
+  	}, {
+  		key: "dot",
+  		value: function dot(v) {
+
+  			return this.x * v.x + this.y * v.y + this.z * v.z;
+  		}
+  	}, {
+  		key: "lengthSq",
+  		value: function lengthSq() {
+
+  			return this.x * this.x + this.y * this.y + this.z * this.z;
+  		}
+  	}, {
+  		key: "length",
+  		value: function length() {
+
+  			return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+  		}
+  	}, {
+  		key: "distanceTo",
+  		value: function distanceTo(v) {
+
+  			return Math.sqrt(this.distanceToSquared(v));
+  		}
+  	}, {
+  		key: "distanceToSquared",
+  		value: function distanceToSquared(v) {
+
+  			var dx = this.x - v.x;
+  			var dy = this.y - v.y;
+  			var dz = this.z - v.z;
+
+  			return dx * dx + dy * dy + dz * dz;
+  		}
+  	}, {
+  		key: "normalize",
+  		value: function normalize() {
+
+  			return this.divideScalar(this.length());
+  		}
+  	}, {
+  		key: "min",
+  		value: function min(v) {
+
+  			this.x = Math.min(this.x, v.x);
+  			this.y = Math.min(this.y, v.y);
+  			this.z = Math.min(this.z, v.z);
+
+  			return this;
+  		}
+  	}, {
+  		key: "max",
+  		value: function max(v) {
+
+  			this.x = Math.max(this.x, v.x);
+  			this.y = Math.max(this.y, v.y);
+  			this.z = Math.max(this.z, v.z);
+
+  			return this;
+  		}
+  	}, {
+  		key: "clamp",
+  		value: function clamp(min, max) {
+
+  			this.x = Math.max(min.x, Math.min(max.x, this.x));
+  			this.y = Math.max(min.y, Math.min(max.y, this.y));
+  			this.z = Math.max(min.z, Math.min(max.z, this.z));
+
+  			return this;
+  		}
+  	}, {
+  		key: "applyMatrix3",
+  		value: function applyMatrix3(m) {
+
+  			var x = this.x,
+  			    y = this.y,
+  			    z = this.z;
+  			var e = m.elements;
+
+  			this.x = e[0] * x + e[3] * y + e[6] * z;
+  			this.y = e[1] * x + e[4] * y + e[7] * z;
+  			this.z = e[2] * x + e[5] * y + e[8] * z;
+
+  			return this;
+  		}
+  	}, {
+  		key: "applyMatrix4",
+  		value: function applyMatrix4(m) {
+
+  			var x = this.x,
+  			    y = this.y,
+  			    z = this.z;
+  			var e = m.elements;
+
+  			this.x = e[0] * x + e[4] * y + e[8] * z + e[12];
+  			this.y = e[1] * x + e[5] * y + e[9] * z + e[13];
+  			this.z = e[2] * x + e[6] * y + e[10] * z + e[14];
+
+  			return this;
+  		}
+  	}]);
+  	return Vector3;
+  }();
+
   exports.Vector2 = Vector2;
   exports.Box3 = Box3;
   exports.Matrix3 = Matrix3;
   exports.SymmetricMatrix3 = SymmetricMatrix3;
-  exports.Vector3 = Vector3;
+  exports.Vector3 = Vector3$1;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
