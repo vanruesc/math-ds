@@ -1,4 +1,4 @@
-import { Vector3 } from "./vector3.js";
+import { Vector3 } from "./Vector3.js";
 
 /**
  * A 3D box.
