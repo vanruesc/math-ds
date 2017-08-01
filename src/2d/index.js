@@ -4,4 +4,4 @@
  * @module math-ds/2d
  */
 
-export { Vector2 } from "./vector2.js";
+export { Vector2 } from "./Vector2.js";
