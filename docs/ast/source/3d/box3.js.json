@@ -60,8 +60,8 @@
       ],
       "source": {
         "type": "Literal",
-        "value": "./vector3.js",
-        "raw": "\"./vector3.js\"",
+        "value": "./Vector3.js",
+        "raw": "\"./Vector3.js\"",
         "range": [
           24,
           38

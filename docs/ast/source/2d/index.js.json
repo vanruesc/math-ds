@@ -61,8 +61,8 @@
       ],
       "source": {
         "type": "Literal",
-        "value": "./vector2.js",
-        "raw": "\"./vector2.js\"",
+        "value": "./Vector2.js",
+        "raw": "\"./Vector2.js\"",
         "range": [
           114,
           128

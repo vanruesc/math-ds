@@ -61,8 +61,8 @@
       ],
       "source": {
         "type": "Literal",
-        "value": "./box3.js",
-        "raw": "\"./box3.js\"",
+        "value": "./Box3.js",
+        "raw": "\"./Box3.js\"",
         "range": [
           111,
           122
@@ -173,8 +173,8 @@
       ],
       "source": {
         "type": "Literal",
-        "value": "./matrix3.js",
-        "raw": "\"./matrix3.js\"",
+        "value": "./Matrix3.js",
+        "raw": "\"./Matrix3.js\"",
         "range": [
           149,
           163
@@ -265,11 +265,11 @@
       ],
       "source": {
         "type": "Literal",
-        "value": "./symmetric-matrix3.js",
-        "raw": "\"./symmetric-matrix3.js\"",
+        "value": "./SymmetricMatrix3.js",
+        "raw": "\"./SymmetricMatrix3.js\"",
         "range": [
           199,
-          223
+          222
         ],
         "loc": {
           "start": {
@@ -278,13 +278,13 @@
           },
           "end": {
             "line": 9,
-            "column": 57
+            "column": 56
           }
         }
       },
       "range": [
         166,
-        224
+        223
       ],
       "loc": {
         "start": {
@@ -293,7 +293,7 @@
         },
         "end": {
           "line": 9,
-          "column": 58
+          "column": 57
         }
       }
     },
@@ -307,8 +307,8 @@
             "type": "Identifier",
             "name": "Vector3",
             "range": [
-              235,
-              242
+              234,
+              241
             ],
             "loc": {
               "start": {
@@ -325,8 +325,8 @@
             "type": "Identifier",
             "name": "Vector3",
             "range": [
-              235,
-              242
+              234,
+              241
             ],
             "loc": {
               "start": {
@@ -340,8 +340,8 @@
             }
           },
           "range": [
-            235,
-            242
+            234,
+            241
           ],
           "loc": {
             "start": {
@@ -357,11 +357,11 @@
       ],
       "source": {
         "type": "Literal",
-        "value": "./vector3.js",
-        "raw": "\"./vector3.js\"",
+        "value": "./Vector3.js",
+        "raw": "\"./Vector3.js\"",
         "range": [
-          250,
-          264
+          249,
+          263
         ],
         "loc": {
           "start": {
@@ -375,8 +375,8 @@
         }
       },
       "range": [
-        226,
-        265
+        225,
+        264
       ],
       "loc": {
         "start": {
@@ -393,7 +393,7 @@
   "sourceType": "module",
   "range": [
     90,
-    265
+    264
   ],
   "loc": {
     "start": {

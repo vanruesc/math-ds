@@ -1,6 +1,6 @@
 {
 	"name": "math-ds",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Mathematical data structures.",
 	"homepage": "https://github.com/vanruesc/math-ds",
 	"main": "build/math-ds.js",
@@ -54,8 +54,8 @@
 		"grunt-contrib-nodeunit": "1.0.x",
 		"grunt-contrib-uglify": "3.0.x",
 		"grunt-esdoc": "0.x.x",
-		"grunt-eslint": "19.0.x",
-		"grunt-rollup": "1.0.x",
+		"grunt-eslint": "20.0.x",
+		"grunt-rollup": "2.0.x",
 		"jit-grunt": "0.10.x",
 		"load-grunt-config": "0.19.x",
 		"rollup-plugin-babel": "2.7.x",
