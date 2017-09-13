@@ -1,5 +1,5 @@
 /**
- * A vector with three components.
+ * A vector with four components.
  */
 
 export class Vector4 {

@@ -19,7 +19,7 @@ const a = new Vector3();
 const b = new Vector3();
 
 /**
- * A sphere.
+ * A plane.
  */
 
 export class Plane {
