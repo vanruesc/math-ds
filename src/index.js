@@ -15,6 +15,7 @@ export { Plane } from "./Plane.js";
 export { Quaternion } from "./Quaternion.js";
 export { RotationOrder } from "./RotationOrder.js";
 export { Sphere } from "./Sphere.js";
+export { Spherical } from "./Spherical.js";
 export { SymmetricMatrix3 } from "./SymmetricMatrix3.js";
 export { Vector2 } from "./Vector2.js";
 export { Vector3 } from "./Vector3.js";
