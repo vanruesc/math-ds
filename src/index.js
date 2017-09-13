@@ -8,6 +8,7 @@ export { Box2 } from "./Box2.js";
 export { Box3 } from "./Box3.js";
 export { Cylindrical } from "./Cylindrical.js";
 export { Euler } from "./Euler.js";
+export { Line3 } from "./Line3.js";
 export { Matrix3 } from "./Matrix3.js";
 export { RotationOrder } from "./RotationOrder.js";
 export { SymmetricMatrix3 } from "./SymmetricMatrix3.js";
