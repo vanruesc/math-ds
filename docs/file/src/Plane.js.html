@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/Plane.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/vanruesc/math-ds.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Box2.js~Box2.html">Box2</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Box3.js~Box3.html">Box3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Cylindrical.js~Cylindrical.html">Cylindrical</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Euler.js~Euler.html">Euler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Line3.js~Line3.html">Line3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Matrix3.js~Matrix3.html">Matrix3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Matrix4.js~Matrix4.html">Matrix4</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Plane.js~Plane.html">Plane</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Quaternion.js~Quaternion.html">Quaternion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Sphere.js~Sphere.html">Sphere</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Spherical.js~Spherical.html">Spherical</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SymmetricMatrix3.js~SymmetricMatrix3.html">SymmetricMatrix3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Vector2.js~Vector2.html">Vector2</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Vector3.js~Vector3.html">Vector3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Vector4.js~Vector4.html">Vector4</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-RotationOrder">RotationOrder</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/Plane.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Vector3 } from &quot;./Vector3.js&quot;;
+
+/**
+ * A vector.
+ *
+ * @type {Vector3}
+ * @private
+ */
+
+const a = new Vector3();
+
+/**
+ * A vector.
+ *
+ * @type {Vector3}
+ * @private
+ */
+
+const b = new Vector3();
+
+/**
+ * A plane.
+ */
+
+export class Plane {
+
+	/**
+	 * Constructs a new plane.
+	 *
+	 * @param {Vector3} [normal] - The normal.
+	 * @param {Number} [constant] - The constant.
+	 */
+
+	constructor(normal = new Vector3(1, 0, 0), constant = 0) {
+
+		/**
+		 * The normal.
+		 *
+		 * @type {Vector3}
+		 */
+
+		this.normal = normal;
+
+		/**
+		 * The constant.
+		 *
+		 * @type {Number}
+		 */
+
+		this.constant = constant;
+
+	}
+
+	/**
+	 * Sets the normal and the constant.
+	 *
+	 * @param {Vector3} normal - The normal.
+	 * @param {Number} constant - The constant.
+	 * @return {Plane} This plane.
+	 */
+
+	set(normal, constant) {
+
+		this.normal.copy(normal);
+		this.constant = constant;
+
+		return this;
+
+	}
+
+	/**
+	 * Sets the components of this plane.
+	 *
+	 * @param {Number} x - The X component of the normal.
+	 * @param {Number} y - The Y component of the normal.
+	 * @param {Number} z - The Z component of the normal.
+	 * @param {Number} w - The constant.
+	 * @return {Plane} This plane.
+	 */
+
+	setComponents(x, y, z, w) {
+
+		this.normal.set(x, y, z);
+		this.constant = w;
+
+		return this;
+
+	}
+
+	/**
+	 * Copies the given plane.
+	 *
+	 * @param {Plane} p - A plane.
+	 * @return {Plane} This plane.
+	 */
+
+	copy(p) {
+
+		this.normal.copy(p.normal);
+		this.constant = p.constant;
+
+		return this;
+
+	}
+
+	/**
+	 * Clones this plane.
+	 *
+	 * @return {Plane} The cloned plane.
+	 */
+
+	clone() {
+
+		return new this.constructor().copy(this);
+
+	}
+
+	/**
+	 * Sets this plane from a normal and a coplanar point.
+	 *
+	 * @param {Vector3} n - The normal.
+	 * @param {Vector3} p - The coplanar point.
+	 * @return {Sphere} This sphere.
+	 */
+
+	setFromNormalAndCoplanarPoint(n, p) {
+
+		this.normal.copy(n);
+		this.constant = -p.dot(this.normal);
+
+		return this;
+
+	}
+
+	/**
+	 * Sets this plane from three distinct coplanar points.
+	 *
+	 * @param {Vector3} p0 - A coplanar point.
+	 * @param {Vector3} p1 - A coplanar point.
+	 * @param {Vector3} p2 - A coplanar point.
+	 * @return {Plane} This plane.
+	 */
+
+	setFromCoplanarPoints(p0, p1, p2) {
+
+		const normal = a.subVectors(p2, p1).cross(b.subVectors(p0, p1)).normalize();
+
+		this.setFromNormalAndCoplanarPoint(normal, a);
+
+		return this;
+
+	}
+
+	/**
+	 * Normalizes this plane.
+	 *
+	 * @return {Plane} This plane.
+	 */
+
+	normalize() {
+
+		const inverseNormalLength = 1.0 / this.normal.length();
+
+		this.normal.multiplyScalar(inverseNormalLength);
+		this.constant *= inverseNormalLength;
+
+		return this;
+
+	}
+
+	/**
+	 * Negates this plane.
+	 *
+	 * @return {Plane} This plane.
+	 */
+
+	negate() {
+
+		this.normal.negate();
+		this.constant = -this.constant;
+
+		return this;
+
+	}
+
+	/**
+	 * Calculates the distance from this plane to the given point.
+	 *
+	 * @param {Vector3} p - A point.
+	 * @return {Number} The length.
+	 */
+
+	distanceToPoint(p) {
+
+		return this.normal.dot(p) + this.constant;
+
+	}
+
+	/**
+	 * Calculates the distance from this plane to the given sphere.
+	 *
+	 * @param {Sphere} s - A sphere.
+	 * @return {Number} The length.
+	 */
+
+	distanceToSphere(s) {
+
+		return this.distanceToPoint(s.center) - s.radius;
+
+	}
+
+	/**
+	 * Projects the given point on this plane.
+	 *
+	 * @param {Vector3} p - A point.
+	 * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.
+	 * @return {Vector3} The projected point.
+	 */
+
+	projectPoint(p, target) {
+
+		return target.copy(this.normal).multiplyScalar(-this.distanceToPoint(p)).add(p);
+
+	}
+
+	/**
+	 * Calculates a coplanar point and returns it.
+	 *
+	 * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.
+	 * @return {Vector3} A coplanar plane.
+	 */
+
+	coplanarPoint(target) {
+
+		return target.copy(this.normal).multiplyScalar(-this.constant);
+
+	}
+
+	/**
+	 * Translates this plane.
+	 *
+	 * @param {Vector3} offset - An offset.
+	 * @return {Plane} This plane.
+	 */
+
+	translate(offset) {
+
+		this.constant -= offset.dot(this.normal);
+
+		return this;
+
+	}
+
+	/**
+	 * Finds the point of intersection between this plane and a given line.
+	 *
+	 * @param {Line3} l - A line.
+	 * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.
+	 * @return {Vector3} The intersection point.
+	 */
+
+	intersectLine(l, target) {
+
+		const direction = l.delta(a);
+		const denominator = this.normal.dot(direction);
+
+		if(denominator === 0) {
+
+			// The line is coplanar, return origin.
+			if(this.distanceToPoint(l.start) === 0) {
+
+				target.copy(l.start);
+
+			}
+
+		} else {
+
+			const t = -(l.start.dot(this.normal) + this.constant) / denominator;
+
+			if(t &gt;= 0 &amp;&amp; t &lt;= 1) {
+
+				target.copy(direction).multiplyScalar(t).add(l.start);
+
+			}
+
+		}
+
+		return target;
+
+	}
+
+	/**
+	 * Checks if this plane intersects with the given line.
+	 *
+	 * @param {Line3} l - A line.
+	 * @return {Boolean} Whether this plane intersects with the given line.
+	 */
+
+	intersectsLine(l) {
+
+		const startSign = this.distanceToPoint(l.start);
+		const endSign = this.distanceToPoint(l.end);
+
+		return ((startSign &lt; 0 &amp;&amp; endSign &gt; 0) || (endSign &lt; 0 &amp;&amp; startSign &gt; 0));
+
+	}
+
+	/**
+	 * Checks if this plane intersects with the given box.
+	 *
+	 * @param {Box3} b - A box.
+	 * @return {Boolean} Whether this plane intersects with the given box.
+	 */
+
+	intersectsBox(b) {
+
+		return b.intersectsPlane(this);
+
+	}
+
+	/**
+	 * Checks if this plane intersects with the given sphere.
+	 *
+	 * @param {Sphere} s - A sphere.
+	 * @return {Boolean} Whether this plane intersects with the given sphere.
+	 */
+
+	intersectsSphere(s) {
+
+		return s.intersectsPlane(this);
+
+	}
+
+	/**
+	 * Checks if this plane equals the given one.
+	 *
+	 * @param {Plane} v - A plane.
+	 * @return {Boolean} Whether this plane equals the given one.
+	 */
+
+	equals(p) {
+
+		return (p.normal.equals(this.normal) &amp;&amp; (p.constant === this.constant));
+
+	}
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

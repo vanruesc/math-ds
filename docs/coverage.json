@@ -1,31 +1,86 @@
 {
   "coverage": "100%",
-  "expectCount": 101,
-  "actualCount": 101,
+  "expectCount": 390,
+  "actualCount": 390,
   "files": {
-    "src/3d/Box3.js": {
-      "expectCount": 12,
-      "actualCount": 12,
+    "src/Box2.js": {
+      "expectCount": 26,
+      "actualCount": 26,
       "undocumentLines": []
     },
-    "src/3d/Matrix3.js": {
-      "expectCount": 7,
-      "actualCount": 7,
+    "src/Box3.js": {
+      "expectCount": 28,
+      "actualCount": 28,
       "undocumentLines": []
     },
-    "src/3d/SymmetricMatrix3.js": {
-      "expectCount": 13,
-      "actualCount": 13,
+    "src/Cylindrical.js": {
+      "expectCount": 9,
+      "actualCount": 9,
       "undocumentLines": []
     },
-    "src/2d/Vector2.js": {
-      "expectCount": 33,
-      "actualCount": 33,
+    "src/Euler.js": {
+      "expectCount": 18,
+      "actualCount": 18,
       "undocumentLines": []
     },
-    "src/3d/Vector3.js": {
-      "expectCount": 36,
-      "actualCount": 36,
+    "src/Line3.js": {
+      "expectCount": 14,
+      "actualCount": 14,
+      "undocumentLines": []
+    },
+    "src/Matrix3.js": {
+      "expectCount": 20,
+      "actualCount": 20,
+      "undocumentLines": []
+    },
+    "src/Matrix4.js": {
+      "expectCount": 38,
+      "actualCount": 38,
+      "undocumentLines": []
+    },
+    "src/Plane.js": {
+      "expectCount": 22,
+      "actualCount": 22,
+      "undocumentLines": []
+    },
+    "src/Quaternion.js": {
+      "expectCount": 28,
+      "actualCount": 28,
+      "undocumentLines": []
+    },
+    "src/RotationOrder.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/Sphere.js": {
+      "expectCount": 18,
+      "actualCount": 18,
+      "undocumentLines": []
+    },
+    "src/Spherical.js": {
+      "expectCount": 10,
+      "actualCount": 10,
+      "undocumentLines": []
+    },
+    "src/SymmetricMatrix3.js": {
+      "expectCount": 14,
+      "actualCount": 14,
+      "undocumentLines": []
+    },
+    "src/Vector2.js": {
+      "expectCount": 46,
+      "actualCount": 46,
+      "undocumentLines": []
+    },
+    "src/Vector3.js": {
+      "expectCount": 53,
+      "actualCount": 53,
+      "undocumentLines": []
+    },
+    "src/Vector4.js": {
+      "expectCount": 45,
+      "actualCount": 45,
       "undocumentLines": []
     }
   }

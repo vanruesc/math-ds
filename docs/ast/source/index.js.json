@@ -9,10 +9,10 @@
           "type": "ExportSpecifier",
           "exported": {
             "type": "Identifier",
-            "name": "Vector2",
+            "name": "Box2",
             "range": [
               79,
-              86
+              83
             ],
             "loc": {
               "start": {
@@ -21,16 +21,16 @@
               },
               "end": {
                 "line": 7,
-                "column": 16
+                "column": 13
               }
             }
           },
           "local": {
             "type": "Identifier",
-            "name": "Vector2",
+            "name": "Box2",
             "range": [
               79,
-              86
+              83
             ],
             "loc": {
               "start": {
@@ -39,13 +39,13 @@
               },
               "end": {
                 "line": 7,
-                "column": 16
+                "column": 13
               }
             }
           },
           "range": [
             79,
-            86
+            83
           ],
           "loc": {
             "start": {
@@ -54,33 +54,33 @@
             },
             "end": {
               "line": 7,
-              "column": 16
+              "column": 13
             }
           }
         }
       ],
       "source": {
         "type": "Literal",
-        "value": "./2d",
-        "raw": "\"./2d\"",
+        "value": "./Box2.js",
+        "raw": "\"./Box2.js\"",
         "range": [
-          94,
-          100
+          91,
+          102
         ],
         "loc": {
           "start": {
             "line": 7,
-            "column": 24
+            "column": 21
           },
           "end": {
             "line": 7,
-            "column": 30
+            "column": 32
           }
         }
       },
       "range": [
         70,
-        101
+        103
       ],
       "loc": {
         "start": {
@@ -89,7 +89,7 @@
         },
         "end": {
           "line": 7,
-          "column": 31
+          "column": 33
         }
       },
       "leadingComments": [
@@ -123,17 +123,17 @@
             "type": "Identifier",
             "name": "Box3",
             "range": [
-              116,
-              120
+              114,
+              118
             ],
             "loc": {
               "start": {
-                "line": 10,
-                "column": 1
+                "line": 8,
+                "column": 9
               },
               "end": {
-                "line": 10,
-                "column": 5
+                "line": 8,
+                "column": 13
               }
             }
           },
@@ -141,217 +141,150 @@
             "type": "Identifier",
             "name": "Box3",
             "range": [
-              116,
-              120
+              114,
+              118
             ],
             "loc": {
               "start": {
-                "line": 10,
-                "column": 1
+                "line": 8,
+                "column": 9
               },
               "end": {
-                "line": 10,
-                "column": 5
+                "line": 8,
+                "column": 13
               }
             }
           },
           "range": [
-            116,
-            120
+            114,
+            118
           ],
           "loc": {
             "start": {
-              "line": 10,
-              "column": 1
+              "line": 8,
+              "column": 9
             },
             "end": {
-              "line": 10,
-              "column": 5
-            }
-          }
-        },
-        {
-          "type": "ExportSpecifier",
-          "exported": {
-            "type": "Identifier",
-            "name": "Matrix3",
-            "range": [
-              124,
-              131
-            ],
-            "loc": {
-              "start": {
-                "line": 11,
-                "column": 1
-              },
-              "end": {
-                "line": 11,
-                "column": 8
-              }
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "name": "Matrix3",
-            "range": [
-              124,
-              131
-            ],
-            "loc": {
-              "start": {
-                "line": 11,
-                "column": 1
-              },
-              "end": {
-                "line": 11,
-                "column": 8
-              }
-            }
-          },
-          "range": [
-            124,
-            131
-          ],
-          "loc": {
-            "start": {
-              "line": 11,
-              "column": 1
-            },
-            "end": {
-              "line": 11,
-              "column": 8
-            }
-          }
-        },
-        {
-          "type": "ExportSpecifier",
-          "exported": {
-            "type": "Identifier",
-            "name": "SymmetricMatrix3",
-            "range": [
-              135,
-              151
-            ],
-            "loc": {
-              "start": {
-                "line": 12,
-                "column": 1
-              },
-              "end": {
-                "line": 12,
-                "column": 17
-              }
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "name": "SymmetricMatrix3",
-            "range": [
-              135,
-              151
-            ],
-            "loc": {
-              "start": {
-                "line": 12,
-                "column": 1
-              },
-              "end": {
-                "line": 12,
-                "column": 17
-              }
-            }
-          },
-          "range": [
-            135,
-            151
-          ],
-          "loc": {
-            "start": {
-              "line": 12,
-              "column": 1
-            },
-            "end": {
-              "line": 12,
-              "column": 17
-            }
-          }
-        },
-        {
-          "type": "ExportSpecifier",
-          "exported": {
-            "type": "Identifier",
-            "name": "Vector3",
-            "range": [
-              155,
-              162
-            ],
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 1
-              },
-              "end": {
-                "line": 13,
-                "column": 8
-              }
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "name": "Vector3",
-            "range": [
-              155,
-              162
-            ],
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 1
-              },
-              "end": {
-                "line": 13,
-                "column": 8
-              }
-            }
-          },
-          "range": [
-            155,
-            162
-          ],
-          "loc": {
-            "start": {
-              "line": 13,
-              "column": 1
-            },
-            "end": {
-              "line": 13,
-              "column": 8
+              "line": 8,
+              "column": 13
             }
           }
         }
       ],
       "source": {
         "type": "Literal",
-        "value": "./3d",
-        "raw": "\"./3d\"",
+        "value": "./Box3.js",
+        "raw": "\"./Box3.js\"",
         "range": [
-          171,
-          177
+          126,
+          137
         ],
         "loc": {
           "start": {
-            "line": 14,
-            "column": 7
+            "line": 8,
+            "column": 21
           },
           "end": {
-            "line": 14,
-            "column": 13
+            "line": 8,
+            "column": 32
           }
         }
       },
       "range": [
         105,
-        178
+        138
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 33
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Cylindrical",
+            "range": [
+              149,
+              160
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 9
+              },
+              "end": {
+                "line": 9,
+                "column": 20
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "Cylindrical",
+            "range": [
+              149,
+              160
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 9
+              },
+              "end": {
+                "line": 9,
+                "column": 20
+              }
+            }
+          },
+          "range": [
+            149,
+            160
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 9
+            },
+            "end": {
+              "line": 9,
+              "column": 20
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Cylindrical.js",
+        "raw": "\"./Cylindrical.js\"",
+        "range": [
+          168,
+          186
+        ],
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 28
+          },
+          "end": {
+            "line": 9,
+            "column": 46
+          }
+        }
+      },
+      "range": [
+        140,
+        187
       ],
       "loc": {
         "start": {
@@ -359,8 +292,1204 @@
           "column": 0
         },
         "end": {
+          "line": 9,
+          "column": 47
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Euler",
+            "range": [
+              198,
+              203
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 9
+              },
+              "end": {
+                "line": 10,
+                "column": 14
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "Euler",
+            "range": [
+              198,
+              203
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 9
+              },
+              "end": {
+                "line": 10,
+                "column": 14
+              }
+            }
+          },
+          "range": [
+            198,
+            203
+          ],
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 9
+            },
+            "end": {
+              "line": 10,
+              "column": 14
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Euler.js",
+        "raw": "\"./Euler.js\"",
+        "range": [
+          211,
+          223
+        ],
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 22
+          },
+          "end": {
+            "line": 10,
+            "column": 34
+          }
+        }
+      },
+      "range": [
+        189,
+        224
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 35
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Line3",
+            "range": [
+              235,
+              240
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 9
+              },
+              "end": {
+                "line": 11,
+                "column": 14
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "Line3",
+            "range": [
+              235,
+              240
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 9
+              },
+              "end": {
+                "line": 11,
+                "column": 14
+              }
+            }
+          },
+          "range": [
+            235,
+            240
+          ],
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 9
+            },
+            "end": {
+              "line": 11,
+              "column": 14
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Line3.js",
+        "raw": "\"./Line3.js\"",
+        "range": [
+          248,
+          260
+        ],
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 22
+          },
+          "end": {
+            "line": 11,
+            "column": 34
+          }
+        }
+      },
+      "range": [
+        226,
+        261
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 35
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Matrix3",
+            "range": [
+              272,
+              279
+            ],
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 9
+              },
+              "end": {
+                "line": 12,
+                "column": 16
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "Matrix3",
+            "range": [
+              272,
+              279
+            ],
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 9
+              },
+              "end": {
+                "line": 12,
+                "column": 16
+              }
+            }
+          },
+          "range": [
+            272,
+            279
+          ],
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 9
+            },
+            "end": {
+              "line": 12,
+              "column": 16
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Matrix3.js",
+        "raw": "\"./Matrix3.js\"",
+        "range": [
+          287,
+          301
+        ],
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 24
+          },
+          "end": {
+            "line": 12,
+            "column": 38
+          }
+        }
+      },
+      "range": [
+        263,
+        302
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 39
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Matrix4",
+            "range": [
+              313,
+              320
+            ],
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 9
+              },
+              "end": {
+                "line": 13,
+                "column": 16
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "Matrix4",
+            "range": [
+              313,
+              320
+            ],
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 9
+              },
+              "end": {
+                "line": 13,
+                "column": 16
+              }
+            }
+          },
+          "range": [
+            313,
+            320
+          ],
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 9
+            },
+            "end": {
+              "line": 13,
+              "column": 16
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Matrix4.js",
+        "raw": "\"./Matrix4.js\"",
+        "range": [
+          328,
+          342
+        ],
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 24
+          },
+          "end": {
+            "line": 13,
+            "column": 38
+          }
+        }
+      },
+      "range": [
+        304,
+        343
+      ],
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 39
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Plane",
+            "range": [
+              354,
+              359
+            ],
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 9
+              },
+              "end": {
+                "line": 14,
+                "column": 14
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "Plane",
+            "range": [
+              354,
+              359
+            ],
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 9
+              },
+              "end": {
+                "line": 14,
+                "column": 14
+              }
+            }
+          },
+          "range": [
+            354,
+            359
+          ],
+          "loc": {
+            "start": {
+              "line": 14,
+              "column": 9
+            },
+            "end": {
+              "line": 14,
+              "column": 14
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Plane.js",
+        "raw": "\"./Plane.js\"",
+        "range": [
+          367,
+          379
+        ],
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 22
+          },
+          "end": {
+            "line": 14,
+            "column": 34
+          }
+        }
+      },
+      "range": [
+        345,
+        380
+      ],
+      "loc": {
+        "start": {
           "line": 14,
-          "column": 14
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 35
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Quaternion",
+            "range": [
+              391,
+              401
+            ],
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 9
+              },
+              "end": {
+                "line": 15,
+                "column": 19
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "Quaternion",
+            "range": [
+              391,
+              401
+            ],
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 9
+              },
+              "end": {
+                "line": 15,
+                "column": 19
+              }
+            }
+          },
+          "range": [
+            391,
+            401
+          ],
+          "loc": {
+            "start": {
+              "line": 15,
+              "column": 9
+            },
+            "end": {
+              "line": 15,
+              "column": 19
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Quaternion.js",
+        "raw": "\"./Quaternion.js\"",
+        "range": [
+          409,
+          426
+        ],
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 27
+          },
+          "end": {
+            "line": 15,
+            "column": 44
+          }
+        }
+      },
+      "range": [
+        382,
+        427
+      ],
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 45
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "RotationOrder",
+            "range": [
+              438,
+              451
+            ],
+            "loc": {
+              "start": {
+                "line": 16,
+                "column": 9
+              },
+              "end": {
+                "line": 16,
+                "column": 22
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "RotationOrder",
+            "range": [
+              438,
+              451
+            ],
+            "loc": {
+              "start": {
+                "line": 16,
+                "column": 9
+              },
+              "end": {
+                "line": 16,
+                "column": 22
+              }
+            }
+          },
+          "range": [
+            438,
+            451
+          ],
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 9
+            },
+            "end": {
+              "line": 16,
+              "column": 22
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./RotationOrder.js",
+        "raw": "\"./RotationOrder.js\"",
+        "range": [
+          459,
+          479
+        ],
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 30
+          },
+          "end": {
+            "line": 16,
+            "column": 50
+          }
+        }
+      },
+      "range": [
+        429,
+        480
+      ],
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 0
+        },
+        "end": {
+          "line": 16,
+          "column": 51
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Sphere",
+            "range": [
+              491,
+              497
+            ],
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 9
+              },
+              "end": {
+                "line": 17,
+                "column": 15
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "Sphere",
+            "range": [
+              491,
+              497
+            ],
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 9
+              },
+              "end": {
+                "line": 17,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            491,
+            497
+          ],
+          "loc": {
+            "start": {
+              "line": 17,
+              "column": 9
+            },
+            "end": {
+              "line": 17,
+              "column": 15
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Sphere.js",
+        "raw": "\"./Sphere.js\"",
+        "range": [
+          505,
+          518
+        ],
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 23
+          },
+          "end": {
+            "line": 17,
+            "column": 36
+          }
+        }
+      },
+      "range": [
+        482,
+        519
+      ],
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 17,
+          "column": 37
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Spherical",
+            "range": [
+              530,
+              539
+            ],
+            "loc": {
+              "start": {
+                "line": 18,
+                "column": 9
+              },
+              "end": {
+                "line": 18,
+                "column": 18
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "Spherical",
+            "range": [
+              530,
+              539
+            ],
+            "loc": {
+              "start": {
+                "line": 18,
+                "column": 9
+              },
+              "end": {
+                "line": 18,
+                "column": 18
+              }
+            }
+          },
+          "range": [
+            530,
+            539
+          ],
+          "loc": {
+            "start": {
+              "line": 18,
+              "column": 9
+            },
+            "end": {
+              "line": 18,
+              "column": 18
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Spherical.js",
+        "raw": "\"./Spherical.js\"",
+        "range": [
+          547,
+          563
+        ],
+        "loc": {
+          "start": {
+            "line": 18,
+            "column": 26
+          },
+          "end": {
+            "line": 18,
+            "column": 42
+          }
+        }
+      },
+      "range": [
+        521,
+        564
+      ],
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 0
+        },
+        "end": {
+          "line": 18,
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "SymmetricMatrix3",
+            "range": [
+              575,
+              591
+            ],
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 9
+              },
+              "end": {
+                "line": 19,
+                "column": 25
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "SymmetricMatrix3",
+            "range": [
+              575,
+              591
+            ],
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 9
+              },
+              "end": {
+                "line": 19,
+                "column": 25
+              }
+            }
+          },
+          "range": [
+            575,
+            591
+          ],
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 9
+            },
+            "end": {
+              "line": 19,
+              "column": 25
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./SymmetricMatrix3.js",
+        "raw": "\"./SymmetricMatrix3.js\"",
+        "range": [
+          599,
+          622
+        ],
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 33
+          },
+          "end": {
+            "line": 19,
+            "column": 56
+          }
+        }
+      },
+      "range": [
+        566,
+        623
+      ],
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 57
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Vector2",
+            "range": [
+              634,
+              641
+            ],
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 9
+              },
+              "end": {
+                "line": 20,
+                "column": 16
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "Vector2",
+            "range": [
+              634,
+              641
+            ],
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 9
+              },
+              "end": {
+                "line": 20,
+                "column": 16
+              }
+            }
+          },
+          "range": [
+            634,
+            641
+          ],
+          "loc": {
+            "start": {
+              "line": 20,
+              "column": 9
+            },
+            "end": {
+              "line": 20,
+              "column": 16
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Vector2.js",
+        "raw": "\"./Vector2.js\"",
+        "range": [
+          649,
+          663
+        ],
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 24
+          },
+          "end": {
+            "line": 20,
+            "column": 38
+          }
+        }
+      },
+      "range": [
+        625,
+        664
+      ],
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 0
+        },
+        "end": {
+          "line": 20,
+          "column": 39
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Vector3",
+            "range": [
+              675,
+              682
+            ],
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 9
+              },
+              "end": {
+                "line": 21,
+                "column": 16
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "Vector3",
+            "range": [
+              675,
+              682
+            ],
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 9
+              },
+              "end": {
+                "line": 21,
+                "column": 16
+              }
+            }
+          },
+          "range": [
+            675,
+            682
+          ],
+          "loc": {
+            "start": {
+              "line": 21,
+              "column": 9
+            },
+            "end": {
+              "line": 21,
+              "column": 16
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Vector3.js",
+        "raw": "\"./Vector3.js\"",
+        "range": [
+          690,
+          704
+        ],
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 24
+          },
+          "end": {
+            "line": 21,
+            "column": 38
+          }
+        }
+      },
+      "range": [
+        666,
+        705
+      ],
+      "loc": {
+        "start": {
+          "line": 21,
+          "column": 0
+        },
+        "end": {
+          "line": 21,
+          "column": 39
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Vector4",
+            "range": [
+              716,
+              723
+            ],
+            "loc": {
+              "start": {
+                "line": 22,
+                "column": 9
+              },
+              "end": {
+                "line": 22,
+                "column": 16
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "Vector4",
+            "range": [
+              716,
+              723
+            ],
+            "loc": {
+              "start": {
+                "line": 22,
+                "column": 9
+              },
+              "end": {
+                "line": 22,
+                "column": 16
+              }
+            }
+          },
+          "range": [
+            716,
+            723
+          ],
+          "loc": {
+            "start": {
+              "line": 22,
+              "column": 9
+            },
+            "end": {
+              "line": 22,
+              "column": 16
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Vector4.js",
+        "raw": "\"./Vector4.js\"",
+        "range": [
+          731,
+          745
+        ],
+        "loc": {
+          "start": {
+            "line": 22,
+            "column": 24
+          },
+          "end": {
+            "line": 22,
+            "column": 38
+          }
+        }
+      },
+      "range": [
+        707,
+        746
+      ],
+      "loc": {
+        "start": {
+          "line": 22,
+          "column": 0
+        },
+        "end": {
+          "line": 22,
+          "column": 39
         }
       }
     }
@@ -368,7 +1497,7 @@
   "sourceType": "module",
   "range": [
     70,
-    178
+    746
   ],
   "loc": {
     "start": {
@@ -376,8 +1505,8 @@
       "column": 0
     },
     "end": {
-      "line": 14,
-      "column": 14
+      "line": 22,
+      "column": 39
     }
   },
   "comments": [

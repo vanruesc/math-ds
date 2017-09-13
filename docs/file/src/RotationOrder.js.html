@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/index.js | API Document</title>
+  <title data-ice="title">src/RotationOrder.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -52,29 +52,29 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/index.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/RotationOrder.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * Mathematical data structures.
+ * An enumeration of Euler rotation orders.
  *
- * @module math-ds
+ * @type {Object}
+ * @property {String} XYZ - X -&gt; Y -&gt; Z.
+ * @property {String} YZX - Y -&gt; Z -&gt; X.
+ * @property {String} ZXY - Z -&gt; X -&gt; Y.
+ * @property {String} XZY - X -&gt; Z -&gt; Y.
+ * @property {String} YXZ - Y -&gt; X -&gt; Z.
+ * @property {String} ZYX - Z -&gt; Y -&gt; X.
  */
 
-export { Box2 } from &quot;./Box2.js&quot;;
-export { Box3 } from &quot;./Box3.js&quot;;
-export { Cylindrical } from &quot;./Cylindrical.js&quot;;
-export { Euler } from &quot;./Euler.js&quot;;
-export { Line3 } from &quot;./Line3.js&quot;;
-export { Matrix3 } from &quot;./Matrix3.js&quot;;
-export { Matrix4 } from &quot;./Matrix4.js&quot;;
-export { Plane } from &quot;./Plane.js&quot;;
-export { Quaternion } from &quot;./Quaternion.js&quot;;
-export { RotationOrder } from &quot;./RotationOrder.js&quot;;
-export { Sphere } from &quot;./Sphere.js&quot;;
-export { Spherical } from &quot;./Spherical.js&quot;;
-export { SymmetricMatrix3 } from &quot;./SymmetricMatrix3.js&quot;;
-export { Vector2 } from &quot;./Vector2.js&quot;;
-export { Vector3 } from &quot;./Vector3.js&quot;;
-export { Vector4 } from &quot;./Vector4.js&quot;;
+export const RotationOrder = {
+
+	XYZ: &quot;XYZ&quot;,
+	YZX: &quot;YZX&quot;,
+	ZXY: &quot;ZXY&quot;,
+	XZY: &quot;XZY&quot;,
+	YXZ: &quot;YXZ&quot;,
+	ZYX: &quot;ZYX&quot;
+
+};
 </code></pre>
 
 </div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/index.js | API Document</title>
+  <title data-ice="title">src/Spherical.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -52,29 +52,147 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/index.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/Spherical.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * Mathematical data structures.
+ * A spherical coordinate system.
  *
- * @module math-ds
+ * For details see: https://en.wikipedia.org/wiki/Spherical_coordinate_system
+ *
+ * The poles (phi) are at the positive and negative Y-axis. The equator starts
+ * at positive Z.
  */
 
-export { Box2 } from &quot;./Box2.js&quot;;
-export { Box3 } from &quot;./Box3.js&quot;;
-export { Cylindrical } from &quot;./Cylindrical.js&quot;;
-export { Euler } from &quot;./Euler.js&quot;;
-export { Line3 } from &quot;./Line3.js&quot;;
-export { Matrix3 } from &quot;./Matrix3.js&quot;;
-export { Matrix4 } from &quot;./Matrix4.js&quot;;
-export { Plane } from &quot;./Plane.js&quot;;
-export { Quaternion } from &quot;./Quaternion.js&quot;;
-export { RotationOrder } from &quot;./RotationOrder.js&quot;;
-export { Sphere } from &quot;./Sphere.js&quot;;
-export { Spherical } from &quot;./Spherical.js&quot;;
-export { SymmetricMatrix3 } from &quot;./SymmetricMatrix3.js&quot;;
-export { Vector2 } from &quot;./Vector2.js&quot;;
-export { Vector3 } from &quot;./Vector3.js&quot;;
-export { Vector4 } from &quot;./Vector4.js&quot;;
+export class Spherical {
+
+	/**
+	 * Constructs a new spherical system.
+	 *
+	 * @param {Number} [radius=1] - The radius of the sphere.
+	 * @param {Number} [phi=0] - The polar angle phi.
+	 * @param {Number} [theta=0] - The equator angle theta.
+	 */
+
+	constructor(radius = 1, phi = 0, theta = 0) {
+
+		/**
+		 * The radius of the sphere.
+		 *
+		 * @type {Number}
+		 */
+
+		this.radius = radius;
+
+		/**
+		 * The polar angle, up and down towards the top and bottom pole.
+		 *
+		 * @type {Number}
+		 */
+
+		this.phi = phi;
+
+		/**
+		 * The angle around the equator of the sphere.
+		 *
+		 * @type {Number}
+		 */
+
+		this.theta = theta;
+
+	}
+
+	/**
+	 * Sets the values of this spherical system.
+	 *
+	 * @param {Number} radius - The radius.
+	 * @param {Number} phi - Phi.
+	 * @param {Number} theta - Theta.
+	 * @return {Spherical} This spherical system.
+	 */
+
+	set(radius, phi, theta) {
+
+		this.radius = radius;
+		this.phi = phi;
+		this.theta = theta;
+
+		return this;
+
+	}
+
+	/**
+	 * Copies the values of the given spherical system.
+	 *
+	 * @param {Spherical} s - A spherical system.
+	 * @return {Spherical} This spherical system.
+	 */
+
+	copy(s) {
+
+		this.radius = s.radius;
+		this.phi = s.phi;
+		this.theta = s.theta;
+
+		return this;
+
+	}
+
+	/**
+	 * Clones this spherical system.
+	 *
+	 * @return {Spherical} The cloned spherical system.
+	 */
+
+	clone() {
+
+		return new this.constructor().copy(this);
+
+	}
+
+	/**
+	 * Sets the values of this spherical system.
+	 *
+	 * @param {Vector3} v - The vector
+	 * @return {Spherical} This spherical system.
+	 */
+
+	setFromVector3(v) {
+
+		this.radius = v.length();
+
+		if(this.radius === 0) {
+
+			this.theta = 0;
+			this.phi = 0;
+
+		} else {
+
+			// Calculate the equator angle around the positive Y-axis.
+			this.theta = Math.atan2(v.x, v.z);
+
+			// Calculate the polar angle.
+			this.phi = Math.acos(Math.min(Math.max(v.y / this.radius, -1), 1));
+
+		}
+
+		return this.makeSafe();
+
+	}
+
+	/**
+	 * Restricts phi to [1e-6, PI - 1e-6].
+	 *
+	 * @return {Spherical} This spherical system.
+	 */
+
+	makeSafe() {
+
+		this.phi = Math.max(1e-6, Math.min(Math.PI - 1e-6, this.phi));
+
+		return this;
+
+	}
+
+}
 </code></pre>
 
 </div>
