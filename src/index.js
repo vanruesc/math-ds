@@ -19,3 +19,4 @@ export { Spherical } from "./Spherical.js";
 export { SymmetricMatrix3 } from "./SymmetricMatrix3.js";
 export { Vector2 } from "./Vector2.js";
 export { Vector3 } from "./Vector3.js";
+export { Vector4 } from "./Vector4.js";
