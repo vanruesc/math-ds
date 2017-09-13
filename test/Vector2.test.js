@@ -1,6 +1,6 @@
 "use strict";
 
-const lib = require("../build/math-ds.js");
+const Vector2 = require("../build/math-ds.js").Vector2;
 
 module.exports = {
 
@@ -8,7 +8,7 @@ module.exports = {
 
 		"can be instantiated": function(test) {
 
-			const v = new lib.Vector2();
+			const v = new Vector2();
 
 			test.ok(v);
 			test.done();
