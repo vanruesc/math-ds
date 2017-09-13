@@ -603,9 +603,9 @@ export class Quaternion {
 	/**
 	 * Performs a spherical linear interpolation.
 	 *
-	 * @param {Number} qa - The base quaternion.
-	 * @param {Number} qb - The target quaternion.
-	 * @param {Number} qr - A quaternion to store the result in. If none is provided, a new one will be created.
+	 * @param {Quaternion} qa - The base quaternion.
+	 * @param {Quaternion} qb - The target quaternion.
+	 * @param {Quaternion} qr - A quaternion to store the result in. If none is provided, a new one will be created.
 	 * @param {Number} t - The slerp factor.
 	 * @return {Quaternion} The resulting quaternion.
 	 */
