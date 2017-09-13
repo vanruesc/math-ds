@@ -4,11 +4,8 @@
  * @module math-ds
  */
 
-export { Vector2 } from "./2d";
-
-export {
-	Box3,
-	Matrix3,
-	SymmetricMatrix3,
-	Vector3
-} from "./3d";
+export { Box3 } from "./Box3.js";
+export { Matrix3 } from "./Matrix3.js";
+export { SymmetricMatrix3 } from "./SymmetricMatrix3.js";
+export { Vector2 } from "./Vector2.js";
+export { Vector3 } from "./Vector3.js";

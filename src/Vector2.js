@@ -7,14 +7,14 @@ export class Vector2 {
 	/**
 	 * Constructs a new vector.
 	 *
-	 * @param {Number} [x=0] - The x value.
-	 * @param {Number} [y=0] - The y value.
+	 * @param {Number} [x=0] - The X component.
+	 * @param {Number} [y=0] - The Y component.
 	 */
 
 	constructor(x = 0, y = 0) {
 
 		/**
-		 * The x component.
+		 * The X component.
 		 *
 		 * @type {Number}
 		 */
@@ -22,7 +22,7 @@ export class Vector2 {
 		this.x = x;
 
 		/**
-		 * The y component.
+		 * The Y component.
 		 *
 		 * @type {Number}
 		 */
@@ -32,10 +32,42 @@ export class Vector2 {
 	}
 
 	/**
+	 * The width. This is an alias for X.
+	 *
+	 * @type {Number}
+	 */
+
+	get width() { return this.x; }
+
+	/**
+	 * Sets the width.
+	 *
+	 * @type {Number}
+	 */
+
+	set width(value) { return this.x = value; }
+
+	/**
+	 * The height. This is an alias for Y.
+	 *
+	 * @type {Number}
+	 */
+
+	get height() { return this.y; }
+
+	/**
+	 * Sets the height.
+	 *
+	 * @type {Number}
+	 */
+
+	set height(value) { return this.y = value; }
+
+	/**
 	 * Sets the values of this vector
 	 *
-	 * @param {Number} x - The x value.
-	 * @param {Number} y - The y value.
+	 * @param {Number} x - The X component.
+	 * @param {Number} y - The Y component.
 	 * @return {Vector2} This vector.
 	 */
 
@@ -65,9 +97,21 @@ export class Vector2 {
 	}
 
 	/**
+	 * Clones this vector.
+	 *
+	 * @return {Vector2} A clone of this vector.
+	 */
+
+	clone() {
+
+		return new this.constructor(this.x, this.y);
+
+	}
+
+	/**
 	 * Copies values from an array.
 	 *
-	 * @param {Array} array - An array.
+	 * @param {Number[]} array - An array.
 	 * @param {Number} offset - An offset.
 	 * @return {Vector2} This vector.
 	 */
@@ -86,7 +130,7 @@ export class Vector2 {
 	 *
 	 * @param {Array} [array] - A target array.
 	 * @param {Number} offset - An offset.
-	 * @return {Vector2} The array.
+	 * @return {Number[]} The array.
 	 */
 
 	toArray(array = [], offset = 0) {
@@ -95,31 +139,6 @@ export class Vector2 {
 		array[offset + 1] = this.y;
 
 		return array;
-
-	}
-
-	/**
-	 * Checks if this vector equals the given one.
-	 *
-	 * @param {Vector2} v - A vector.
-	 * @return {Boolean} Whether this vector equals the given one.
-	 */
-
-	equals(v) {
-
-		return (v.x === this.x && v.y === this.y);
-
-	}
-
-	/**
-	 * Clones this vector.
-	 *
-	 * @return {Vector2} A clone of this vector.
-	 */
-
-	clone() {
-
-		return new this.constructor(this.x, this.y);
 
 	}
 
@@ -134,23 +153,6 @@ export class Vector2 {
 
 		this.x += v.x;
 		this.y += v.y;
-
-		return this;
-
-	}
-
-	/**
-	 * Adds a scaled vector to this one.
-	 *
-	 * @param {Vector2} v - The vector to scale and add.
-	 * @param {Number} s - A scalar.
-	 * @return {Vector2} This vector.
-	 */
-
-	addScaledVector(v, s) {
-
-		this.x += v.x * s;
-		this.y += v.y * s;
 
 		return this;
 
@@ -184,6 +186,23 @@ export class Vector2 {
 
 		this.x = a.x + b.x;
 		this.y = a.y + b.y;
+
+		return this;
+
+	}
+
+	/**
+	 * Adds a scaled vector to this one.
+	 *
+	 * @param {Vector2} v - The vector to scale and add.
+	 * @param {Number} s - A scalar.
+	 * @return {Vector2} This vector.
+	 */
+
+	addScaledVector(v, s) {
+
+		this.x += v.x * s;
+		this.y += v.y * s;
 
 		return this;
 
@@ -263,34 +282,8 @@ export class Vector2 {
 
 	multiplyScalar(s) {
 
-		if(isFinite(s)) {
-
-			this.x *= s;
-			this.y *= s;
-
-		} else {
-
-			this.x = 0;
-			this.y = 0;
-
-		}
-
-		return this;
-
-	}
-
-	/**
-	 * Sets this vector to the product of two given vectors.
-	 *
-	 * @param {Vector2} a - A vector.
-	 * @param {Vector2} b - Another vector.
-	 * @return {Vector2} This vector.
-	 */
-
-	multiplyVectors(a, b) {
-
-		this.x = a.x * b.x;
-		this.y = a.y * b.y;
+		this.x *= s;
+		this.y *= s;
 
 		return this;
 
@@ -321,37 +314,27 @@ export class Vector2 {
 
 	divideScalar(s) {
 
-		return this.multiplyScalar(1 / s);
-
-	}
-
-	/**
-	 * Sets this vector to the quotient of two given vectors.
-	 *
-	 * @param {Vector2} a - A vector.
-	 * @param {Vector2} b - Another vector.
-	 * @return {Vector2} This vector.
-	 */
-
-	divideVectors(a, b) {
-
-		this.x = a.x / b.x;
-		this.y = a.y / b.y;
+		this.x /= s;
+		this.y /= s;
 
 		return this;
 
 	}
 
 	/**
-	 * Negates this vector.
+	 * Applies the given matrix to this vector.
 	 *
+	 * @param {Matrix3} m - A matrix.
 	 * @return {Vector2} This vector.
 	 */
 
-	negate() {
+	applyMatrix3(m) {
 
-		this.x = -this.x;
-		this.y = -this.y;
+		const x = this.x, y = this.y;
+		const e = m.elements;
+
+		this.x = e[0] * x + e[3] * y + e[6];
+		this.y = e[1] * x + e[4] * y + e[7];
 
 		return this;
 
@@ -371,12 +354,24 @@ export class Vector2 {
 	}
 
 	/**
+	 * Calculates the Manhattan length of this vector.
+	 *
+	 * @return {Number} The length.
+	 */
+
+	lengthManhattan() {
+
+		return Math.abs(this.x) + Math.abs(this.y);
+
+	}
+
+	/**
 	 * Calculates the squared length of this vector.
 	 *
 	 * @return {Number} The squared length.
 	 */
 
-	lengthSq() {
+	lengthSquared() {
 
 		return this.x * this.x + this.y * this.y;
 
@@ -395,15 +390,15 @@ export class Vector2 {
 	}
 
 	/**
-	 * Calculates the distance to a given vector.
+	 * Calculates the Manhattan distance to a given vector.
 	 *
 	 * @param {Vector2} v - A vector.
-	 * @return {Number} The distance.
+	 * @return {Number} The squared distance.
 	 */
 
-	distanceTo(v) {
+	distanceToManhattan(v) {
 
-		return Math.sqrt(this.distanceToSquared(v));
+		return Math.abs(this.x - v.x) + Math.abs(this.y - v.y);
 
 	}
 
@@ -424,6 +419,19 @@ export class Vector2 {
 	}
 
 	/**
+	 * Calculates the distance to a given vector.
+	 *
+	 * @param {Vector2} v - A vector.
+	 * @return {Number} The distance.
+	 */
+
+	distanceTo(v) {
+
+		return Math.sqrt(this.distanceToSquared(v));
+
+	}
+
+	/**
 	 * Normalizes this vector.
 	 *
 	 * @return {Vector2} This vector.
@@ -432,6 +440,19 @@ export class Vector2 {
 	normalize() {
 
 		return this.divideScalar(this.length());
+
+	}
+
+	/**
+	 * Sets the length of this vector.
+	 *
+	 * @param {Number} length - The new length.
+	 * @return {Vector2} This vector.
+	 */
+
+	setLength(length) {
+
+		return this.normalize().multiplyScalar(length);
 
 	}
 
@@ -481,6 +502,149 @@ export class Vector2 {
 		this.y = Math.max(min.y, Math.min(max.y, this.y));
 
 		return this;
+
+	}
+
+	/**
+	 * Floors this vector.
+	 *
+	 * @return {Vector2} This vector.
+	 */
+
+	floor() {
+
+		this.x = Math.floor(this.x);
+		this.y = Math.floor(this.y);
+
+		return this;
+
+	}
+
+	/**
+	 * Ceils this vector.
+	 *
+	 * @return {Vector2} This vector.
+	 */
+
+	ceil() {
+
+		this.x = Math.ceil(this.x);
+		this.y = Math.ceil(this.y);
+
+		return this;
+
+	}
+
+	/**
+	 * Rounds this vector.
+	 *
+	 * @return {Vector2} This vector.
+	 */
+
+	round() {
+
+		this.x = Math.round(this.x);
+		this.y = Math.round(this.y);
+
+		return this;
+
+	}
+
+	/**
+	 * Negates this vector.
+	 *
+	 * @return {Vector2} This vector.
+	 */
+
+	negate() {
+
+		this.x = -this.x;
+		this.y = -this.y;
+
+		return this;
+
+	}
+
+	/**
+	 * Computes the angle in radians with respect to the positive X-axis.
+	 *
+	 * @return {Number} The angle.
+	 */
+
+	angle() {
+
+		let angle = Math.atan2(this.y, this.x);
+
+		if(angle < 0) { angle += 2 * Math.PI; }
+
+		return angle;
+
+	}
+
+	/**
+	 * Lerps towards the given vector.
+	 *
+	 * @param {Vector2} v - The target vector.
+	 * @param {Number} alpha - The lerp factor.
+	 * @return {Vector2} This vector.
+	 */
+
+	lerp(v, alpha) {
+
+		this.x += (v.x - this.x) * alpha;
+		this.y += (v.y - this.y) * alpha;
+
+		return this;
+
+	}
+
+	/**
+	 * Sets this vector to the lerp result of the given vectors.
+	 *
+	 * @param {Vector2} v1 - A base vector.
+	 * @param {Vector2} v2 - The target vector.
+	 * @param {Number} alpha - The lerp factor.
+	 * @return {Vector2} This vector.
+	 */
+
+	lerpVectors(v1, v2, alpha) {
+
+		return this.subVectors(v2, v1).multiplyScalar(alpha).add(v1);
+
+	}
+
+	/**
+	 * Rotates this vector around a given center.
+	 *
+	 * @param {Vector2} center - The center.
+	 * @param {Number} angle - The rotation in radians.
+	 * @return {Vector2} This vector.
+	 */
+
+	rotateAround(center, angle) {
+
+		const c = Math.cos(angle), s = Math.sin(angle);
+
+		const x = this.x - center.x;
+		const y = this.y - center.y;
+
+		this.x = x * c - y * s + center.x;
+		this.y = x * s + y * c + center.y;
+
+		return this;
+
+	}
+
+	/**
+	 * Checks if this vector equals the given one.
+	 *
+	 * @param {Vector2} v - A vector.
+	 * @return {Boolean} Whether this vector equals the given one.
+	 */
+
+	equals(v) {
+
+		return (v.x === this.x && v.y === this.y);
 
 	}
 

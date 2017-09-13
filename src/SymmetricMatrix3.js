@@ -210,6 +210,35 @@ export class SymmetricMatrix3 {
 	}
 
 	/**
+	 * Checks if this matrix equals the given one.
+	 *
+	 * @param {SymmetricMatrix3} m - A matrix.
+	 * @return {Boolean} Whether the matrix are equal.
+	 */
+
+	equals(matrix) {
+
+		const te = this.elements;
+		const me = matrix.elements;
+
+		let result = true;
+		let i;
+
+		for(i = 0; result && i < 6; ++i) {
+
+			if(te[i] !== me[i]) {
+
+				result = false;
+
+			}
+
+		}
+
+		return result;
+
+	}
+
+	/**
 	 * Calculates the linear index of an element from this matrix.
 	 *
 	 * Let N be the dimension of the symmetric matrix:
