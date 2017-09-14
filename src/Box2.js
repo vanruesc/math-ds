@@ -311,7 +311,7 @@ export class Box2 {
 	}
 
 	/**
-	 * Expands this box by combining it with the given one.
+	 * Intersects this box with the given one.
 	 *
 	 * @param {Box2} b - A box.
 	 * @return {Box2} This box.
@@ -365,7 +365,7 @@ export class Box2 {
 	/**
 	 * Checks if the given box lies inside this box.
 	 *
-	 * @param {Vector2} b - A box.
+	 * @param {Box2} b - A box.
 	 * @return {Boolean} Whether this box contains the given one.
 	 */
 
@@ -379,7 +379,7 @@ export class Box2 {
 	}
 
 	/**
-	 * Checks if this box intersects with the given one.
+	 * Checks if this box intersects the given one.
 	 *
 	 * @param {Box2} b - A box.
 	 * @return {Boolean} Whether the boxes intersect.

@@ -394,7 +394,7 @@ export class Vector4 {
 	}
 
 	/**
-	 * Subtracts a scalar to this vector.
+	 * Subtracts a scalar from this vector.
 	 *
 	 * @param {Number} s - The scalar to subtract.
 	 * @return {Vector4} This vector.

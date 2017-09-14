@@ -637,7 +637,7 @@ export class Matrix4 {
 	}
 
 	/**
-	 * Multiplies this matrix with a given one.
+	 * Multiplies this matrix with the given one.
 	 *
 	 * @param {Matrix4} m - A matrix.
 	 * @return {Matrix4} This matrix.
@@ -665,7 +665,7 @@ export class Matrix4 {
 	/**
 	 * Multiplies this matrix with a given scalar.
 	 *
-	 * @param {Number} m - A scalar.
+	 * @param {Number} s - A scalar.
 	 * @return {Matrix4} This matrix.
 	 */
 

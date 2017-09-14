@@ -312,7 +312,7 @@ export class Box3 {
 	}
 
 	/**
-	 * Expands this box by combining it with the given one.
+	 * Intersects this box with the given one.
 	 *
 	 * @param {Box3} b - A box.
 	 * @return {Box3} This box.
@@ -367,7 +367,7 @@ export class Box3 {
 	/**
 	 * Checks if the given box lies inside this box.
 	 *
-	 * @param {Vector3} b - A box.
+	 * @param {Box3} b - A box.
 	 * @return {Boolean} Whether this box contains the given one.
 	 */
 
@@ -382,7 +382,7 @@ export class Box3 {
 	}
 
 	/**
-	 * Checks if this box intersects with the given one.
+	 * Checks if this box intersects the given one.
 	 *
 	 * @param {Box3} b - A box.
 	 * @return {Boolean} Whether the boxes intersect.
@@ -399,10 +399,10 @@ export class Box3 {
 	}
 
 	/**
-	 * Checks if this box intersects with the given sphere.
+	 * Checks if this box intersects the given sphere.
 	 *
 	 * @param {Sphere} s - A sphere.
-	 * @return {Boolean} Whether the box intersects with the sphere.
+	 * @return {Boolean} Whether the box intersects the sphere.
 	 */
 
 	intersectsSphere(s) {
@@ -410,19 +410,19 @@ export class Box3 {
 		// Find the point in this box that is closest to the sphere's center.
 		const closestPoint = this.clampPoint(s.center, v);
 
-		// If that point is inside the sphere, it intersects with this box.
+		// If that point is inside the sphere, it intersects this box.
 		return (closestPoint.distanceToSquared(s.center) <= (s.radius * s.radius));
 
 	}
 
 	/**
-	 * Checks if this box intersects with the given plane.
+	 * Checks if this box intersects the given plane.
 	 *
 	 * Computes the minimum and maximum dot product values. If those values are on
 	 * the same side (back or front) of the plane, then there is no intersection.
 	 *
 	 * @param {Plane} p - A plane.
-	 * @return {Boolean} Whether the box intersects with the plane.
+	 * @return {Boolean} Whether the box intersects the plane.
 	 */
 
 	intersectsPlane(p) {

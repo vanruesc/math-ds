@@ -159,7 +159,7 @@ export class Sphere {
 	}
 
 	/**
-	 * Calculates the bounding box of this sphere.
+	 * Clamps the given point to this sphere.
 	 *
 	 * @param {Vector3} p - A point.
 	 * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.

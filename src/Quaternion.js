@@ -20,9 +20,9 @@ export class Quaternion {
 	 * Constructs a new quaternion.
 	 *
 	 * @param {Number} [x=0] - The X component.
-	 * @param {Number} [y=0] - The X component.
-	 * @param {Number} [z=0] - The X component.
-	 * @param {Number} [w=0] - The X component.
+	 * @param {Number} [y=0] - The Y component.
+	 * @param {Number} [z=0] - The Z component.
+	 * @param {Number} [w=0] - The W component.
 	 */
 
 	constructor(x = 0, y = 0, z = 0, w = 0) {
@@ -36,28 +36,28 @@ export class Quaternion {
 		this.x = x;
 
 		/**
-		 * The X component.
+		 * The Y component.
 		 *
 		 * @type {Number}
 		 */
 
-		this.y = x;
+		this.y = y;
 
 		/**
-		 * The X component.
+		 * The Z component.
 		 *
 		 * @type {Number}
 		 */
 
-		this.z = x;
+		this.z = z;
 
 		/**
-		 * The X component.
+		 * The W component.
 		 *
 		 * @type {Number}
 		 */
 
-		this.w = x;
+		this.w = w;
 
 	}
 
@@ -65,9 +65,9 @@ export class Quaternion {
 	 * Sets the components of this quaternion.
 	 *
 	 * @param {Number} x - The X component.
-	 * @param {Number} y - The X component.
-	 * @param {Number} z - The X component.
-	 * @param {Number} w - The X component.
+	 * @param {Number} y - The Y component.
+	 * @param {Number} z - The Z component.
+	 * @param {Number} w - The W component.
 	 * @return {Quaternion} This quaternion.
 	 */
 
@@ -155,7 +155,7 @@ export class Quaternion {
 	 *
 	 * For more details see: https://goo.gl/XRD1kr
 	 *
-	 * @return {Euler} euler - The euler angles.
+	 * @param {Euler} euler - The euler angles.
 	 * @return {Quaternion} This quaternion.
 	 */
 
@@ -591,6 +591,7 @@ export class Quaternion {
 	/**
 	 * Checks if this quaternions equals the given one.
 	 *
+	 * @param {Quaternion} q - A quaternion.
 	 * @return {Boolean} Whether the quaternions are equal.
 	 */
 
