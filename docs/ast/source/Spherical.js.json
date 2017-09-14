@@ -3669,10 +3669,10 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\r\n\t * Restricts phi to [1e-6, PI - 1e-6].\r\n\t *\r\n\t * @return {Spherical} This spherical system.\r\n\t ",
+                  "value": "*\r\n\t * Restricts phi to `[1e-6, PI - 1e-6]`.\r\n\t *\r\n\t * @return {Spherical} This spherical system.\r\n\t ",
                   "range": [
                     2246,
-                    2349
+                    2351
                   ],
                   "loc": {
                     "start": {
@@ -3694,8 +3694,8 @@
                 "type": "Identifier",
                 "name": "makeSafe",
                 "range": [
-                  2354,
-                  2362
+                  2356,
+                  2364
                 ],
                 "loc": {
                   "start": {
@@ -3726,8 +3726,8 @@
                           "object": {
                             "type": "ThisExpression",
                             "range": [
-                              2372,
-                              2376
+                              2374,
+                              2378
                             ],
                             "loc": {
                               "start": {
@@ -3744,8 +3744,8 @@
                             "type": "Identifier",
                             "name": "phi",
                             "range": [
-                              2377,
-                              2380
+                              2379,
+                              2382
                             ],
                             "loc": {
                               "start": {
@@ -3759,8 +3759,8 @@
                             }
                           },
                           "range": [
-                            2372,
-                            2380
+                            2374,
+                            2382
                           ],
                           "loc": {
                             "start": {
@@ -3782,8 +3782,8 @@
                               "type": "Identifier",
                               "name": "Math",
                               "range": [
-                                2383,
-                                2387
+                                2385,
+                                2389
                               ],
                               "loc": {
                                 "start": {
@@ -3800,8 +3800,8 @@
                               "type": "Identifier",
                               "name": "max",
                               "range": [
-                                2388,
-                                2391
+                                2390,
+                                2393
                               ],
                               "loc": {
                                 "start": {
@@ -3815,8 +3815,8 @@
                               }
                             },
                             "range": [
-                              2383,
-                              2391
+                              2385,
+                              2393
                             ],
                             "loc": {
                               "start": {
@@ -3835,8 +3835,8 @@
                               "value": 0.000001,
                               "raw": "1e-6",
                               "range": [
-                                2392,
-                                2396
+                                2394,
+                                2398
                               ],
                               "loc": {
                                 "start": {
@@ -3858,8 +3858,8 @@
                                   "type": "Identifier",
                                   "name": "Math",
                                   "range": [
-                                    2398,
-                                    2402
+                                    2400,
+                                    2404
                                   ],
                                   "loc": {
                                     "start": {
@@ -3876,8 +3876,8 @@
                                   "type": "Identifier",
                                   "name": "min",
                                   "range": [
-                                    2403,
-                                    2406
+                                    2405,
+                                    2408
                                   ],
                                   "loc": {
                                     "start": {
@@ -3891,8 +3891,8 @@
                                   }
                                 },
                                 "range": [
-                                  2398,
-                                  2406
+                                  2400,
+                                  2408
                                 ],
                                 "loc": {
                                   "start": {
@@ -3916,8 +3916,8 @@
                                       "type": "Identifier",
                                       "name": "Math",
                                       "range": [
-                                        2407,
-                                        2411
+                                        2409,
+                                        2413
                                       ],
                                       "loc": {
                                         "start": {
@@ -3934,8 +3934,8 @@
                                       "type": "Identifier",
                                       "name": "PI",
                                       "range": [
-                                        2412,
-                                        2414
+                                        2414,
+                                        2416
                                       ],
                                       "loc": {
                                         "start": {
@@ -3949,8 +3949,8 @@
                                       }
                                     },
                                     "range": [
-                                      2407,
-                                      2414
+                                      2409,
+                                      2416
                                     ],
                                     "loc": {
                                       "start": {
@@ -3968,8 +3968,8 @@
                                     "value": 0.000001,
                                     "raw": "1e-6",
                                     "range": [
-                                      2417,
-                                      2421
+                                      2419,
+                                      2423
                                     ],
                                     "loc": {
                                       "start": {
@@ -3983,8 +3983,8 @@
                                     }
                                   },
                                   "range": [
-                                    2407,
-                                    2421
+                                    2409,
+                                    2423
                                   ],
                                   "loc": {
                                     "start": {
@@ -4003,8 +4003,8 @@
                                   "object": {
                                     "type": "ThisExpression",
                                     "range": [
-                                      2423,
-                                      2427
+                                      2425,
+                                      2429
                                     ],
                                     "loc": {
                                       "start": {
@@ -4021,8 +4021,8 @@
                                     "type": "Identifier",
                                     "name": "phi",
                                     "range": [
-                                      2428,
-                                      2431
+                                      2430,
+                                      2433
                                     ],
                                     "loc": {
                                       "start": {
@@ -4036,8 +4036,8 @@
                                     }
                                   },
                                   "range": [
-                                    2423,
-                                    2431
+                                    2425,
+                                    2433
                                   ],
                                   "loc": {
                                     "start": {
@@ -4052,8 +4052,8 @@
                                 }
                               ],
                               "range": [
-                                2398,
-                                2432
+                                2400,
+                                2434
                               ],
                               "loc": {
                                 "start": {
@@ -4068,8 +4068,8 @@
                             }
                           ],
                           "range": [
-                            2383,
-                            2433
+                            2385,
+                            2435
                           ],
                           "loc": {
                             "start": {
@@ -4083,8 +4083,8 @@
                           }
                         },
                         "range": [
-                          2372,
-                          2433
+                          2374,
+                          2435
                         ],
                         "loc": {
                           "start": {
@@ -4098,8 +4098,8 @@
                         }
                       },
                       "range": [
-                        2372,
-                        2434
+                        2374,
+                        2436
                       ],
                       "loc": {
                         "start": {
@@ -4117,8 +4117,8 @@
                       "argument": {
                         "type": "ThisExpression",
                         "range": [
-                          2447,
-                          2451
+                          2449,
+                          2453
                         ],
                         "loc": {
                           "start": {
@@ -4132,8 +4132,8 @@
                         }
                       },
                       "range": [
-                        2440,
-                        2452
+                        2442,
+                        2454
                       ],
                       "loc": {
                         "start": {
@@ -4148,8 +4148,8 @@
                     }
                   ],
                   "range": [
-                    2365,
-                    2458
+                    2367,
+                    2460
                   ],
                   "loc": {
                     "start": {
@@ -4165,8 +4165,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  2362,
-                  2458
+                  2364,
+                  2460
                 ],
                 "loc": {
                   "start": {
@@ -4182,8 +4182,8 @@
               "kind": "method",
               "computed": false,
               "range": [
-                2354,
-                2458
+                2356,
+                2460
               ],
               "loc": {
                 "start": {
@@ -4198,10 +4198,10 @@
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\r\n\t * Restricts phi to [1e-6, PI - 1e-6].\r\n\t *\r\n\t * @return {Spherical} This spherical system.\r\n\t ",
+                  "value": "*\r\n\t * Restricts phi to `[1e-6, PI - 1e-6]`.\r\n\t *\r\n\t * @return {Spherical} This spherical system.\r\n\t ",
                   "range": [
                     2246,
-                    2349
+                    2351
                   ],
                   "loc": {
                     "start": {
@@ -4220,7 +4220,7 @@
           ],
           "range": [
             256,
-            2463
+            2465
           ],
           "loc": {
             "start": {
@@ -4235,7 +4235,7 @@
         },
         "range": [
           240,
-          2463
+          2465
         ],
         "loc": {
           "start": {
@@ -4273,7 +4273,7 @@
       "source": null,
       "range": [
         233,
-        2463
+        2465
       ],
       "loc": {
         "start": {
@@ -4310,7 +4310,7 @@
   "sourceType": "module",
   "range": [
     233,
-    2463
+    2465
   ],
   "loc": {
     "start": {
@@ -4523,10 +4523,10 @@
     },
     {
       "type": "Block",
-      "value": "*\r\n\t * Restricts phi to [1e-6, PI - 1e-6].\r\n\t *\r\n\t * @return {Spherical} This spherical system.\r\n\t ",
+      "value": "*\r\n\t * Restricts phi to `[1e-6, PI - 1e-6]`.\r\n\t *\r\n\t * @return {Spherical} This spherical system.\r\n\t ",
       "range": [
         2246,
-        2349
+        2351
       ],
       "loc": {
         "start": {

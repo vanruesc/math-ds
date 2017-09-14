@@ -10085,7 +10085,7 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\r\n\t * Checks if this plane equals the given one.\r\n\t *\r\n\t * @param {Plane} v - A plane.\r\n\t * @return {Boolean} Whether this plane equals the given one.\r\n\t ",
+                  "value": "*\r\n\t * Checks if this plane equals the given one.\r\n\t *\r\n\t * @param {Plane} p - A plane.\r\n\t * @return {Boolean} Whether this plane equals the given one.\r\n\t ",
                   "range": [
                     5987,
                     6146
@@ -10524,7 +10524,7 @@
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\r\n\t * Checks if this plane equals the given one.\r\n\t *\r\n\t * @param {Plane} v - A plane.\r\n\t * @return {Boolean} Whether this plane equals the given one.\r\n\t ",
+                  "value": "*\r\n\t * Checks if this plane equals the given one.\r\n\t *\r\n\t * @param {Plane} p - A plane.\r\n\t * @return {Boolean} Whether this plane equals the given one.\r\n\t ",
                   "range": [
                     5987,
                     6146
@@ -11083,7 +11083,7 @@
     },
     {
       "type": "Block",
-      "value": "*\r\n\t * Checks if this plane equals the given one.\r\n\t *\r\n\t * @param {Plane} v - A plane.\r\n\t * @return {Boolean} Whether this plane equals the given one.\r\n\t ",
+      "value": "*\r\n\t * Checks if this plane equals the given one.\r\n\t *\r\n\t * @param {Plane} p - A plane.\r\n\t * @return {Boolean} Whether this plane equals the given one.\r\n\t ",
       "range": [
         5987,
         6146
