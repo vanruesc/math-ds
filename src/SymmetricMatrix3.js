@@ -213,7 +213,7 @@ export class SymmetricMatrix3 {
 	 * Checks if this matrix equals the given one.
 	 *
 	 * @param {SymmetricMatrix3} m - A matrix.
-	 * @return {Boolean} Whether the matrix are equal.
+	 * @return {Boolean} Whether the matrices are equal.
 	 */
 
 	equals(matrix) {

@@ -63,7 +63,7 @@ export class Sphere {
 	/**
 	 * Copies the given sphere.
 	 *
-	 * @param {Sphere} sphere - A sphere.
+	 * @param {Sphere} s - A sphere.
 	 * @return {Sphere} This sphere.
 	 */
 
