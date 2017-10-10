@@ -356,10 +356,16 @@ export class Box3 {
 
 	containsPoint(p) {
 
-		return !(
-			p.x < this.min.x || p.x > this.max.x ||
-			p.y < this.min.y || p.y > this.max.y ||
-			p.z < this.min.z || p.z > this.max.z
+		const min = this.min;
+		const max = this.max;
+
+		return (
+			p.x >= min.x &&
+			p.y >= min.y &&
+			p.z >= min.z &&
+			p.x <= max.x &&
+			p.y <= max.y &&
+			p.z <= max.z
 		);
 
 	}
@@ -373,10 +379,15 @@ export class Box3 {
 
 	containsBox(b) {
 
+		const tMin = this.min;
+		const tMax = this.max;
+		const bMin = b.min;
+		const bMax = b.max;
+
 		return (
-			this.min.x <= b.min.x && b.max.x <= this.max.x &&
-			this.min.y <= b.min.y && b.max.y <= this.max.y &&
-			this.min.z <= b.min.z && b.max.z <= this.max.z
+			tMin.x <= bMin.x && bMax.x <= tMax.x &&
+			tMin.y <= bMin.y && bMax.y <= tMax.y &&
+			tMin.z <= bMin.z && bMax.z <= tMax.z
 		);
 
 	}
@@ -390,10 +401,18 @@ export class Box3 {
 
 	intersectsBox(b) {
 
-		return !(
-			b.max.x < this.min.x || b.min.x > this.max.x ||
-			b.max.y < this.min.y || b.min.y > this.max.y ||
-			b.max.z < this.min.z || b.min.z > this.max.z
+		const tMin = this.min;
+		const tMax = this.max;
+		const bMin = b.min;
+		const bMax = b.max;
+
+		return (
+			bMax.x >= tMin.x &&
+			bMax.y >= tMin.y &&
+			bMax.z >= tMin.z &&
+			bMin.x <= tMax.x &&
+			bMin.y <= tMax.y &&
+			bMin.z <= tMax.z
 		);
 
 	}

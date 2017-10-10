@@ -355,9 +355,14 @@ export class Box2 {
 
 	containsPoint(p) {
 
-		return !(
-			p.x < this.min.x || p.x > this.max.x ||
-			p.y < this.min.y || p.y > this.max.y
+		const min = this.min;
+		const max = this.max;
+
+		return (
+			p.x >= min.x &&
+			p.y >= min.y &&
+			p.x <= max.x &&
+			p.y <= max.y
 		);
 
 	}
@@ -370,6 +375,16 @@ export class Box2 {
 	 */
 
 	containsBox(b) {
+
+		const tMin = this.min;
+		const tMax = this.max;
+		const bMin = b.min;
+		const bMax = b.max;
+
+		return (
+			tMin.x <= bMin.x && bMax.x <= tMax.x &&
+			tMin.y <= bMin.y && bMax.y <= tMax.y
+		);
 
 		return (
 			this.min.x <= b.min.x && b.max.x <= this.max.x &&
@@ -387,9 +402,16 @@ export class Box2 {
 
 	intersectsBox(b) {
 
-		return !(
-			b.max.x < this.min.x || b.min.x > this.max.x ||
-			b.max.y < this.min.y || b.min.y > this.max.y
+		const tMin = this.min;
+		const tMax = this.max;
+		const bMin = b.min;
+		const bMax = b.max;
+
+		return (
+			bMax.x >= tMin.x &&
+			bMax.y >= tMin.y &&
+			bMin.x <= tMax.x &&
+			bMin.y <= tMax.y
 		);
 
 	}
