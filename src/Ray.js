@@ -24,7 +24,7 @@ export class Ray {
 	 * Constructs a new ray.
 	 *
 	 * @param {Vector3} [origin] - The origin.
-	 * @param {Vector3} [direction] - The radius.
+	 * @param {Vector3} [direction] - The direction.
 	 */
 
 	constructor(origin = new Vector3(), direction = new Vector3()) {
@@ -139,7 +139,7 @@ export class Ray {
 	/**
 	 * Finds the closest point along this ray to a given point.
 	 *
-	 * @param {Vector3} point - A point.
+	 * @param {Vector3} p - A point.
 	 * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.
 	 * @return {Vector3} The point.
 	 */
@@ -161,7 +161,7 @@ export class Ray {
 	/**
 	 * Calculates the squared distance from this ray to the given point.
 	 *
-	 * @param {Vector3} point - The point.
+	 * @param {Vector3} p - The point.
 	 * @return {Number} The squared distance.
 	 */
 
@@ -192,7 +192,7 @@ export class Ray {
 	/**
 	 * Calculates the distance from this ray to the given plane.
 	 *
-	 * @param {Vector3} point - The point.
+	 * @param {Vector3} p - The point.
 	 * @return {Number} The distance, or null if the denominator is zero.
 	 */
 
@@ -387,7 +387,7 @@ export class Ray {
 	/**
 	 * Finds the point where this ray intersects the given plane.
 	 *
-	 * @param {Plane} plane - A plane.
+	 * @param {Plane} p - A plane.
 	 * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.
 	 * @return {Vector3} The point of intersection, or null if there is none.
 	 */
@@ -418,7 +418,7 @@ export class Ray {
 	/**
 	 * Finds the point where this ray intersects the given box.
 	 *
-	 * @param {Plane} plane - A plane.
+	 * @param {Plane} b - A box.
 	 * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.
 	 * @return {Vector3} The point of intersection, or null if there is none.
 	 */
