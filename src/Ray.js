@@ -148,13 +148,9 @@ export class Ray {
 
 		const directionDistance = target.subVectors(p, this.origin).dot(this.direction);
 
-		if(directionDistance < 0.0) {
-
-			return target.copy(this.origin);
-
-		}
-
-		return target.copy(this.direction).multiplyScalar(directionDistance).add(this.origin);
+		return (directionDistance >= 0.0) ?
+			target.copy(this.direction).multiplyScalar(directionDistance).add(this.origin) :
+			target.copy(this.origin);
 
 	}
 
@@ -192,7 +188,7 @@ export class Ray {
 	/**
 	 * Calculates the distance from this ray to the given plane.
 	 *
-	 * @param {Vector3} p - The point.
+	 * @param {Plane} p - The plane.
 	 * @return {Number} The distance, or null if the denominator is zero.
 	 */
 
