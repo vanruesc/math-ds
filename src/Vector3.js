@@ -463,6 +463,26 @@ export class Vector3 {
 	}
 
 	/**
+	 * Applies a matrix to this direction vector.
+	 *
+	 * @param {Matrix4} m - A matrix.
+	 * @return {Vector3} This vector.
+	 */
+
+	transformDirection(m) {
+
+		const x = this.x, y = this.y, z = this.z;
+		const e = m.elements;
+
+		this.x = e[0] * x + e[4] * y + e[8] * z;
+		this.y = e[1] * x + e[5] * y + e[9] * z;
+		this.z = e[2] * x + e[6] * y + e[10] * z;
+
+		return this.normalize();
+
+	}
+
+	/**
 	 * Applies a matrix to this vector.
 	 *
 	 * @param {Matrix3} m - A matrix.
