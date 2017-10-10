@@ -41,6 +41,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Matrix4.js~Matrix4.html">Matrix4</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Plane.js~Plane.html">Plane</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Quaternion.js~Quaternion.html">Quaternion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Ray.js~Ray.html">Ray</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Sphere.js~Sphere.html">Sphere</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Spherical.js~Spherical.html">Spherical</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SymmetricMatrix3.js~SymmetricMatrix3.html">SymmetricMatrix3</a></span></span></li>
@@ -411,10 +412,16 @@ export class Box3 {
 
 	containsPoint(p) {
 
-		return !(
-			p.x &lt; this.min.x || p.x &gt; this.max.x ||
-			p.y &lt; this.min.y || p.y &gt; this.max.y ||
-			p.z &lt; this.min.z || p.z &gt; this.max.z
+		const min = this.min;
+		const max = this.max;
+
+		return (
+			p.x &gt;= min.x &amp;&amp;
+			p.y &gt;= min.y &amp;&amp;
+			p.z &gt;= min.z &amp;&amp;
+			p.x &lt;= max.x &amp;&amp;
+			p.y &lt;= max.y &amp;&amp;
+			p.z &lt;= max.z
 		);
 
 	}
@@ -428,10 +435,15 @@ export class Box3 {
 
 	containsBox(b) {
 
+		const tMin = this.min;
+		const tMax = this.max;
+		const bMin = b.min;
+		const bMax = b.max;
+
 		return (
-			this.min.x &lt;= b.min.x &amp;&amp; b.max.x &lt;= this.max.x &amp;&amp;
-			this.min.y &lt;= b.min.y &amp;&amp; b.max.y &lt;= this.max.y &amp;&amp;
-			this.min.z &lt;= b.min.z &amp;&amp; b.max.z &lt;= this.max.z
+			tMin.x &lt;= bMin.x &amp;&amp; bMax.x &lt;= tMax.x &amp;&amp;
+			tMin.y &lt;= bMin.y &amp;&amp; bMax.y &lt;= tMax.y &amp;&amp;
+			tMin.z &lt;= bMin.z &amp;&amp; bMax.z &lt;= tMax.z
 		);
 
 	}
@@ -445,10 +457,18 @@ export class Box3 {
 
 	intersectsBox(b) {
 
-		return !(
-			b.max.x &lt; this.min.x || b.min.x &gt; this.max.x ||
-			b.max.y &lt; this.min.y || b.min.y &gt; this.max.y ||
-			b.max.z &lt; this.min.z || b.min.z &gt; this.max.z
+		const tMin = this.min;
+		const tMax = this.max;
+		const bMin = b.min;
+		const bMax = b.max;
+
+		return (
+			bMax.x &gt;= tMin.x &amp;&amp;
+			bMax.y &gt;= tMin.y &amp;&amp;
+			bMax.z &gt;= tMin.z &amp;&amp;
+			bMin.x &lt;= tMax.x &amp;&amp;
+			bMin.y &lt;= tMax.y &amp;&amp;
+			bMin.z &lt;= tMax.z
 		);
 
 	}

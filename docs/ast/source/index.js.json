@@ -949,10 +949,10 @@
           "type": "ExportSpecifier",
           "exported": {
             "type": "Identifier",
-            "name": "Sphere",
+            "name": "Ray",
             "range": [
               491,
-              497
+              494
             ],
             "loc": {
               "start": {
@@ -961,16 +961,16 @@
               },
               "end": {
                 "line": 17,
-                "column": 15
+                "column": 12
               }
             }
           },
           "local": {
             "type": "Identifier",
-            "name": "Sphere",
+            "name": "Ray",
             "range": [
               491,
-              497
+              494
             ],
             "loc": {
               "start": {
@@ -979,13 +979,13 @@
               },
               "end": {
                 "line": 17,
-                "column": 15
+                "column": 12
               }
             }
           },
           "range": [
             491,
-            497
+            494
           ],
           "loc": {
             "start": {
@@ -994,6 +994,98 @@
             },
             "end": {
               "line": 17,
+              "column": 12
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Ray.js",
+        "raw": "\"./Ray.js\"",
+        "range": [
+          502,
+          512
+        ],
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 20
+          },
+          "end": {
+            "line": 17,
+            "column": 30
+          }
+        }
+      },
+      "range": [
+        482,
+        513
+      ],
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 17,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Sphere",
+            "range": [
+              524,
+              530
+            ],
+            "loc": {
+              "start": {
+                "line": 18,
+                "column": 9
+              },
+              "end": {
+                "line": 18,
+                "column": 15
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "Sphere",
+            "range": [
+              524,
+              530
+            ],
+            "loc": {
+              "start": {
+                "line": 18,
+                "column": 9
+              },
+              "end": {
+                "line": 18,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            524,
+            530
+          ],
+          "loc": {
+            "start": {
+              "line": 18,
+              "column": 9
+            },
+            "end": {
+              "line": 18,
               "column": 15
             }
           }
@@ -1004,31 +1096,31 @@
         "value": "./Sphere.js",
         "raw": "\"./Sphere.js\"",
         "range": [
-          505,
-          518
+          538,
+          551
         ],
         "loc": {
           "start": {
-            "line": 17,
+            "line": 18,
             "column": 23
           },
           "end": {
-            "line": 17,
+            "line": 18,
             "column": 36
           }
         }
       },
       "range": [
-        482,
-        519
+        515,
+        552
       ],
       "loc": {
         "start": {
-          "line": 17,
+          "line": 18,
           "column": 0
         },
         "end": {
-          "line": 17,
+          "line": 18,
           "column": 37
         }
       }
@@ -1043,16 +1135,16 @@
             "type": "Identifier",
             "name": "Spherical",
             "range": [
-              530,
-              539
+              563,
+              572
             ],
             "loc": {
               "start": {
-                "line": 18,
+                "line": 19,
                 "column": 9
               },
               "end": {
-                "line": 18,
+                "line": 19,
                 "column": 18
               }
             }
@@ -1061,31 +1153,31 @@
             "type": "Identifier",
             "name": "Spherical",
             "range": [
-              530,
-              539
+              563,
+              572
             ],
             "loc": {
               "start": {
-                "line": 18,
+                "line": 19,
                 "column": 9
               },
               "end": {
-                "line": 18,
+                "line": 19,
                 "column": 18
               }
             }
           },
           "range": [
-            530,
-            539
+            563,
+            572
           ],
           "loc": {
             "start": {
-              "line": 18,
+              "line": 19,
               "column": 9
             },
             "end": {
-              "line": 18,
+              "line": 19,
               "column": 18
             }
           }
@@ -1096,31 +1188,31 @@
         "value": "./Spherical.js",
         "raw": "\"./Spherical.js\"",
         "range": [
-          547,
-          563
+          580,
+          596
         ],
         "loc": {
           "start": {
-            "line": 18,
+            "line": 19,
             "column": 26
           },
           "end": {
-            "line": 18,
+            "line": 19,
             "column": 42
           }
         }
       },
       "range": [
-        521,
-        564
+        554,
+        597
       ],
       "loc": {
         "start": {
-          "line": 18,
+          "line": 19,
           "column": 0
         },
         "end": {
-          "line": 18,
+          "line": 19,
           "column": 43
         }
       }
@@ -1135,16 +1227,16 @@
             "type": "Identifier",
             "name": "SymmetricMatrix3",
             "range": [
-              575,
-              591
+              608,
+              624
             ],
             "loc": {
               "start": {
-                "line": 19,
+                "line": 20,
                 "column": 9
               },
               "end": {
-                "line": 19,
+                "line": 20,
                 "column": 25
               }
             }
@@ -1153,31 +1245,31 @@
             "type": "Identifier",
             "name": "SymmetricMatrix3",
             "range": [
-              575,
-              591
+              608,
+              624
             ],
             "loc": {
               "start": {
-                "line": 19,
+                "line": 20,
                 "column": 9
               },
               "end": {
-                "line": 19,
+                "line": 20,
                 "column": 25
               }
             }
           },
           "range": [
-            575,
-            591
+            608,
+            624
           ],
           "loc": {
             "start": {
-              "line": 19,
+              "line": 20,
               "column": 9
             },
             "end": {
-              "line": 19,
+              "line": 20,
               "column": 25
             }
           }
@@ -1188,31 +1280,31 @@
         "value": "./SymmetricMatrix3.js",
         "raw": "\"./SymmetricMatrix3.js\"",
         "range": [
-          599,
-          622
+          632,
+          655
         ],
         "loc": {
           "start": {
-            "line": 19,
+            "line": 20,
             "column": 33
           },
           "end": {
-            "line": 19,
+            "line": 20,
             "column": 56
           }
         }
       },
       "range": [
-        566,
-        623
+        599,
+        656
       ],
       "loc": {
         "start": {
-          "line": 19,
+          "line": 20,
           "column": 0
         },
         "end": {
-          "line": 19,
+          "line": 20,
           "column": 57
         }
       }
@@ -1227,16 +1319,16 @@
             "type": "Identifier",
             "name": "Vector2",
             "range": [
-              634,
-              641
+              667,
+              674
             ],
             "loc": {
               "start": {
-                "line": 20,
+                "line": 21,
                 "column": 9
               },
               "end": {
-                "line": 20,
+                "line": 21,
                 "column": 16
               }
             }
@@ -1245,31 +1337,31 @@
             "type": "Identifier",
             "name": "Vector2",
             "range": [
-              634,
-              641
+              667,
+              674
             ],
             "loc": {
               "start": {
-                "line": 20,
+                "line": 21,
                 "column": 9
               },
               "end": {
-                "line": 20,
+                "line": 21,
                 "column": 16
               }
             }
           },
           "range": [
-            634,
-            641
+            667,
+            674
           ],
           "loc": {
             "start": {
-              "line": 20,
+              "line": 21,
               "column": 9
             },
             "end": {
-              "line": 20,
+              "line": 21,
               "column": 16
             }
           }
@@ -1280,31 +1372,31 @@
         "value": "./Vector2.js",
         "raw": "\"./Vector2.js\"",
         "range": [
-          649,
-          663
+          682,
+          696
         ],
         "loc": {
           "start": {
-            "line": 20,
+            "line": 21,
             "column": 24
           },
           "end": {
-            "line": 20,
+            "line": 21,
             "column": 38
           }
         }
       },
       "range": [
-        625,
-        664
+        658,
+        697
       ],
       "loc": {
         "start": {
-          "line": 20,
+          "line": 21,
           "column": 0
         },
         "end": {
-          "line": 20,
+          "line": 21,
           "column": 39
         }
       }
@@ -1319,16 +1411,16 @@
             "type": "Identifier",
             "name": "Vector3",
             "range": [
-              675,
-              682
+              708,
+              715
             ],
             "loc": {
               "start": {
-                "line": 21,
+                "line": 22,
                 "column": 9
               },
               "end": {
-                "line": 21,
+                "line": 22,
                 "column": 16
               }
             }
@@ -1337,31 +1429,31 @@
             "type": "Identifier",
             "name": "Vector3",
             "range": [
-              675,
-              682
+              708,
+              715
             ],
             "loc": {
               "start": {
-                "line": 21,
+                "line": 22,
                 "column": 9
               },
               "end": {
-                "line": 21,
+                "line": 22,
                 "column": 16
               }
             }
           },
           "range": [
-            675,
-            682
+            708,
+            715
           ],
           "loc": {
             "start": {
-              "line": 21,
+              "line": 22,
               "column": 9
             },
             "end": {
-              "line": 21,
+              "line": 22,
               "column": 16
             }
           }
@@ -1372,31 +1464,31 @@
         "value": "./Vector3.js",
         "raw": "\"./Vector3.js\"",
         "range": [
-          690,
-          704
+          723,
+          737
         ],
         "loc": {
           "start": {
-            "line": 21,
+            "line": 22,
             "column": 24
           },
           "end": {
-            "line": 21,
+            "line": 22,
             "column": 38
           }
         }
       },
       "range": [
-        666,
-        705
+        699,
+        738
       ],
       "loc": {
         "start": {
-          "line": 21,
+          "line": 22,
           "column": 0
         },
         "end": {
-          "line": 21,
+          "line": 22,
           "column": 39
         }
       }
@@ -1411,16 +1503,16 @@
             "type": "Identifier",
             "name": "Vector4",
             "range": [
-              716,
-              723
+              749,
+              756
             ],
             "loc": {
               "start": {
-                "line": 22,
+                "line": 23,
                 "column": 9
               },
               "end": {
-                "line": 22,
+                "line": 23,
                 "column": 16
               }
             }
@@ -1429,31 +1521,31 @@
             "type": "Identifier",
             "name": "Vector4",
             "range": [
-              716,
-              723
+              749,
+              756
             ],
             "loc": {
               "start": {
-                "line": 22,
+                "line": 23,
                 "column": 9
               },
               "end": {
-                "line": 22,
+                "line": 23,
                 "column": 16
               }
             }
           },
           "range": [
-            716,
-            723
+            749,
+            756
           ],
           "loc": {
             "start": {
-              "line": 22,
+              "line": 23,
               "column": 9
             },
             "end": {
-              "line": 22,
+              "line": 23,
               "column": 16
             }
           }
@@ -1464,31 +1556,31 @@
         "value": "./Vector4.js",
         "raw": "\"./Vector4.js\"",
         "range": [
-          731,
-          745
+          764,
+          778
         ],
         "loc": {
           "start": {
-            "line": 22,
+            "line": 23,
             "column": 24
           },
           "end": {
-            "line": 22,
+            "line": 23,
             "column": 38
           }
         }
       },
       "range": [
-        707,
-        746
+        740,
+        779
       ],
       "loc": {
         "start": {
-          "line": 22,
+          "line": 23,
           "column": 0
         },
         "end": {
-          "line": 22,
+          "line": 23,
           "column": 39
         }
       }
@@ -1497,7 +1589,7 @@
   "sourceType": "module",
   "range": [
     70,
-    746
+    779
   ],
   "loc": {
     "start": {
@@ -1505,7 +1597,7 @@
       "column": 0
     },
     "end": {
-      "line": 22,
+      "line": 23,
       "column": 39
     }
   },

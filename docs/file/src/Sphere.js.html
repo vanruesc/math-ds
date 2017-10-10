@@ -41,6 +41,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Matrix4.js~Matrix4.html">Matrix4</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Plane.js~Plane.html">Plane</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Quaternion.js~Quaternion.html">Quaternion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Ray.js~Ray.html">Ray</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Sphere.js~Sphere.html">Sphere</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Spherical.js~Spherical.html">Spherical</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SymmetricMatrix3.js~SymmetricMatrix3.html">SymmetricMatrix3</a></span></span></li>
@@ -118,7 +119,7 @@ export class Sphere {
 	/**
 	 * Copies the given sphere.
 	 *
-	 * @param {Sphere} sphere - A sphere.
+	 * @param {Sphere} s - A sphere.
 	 * @return {Sphere} This sphere.
 	 */
 
@@ -147,13 +148,11 @@ export class Sphere {
 	 * Sets this sphere from points.
 	 *
 	 * @param {Vector3[]} points - The points.
-	 * @param {Sphere} [target] - A target vector. If none is provided, a new one will be created.
+	 * @param {Vector3} [center] - An optional center.
 	 * @return {Sphere} This sphere.
 	 */
 
-	setFromPoints(points, target = box.setFromPoints(points).getCenter(this.center)) {
-
-		const center = this.center;
+	setFromPoints(points, center = box.setFromPoints(points).getCenter(this.center)) {
 
 		let maxRadiusSq = 0;
 		let i, l;

@@ -54,6 +54,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "math-ds/src/ray.js~ray",
+    "class/src/Ray.js~Ray.html",
+    "<span>Ray</span> <span class=\"search-result-import-path\">math-ds/src/Ray.js</span>",
+    "class"
+  ],
+  [
     "math-ds/src/rotationorder.js~rotationorder",
     "variable/index.html#static-variable-RotationOrder",
     "<span>RotationOrder</span> <span class=\"search-result-import-path\">math-ds/src/RotationOrder.js</span>",
@@ -1644,6 +1650,150 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/ray.js",
+    "file/src/Ray.js.html",
+    "src/Ray.js",
+    "file"
+  ],
+  [
+    "src/ray.js~ray#applymatrix4",
+    "class/src/Ray.js~Ray.html#instance-method-applyMatrix4",
+    "src/Ray.js~Ray#applyMatrix4",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#at",
+    "class/src/Ray.js~Ray.html#instance-method-at",
+    "src/Ray.js~Ray#at",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#clone",
+    "class/src/Ray.js~Ray.html#instance-method-clone",
+    "src/Ray.js~Ray#clone",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#closestpointtopoint",
+    "class/src/Ray.js~Ray.html#instance-method-closestPointToPoint",
+    "src/Ray.js~Ray#closestPointToPoint",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#constructor",
+    "class/src/Ray.js~Ray.html#instance-constructor-constructor",
+    "src/Ray.js~Ray#constructor",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#copy",
+    "class/src/Ray.js~Ray.html#instance-method-copy",
+    "src/Ray.js~Ray#copy",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#direction",
+    "class/src/Ray.js~Ray.html#instance-member-direction",
+    "src/Ray.js~Ray#direction",
+    "member"
+  ],
+  [
+    "src/ray.js~ray#distancesquaredtopoint",
+    "class/src/Ray.js~Ray.html#instance-method-distanceSquaredToPoint",
+    "src/Ray.js~Ray#distanceSquaredToPoint",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#distancesquaredtosegment",
+    "class/src/Ray.js~Ray.html#instance-method-distanceSquaredToSegment",
+    "src/Ray.js~Ray#distanceSquaredToSegment",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#distancetoplane",
+    "class/src/Ray.js~Ray.html#instance-method-distanceToPlane",
+    "src/Ray.js~Ray#distanceToPlane",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#distancetopoint",
+    "class/src/Ray.js~Ray.html#instance-method-distanceToPoint",
+    "src/Ray.js~Ray#distanceToPoint",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#equals",
+    "class/src/Ray.js~Ray.html#instance-method-equals",
+    "src/Ray.js~Ray#equals",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#intersectbox",
+    "class/src/Ray.js~Ray.html#instance-method-intersectBox",
+    "src/Ray.js~Ray#intersectBox",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#intersectplane",
+    "class/src/Ray.js~Ray.html#instance-method-intersectPlane",
+    "src/Ray.js~Ray#intersectPlane",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#intersectsphere",
+    "class/src/Ray.js~Ray.html#instance-method-intersectSphere",
+    "src/Ray.js~Ray#intersectSphere",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#intersecttriangle",
+    "class/src/Ray.js~Ray.html#instance-method-intersectTriangle",
+    "src/Ray.js~Ray#intersectTriangle",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#intersectsbox",
+    "class/src/Ray.js~Ray.html#instance-method-intersectsBox",
+    "src/Ray.js~Ray#intersectsBox",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#intersectsplane",
+    "class/src/Ray.js~Ray.html#instance-method-intersectsPlane",
+    "src/Ray.js~Ray#intersectsPlane",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#intersectssphere",
+    "class/src/Ray.js~Ray.html#instance-method-intersectsSphere",
+    "src/Ray.js~Ray#intersectsSphere",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#lookat",
+    "class/src/Ray.js~Ray.html#instance-method-lookAt",
+    "src/Ray.js~Ray#lookAt",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#origin",
+    "class/src/Ray.js~Ray.html#instance-member-origin",
+    "src/Ray.js~Ray#origin",
+    "member"
+  ],
+  [
+    "src/ray.js~ray#recast",
+    "class/src/Ray.js~Ray.html#instance-method-recast",
+    "src/Ray.js~Ray#recast",
+    "method"
+  ],
+  [
+    "src/ray.js~ray#set",
+    "class/src/Ray.js~Ray.html#instance-method-set",
+    "src/Ray.js~Ray#set",
+    "method"
+  ],
+  [
     "src/rotationorder.js",
     "file/src/RotationOrder.js.html",
     "src/RotationOrder.js",
@@ -2475,6 +2625,12 @@ window.esdocSearchIndex = [
     "src/vector3.js~vector3#toarray",
     "class/src/Vector3.js~Vector3.html#instance-method-toArray",
     "src/Vector3.js~Vector3#toArray",
+    "method"
+  ],
+  [
+    "src/vector3.js~vector3#transformdirection",
+    "class/src/Vector3.js~Vector3.html#instance-method-transformDirection",
+    "src/Vector3.js~Vector3#transformDirection",
     "method"
   ],
   [
