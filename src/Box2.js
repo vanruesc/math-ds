@@ -386,11 +386,6 @@ export class Box2 {
 			tMin.y <= bMin.y && bMax.y <= tMax.y
 		);
 
-		return (
-			this.min.x <= b.min.x && b.max.x <= this.max.x &&
-			this.min.y <= b.min.y && b.max.y <= this.max.y
-		);
-
 	}
 
 	/**

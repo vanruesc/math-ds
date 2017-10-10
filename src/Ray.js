@@ -179,13 +179,13 @@ export class Ray {
 	/**
 	 * Calculates the distance from this ray to the given point.
 	 *
-	 * @param {Vector3} point - The point.
+	 * @param {Vector3} p - The point.
 	 * @return {Number} The distance.
 	 */
 
 	distanceToPoint(p) {
 
-		return Math.sqrt(this.distanceSquaredToPoint(point));
+		return Math.sqrt(this.distanceSquaredToPoint(p));
 
 	}
 
@@ -201,7 +201,7 @@ export class Ray {
 		const denominator = p.normal.dot(this.direction);
 
 		const t = (denominator !== 0.0) ?
-			-(this.origin.dot(plane.normal) + plane.constant) / denominator :
+			-(this.origin.dot(p.normal) + p.constant) / denominator :
 			((p.distanceToPoint(this.origin) === 0.0) ? 0.0 : -1.0);
 
 		return (t >= 0.0) ? t : null;
@@ -228,9 +228,9 @@ export class Ray {
 		const diff = v[2].copy(this.origin).sub(segCenter);
 
 		const segExtent = v0.distanceTo(v1) * 0.5;
-		const a01 = - this.direction.dot(segDir);
+		const a01 = -this.direction.dot(segDir);
 		const b0 = diff.dot(this.direction);
-		const b1 = - diff.dot(segDir);
+		const b1 = -diff.dot(segDir);
 		const c = diff.lengthSq();
 		const det = Math.abs(1.0 - a01 * a01);
 
@@ -329,17 +329,17 @@ export class Ray {
 	/**
 	 * Finds the point where this ray intersects the given sphere.
 	 *
-	 * @param {Sphere} sphere - A sphere.
+	 * @param {Sphere} s - A sphere.
 	 * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.
 	 * @return {Vector3} The point of intersection, or null if there is none.
 	 */
 
-	intersectSphere(r, target = new Vector3()) {
+	intersectSphere(s, target = new Vector3()) {
 
-		const ab = v[0].subVectors(sphere.center, this.origin);
+		const ab = v[0].subVectors(s.center, this.origin);
 		const tca = ab.dot(this.direction);
 		const d2 = ab.dot(ab) - tca * tca;
-		const radius2 = sphere.radius * sphere.radius;
+		const radius2 = s.radius * s.radius;
 
 		let result = null;
 		let thc, t0, t1;
@@ -394,7 +394,7 @@ export class Ray {
 
 	intersectPlane(p, target = new Vector3()) {
 
-		const t = this.distanceToPlane(plane);
+		const t = this.distanceToPlane(p);
 
 		return (t === null) ? null : this.at(t, target);
 
@@ -409,9 +409,9 @@ export class Ray {
 
 	intersectsPlane(p) {
 
-		const distanceToPoint = plane.distanceToPoint(this.origin);
+		const distanceToPoint = p.distanceToPoint(this.origin);
 
-		return (distanceToPoint === 0.0 || plane.normal.dot(this.direction) * distanceToPoint < 0.0);
+		return (distanceToPoint === 0.0 || p.normal.dot(this.direction) * distanceToPoint < 0.0);
 
 	}
 
