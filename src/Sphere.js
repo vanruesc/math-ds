@@ -92,13 +92,11 @@ export class Sphere {
 	 * Sets this sphere from points.
 	 *
 	 * @param {Vector3[]} points - The points.
-	 * @param {Sphere} [target] - A target vector. If none is provided, a new one will be created.
+	 * @param {Vector3} [center] - An optional center.
 	 * @return {Sphere} This sphere.
 	 */
 
-	setFromPoints(points, target = box.setFromPoints(points).getCenter(this.center)) {
-
-		const center = this.center;
+	setFromPoints(points, center = box.setFromPoints(points).getCenter(this.center)) {
 
 		let maxRadiusSq = 0;
 		let i, l;
