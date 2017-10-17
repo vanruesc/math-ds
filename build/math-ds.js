@@ -1,5 +1,5 @@
 /**
- * math-ds v0.2.1 build Oct 10 2017
+ * math-ds v0.3.0 build Oct 17 2017
  * https://github.com/vanruesc/math-ds
  * Copyright 2017 Raoul van Rüschen, Zlib
  */
@@ -531,8 +531,8 @@
   			return Math.acos(Math.min(Math.max(theta, -1), 1));
   		}
   	}, {
-  		key: "lengthManhattan",
-  		value: function lengthManhattan() {
+  		key: "manhattanLength",
+  		value: function manhattanLength() {
 
   			return Math.abs(this.x) + Math.abs(this.y) + Math.abs(this.z);
   		}
@@ -549,8 +549,8 @@
   			return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
   		}
   	}, {
-  		key: "distanceToManhattan",
-  		value: function distanceToManhattan(v) {
+  		key: "manhattanDistanceTo",
+  		value: function manhattanDistanceTo(v) {
 
   			return Math.abs(this.x - v.x) + Math.abs(this.y - v.y) + Math.abs(this.z - v.z);
   		}
@@ -1258,8 +1258,8 @@
   			return this.x * v.x + this.y * v.y;
   		}
   	}, {
-  		key: "lengthManhattan",
-  		value: function lengthManhattan() {
+  		key: "manhattanLength",
+  		value: function manhattanLength() {
 
   			return Math.abs(this.x) + Math.abs(this.y);
   		}
@@ -1276,8 +1276,8 @@
   			return Math.sqrt(this.x * this.x + this.y * this.y);
   		}
   	}, {
-  		key: "distanceToManhattan",
-  		value: function distanceToManhattan(v) {
+  		key: "manhattanDistanceTo",
+  		value: function manhattanDistanceTo(v) {
 
   			return Math.abs(this.x - v.x) + Math.abs(this.y - v.y);
   		}
@@ -4850,8 +4850,8 @@
   			return this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w;
   		}
   	}, {
-  		key: "lengthManhattan",
-  		value: function lengthManhattan() {
+  		key: "manhattanLength",
+  		value: function manhattanLength() {
 
   			return Math.abs(this.x) + Math.abs(this.y) + Math.abs(this.z) + Math.abs(this.w);
   		}
@@ -4868,8 +4868,8 @@
   			return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w);
   		}
   	}, {
-  		key: "distanceToManhattan",
-  		value: function distanceToManhattan(v) {
+  		key: "manhattanDistanceTo",
+  		value: function manhattanDistanceTo(v) {
 
   			return Math.abs(this.x - v.x) + Math.abs(this.y - v.y) + Math.abs(this.z - v.z) + Math.abs(this.w - v.w);
   		}
