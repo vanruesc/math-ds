@@ -28512,7 +28512,7 @@
               "type": "MethodDefinition",
               "key": {
                 "type": "Identifier",
-                "name": "lengthManhattan",
+                "name": "manhattanLength",
                 "range": [
                   9883,
                   9898
@@ -30648,7 +30648,7 @@
               "type": "MethodDefinition",
               "key": {
                 "type": "Identifier",
-                "name": "distanceToManhattan",
+                "name": "manhattanDistanceTo",
                 "range": [
                   10627,
                   10646

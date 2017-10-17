@@ -2130,12 +2130,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/vector2.js~vector2#distancetomanhattan",
-    "class/src/Vector2.js~Vector2.html#instance-method-distanceToManhattan",
-    "src/Vector2.js~Vector2#distanceToManhattan",
-    "method"
-  ],
-  [
     "src/vector2.js~vector2#distancetosquared",
     "class/src/Vector2.js~Vector2.html#instance-method-distanceToSquared",
     "src/Vector2.js~Vector2#distanceToSquared",
@@ -2179,13 +2173,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/vector2.js~vector2#height",
-    "class/src/Vector2.js~Vector2.html#instance-set-height",
+    "class/src/Vector2.js~Vector2.html#instance-get-height",
     "src/Vector2.js~Vector2#height",
     "member"
   ],
   [
     "src/vector2.js~vector2#height",
-    "class/src/Vector2.js~Vector2.html#instance-get-height",
+    "class/src/Vector2.js~Vector2.html#instance-set-height",
     "src/Vector2.js~Vector2#height",
     "member"
   ],
@@ -2193,12 +2187,6 @@ window.esdocSearchIndex = [
     "src/vector2.js~vector2#length",
     "class/src/Vector2.js~Vector2.html#instance-method-length",
     "src/Vector2.js~Vector2#length",
-    "method"
-  ],
-  [
-    "src/vector2.js~vector2#lengthmanhattan",
-    "class/src/Vector2.js~Vector2.html#instance-method-lengthManhattan",
-    "src/Vector2.js~Vector2#lengthManhattan",
     "method"
   ],
   [
@@ -2217,6 +2205,18 @@ window.esdocSearchIndex = [
     "src/vector2.js~vector2#lerpvectors",
     "class/src/Vector2.js~Vector2.html#instance-method-lerpVectors",
     "src/Vector2.js~Vector2#lerpVectors",
+    "method"
+  ],
+  [
+    "src/vector2.js~vector2#manhattandistanceto",
+    "class/src/Vector2.js~Vector2.html#instance-method-manhattanDistanceTo",
+    "src/Vector2.js~Vector2#manhattanDistanceTo",
+    "method"
+  ],
+  [
+    "src/vector2.js~vector2#manhattanlength",
+    "class/src/Vector2.js~Vector2.html#instance-method-manhattanLength",
+    "src/Vector2.js~Vector2#manhattanLength",
     "method"
   ],
   [
@@ -2430,12 +2430,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/vector3.js~vector3#distancetomanhattan",
-    "class/src/Vector3.js~Vector3.html#instance-method-distanceToManhattan",
-    "src/Vector3.js~Vector3#distanceToManhattan",
-    "method"
-  ],
-  [
     "src/vector3.js~vector3#distancetosquared",
     "class/src/Vector3.js~Vector3.html#instance-method-distanceToSquared",
     "src/Vector3.js~Vector3#distanceToSquared",
@@ -2484,12 +2478,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/vector3.js~vector3#lengthmanhattan",
-    "class/src/Vector3.js~Vector3.html#instance-method-lengthManhattan",
-    "src/Vector3.js~Vector3#lengthManhattan",
-    "method"
-  ],
-  [
     "src/vector3.js~vector3#lengthsquared",
     "class/src/Vector3.js~Vector3.html#instance-method-lengthSquared",
     "src/Vector3.js~Vector3#lengthSquared",
@@ -2505,6 +2493,18 @@ window.esdocSearchIndex = [
     "src/vector3.js~vector3#lerpvectors",
     "class/src/Vector3.js~Vector3.html#instance-method-lerpVectors",
     "src/Vector3.js~Vector3#lerpVectors",
+    "method"
+  ],
+  [
+    "src/vector3.js~vector3#manhattandistanceto",
+    "class/src/Vector3.js~Vector3.html#instance-method-manhattanDistanceTo",
+    "src/Vector3.js~Vector3#manhattanDistanceTo",
+    "method"
+  ],
+  [
+    "src/vector3.js~vector3#manhattanlength",
+    "class/src/Vector3.js~Vector3.html#instance-method-manhattanLength",
+    "src/Vector3.js~Vector3#manhattanLength",
     "method"
   ],
   [
@@ -2724,12 +2724,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/vector4.js~vector4#distancetomanhattan",
-    "class/src/Vector4.js~Vector4.html#instance-method-distanceToManhattan",
-    "src/Vector4.js~Vector4#distanceToManhattan",
-    "method"
-  ],
-  [
     "src/vector4.js~vector4#distancetosquared",
     "class/src/Vector4.js~Vector4.html#instance-method-distanceToSquared",
     "src/Vector4.js~Vector4#distanceToSquared",
@@ -2778,12 +2772,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/vector4.js~vector4#lengthmanhattan",
-    "class/src/Vector4.js~Vector4.html#instance-method-lengthManhattan",
-    "src/Vector4.js~Vector4#lengthManhattan",
-    "method"
-  ],
-  [
     "src/vector4.js~vector4#lengthsquared",
     "class/src/Vector4.js~Vector4.html#instance-method-lengthSquared",
     "src/Vector4.js~Vector4#lengthSquared",
@@ -2799,6 +2787,18 @@ window.esdocSearchIndex = [
     "src/vector4.js~vector4#lerpvectors",
     "class/src/Vector4.js~Vector4.html#instance-method-lerpVectors",
     "src/Vector4.js~Vector4#lerpVectors",
+    "method"
+  ],
+  [
+    "src/vector4.js~vector4#manhattandistanceto",
+    "class/src/Vector4.js~Vector4.html#instance-method-manhattanDistanceTo",
+    "src/Vector4.js~Vector4#manhattanDistanceTo",
+    "method"
+  ],
+  [
+    "src/vector4.js~vector4#manhattanlength",
+    "class/src/Vector4.js~Vector4.html#instance-method-manhattanLength",
+    "src/Vector4.js~Vector4#manhattanLength",
     "method"
   ],
   [
