@@ -622,7 +622,7 @@ export class Vector3 {
 	 * @return {Number} The length.
 	 */
 
-	lengthManhattan() {
+	manhattanLength() {
 
 		return Math.abs(this.x) + Math.abs(this.y) + Math.abs(this.z);
 
@@ -659,7 +659,7 @@ export class Vector3 {
 	 * @return {Number} The distance.
 	 */
 
-	distanceToManhattan(v) {
+	manhattanDistanceTo(v) {
 
 		return Math.abs(this.x - v.x) + Math.abs(this.y - v.y) + Math.abs(this.z - v.z);
 

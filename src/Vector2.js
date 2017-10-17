@@ -359,7 +359,7 @@ export class Vector2 {
 	 * @return {Number} The length.
 	 */
 
-	lengthManhattan() {
+	manhattanLength() {
 
 		return Math.abs(this.x) + Math.abs(this.y);
 
@@ -396,7 +396,7 @@ export class Vector2 {
 	 * @return {Number} The squared distance.
 	 */
 
-	distanceToManhattan(v) {
+	manhattanDistanceTo(v) {
 
 		return Math.abs(this.x - v.x) + Math.abs(this.y - v.y);
 
