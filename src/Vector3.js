@@ -423,25 +423,6 @@ export class Vector3 {
 	}
 
 	/**
-	 * Calculates the cross product of this vector and the given one.
-	 *
-	 * @param {Vector3} v - A vector.
-	 * @return {Vector3} This vector.
-	 */
-
-	cross(v) {
-
-		const x = this.x, y = this.y, z = this.z;
-
-		this.x = y * v.z - z * v.y;
-		this.y = z * v.x - x * v.z;
-		this.z = x * v.y - y * v.x;
-
-		return this;
-
-	}
-
-	/**
 	 * Sets this vector to the cross product of the given vectors.
 	 *
 	 * @param {Vector3} a - A vector.
@@ -459,6 +440,19 @@ export class Vector3 {
 		this.z = ax * by - ay * bx;
 
 		return this;
+
+	}
+
+	/**
+	 * Calculates the cross product of this vector and the given one.
+	 *
+	 * @param {Vector3} v - A vector.
+	 * @return {Vector3} This vector.
+	 */
+
+	cross(v) {
+
+		return this.crossVectors(this, v);
 
 	}
 
