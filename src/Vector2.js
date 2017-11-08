@@ -37,7 +37,11 @@ export class Vector2 {
 	 * @type {Number}
 	 */
 
-	get width() { return this.x; }
+	get width() {
+
+		return this.x;
+
+	}
 
 	/**
 	 * Sets the width.
@@ -45,7 +49,11 @@ export class Vector2 {
 	 * @type {Number}
 	 */
 
-	set width(value) { return this.x = value; }
+	set width(value) {
+
+		return this.x = value;
+
+	}
 
 	/**
 	 * The height. This is an alias for Y.
@@ -53,7 +61,11 @@ export class Vector2 {
 	 * @type {Number}
 	 */
 
-	get height() { return this.y; }
+	get height() {
+
+		return this.y;
+
+	}
 
 	/**
 	 * Sets the height.
@@ -61,7 +73,11 @@ export class Vector2 {
 	 * @type {Number}
 	 */
 
-	set height(value) { return this.y = value; }
+	set height(value) {
+
+		return this.y = value;
+
+	}
 
 	/**
 	 * Sets the values of this vector
@@ -575,7 +591,11 @@ export class Vector2 {
 
 		let angle = Math.atan2(this.y, this.x);
 
-		if(angle < 0) { angle += 2 * Math.PI; }
+		if(angle < 0) {
+
+			angle += 2 * Math.PI;
+
+		}
 
 		return angle;
 

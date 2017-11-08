@@ -7,6 +7,7 @@ module.exports = function(grunt) {
 
 		options: {
 			plugins() {
+
 				return grunt.option("production") ? [
 					resolve({
 						jsnext: true
@@ -17,6 +18,7 @@ module.exports = function(grunt) {
 						jsnext: true
 					})
 				];
+
 			}
 		},
 

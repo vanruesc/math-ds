@@ -461,8 +461,17 @@ export class Ray {
 
 			/* Handle the case where tmin or tmax is NaN (result of 0 * Infinity).
 			Note: x !== x returns true if x is NaN. */
-			if(tymin > tmin || tmin !== tmin) { tmin = tymin; }
-			if(tymax < tmax || tmax !== tmax) { tmax = tymax; }
+			if(tymin > tmin || tmin !== tmin) {
+
+				tmin = tymin;
+
+			}
+
+			if(tymax < tmax || tmax !== tmax) {
+
+				tmax = tymax;
+
+			}
 
 			if(invDirZ >= 0.0) {
 
@@ -478,8 +487,17 @@ export class Ray {
 
 			if(tmin <= tzmax && tzmin <= tmax) {
 
-				if(tzmin > tmin || tmin !== tmin) { tmin = tzmin; }
-				if(tzmax < tmax || tmax !== tmax) { tmax = tzmax; }
+				if(tzmin > tmin || tmin !== tmin) {
+
+					tmin = tzmin;
+
+				}
+
+				if(tzmax < tmax || tmax !== tmax) {
+
+					tmax = tzmax;
+
+				}
 
 				// Return the closest point (positive side).
 				if(tmax >= 0.0) {

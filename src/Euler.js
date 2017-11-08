@@ -404,6 +404,10 @@ export class Euler {
 	 * @final
 	 */
 
-	static get defaultOrder() { return RotationOrder.XYZ; }
+	static get defaultOrder() {
+
+		return RotationOrder.XYZ;
+
+	}
 
 }

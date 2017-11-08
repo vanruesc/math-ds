@@ -288,7 +288,11 @@ export class Vector4 {
 			);
 
 			// Prevent division by zero.
-			if(Math.abs(s) < 0.001) { s = 1; }
+			if(Math.abs(s) < 0.001) {
+
+				s = 1;
+
+			}
 
 			this.x = (m21 - m12) / s;
 			this.y = (m02 - m20) / s;

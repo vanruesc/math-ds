@@ -325,7 +325,11 @@ export class Box3 {
 
 		/* Ensure that if there is no overlap, the result is fully empty to prevent
 		subsequent intersections to erroneously return valid values. */
-		if(this.isEmpty()) { this.makeEmpty(); }
+		if(this.isEmpty()) {
+
+			this.makeEmpty();
+
+		}
 
 		return this;
 
