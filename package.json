@@ -16,6 +16,7 @@
 		"aabb",
 		"line",
 		"euler",
+		"frustum",
 		"quaternion",
 		"plane",
 		"ray",
