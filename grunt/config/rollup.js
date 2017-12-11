@@ -8,16 +8,15 @@ module.exports = function(grunt) {
 		options: {
 			plugins() {
 
-				return grunt.option("production") ? [
-					resolve({
-						jsnext: true
-					}),
-					babel()
-				] : [
+				return [
 					resolve({
 						jsnext: true
 					})
-				];
+				].concat(!grunt.option("production") ? [] :
+					[babel({
+						exclude: "node_modules/**"
+					})]
+				);
 
 			}
 		},
