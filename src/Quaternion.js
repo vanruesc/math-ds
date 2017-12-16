@@ -606,12 +606,12 @@ export class Quaternion {
 	 *
 	 * @param {Quaternion} qa - The base quaternion.
 	 * @param {Quaternion} qb - The target quaternion.
-	 * @param {Quaternion} qr - A quaternion to store the result in. If none is provided, a new one will be created.
+	 * @param {Quaternion} qr - A quaternion to store the result in.
 	 * @param {Number} t - The slerp factor.
 	 * @return {Quaternion} The resulting quaternion.
 	 */
 
-	static slerp(qa, qb, qr = new Quaternion(), t) {
+	static slerp(qa, qb, qr, t) {
 
 		return qr.copy(qa).slerp(qb, t);
 
