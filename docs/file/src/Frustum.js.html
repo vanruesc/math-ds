@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/Frustum.js | math-ds</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mathematical data structures."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="math-ds"><meta property="twitter:description" content="Mathematical data structures."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/vanruesc/math-ds.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Box2.js~Box2.html">Box2</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Box3.js~Box3.html">Box3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Cylindrical.js~Cylindrical.html">Cylindrical</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Euler.js~Euler.html">Euler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Frustum.js~Frustum.html">Frustum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Line3.js~Line3.html">Line3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Matrix3.js~Matrix3.html">Matrix3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Matrix4.js~Matrix4.html">Matrix4</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Plane.js~Plane.html">Plane</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Quaternion.js~Quaternion.html">Quaternion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Ray.js~Ray.html">Ray</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Sphere.js~Sphere.html">Sphere</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Spherical.js~Spherical.html">Spherical</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SymmetricMatrix3.js~SymmetricMatrix3.html">SymmetricMatrix3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Vector2.js~Vector2.html">Vector2</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Vector3.js~Vector3.html">Vector3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Vector4.js~Vector4.html">Vector4</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-RotationOrder">RotationOrder</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/Frustum.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Plane } from &quot;./Plane.js&quot;;
+import { Vector3 } from &quot;./Vector3.js&quot;;
+
+/**
+ * A vector.
+ *
+ * @type {Vector3}
+ * @private
+ */
+
+const v0 = new Vector3();
+
+/**
+ * A vector.
+ *
+ * @type {Vector3}
+ * @private
+ */
+
+const v1 = new Vector3();
+
+/**
+ * A frustum.
+ */
+
+export class Frustum {
+
+	/**
+	 * Constructs a new frustum.
+	 *
+	 * @param {Plane} [p0] - A plane.
+	 * @param {Plane} [p1] - A plane.
+	 * @param {Plane} [p2] - A plane.
+	 * @param {Plane} [p3] - A plane.
+	 * @param {Plane} [p4] - A plane.
+	 * @param {Plane} [p5] - A plane.
+	 */
+
+	constructor(
+		p0 = new Plane(),
+		p1 = new Plane(),
+		p2 = new Plane(),
+		p3 = new Plane(),
+		p4 = new Plane(),
+		p5 = new Plane()
+	) {
+
+		/**
+		 * The six planes that form the frustum.
+		 *
+		 * @type {Plane[]}
+		 */
+
+		this.planes = [p0, p1, p2, p3, p4, p5];
+
+	}
+
+	/**
+	 * Sets the planes of this frustum.
+	 *
+	 * @param {Plane} [p0] - A plane.
+	 * @param {Plane} [p1] - A plane.
+	 * @param {Plane} [p2] - A plane.
+	 * @param {Plane} [p3] - A plane.
+	 * @param {Plane} [p4] - A plane.
+	 * @param {Plane} [p5] - A plane.
+	 * @return {Frustum} This frustum.
+	 */
+
+	set(p0, p1, p2, p3, p4, p5) {
+
+		const planes = this.planes;
+
+		planes[0].copy(p0);
+		planes[1].copy(p1);
+		planes[2].copy(p2);
+		planes[3].copy(p3);
+		planes[4].copy(p4);
+		planes[5].copy(p5);
+
+		return this;
+
+	}
+
+	/**
+	 * Clones this frustum.
+	 *
+	 * @return {Frustum} The cloned frustum.
+	 */
+
+	clone() {
+
+		return new this.constructor().copy(this);
+
+	}
+
+	/**
+	 * Copies a given frustum.
+	 *
+	 * @param {Frustum} frustum - A frustum.
+	 * @return {Frustum} This frustum.
+	 */
+
+	copy(frustum) {
+
+		const planes = this.planes;
+
+		let i;
+
+		for(i = 0; i &lt; 6; ++i) {
+
+			planes[i].copy(frustum.planes[i]);
+
+		}
+
+		return this;
+
+	}
+
+	/**
+	 * Sets this frustm based on a given 4x4 matrix.
+	 *
+	 * @param {Matrix4} m - A matrix.
+	 * @return {Frustum} This frustum.
+	 */
+
+	setFromMatrix(m) {
+
+		const planes = this.planes;
+
+		const me = m.elements;
+		const me0 = me[0], me1 = me[1], me2 = me[2], me3 = me[3];
+		const me4 = me[4], me5 = me[5], me6 = me[6], me7 = me[7];
+		const me8 = me[8], me9 = me[9], me10 = me[10], me11 = me[11];
+		const me12 = me[12], me13 = me[13], me14 = me[14], me15 = me[15];
+
+		planes[0].setComponents(me3 - me0, me7 - me4, me11 - me8, me15 - me12).normalize();
+		planes[1].setComponents(me3 + me0, me7 + me4, me11 + me8, me15 + me12).normalize();
+		planes[2].setComponents(me3 + me1, me7 + me5, me11 + me9, me15 + me13).normalize();
+		planes[3].setComponents(me3 - me1, me7 - me5, me11 - me9, me15 - me13).normalize();
+		planes[4].setComponents(me3 - me2, me7 - me6, me11 - me10, me15 - me14).normalize();
+		planes[5].setComponents(me3 + me2, me7 + me6, me11 + me10, me15 + me14).normalize();
+
+		return this;
+
+	}
+
+	/**
+	 * Checks if this frustum intersects with the given sphere.
+	 *
+	 * @param {Sphere} sphere - A sphere.
+	 * @return {Boolean} Whether this frustum intersects with the sphere.
+	 */
+
+	intersectsSphere(sphere) {
+
+		const planes = this.planes;
+		const center = sphere.center;
+		const negativeRadius = -sphere.radius;
+
+		let result = true;
+		let i, d;
+
+		for(i = 0; i &lt; 6; ++i) {
+
+			d = planes[i].distanceToPoint(center);
+
+			if(d &lt; negativeRadius) {
+
+				result = false;
+				break;
+
+			}
+
+		}
+
+		return result;
+
+	}
+
+	/**
+	 * Checks if this frustum intersects with the given sphere.
+	 *
+	 * @param {Box3} box - A box.
+	 * @return {Boolean} Whether this frustum intersects with the box.
+	 */
+
+	intersectsBox(box) {
+
+		const planes = this.planes;
+		const min = box.min;
+		const max = box.max;
+
+		let result = true;
+		let i, d0, d1;
+		let plane;
+
+		for(i = 0; i &lt; 6; ++i) {
+
+			plane = planes[i];
+
+			v0.x = (plane.normal.x &gt; 0) ? min.x : max.x;
+			v1.x = (plane.normal.x &gt; 0) ? max.x : min.x;
+			v0.y = (plane.normal.y &gt; 0) ? min.y : max.y;
+			v1.y = (plane.normal.y &gt; 0) ? max.y : min.y;
+			v0.z = (plane.normal.z &gt; 0) ? min.z : max.z;
+			v1.z = (plane.normal.z &gt; 0) ? max.z : min.z;
+
+			d0 = plane.distanceToPoint(v0);
+			d1 = plane.distanceToPoint(v1);
+
+			// If both are outside the plane there&apos;s no intersection.
+			if(d0 &lt; 0 &amp;&amp; d1 &lt; 0) {
+
+				result = false;
+				break;
+
+			}
+
+		}
+
+		return result;
+
+	}
+
+	/**
+	 * Checks if this frustum contains the given point.
+	 *
+	 * @param {Vector3} point - A point.
+	 * @return {Boolean} Whether this frustum contains the point.
+	 */
+
+	containsPoint(point) {
+
+		const planes = this.planes;
+
+		let result = true;
+		let i;
+
+		for(i = 0; i &lt; 6; ++i) {
+
+			if(planes[i].distanceToPoint(point) &lt; 0) {
+
+				result = false;
+				break;
+
+			}
+
+		}
+
+		return result;
+
+	}
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
