@@ -461,8 +461,8 @@ export class Quaternion {
 	 * For more details see:
 	 *  http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
 	 *
-	 * @param {Quaternion} q - A quaternion.
-	 * @param {Quaternion} q - Another quaternion.
+	 * @param {Quaternion} a - A quaternion.
+	 * @param {Quaternion} b - Another quaternion.
 	 * @return {Quaternion} This quaternion.
 	 */
 
