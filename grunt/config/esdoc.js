@@ -2,9 +2,11 @@ module.exports = {
 
 	compile: {
 		options: {
-			coverage: true,
 			source: "src",
-			destination: "docs"
+			destination: "docs",
+			plugins: [{
+				name: "esdoc-standard-plugin"
+			}]
 		}
 	}
 
