@@ -11,6 +11,24 @@ import { Vector3 } from "./Vector3.js";
 const v = new Vector3();
 
 /**
+ * A list of points.
+ *
+ * @type {Vector3[]}
+ * @private
+ */
+
+const points = [
+	new Vector3(),
+	new Vector3(),
+	new Vector3(),
+	new Vector3(),
+	new Vector3(),
+	new Vector3(),
+	new Vector3(),
+	new Vector3()
+];
+
+/**
  * A 3D box.
  */
 
@@ -292,6 +310,37 @@ export class Box3 {
 		const clampedPoint = v.copy(p).clamp(this.min, this.max);
 
 		return clampedPoint.sub(p).length();
+
+	}
+
+	/**
+	 * Applies the given matrix to this box.
+	 *
+	 * @param {Matrix4} m - The matrix.
+	 * @return {Box3} This box.
+	 */
+
+	applyMatrix4(m) {
+
+		const min = this.min;
+		const max = this.max;
+
+		if(!this.isEmpty()) {
+
+			points[0].set(min.x, min.y, min.z).applyMatrix4(m);
+			points[1].set(min.x, min.y, max.z).applyMatrix4(m);
+			points[2].set(min.x, max.y, min.z).applyMatrix4(m);
+			points[3].set(min.x, max.y, max.z).applyMatrix4(m);
+			points[4].set(max.x, min.y, min.z).applyMatrix4(m);
+			points[5].set(max.x, min.y, max.z).applyMatrix4(m);
+			points[6].set(max.x, max.y, min.z).applyMatrix4(m);
+			points[7].set(max.x, max.y, max.z).applyMatrix4(m);
+
+			this.setFromPoints(points);
+
+		}
+
+		return this;
 
 	}
 
