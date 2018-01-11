@@ -1,7 +1,7 @@
 /**
- * math-ds v0.4.0 build Dec 22 2017
+ * math-ds v0.5.0 build Jan 11 2018
  * https://github.com/vanruesc/math-ds
- * Copyright 2017 Raoul van Rüschen, Zlib
+ * Copyright 2018 Raoul van Rüschen, Zlib
  */
 
 (function (global, factory) {
@@ -545,6 +545,8 @@
 
   var v$1 = new Vector3();
 
+  var points = [new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3()];
+
   var Box3 = function () {
   	function Box3() {
   		var min = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Vector3(Infinity, Infinity, Infinity);
@@ -694,6 +696,29 @@
   			var clampedPoint = v$1.copy(p).clamp(this.min, this.max);
 
   			return clampedPoint.sub(p).length();
+  		}
+  	}, {
+  		key: "applyMatrix4",
+  		value: function applyMatrix4(m) {
+
+  			var min = this.min;
+  			var max = this.max;
+
+  			if (!this.isEmpty()) {
+
+  				points[0].set(min.x, min.y, min.z).applyMatrix4(m);
+  				points[1].set(min.x, min.y, max.z).applyMatrix4(m);
+  				points[2].set(min.x, max.y, min.z).applyMatrix4(m);
+  				points[3].set(min.x, max.y, max.z).applyMatrix4(m);
+  				points[4].set(max.x, min.y, min.z).applyMatrix4(m);
+  				points[5].set(max.x, min.y, max.z).applyMatrix4(m);
+  				points[6].set(max.x, max.y, min.z).applyMatrix4(m);
+  				points[7].set(max.x, max.y, max.z).applyMatrix4(m);
+
+  				this.setFromPoints(points);
+  			}
+
+  			return this;
   		}
   	}, {
   		key: "translate",
@@ -1903,12 +1928,12 @@
 
   var RotationOrder = {
 
-    XYZ: "XYZ",
-    YZX: "YZX",
-    ZXY: "ZXY",
-    XZY: "XZY",
-    YXZ: "YXZ",
-    ZYX: "ZYX"
+    XYZ: 0,
+    YZX: 1,
+    ZXY: 2,
+    XZY: 3,
+    YXZ: 4,
+    ZYX: 5
 
   };
 

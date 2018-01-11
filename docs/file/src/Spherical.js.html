@@ -148,9 +148,12 @@ export class Spherical {
 	}
 
 	/**
-	 * Sets the values of this spherical system.
+	 * Sets the values of this spherical system based on a vector.
 	 *
-	 * @param {Vector3} v - The vector
+	 * The radius is set to the vector&apos;s length while phi and theta are set from
+	 * its direction.
+	 *
+	 * @param {Vector3} v - The vector.
 	 * @return {Spherical} This spherical system.
 	 */
 

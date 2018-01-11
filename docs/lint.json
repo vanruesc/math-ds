@@ -98,39 +98,39 @@
     "filePath": "src/Box3.js",
     "lines": [
       {
-        "lineNumber": 268,
+        "lineNumber": 286,
         "line": "\t/**\r"
       },
       {
-        "lineNumber": 269,
+        "lineNumber": 287,
         "line": "\t * Clamps the given point to the boundaries of this box.\r"
       },
       {
-        "lineNumber": 270,
+        "lineNumber": 288,
         "line": "\t *\r"
       },
       {
-        "lineNumber": 271,
+        "lineNumber": 289,
         "line": "\t * @param {Vector3} p - A point.\r"
       },
       {
-        "lineNumber": 272,
+        "lineNumber": 290,
         "line": "\t * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.\r"
       },
       {
-        "lineNumber": 273,
+        "lineNumber": 291,
         "line": "\t * @return {Vector3} The clamped point.\r"
       },
       {
-        "lineNumber": 274,
+        "lineNumber": 292,
         "line": "\t */\r"
       },
       {
-        "lineNumber": 275,
+        "lineNumber": 293,
         "line": "\r"
       },
       {
-        "lineNumber": 276,
+        "lineNumber": 294,
         "line": "\tclampPoint(point, target = new Vector3()) {\r"
       }
     ],
@@ -148,35 +148,35 @@
     "filePath": "src/Box3.js",
     "lines": [
       {
-        "lineNumber": 494,
+        "lineNumber": 543,
         "line": "\t/**\r"
       },
       {
-        "lineNumber": 495,
+        "lineNumber": 544,
         "line": "\t * Checks if this box equals the given one.\r"
       },
       {
-        "lineNumber": 496,
+        "lineNumber": 545,
         "line": "\t *\r"
       },
       {
-        "lineNumber": 497,
+        "lineNumber": 546,
         "line": "\t * @param {Box3} v - A box.\r"
       },
       {
-        "lineNumber": 498,
+        "lineNumber": 547,
         "line": "\t * @return {Boolean} Whether this box equals the given one.\r"
       },
       {
-        "lineNumber": 499,
+        "lineNumber": 548,
         "line": "\t */\r"
       },
       {
-        "lineNumber": 500,
+        "lineNumber": 549,
         "line": "\r"
       },
       {
-        "lineNumber": 501,
+        "lineNumber": 550,
         "line": "\tequals(b) {\r"
       }
     ],

@@ -552,6 +552,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/box3.js~box3#applymatrix4",
+    "class/src/Box3.js~Box3.html#instance-method-applyMatrix4",
+    "src/Box3.js~Box3#applyMatrix4",
+    "method"
+  ],
+  [
     "src/box3.js~box3#clamppoint",
     "class/src/Box3.js~Box3.html#instance-method-clampPoint",
     "src/Box3.js~Box3#clampPoint",
@@ -2197,13 +2203,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/vector2.js~vector2#height",
-    "class/src/Vector2.js~Vector2.html#instance-get-height",
+    "class/src/Vector2.js~Vector2.html#instance-set-height",
     "src/Vector2.js~Vector2#height",
     "member"
   ],
   [
     "src/vector2.js~vector2#height",
-    "class/src/Vector2.js~Vector2.html#instance-set-height",
+    "class/src/Vector2.js~Vector2.html#instance-get-height",
     "src/Vector2.js~Vector2#height",
     "member"
   ],
@@ -2329,13 +2335,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/vector2.js~vector2#width",
-    "class/src/Vector2.js~Vector2.html#instance-get-width",
+    "class/src/Vector2.js~Vector2.html#instance-set-width",
     "src/Vector2.js~Vector2#width",
     "member"
   ],
   [
     "src/vector2.js~vector2#width",
-    "class/src/Vector2.js~Vector2.html#instance-set-width",
+    "class/src/Vector2.js~Vector2.html#instance-get-width",
     "src/Vector2.js~Vector2#width",
     "member"
   ],
