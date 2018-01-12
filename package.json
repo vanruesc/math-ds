@@ -1,6 +1,6 @@
 {
 	"name": "math-ds",
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"description": "Mathematical data structures.",
 	"homepage": "https://github.com/vanruesc/math-ds",
 	"main": "build/math-ds.js",

@@ -1,5 +1,5 @@
 /**
- * math-ds v0.5.0 build Jan 11 2018
+ * math-ds v0.5.1 build Jan 12 2018
  * https://github.com/vanruesc/math-ds
  * Copyright 2018 Raoul van Rüschen, Zlib
  */
@@ -2451,7 +2451,7 @@
   			this.x = x;
   			this.y = y;
   			this.z = z;
-  			this.order = z;
+  			this.order = order;
 
   			return this;
   		}
