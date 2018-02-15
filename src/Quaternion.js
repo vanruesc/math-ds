@@ -357,14 +357,14 @@ export class Quaternion {
 	}
 
 	/**
-	 * Inverts this quaternion.
+	 * Inverts this quaternion. The quaternion is assumed to have unit length.
 	 *
 	 * @return {Quaternion} This quaternion.
 	 */
 
 	invert() {
 
-		return this.conjugate().normalize();
+		return this.conjugate();
 
 	}
 
