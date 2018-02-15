@@ -1,5 +1,5 @@
 /**
- * math-ds v0.5.1 build Jan 12 2018
+ * math-ds v0.5.2 build Feb 15 2018
  * https://github.com/vanruesc/math-ds
  * Copyright 2018 Raoul van Rüschen, Zlib
  */
@@ -543,7 +543,7 @@
   	return Vector3;
   }();
 
-  var v$1 = new Vector3();
+  var v = new Vector3();
 
   var points = [new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3()];
 
@@ -622,7 +622,7 @@
 
   			this.getCenter(target.center);
 
-  			target.radius = this.getSize(v$1).length() * 0.5;
+  			target.radius = this.getSize(v).length() * 0.5;
 
   			return target;
   		}
@@ -674,7 +674,7 @@
   		key: "setFromCenterAndSize",
   		value: function setFromCenterAndSize(center, size) {
 
-  			var halfSize = v$1.copy(size).multiplyScalar(0.5);
+  			var halfSize = v.copy(size).multiplyScalar(0.5);
 
   			this.min.copy(center).sub(halfSize);
   			this.max.copy(center).add(halfSize);
@@ -693,7 +693,7 @@
   		key: "distanceToPoint",
   		value: function distanceToPoint(p) {
 
-  			var clampedPoint = v$1.copy(p).clamp(this.min, this.max);
+  			var clampedPoint = v.copy(p).clamp(this.min, this.max);
 
   			return clampedPoint.sub(p).length();
   		}
@@ -786,7 +786,7 @@
   	}, {
   		key: "intersectsSphere",
   		value: function intersectsSphere(s) {
-  			var closestPoint = this.clampPoint(s.center, v$1);
+  			var closestPoint = this.clampPoint(s.center, v);
 
   			return closestPoint.distanceToSquared(s.center) <= s.radius * s.radius;
   		}
@@ -1345,7 +1345,7 @@
   	return Vector2;
   }();
 
-  var v = new Vector2();
+  var v$1 = new Vector2();
 
   var Box2 = function () {
   	function Box2() {
@@ -1422,7 +1422,7 @@
 
   			this.getCenter(target.center);
 
-  			target.radius = this.getSize(v).length() * 0.5;
+  			target.radius = this.getSize(v$1).length() * 0.5;
 
   			return target;
   		}
@@ -1474,7 +1474,7 @@
   		key: "setFromCenterAndSize",
   		value: function setFromCenterAndSize(center, size) {
 
-  			var halfSize = v.copy(size).multiplyScalar(0.5);
+  			var halfSize = v$1.copy(size).multiplyScalar(0.5);
 
   			this.min.copy(center).sub(halfSize);
   			this.max.copy(center).add(halfSize);
@@ -1493,7 +1493,7 @@
   		key: "distanceToPoint",
   		value: function distanceToPoint(p) {
 
-  			var clampedPoint = v.copy(p).clamp(this.min, this.max);
+  			var clampedPoint = v$1.copy(p).clamp(this.min, this.max);
 
   			return clampedPoint.sub(p).length();
   		}
@@ -1928,12 +1928,12 @@
 
   var RotationOrder = {
 
-    XYZ: 0,
-    YZX: 1,
-    ZXY: 2,
-    XZY: 3,
-    YXZ: 4,
-    ZYX: 5
+    XYZ: "XYZ",
+    YZX: "YZX",
+    ZXY: "ZXY",
+    XZY: "XZY",
+    YXZ: "YXZ",
+    ZYX: "ZYX"
 
   };
 
@@ -2182,7 +2182,7 @@
   		key: "invert",
   		value: function invert() {
 
-  			return this.conjugate().normalize();
+  			return this.conjugate();
   		}
   	}, {
   		key: "conjugate",
