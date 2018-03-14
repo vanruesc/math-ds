@@ -1,13 +1,14 @@
 module.exports = {
 
+	options: {
+		plugins: [{
+			name: "esdoc-standard-plugin"
+		}]
+	},
+
 	compile: {
-		options: {
-			source: "src",
-			destination: "docs",
-			plugins: [{
-				name: "esdoc-standard-plugin"
-			}]
-		}
+		src: "src",
+		dest: "docs"
 	}
 
 };
