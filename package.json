@@ -5,6 +5,7 @@
 	"homepage": "https://github.com/vanruesc/math-ds",
 	"main": "build/math-ds.js",
 	"module": "src/index.js",
+	"sideEffects": false,
 	"license": "Zlib",
 
 	"keywords": [
