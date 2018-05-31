@@ -484,12 +484,12 @@ export class Matrix4 {
 
 		}
 
-		// Last column.
+		// Bottom row.
 		te[3] = 0;
 		te[7] = 0;
 		te[11] = 0;
 
-		// Bottom row.
+		// Last column.
 		te[12] = 0;
 		te[13] = 0;
 		te[14] = 0;
