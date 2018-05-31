@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 445,
-  "actualCount": 445,
+  "expectCount": 444,
+  "actualCount": 444,
   "files": {
     "src/Box2.js": {
       "expectCount": 27,
@@ -9,8 +9,8 @@
       "undocumentLines": []
     },
     "src/Box3.js": {
-      "expectCount": 31,
-      "actualCount": 31,
+      "expectCount": 30,
+      "actualCount": 30,
       "undocumentLines": []
     },
     "src/Cylindrical.js": {

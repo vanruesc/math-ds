@@ -98,39 +98,39 @@
     "filePath": "src/Box3.js",
     "lines": [
       {
-        "lineNumber": 286,
+        "lineNumber": 268,
         "line": "\t/**\r"
       },
       {
-        "lineNumber": 287,
+        "lineNumber": 269,
         "line": "\t * Clamps the given point to the boundaries of this box.\r"
       },
       {
-        "lineNumber": 288,
+        "lineNumber": 270,
         "line": "\t *\r"
       },
       {
-        "lineNumber": 289,
+        "lineNumber": 271,
         "line": "\t * @param {Vector3} p - A point.\r"
       },
       {
-        "lineNumber": 290,
+        "lineNumber": 272,
         "line": "\t * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.\r"
       },
       {
-        "lineNumber": 291,
+        "lineNumber": 273,
         "line": "\t * @return {Vector3} The clamped point.\r"
       },
       {
-        "lineNumber": 292,
+        "lineNumber": 274,
         "line": "\t */\r"
       },
       {
-        "lineNumber": 293,
+        "lineNumber": 275,
         "line": "\r"
       },
       {
-        "lineNumber": 294,
+        "lineNumber": 276,
         "line": "\tclampPoint(point, target = new Vector3()) {\r"
       }
     ],
@@ -148,35 +148,35 @@
     "filePath": "src/Box3.js",
     "lines": [
       {
-        "lineNumber": 543,
+        "lineNumber": 547,
         "line": "\t/**\r"
       },
       {
-        "lineNumber": 544,
+        "lineNumber": 548,
         "line": "\t * Checks if this box equals the given one.\r"
       },
       {
-        "lineNumber": 545,
+        "lineNumber": 549,
         "line": "\t *\r"
       },
       {
-        "lineNumber": 546,
+        "lineNumber": 550,
         "line": "\t * @param {Box3} v - A box.\r"
       },
       {
-        "lineNumber": 547,
+        "lineNumber": 551,
         "line": "\t * @return {Boolean} Whether this box equals the given one.\r"
       },
       {
-        "lineNumber": 548,
+        "lineNumber": 552,
         "line": "\t */\r"
       },
       {
-        "lineNumber": 549,
+        "lineNumber": 553,
         "line": "\r"
       },
       {
-        "lineNumber": 550,
+        "lineNumber": 554,
         "line": "\tequals(b) {\r"
       }
     ],
@@ -322,43 +322,43 @@
     "filePath": "src/Matrix4.js",
     "lines": [
       {
-        "lineNumber": 838,
+        "lineNumber": 817,
         "line": "\t/**\r"
       },
       {
-        "lineNumber": 839,
+        "lineNumber": 818,
         "line": "\t * Scales this matrix.\r"
       },
       {
-        "lineNumber": 840,
+        "lineNumber": 819,
         "line": "\t *\r"
       },
       {
-        "lineNumber": 841,
+        "lineNumber": 820,
         "line": "\t * @param {Number} sx - The X scale.\r"
       },
       {
-        "lineNumber": 842,
+        "lineNumber": 821,
         "line": "\t * @param {Number} sy - The Y scale.\r"
       },
       {
-        "lineNumber": 843,
+        "lineNumber": 822,
         "line": "\t * @param {Number} sy - The Z scale.\r"
       },
       {
-        "lineNumber": 844,
+        "lineNumber": 823,
         "line": "\t * @return {Matrix4} This matrix.\r"
       },
       {
-        "lineNumber": 845,
+        "lineNumber": 824,
         "line": "\t */\r"
       },
       {
-        "lineNumber": 846,
+        "lineNumber": 825,
         "line": "\r"
       },
       {
-        "lineNumber": 847,
+        "lineNumber": 826,
         "line": "\tscale(sx, sy, sz) {\r"
       }
     ],
@@ -378,35 +378,35 @@
     "filePath": "src/Matrix4.js",
     "lines": [
       {
-        "lineNumber": 1176,
+        "lineNumber": 1181,
         "line": "\t/**\r"
       },
       {
-        "lineNumber": 1177,
+        "lineNumber": 1182,
         "line": "\t * Checks if this matrix equals the given one.\r"
       },
       {
-        "lineNumber": 1178,
+        "lineNumber": 1183,
         "line": "\t *\r"
       },
       {
-        "lineNumber": 1179,
+        "lineNumber": 1184,
         "line": "\t * @param {Matrix4} m - A matrix.\r"
       },
       {
-        "lineNumber": 1180,
+        "lineNumber": 1185,
         "line": "\t * @return {Boolean} Whether the matrix are equal.\r"
       },
       {
-        "lineNumber": 1181,
+        "lineNumber": 1186,
         "line": "\t */\r"
       },
       {
-        "lineNumber": 1182,
+        "lineNumber": 1187,
         "line": "\r"
       },
       {
-        "lineNumber": 1183,
+        "lineNumber": 1188,
         "line": "\tequals(matrix) {\r"
       }
     ],
