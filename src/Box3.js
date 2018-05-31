@@ -11,24 +11,6 @@ import { Vector3 } from "./Vector3.js";
 const v = new Vector3();
 
 /**
- * A list of points.
- *
- * @type {Vector3[]}
- * @private
- */
-
-const points = [
-	new Vector3(),
-	new Vector3(),
-	new Vector3(),
-	new Vector3(),
-	new Vector3(),
-	new Vector3(),
-	new Vector3(),
-	new Vector3()
-];
-
-/**
  * A 3D box.
  */
 
@@ -316,27 +298,49 @@ export class Box3 {
 	/**
 	 * Applies the given matrix to this box.
 	 *
-	 * @param {Matrix4} m - The matrix.
+	 * @param {Matrix4} matrix - The matrix.
 	 * @return {Box3} This box.
 	 */
 
-	applyMatrix4(m) {
+	applyMatrix4(matrix) {
 
 		const min = this.min;
 		const max = this.max;
 
 		if(!this.isEmpty()) {
 
-			points[0].set(min.x, min.y, min.z).applyMatrix4(m);
-			points[1].set(min.x, min.y, max.z).applyMatrix4(m);
-			points[2].set(min.x, max.y, min.z).applyMatrix4(m);
-			points[3].set(min.x, max.y, max.z).applyMatrix4(m);
-			points[4].set(max.x, min.y, min.z).applyMatrix4(m);
-			points[5].set(max.x, min.y, max.z).applyMatrix4(m);
-			points[6].set(max.x, max.y, min.z).applyMatrix4(m);
-			points[7].set(max.x, max.y, max.z).applyMatrix4(m);
+			const me = matrix.elements;
 
-			this.setFromPoints(points);
+			const xax = me[0] * min.x;
+			const xay = me[1] * min.x;
+			const xaz = me[2] * min.x;
+
+			const xbx = me[0] * max.x;
+			const xby = me[1] * max.x;
+			const xbz = me[2] * max.x;
+
+			const yax = me[4] * min.y;
+			const yay = me[5] * min.y;
+			const yaz = me[6] * min.y;
+
+			const ybx = me[4] * max.y;
+			const yby = me[5] * max.y;
+			const ybz = me[6] * max.y;
+
+			const zax = me[8] * min.z;
+			const zay = me[9] * min.z;
+			const zaz = me[10] * min.z;
+
+			const zbx = me[8] * max.z;
+			const zby = me[9] * max.z;
+			const zbz = me[10] * max.z;
+
+			min.x = Math.min(xax, xbx) + Math.min(yax, ybx) + Math.min(zax, zbx) + me[12];
+			min.y = Math.min(xay, xby) + Math.min(yay, yby) + Math.min(zay, zby) + me[13];
+			min.z = Math.min(xaz, xbz) + Math.min(yaz, ybz) + Math.min(zaz, zbz) + me[14];
+			max.x = Math.max(xax, xbx) + Math.max(yax, ybx) + Math.max(zax, zbx) + me[12];
+			max.y = Math.max(xay, xby) + Math.max(yay, yby) + Math.max(zay, zby) + me[13];
+			max.z = Math.max(xaz, xbz) + Math.max(yaz, ybz) + Math.max(zaz, zbz) + me[14];
 
 		}
 
