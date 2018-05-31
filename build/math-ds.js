@@ -1,5 +1,5 @@
 /**
- * math-ds v0.6.0 build May 27 2018
+ * math-ds v0.7.0 build May 31 2018
  * https://github.com/vanruesc/math-ds
  * Copyright 2018 Raoul van Rüschen, Zlib
  */
@@ -545,8 +545,6 @@
 
   var v = new Vector3();
 
-  var points = [new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3()];
-
   var Box3 = function () {
   	function Box3() {
   		var min = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Vector3(Infinity, Infinity, Infinity);
@@ -699,23 +697,45 @@
   		}
   	}, {
   		key: "applyMatrix4",
-  		value: function applyMatrix4(m) {
+  		value: function applyMatrix4(matrix) {
 
   			var min = this.min;
   			var max = this.max;
 
   			if (!this.isEmpty()) {
 
-  				points[0].set(min.x, min.y, min.z).applyMatrix4(m);
-  				points[1].set(min.x, min.y, max.z).applyMatrix4(m);
-  				points[2].set(min.x, max.y, min.z).applyMatrix4(m);
-  				points[3].set(min.x, max.y, max.z).applyMatrix4(m);
-  				points[4].set(max.x, min.y, min.z).applyMatrix4(m);
-  				points[5].set(max.x, min.y, max.z).applyMatrix4(m);
-  				points[6].set(max.x, max.y, min.z).applyMatrix4(m);
-  				points[7].set(max.x, max.y, max.z).applyMatrix4(m);
+  				var me = matrix.elements;
 
-  				this.setFromPoints(points);
+  				var xax = me[0] * min.x;
+  				var xay = me[1] * min.x;
+  				var xaz = me[2] * min.x;
+
+  				var xbx = me[0] * max.x;
+  				var xby = me[1] * max.x;
+  				var xbz = me[2] * max.x;
+
+  				var yax = me[4] * min.y;
+  				var yay = me[5] * min.y;
+  				var yaz = me[6] * min.y;
+
+  				var ybx = me[4] * max.y;
+  				var yby = me[5] * max.y;
+  				var ybz = me[6] * max.y;
+
+  				var zax = me[8] * min.z;
+  				var zay = me[9] * min.z;
+  				var zaz = me[10] * min.z;
+
+  				var zbx = me[8] * max.z;
+  				var zby = me[9] * max.z;
+  				var zbz = me[10] * max.z;
+
+  				min.x = Math.min(xax, xbx) + Math.min(yax, ybx) + Math.min(zax, zbx) + me[12];
+  				min.y = Math.min(xay, xby) + Math.min(yay, yby) + Math.min(zay, zby) + me[13];
+  				min.z = Math.min(xaz, xbz) + Math.min(yaz, ybz) + Math.min(zaz, zbz) + me[14];
+  				max.x = Math.max(xax, xbx) + Math.max(yax, ybx) + Math.max(zax, zbx) + me[12];
+  				max.y = Math.max(xay, xby) + Math.max(yay, yby) + Math.max(zay, zby) + me[13];
+  				max.z = Math.max(xaz, xbz) + Math.max(yaz, ybz) + Math.max(zaz, zbz) + me[14];
   			}
 
   			return this;
@@ -3298,14 +3318,22 @@
   						te[0] = me[0] * scaleX;
   						te[1] = me[1] * scaleX;
   						te[2] = me[2] * scaleX;
+  						te[3] = 0;
 
   						te[4] = me[4] * scaleY;
   						te[5] = me[5] * scaleY;
   						te[6] = me[6] * scaleY;
+  						te[7] = 0;
 
   						te[8] = me[8] * scaleZ;
   						te[9] = me[9] * scaleZ;
   						te[10] = me[10] * scaleZ;
+  						te[11] = 0;
+
+  						te[12] = 0;
+  						te[13] = 0;
+  						te[14] = 0;
+  						te[15] = 1;
 
   						return this;
   				}
@@ -3478,47 +3506,7 @@
   				key: "makeRotationFromQuaternion",
   				value: function makeRotationFromQuaternion(q) {
 
-  						var te = this.elements;
-
-  						var x = q.x,
-  						    y = q.y,
-  						    z = q.z,
-  						    w = q.w;
-  						var x2 = x + x,
-  						    y2 = y + y,
-  						    z2 = z + z;
-  						var xx = x * x2,
-  						    xy = x * y2,
-  						    xz = x * z2;
-  						var yy = y * y2,
-  						    yz = y * z2,
-  						    zz = z * z2;
-  						var wx = w * x2,
-  						    wy = w * y2,
-  						    wz = w * z2;
-
-  						te[0] = 1 - (yy + zz);
-  						te[4] = xy - wz;
-  						te[8] = xz + wy;
-
-  						te[1] = xy + wz;
-  						te[5] = 1 - (xx + zz);
-  						te[9] = yz - wx;
-
-  						te[2] = xz - wy;
-  						te[6] = yz + wx;
-  						te[10] = 1 - (xx + yy);
-
-  						te[3] = 0;
-  						te[7] = 0;
-  						te[11] = 0;
-
-  						te[12] = 0;
-  						te[13] = 0;
-  						te[14] = 0;
-  						te[15] = 1;
-
-  						return this;
+  						return this.compose(a$2.set(0, 0, 0), q, b$2.set(1, 1, 1));
   				}
   		}, {
   				key: "lookAt",
@@ -3863,9 +3851,48 @@
   				key: "compose",
   				value: function compose(position, quaternion, scale) {
 
-  						this.makeRotationFromQuaternion(quaternion);
-  						this.scale(scale.x, scale.y, scale.z);
-  						this.setPosition(position);
+  						var te = this.elements;
+
+  						var x = quaternion.x,
+  						    y = quaternion.y,
+  						    z = quaternion.z,
+  						    w = quaternion.w;
+  						var x2 = x + x,
+  						    y2 = y + y,
+  						    z2 = z + z;
+  						var xx = x * x2,
+  						    xy = x * y2,
+  						    xz = x * z2;
+  						var yy = y * y2,
+  						    yz = y * z2,
+  						    zz = z * z2;
+  						var wx = w * x2,
+  						    wy = w * y2,
+  						    wz = w * z2;
+
+  						var sx = scale.x,
+  						    sy = scale.y,
+  						    sz = scale.z;
+
+  						te[0] = (1 - (yy + zz)) * sx;
+  						te[1] = (xy + wz) * sx;
+  						te[2] = (xz - wy) * sx;
+  						te[3] = 0;
+
+  						te[4] = (xy - wz) * sy;
+  						te[5] = (1 - (xx + zz)) * sy;
+  						te[6] = (yz + wx) * sy;
+  						te[7] = 0;
+
+  						te[8] = (xz + wy) * sz;
+  						te[9] = (yz - wx) * sz;
+  						te[10] = (1 - (xx + yy)) * sz;
+  						te[11] = 0;
+
+  						te[12] = position.x;
+  						te[13] = position.y;
+  						te[14] = position.z;
+  						te[15] = 1;
 
   						return this;
   				}
