@@ -523,8 +523,8 @@ export class Quaternion {
 
 		const x = this.x, y = this.y, z = this.z, w = this.w;
 
-		let cosHalfTheta, sinHalfTheta;
-		let halfTheta, ratioA, ratioB;
+		let cosHalfTheta, sinHalfThetaSquared, sinHalfTheta, halfTheta;
+		let s, ratioA, ratioB;
 
 		if(t === 1) {
 
@@ -534,7 +534,7 @@ export class Quaternion {
 
 			cosHalfTheta = w * q.w + x * q.x + y * q.y + z * q.z;
 
-			if(cosHalfTheta < 0) {
+			if(cosHalfTheta < 0.0) {
 
 				this.w = -q.w;
 				this.x = -q.x;
@@ -556,31 +556,35 @@ export class Quaternion {
 				this.y = y;
 				this.z = z;
 
-				return this;
+			} else {
+
+				sinHalfThetaSquared = 1.0 - cosHalfTheta * cosHalfTheta;
+				s = 1.0 - t;
+
+				if(sinHalfThetaSquared <= Number.EPSILON) {
+
+					this.w = s * w + t * this.w;
+					this.x = s * x + t * this.x;
+					this.y = s * y + t * this.y;
+					this.z = s * z + t * this.z;
+
+					this.normalize();
+
+				} else {
+
+					sinHalfTheta = Math.sqrt(sinHalfThetaSquared);
+					halfTheta = Math.atan2(sinHalfTheta, cosHalfTheta);
+					ratioA = Math.sin(s * halfTheta) / sinHalfTheta;
+					ratioB = Math.sin(t * halfTheta) / sinHalfTheta;
+
+					this.w = (w * ratioA + this.w * ratioB);
+					this.x = (x * ratioA + this.x * ratioB);
+					this.y = (y * ratioA + this.y * ratioB);
+					this.z = (z * ratioA + this.z * ratioB);
+
+				}
 
 			}
-
-			sinHalfTheta = Math.sqrt(1.0 - cosHalfTheta * cosHalfTheta);
-
-			if(Math.abs(sinHalfTheta) < 1e-3) {
-
-				this.w = 0.5 * (w + this.w);
-				this.x = 0.5 * (x + this.x);
-				this.y = 0.5 * (y + this.y);
-				this.z = 0.5 * (z + this.z);
-
-				return this;
-
-			}
-
-			halfTheta = Math.atan2(sinHalfTheta, cosHalfTheta);
-			ratioA = Math.sin((1.0 - t) * halfTheta) / sinHalfTheta;
-			ratioB = Math.sin(t * halfTheta) / sinHalfTheta;
-
-			this.w = (w * ratioA + this.w * ratioB);
-			this.x = (x * ratioA + this.x * ratioB);
-			this.y = (y * ratioA + this.y * ratioB);
-			this.z = (z * ratioA + this.z * ratioB);
 
 		}
 
