@@ -134,7 +134,7 @@ export class Sphere {
 		box.getCenter(this.center);
 		this.radius = box.getSize(v).length() * 0.5;
 
-		return target;
+		return this;
 
 	}
 
