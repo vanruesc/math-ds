@@ -13,7 +13,7 @@ A collection of mathematical data structures.
 
 ```sh
 npm install math-ds
-``` 
+```
 
 
 ## Contributing
