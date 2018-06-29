@@ -11,6 +11,15 @@ import { Vector3 } from "./Vector3.js";
 const box = new Box3();
 
 /**
+ * A vector.
+ *
+ * @type {Vector3}
+ * @private
+ */
+
+const v = new Vector3();
+
+/**
  * A sphere.
  */
 
@@ -114,16 +123,16 @@ export class Sphere {
 	}
 
 	/**
-	 * Calculates the bounding box of this sphere.
+	 * Computes the bounding sphere of the given box.
 	 *
-	 * @param {Box3} [target] - A target sphere. If none is provided, a new one will be created.
-	 * @return {Box3} The bounding box.
+	 * @param {Box3} box - A box.
+	 * @return {Sphere} This pshere.
 	 */
 
-	getBoundingBox(target = new Box3()) {
+	setFromBox(box) {
 
-		target.set(this.center, this.center);
-		target.expandByScalar(this.radius);
+		box.getCenter(this.center);
+		this.radius = box.getSize(v).length() * 0.5;
 
 		return target;
 

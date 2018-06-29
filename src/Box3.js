@@ -1,4 +1,3 @@
-import { Sphere } from "./Sphere.js";
 import { Vector3 } from "./Vector3.js";
 
 /**
@@ -159,19 +158,18 @@ export class Box3 {
 	}
 
 	/**
-	 * Computes the bounding sphere of this box.
+	 * Computes the bounding box of the given sphere.
 	 *
-	 * @param {Sphere} [target] - A target sphere. If none is provided, a new one will be created.
-	 * @return {Sphere} The bounding sphere of this box.
+	 * @param {Sphere} sphere - A sphere.
+	 * @return {Box3} This box.
 	 */
 
-	getBoundingSphere(target = new Sphere()) {
+	setFromSphere(sphere) {
 
-		this.getCenter(target.center);
+		this.set(sphere.center, sphere.center);
+		this.expandByScalar(sphere.radius);
 
-		target.radius = this.getSize(v).length() * 0.5;
-
-		return target;
+		return this;
 
 	}
 
@@ -548,7 +546,7 @@ export class Box3 {
 	/**
 	 * Checks if this box equals the given one.
 	 *
-	 * @param {Box3} v - A box.
+	 * @param {Box3} b - A box.
 	 * @return {Boolean} Whether this box equals the given one.
 	 */
 
