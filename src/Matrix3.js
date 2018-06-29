@@ -220,7 +220,7 @@ export class Matrix3 {
 	/**
 	 * Multiplies this matrix with a given scalar.
 	 *
-	 * @param {Number} m - A scalar.
+	 * @param {Number} s - A scalar.
 	 * @return {Matrix3} This matrix.
 	 */
 
@@ -409,10 +409,10 @@ export class Matrix3 {
 	 * @return {Boolean} Whether the matrix are equal.
 	 */
 
-	equals(matrix) {
+	equals(m) {
 
 		const te = this.elements;
-		const me = matrix.elements;
+		const me = m.elements;
 
 		let result = true;
 		let i;

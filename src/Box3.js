@@ -267,7 +267,7 @@ export class Box3 {
 	/**
 	 * Clamps the given point to the boundaries of this box.
 	 *
-	 * @param {Vector3} p - A point.
+	 * @param {Vector3} point - A point.
 	 * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.
 	 * @return {Vector3} The clamped point.
 	 */

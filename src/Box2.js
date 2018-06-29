@@ -268,7 +268,7 @@ export class Box2 {
 	/**
 	 * Clamps the given point to the boundaries of this box.
 	 *
-	 * @param {Vector2} p - A point.
+	 * @param {Vector2} point - A point.
 	 * @param {Vector2} [target] - A target vector. If none is provided, a new one will be created.
 	 * @return {Vector2} The clamped point.
 	 */
@@ -418,7 +418,7 @@ export class Box2 {
 	/**
 	 * Checks if this box equals the given one.
 	 *
-	 * @param {Box2} v - A box.
+	 * @param {Box2} b - A box.
 	 * @return {Boolean} Whether this box equals the given one.
 	 */
 

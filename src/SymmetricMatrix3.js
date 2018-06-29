@@ -216,10 +216,10 @@ export class SymmetricMatrix3 {
 	 * @return {Boolean} Whether the matrices are equal.
 	 */
 
-	equals(matrix) {
+	equals(m) {
 
 		const te = this.elements;
-		const me = matrix.elements;
+		const me = m.elements;
 
 		let result = true;
 		let i;
