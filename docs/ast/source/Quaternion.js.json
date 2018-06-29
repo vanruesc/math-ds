@@ -34033,7 +34033,7 @@
                 "trailingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n\t * Performs an array-based spherical linear interpolation.\r\n\t *\r\n\t * @param {Number[]} dst - An array to store the result in.\r\n\t * @param {Number} dstOffset - An offset into the destination array.\r\n\t * @param {Number[]} src0 - An array that contains the base quaternion values.\r\n\t * @param {Number} src0Offset - An offset into the base array.\r\n\t * @param {Number[]} src1 - An array that contains the target quaternion values.\r\n\t * @param {Number} src1Offset - An offset into the target array.\r\n\t * @param {Number} t - The slerp factor.\r\n\t ",
+                    "value": "*\r\n\t * Performs an array-based spherical linear interpolation.\r\n\t *\r\n\t * @param {Number[]} dst - An array to store the result in.\r\n\t * @param {Number} dstOffset - An offset into the destination array.\r\n\t * @param {Number[]} src0 - An array that contains the base quaternion values.\r\n\t * @param {Number} srcOffset0 - An offset into the base array.\r\n\t * @param {Number[]} src1 - An array that contains the target quaternion values.\r\n\t * @param {Number} srcOffset1 - An offset into the target array.\r\n\t * @param {Number} t - The slerp factor.\r\n\t ",
                     "start": 12171,
                     "end": 12718,
                     "loc": {
@@ -39492,7 +39492,7 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n\t * Performs an array-based spherical linear interpolation.\r\n\t *\r\n\t * @param {Number[]} dst - An array to store the result in.\r\n\t * @param {Number} dstOffset - An offset into the destination array.\r\n\t * @param {Number[]} src0 - An array that contains the base quaternion values.\r\n\t * @param {Number} src0Offset - An offset into the base array.\r\n\t * @param {Number[]} src1 - An array that contains the target quaternion values.\r\n\t * @param {Number} src1Offset - An offset into the target array.\r\n\t * @param {Number} t - The slerp factor.\r\n\t ",
+                    "value": "*\r\n\t * Performs an array-based spherical linear interpolation.\r\n\t *\r\n\t * @param {Number[]} dst - An array to store the result in.\r\n\t * @param {Number} dstOffset - An offset into the destination array.\r\n\t * @param {Number[]} src0 - An array that contains the base quaternion values.\r\n\t * @param {Number} srcOffset0 - An offset into the base array.\r\n\t * @param {Number[]} src1 - An array that contains the target quaternion values.\r\n\t * @param {Number} srcOffset1 - An offset into the target array.\r\n\t * @param {Number} t - The slerp factor.\r\n\t ",
                     "start": 12171,
                     "end": 12718,
                     "loc": {
@@ -40003,7 +40003,7 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n\t * Performs an array-based spherical linear interpolation.\r\n\t *\r\n\t * @param {Number[]} dst - An array to store the result in.\r\n\t * @param {Number} dstOffset - An offset into the destination array.\r\n\t * @param {Number[]} src0 - An array that contains the base quaternion values.\r\n\t * @param {Number} src0Offset - An offset into the base array.\r\n\t * @param {Number[]} src1 - An array that contains the target quaternion values.\r\n\t * @param {Number} src1Offset - An offset into the target array.\r\n\t * @param {Number} t - The slerp factor.\r\n\t ",
+      "value": "*\r\n\t * Performs an array-based spherical linear interpolation.\r\n\t *\r\n\t * @param {Number[]} dst - An array to store the result in.\r\n\t * @param {Number} dstOffset - An offset into the destination array.\r\n\t * @param {Number[]} src0 - An array that contains the base quaternion values.\r\n\t * @param {Number} srcOffset0 - An offset into the base array.\r\n\t * @param {Number[]} src1 - An array that contains the target quaternion values.\r\n\t * @param {Number} srcOffset1 - An offset into the target array.\r\n\t * @param {Number} t - The slerp factor.\r\n\t ",
       "start": 12171,
       "end": 12718,
       "loc": {
@@ -100932,7 +100932,7 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n\t * Performs an array-based spherical linear interpolation.\r\n\t *\r\n\t * @param {Number[]} dst - An array to store the result in.\r\n\t * @param {Number} dstOffset - An offset into the destination array.\r\n\t * @param {Number[]} src0 - An array that contains the base quaternion values.\r\n\t * @param {Number} src0Offset - An offset into the base array.\r\n\t * @param {Number[]} src1 - An array that contains the target quaternion values.\r\n\t * @param {Number} src1Offset - An offset into the target array.\r\n\t * @param {Number} t - The slerp factor.\r\n\t ",
+      "value": "*\r\n\t * Performs an array-based spherical linear interpolation.\r\n\t *\r\n\t * @param {Number[]} dst - An array to store the result in.\r\n\t * @param {Number} dstOffset - An offset into the destination array.\r\n\t * @param {Number[]} src0 - An array that contains the base quaternion values.\r\n\t * @param {Number} srcOffset0 - An offset into the base array.\r\n\t * @param {Number[]} src1 - An array that contains the target quaternion values.\r\n\t * @param {Number} srcOffset1 - An offset into the target array.\r\n\t * @param {Number} t - The slerp factor.\r\n\t ",
       "start": 12171,
       "end": 12718,
       "loc": {

@@ -624,12 +624,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/box3.js~box3#getboundingsphere",
-    "class/src/Box3.js~Box3.html#instance-method-getBoundingSphere",
-    "src/Box3.js~Box3#getBoundingSphere",
-    "method"
-  ],
-  [
     "src/box3.js~box3#getcenter",
     "class/src/Box3.js~Box3.html#instance-method-getCenter",
     "src/Box3.js~Box3#getCenter",
@@ -705,6 +699,12 @@ window.esdocSearchIndex = [
     "src/box3.js~box3#setfrompoints",
     "class/src/Box3.js~Box3.html#instance-method-setFromPoints",
     "src/Box3.js~Box3#setFromPoints",
+    "method"
+  ],
+  [
+    "src/box3.js~box3#setfromsphere",
+    "class/src/Box3.js~Box3.html#instance-method-setFromSphere",
+    "src/Box3.js~Box3#setFromSphere",
     "method"
   ],
   [
@@ -1884,12 +1884,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/sphere.js~sphere#getboundingbox",
-    "class/src/Sphere.js~Sphere.html#instance-method-getBoundingBox",
-    "src/Sphere.js~Sphere#getBoundingBox",
-    "method"
-  ],
-  [
     "src/sphere.js~sphere#intersectsbox",
     "class/src/Sphere.js~Sphere.html#instance-method-intersectsBox",
     "src/Sphere.js~Sphere#intersectsBox",
@@ -1923,6 +1917,12 @@ window.esdocSearchIndex = [
     "src/sphere.js~sphere#set",
     "class/src/Sphere.js~Sphere.html#instance-method-set",
     "src/Sphere.js~Sphere#set",
+    "method"
+  ],
+  [
+    "src/sphere.js~sphere#setfrombox",
+    "class/src/Sphere.js~Sphere.html#instance-method-setFromBox",
+    "src/Sphere.js~Sphere#setFromBox",
     "method"
   ],
   [
@@ -2203,13 +2203,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/vector2.js~vector2#height",
-    "class/src/Vector2.js~Vector2.html#instance-set-height",
+    "class/src/Vector2.js~Vector2.html#instance-get-height",
     "src/Vector2.js~Vector2#height",
     "member"
   ],
   [
     "src/vector2.js~vector2#height",
-    "class/src/Vector2.js~Vector2.html#instance-get-height",
+    "class/src/Vector2.js~Vector2.html#instance-set-height",
     "src/Vector2.js~Vector2#height",
     "member"
   ],

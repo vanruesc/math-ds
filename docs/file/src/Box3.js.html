@@ -52,8 +52,7 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/Box3.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Sphere } from &quot;./Sphere.js&quot;;
-import { Vector3 } from &quot;./Vector3.js&quot;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Vector3 } from &quot;./Vector3.js&quot;;
 
 /**
  * A vector.
@@ -213,19 +212,18 @@ export class Box3 {
 	}
 
 	/**
-	 * Computes the bounding sphere of this box.
+	 * Computes the bounding box of the given sphere.
 	 *
-	 * @param {Sphere} [target] - A target sphere. If none is provided, a new one will be created.
-	 * @return {Sphere} The bounding sphere of this box.
+	 * @param {Sphere} sphere - A sphere.
+	 * @return {Box3} This box.
 	 */
 
-	getBoundingSphere(target = new Sphere()) {
+	setFromSphere(sphere) {
 
-		this.getCenter(target.center);
+		this.set(sphere.center, sphere.center);
+		this.expandByScalar(sphere.radius);
 
-		target.radius = this.getSize(v).length() * 0.5;
-
-		return target;
+		return this;
 
 	}
 
@@ -323,7 +321,7 @@ export class Box3 {
 	/**
 	 * Clamps the given point to the boundaries of this box.
 	 *
-	 * @param {Vector3} p - A point.
+	 * @param {Vector3} point - A point.
 	 * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.
 	 * @return {Vector3} The clamped point.
 	 */
@@ -602,7 +600,7 @@ export class Box3 {
 	/**
 	 * Checks if this box equals the given one.
 	 *
-	 * @param {Box3} v - A box.
+	 * @param {Box3} b - A box.
 	 * @return {Boolean} Whether this box equals the given one.
 	 */
 

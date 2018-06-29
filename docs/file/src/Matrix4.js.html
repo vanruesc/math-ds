@@ -251,8 +251,7 @@ export class Matrix4 {
 	/**
 	 * Returns the largest scale.
 	 *
-	 * @param {Matrix4} matrix - A matrix.
-	 * @return {Matrix4} This matrix.
+	 * @return {Number} The largest scale of the three axes.
 	 */
 
 	getMaxScaleOnAxis() {
@@ -874,7 +873,7 @@ export class Matrix4 {
 	 *
 	 * @param {Number} sx - The X scale.
 	 * @param {Number} sy - The Y scale.
-	 * @param {Number} sy - The Z scale.
+	 * @param {Number} sz - The Z scale.
 	 * @return {Matrix4} This matrix.
 	 */
 
@@ -1240,10 +1239,10 @@ export class Matrix4 {
 	 * @return {Boolean} Whether the matrix are equal.
 	 */
 
-	equals(matrix) {
+	equals(m) {
 
 		const te = this.elements;
-		const me = matrix.elements;
+		const me = m.elements;
 
 		let result = true;
 		let i;
