@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 445,
-  "actualCount": 445,
+  "expectCount": 444,
+  "actualCount": 444,
   "files": {
     "src/Box2.js": {
       "expectCount": 27,
@@ -24,8 +24,8 @@
       "undocumentLines": []
     },
     "src/Frustum.js": {
-      "expectCount": 12,
-      "actualCount": 12,
+      "expectCount": 11,
+      "actualCount": 11,
       "undocumentLines": []
     },
     "src/Line3.js": {
