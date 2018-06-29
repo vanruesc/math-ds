@@ -8,16 +8,7 @@ import { Vector3 } from "./Vector3.js";
  * @private
  */
 
-const v0 = new Vector3();
-
-/**
- * A vector.
- *
- * @type {Vector3}
- * @private
- */
-
-const v1 = new Vector3();
+const v = new Vector3();
 
 /**
  * A frustum.
@@ -188,38 +179,28 @@ export class Frustum {
 	intersectsBox(box) {
 
 		const planes = this.planes;
-		const min = box.min;
-		const max = box.max;
+		const min = box.min, max = box.max;
 
-		let result = true;
-		let i, d0, d1;
-		let plane;
+		let i, plane;
 
 		for(i = 0; i < 6; ++i) {
 
 			plane = planes[i];
 
-			v0.x = (plane.normal.x > 0) ? min.x : max.x;
-			v1.x = (plane.normal.x > 0) ? max.x : min.x;
-			v0.y = (plane.normal.y > 0) ? min.y : max.y;
-			v1.y = (plane.normal.y > 0) ? max.y : min.y;
-			v0.z = (plane.normal.z > 0) ? min.z : max.z;
-			v1.z = (plane.normal.z > 0) ? max.z : min.z;
+			// Corner at max distance.
+			v.x = (plane.normal.x > 0.0) ? max.x : min.x;
+			v.y = (plane.normal.y > 0.0) ? max.y : min.y;
+			v.z = (plane.normal.z > 0.0) ? max.z : min.z;
 
-			d0 = plane.distanceToPoint(v0);
-			d1 = plane.distanceToPoint(v1);
+			if(plane.distanceToPoint(v) < 0.0) {
 
-			// If both are outside the plane there's no intersection.
-			if(d0 < 0 && d1 < 0) {
-
-				result = false;
-				break;
+				return false;
 
 			}
 
 		}
 
-		return result;
+		return true;
 
 	}
 
