@@ -1,20 +1,10 @@
-"use strict";
+import test from "ava";
+import { Frustum } from "../build/math-ds.js";
 
-const Frustum = require("../build/math-ds.js").Frustum;
+test("can be created", t => {
 
-module.exports = {
+	const object = new Frustum();
 
-	"Frustum": {
+	t.truthy(object);
 
-		"can be instantiated": function(test) {
-
-			const l = new Frustum();
-
-			test.ok(l);
-			test.done();
-
-		}
-
-	}
-
-};
+});

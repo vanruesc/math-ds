@@ -1,20 +1,10 @@
-"use strict";
+import test from "ava";
+import { Plane } from "../build/math-ds.js";
 
-const Plane = require("../build/math-ds.js").Plane;
+test("can be created", t => {
 
-module.exports = {
+	const object = new Plane();
 
-	"Plane": {
+	t.truthy(object);
 
-		"can be instantiated": function(test) {
-
-			const p = new Plane();
-
-			test.ok(p);
-			test.done();
-
-		}
-
-	}
-
-};
+});

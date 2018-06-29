@@ -1,20 +1,10 @@
-"use strict";
+import test from "ava";
+import { Spherical } from "../build/math-ds.js";
 
-const Spherical = require("../build/math-ds.js").Spherical;
+test("can be created", t => {
 
-module.exports = {
+	const object = new Spherical();
 
-	"Spherical": {
+	t.truthy(object);
 
-		"can be instantiated": function(test) {
-
-			const s = new Spherical();
-
-			test.ok(s);
-			test.done();
-
-		}
-
-	}
-
-};
+});

@@ -1,20 +1,10 @@
-"use strict";
+import test from "ava";
+import { Ray } from "../build/math-ds.js";
 
-const Ray = require("../build/math-ds.js").Ray;
+test("can be created", t => {
 
-module.exports = {
+	const object = new Ray();
 
-	"Ray": {
+	t.truthy(object);
 
-		"can be instantiated": function(test) {
-
-			const r = new Ray();
-
-			test.ok(r);
-			test.done();
-
-		}
-
-	}
-
-};
+});

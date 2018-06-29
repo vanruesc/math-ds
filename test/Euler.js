@@ -1,20 +1,10 @@
-"use strict";
+import test from "ava";
+import { Euler } from "../build/math-ds.js";
 
-const Euler = require("../build/math-ds.js").Euler;
+test("can be created", t => {
 
-module.exports = {
+	const object = new Euler();
 
-	"Euler": {
+	t.truthy(object);
 
-		"can be instantiated": function(test) {
-
-			const e = new Euler();
-
-			test.ok(e);
-			test.done();
-
-		}
-
-	}
-
-};
+});

@@ -1,20 +1,10 @@
-"use strict";
+import test from "ava";
+import { Vector4 } from "../build/math-ds.js";
 
-const Vector4 = require("../build/math-ds.js").Vector4;
+test("can be created", t => {
 
-module.exports = {
+	const object = new Vector4();
 
-	"Vector4": {
+	t.truthy(object);
 
-		"can be instantiated": function(test) {
-
-			const v = new Vector4();
-
-			test.ok(v);
-			test.done();
-
-		}
-
-	}
-
-};
+});

@@ -1,65 +1,50 @@
-"use strict";
+import test from "ava";
+import { Matrix3, SymmetricMatrix3, Vector3 } from "../build/math-ds.js";
 
-const lib = require("../build/math-ds.js");
+test("can be created", t => {
 
-const SymmetricMatrix3 = lib.SymmetricMatrix3;
-const Matrix3 = lib.Matrix3;
-const Vector3 = lib.Vector3;
+	const object = new SymmetricMatrix3();
 
-module.exports = {
+	t.truthy(object);
 
-	"SymmetricMatrix3": {
+});
 
-		"can be instantiated": function(test) {
+test("correctly transforms vectors", t => {
 
-			const sm = new SymmetricMatrix3();
+	const m0 = new SymmetricMatrix3();
+	const m1 = new Matrix3();
 
-			test.ok(sm);
-			test.done();
+	const v0 = new Vector3(0, 1, 2);
+	const v1 = v0.clone();
+	const v2 = v0.clone();
+	const v3 = v0.clone();
 
-		},
+	m0.identity();
+	m1.identity();
 
-		"correctly transforms vectors": function(test) {
+	m0.applyToVector3(v0);
+	v1.applyMatrix3(m1);
 
-			const m0 = new SymmetricMatrix3();
-			const m1 = new Matrix3();
+	m0.set(
 
-			const v0 = new Vector3(0, 1, 2);
-			const v1 = v0.clone();
-			const v2 = v0.clone();
-			const v3 = v0.clone();
+		1, 2, 3,
+		2, 3,
+		3
 
-			m0.identity();
-			m1.identity();
+	);
 
-			m0.applyToVector3(v0);
-			v1.applyMatrix3(m1);
+	m1.set(
 
-			m0.set(
+		1, 2, 3,
+		2, 2, 3,
+		3, 3, 3
 
-				1, 2, 3,
-				2, 3,
-				3
+	);
 
-			);
+	m0.applyToVector3(v2);
+	v3.applyMatrix3(m1);
 
-			m1.set(
+	t.true(v0.equals(v1), "should compute the same result as its complete matrix equivalent");
+	t.true(v2.equals(v3), "should compute the same result as its complete matrix equivalent");
 
-				1, 2, 3,
-				2, 2, 3,
-				3, 3, 3
-
-			);
-
-			m0.applyToVector3(v2);
-			v3.applyMatrix3(m1);
-
-			test.ok(v0.equals(v1), "should compute the same result as its complete matrix equivalent");
-			test.ok(v2.equals(v3), "should compute the same result as its complete matrix equivalent");
-			test.done();
-
-		}
-
-	}
-
-};
+});

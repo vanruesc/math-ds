@@ -1,20 +1,10 @@
-"use strict";
+import test from "ava";
+import { Quaternion } from "../build/math-ds.js";
 
-const Quaternion = require("../build/math-ds.js").Quaternion;
+test("can be created", t => {
 
-module.exports = {
+	const object = new Quaternion();
 
-	"Quaternion": {
+	t.truthy(object);
 
-		"can be instantiated": function(test) {
-
-			const q = new Quaternion();
-
-			test.ok(q);
-			test.done();
-
-		}
-
-	}
-
-};
+});
