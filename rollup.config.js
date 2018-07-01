@@ -35,11 +35,11 @@ export default [lib].concat((process.env.NODE_ENV === "production") ? [
 			file: "build/" + pkg.name + ".min.js"
 		}),
 
-		plugins: lib.plugins.concat([minify({
+		plugins: [resolve(), babel(), minify({
 			bannerNewLine: true,
 			sourceMap: false,
 			comments: false
-		})])
+		})]
 
 	})
 
