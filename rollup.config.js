@@ -18,17 +18,29 @@ const lib = {
 		file: "build/" + pkg.name + ".js",
 		format: "umd",
 		name: pkg.name.replace(/-/g, "").toUpperCase(),
-		banner: banner
+		banner: banner,
+		globals: { three: "THREE" }
 	},
 
-	plugins: [resolve()].concat(process.env.BABEL_ENV === "production" ?
-		[babel(), minify({
-			bannerNewLine: true,
-			sourceMap: false,
-			comments: false
-		})] : []
-	)
+	external: ["three"],
+	plugins: [resolve()]
 
 };
 
-export default [lib];
+export default [lib].concat((process.env.NODE_ENV === "production") ? [
+
+	Object.assign({}, lib, {
+
+		output: Object.assign({}, lib.output, {
+			file: "build/" + pkg.name + ".min.js"
+		}),
+
+		plugins: lib.plugins.concat([babel(), minify({
+			bannerNewLine: true,
+			sourceMap: false,
+			comments: false
+		})])
+
+	})
+
+] : []);
