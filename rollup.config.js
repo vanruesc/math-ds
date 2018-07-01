@@ -23,7 +23,7 @@ const lib = {
 	},
 
 	external: ["three"],
-	plugins: [resolve()]
+	plugins: [resolve()].concat(process.env.NODE_ENV === "production" ? [babel()] : [])
 
 };
 
@@ -35,7 +35,7 @@ export default [lib].concat((process.env.NODE_ENV === "production") ? [
 			file: "build/" + pkg.name + ".min.js"
 		}),
 
-		plugins: lib.plugins.concat([babel(), minify({
+		plugins: lib.plugins.concat([minify({
 			bannerNewLine: true,
 			sourceMap: false,
 			comments: false
