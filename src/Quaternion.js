@@ -357,6 +357,19 @@ export class Quaternion {
 	}
 
 	/**
+	 * Calculates the angle to another quaternion.
+	 *
+	 * @param {Quaternion} q - A quaternion.
+	 * @return {Number} The angle in radians.
+	 */
+
+	angleTo(q) {
+
+		return 2.0 * Math.acos(Math.abs(Math.min(Math.max(this.dot(q), -1.0), 1.0)));
+
+	}
+
+	/**
 	 * Inverts this quaternion. The quaternion is assumed to have unit length.
 	 *
 	 * @return {Quaternion} This quaternion.
