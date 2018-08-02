@@ -1518,6 +1518,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/quaternion.js~quaternion#angleto",
+    "class/src/Quaternion.js~Quaternion.html#instance-method-angleTo",
+    "src/Quaternion.js~Quaternion#angleTo",
+    "method"
+  ],
+  [
     "src/quaternion.js~quaternion#clone",
     "class/src/Quaternion.js~Quaternion.html#instance-method-clone",
     "src/Quaternion.js~Quaternion#clone",
@@ -1599,6 +1605,12 @@ window.esdocSearchIndex = [
     "src/quaternion.js~quaternion#premultiply",
     "class/src/Quaternion.js~Quaternion.html#instance-method-premultiply",
     "src/Quaternion.js~Quaternion#premultiply",
+    "method"
+  ],
+  [
+    "src/quaternion.js~quaternion#rotatetowards",
+    "class/src/Quaternion.js~Quaternion.html#instance-method-rotateTowards",
+    "src/Quaternion.js~Quaternion#rotateTowards",
     "method"
   ],
   [
@@ -2151,6 +2163,12 @@ window.esdocSearchIndex = [
     "src/vector2.js~vector2#copy",
     "class/src/Vector2.js~Vector2.html#instance-method-copy",
     "src/Vector2.js~Vector2#copy",
+    "method"
+  ],
+  [
+    "src/vector2.js~vector2#cross",
+    "class/src/Vector2.js~Vector2.html#instance-method-cross",
+    "src/Vector2.js~Vector2#cross",
     "method"
   ],
   [
