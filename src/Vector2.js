@@ -370,6 +370,22 @@ export class Vector2 {
 	}
 
 	/**
+	 * Calculates the cross product with another vector.
+	 *
+	 * This method calculates a scalar that would result from a regular 3D cross
+	 * product of the input vectors, while taking their Z values implicitly as 0.
+	 *
+	 * @param {Vector2} v - A vector.
+	 * @return {Number} The cross product.
+	 */
+
+	cross(v) {
+
+		return this.x * v.y - this.y * v.x;
+
+	}
+
+	/**
 	 * Calculates the Manhattan length of this vector.
 	 *
 	 * @return {Number} The length.
