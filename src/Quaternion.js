@@ -370,6 +370,28 @@ export class Quaternion {
 	}
 
 	/**
+	 * Rotates this quaternion towards the given one by a given step size.
+	 *
+	 * @param {Quaternion} q - The target quaternion.
+	 * @param {Number} step - The step size.
+	 * @return {Quaternion} This quaternion.
+	 */
+
+	rotateTowards(q, step) {
+
+		const angle = this.angleTo(q);
+
+		if(angle !== 0.0) {
+
+			this.slerp(q, Math.min(1.0, step / angle));
+
+		}
+
+		return this;
+
+	}
+
+	/**
 	 * Inverts this quaternion. The quaternion is assumed to have unit length.
 	 *
 	 * @return {Quaternion} This quaternion.
