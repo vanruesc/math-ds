@@ -94,6 +94,20 @@ export class Spherical {
 	}
 
 	/**
+	 * Restricts phi to `[1e-6, PI - 1e-6]`.
+	 *
+	 * @return {Spherical} This spherical system.
+	 */
+
+	makeSafe() {
+
+		this.phi = Math.max(1e-6, Math.min(Math.PI - 1e-6, this.phi));
+
+		return this;
+
+	}
+
+	/**
 	 * Sets the values of this spherical system based on a vector.
 	 *
 	 * The radius is set to the vector's length while phi and theta are set from
@@ -105,7 +119,22 @@ export class Spherical {
 
 	setFromVector3(v) {
 
-		this.radius = v.length();
+		return this.setFromCartesianCoords(v.x, v.y, v.z);
+
+	}
+
+	/**
+	 * Sets the values of this spherical system based on cartesian coordinates.
+	 *
+	 * @param {Number} x - The X coordinate.
+	 * @param {Number} y - The Y coordinate.
+	 * @param {Number} z - The Z coordinate.
+	 * @return {Spherical} This spherical system.
+	 */
+
+	setFromCartesianCoords(x, y, z) {
+
+		this.radius = Math.sqrt(x * x + y * y + z * z);
 
 		if(this.radius === 0) {
 
@@ -121,20 +150,6 @@ export class Spherical {
 			this.phi = Math.acos(Math.min(Math.max(v.y / this.radius, -1), 1));
 
 		}
-
-		return this.makeSafe();
-
-	}
-
-	/**
-	 * Restricts phi to `[1e-6, PI - 1e-6]`.
-	 *
-	 * @return {Spherical} This spherical system.
-	 */
-
-	makeSafe() {
-
-		this.phi = Math.max(1e-6, Math.min(Math.PI - 1e-6, this.phi));
 
 		return this;
 

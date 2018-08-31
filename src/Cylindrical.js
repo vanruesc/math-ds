@@ -94,15 +94,30 @@ export class Cylindrical {
 	/**
 	 * Sets the values of this cylindrical system.
 	 *
-	 * @param {Vector3} v - The vector
+	 * @param {Vector3} v - A vector.
 	 * @return {Cylindrical} This cylindrical system.
 	 */
 
 	setFromVector3(v) {
 
-		this.radius = Math.sqrt(v.x * v.x + v.z * v.z);
-		this.theta = Math.atan2(v.x, v.z);
-		this.y = v.y;
+		return this.setFromCartesianCoords(v.x, v.y, v.z);
+
+	}
+
+	/**
+	 * Sets the values of this cylindrical system based on cartesian coordinates.
+	 *
+	 * @param {Number} x - The X coordinate.
+	 * @param {Number} y - The Y coordinate.
+	 * @param {Number} z - The Z coordinate.
+	 * @return {Cylindrical} This cylindrical system.
+	 */
+
+	setFromCartesianCoords(x, y, z) {
+
+		this.radius = Math.sqrt(x * x + z * z);
+		this.theta = Math.atan2(x, z);
+		this.y = y;
 
 		return this;
 

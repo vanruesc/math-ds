@@ -133,11 +133,26 @@ export class Vector3 {
 
 	setFromSpherical(s) {
 
-		const sinPhiRadius = Math.sin(s.phi) * s.radius;
+		this.setFromSphericalCoords(s.radius, s.phi, s.theta);
 
-		this.x = sinPhiRadius * Math.sin(s.theta);
-		this.y = Math.cos(s.phi) * s.radius;
-		this.z = sinPhiRadius * Math.cos(s.theta);
+	}
+
+	/**
+	 * Sets the values of this vector based on spherical coordinates.
+	 *
+	 * @param {Number} radius - The radius.
+	 * @param {Number} phi - The polar angle.
+	 * @param {Number} theta - The angle around the equator of the sphere.
+	 * @return {Vector3} This vector.
+	 */
+
+	setFromSphericalCoords(radius, phi, theta) {
+
+		const sinPhiRadius = Math.sin(phi) * radius;
+
+		this.x = sinPhiRadius * Math.sin(theta);
+		this.y = Math.cos(phi) * radius;
+		this.z = sinPhiRadius * Math.cos(theta);
 
 		return this;
 
@@ -152,9 +167,24 @@ export class Vector3 {
 
 	setFromCylindrical(c) {
 
-		this.x = c.radius * Math.sin(c.theta);
-		this.y = c.y;
-		this.z = c.radius * Math.cos(c.theta);
+		this.setFromCylindricalCoords(c.radius, c.theta, c.y);
+
+	}
+
+	/**
+	 * Sets the values of this vector based on cylindrical coordinates.
+	 *
+	 * @param {Number} radius - The radius.
+	 * @param {Number} theta - Theta.
+	 * @param {Number} y - The height.
+	 * @return {Vector3} This vector.
+	 */
+
+	setFromCylindricalCoords(radius, theta, y) {
+
+		this.x = radius * Math.sin(theta);
+		this.y = y;
+		this.z = radius * Math.cos(theta);
 
 		return this;
 
