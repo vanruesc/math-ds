@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 447,
-  "actualCount": 447,
+  "expectCount": 452,
+  "actualCount": 452,
   "files": {
     "src/Box2.js": {
       "expectCount": 27,
@@ -9,13 +9,13 @@
       "undocumentLines": []
     },
     "src/Box3.js": {
-      "expectCount": 30,
-      "actualCount": 30,
+      "expectCount": 31,
+      "actualCount": 31,
       "undocumentLines": []
     },
     "src/Cylindrical.js": {
-      "expectCount": 9,
-      "actualCount": 9,
+      "expectCount": 10,
+      "actualCount": 10,
       "undocumentLines": []
     },
     "src/Euler.js": {
@@ -69,8 +69,8 @@
       "undocumentLines": []
     },
     "src/Spherical.js": {
-      "expectCount": 10,
-      "actualCount": 10,
+      "expectCount": 11,
+      "actualCount": 11,
       "undocumentLines": []
     },
     "src/SymmetricMatrix3.js": {
@@ -84,8 +84,8 @@
       "undocumentLines": []
     },
     "src/Vector3.js": {
-      "expectCount": 54,
-      "actualCount": 54,
+      "expectCount": 56,
+      "actualCount": 56,
       "undocumentLines": []
     },
     "src/Vector4.js": {

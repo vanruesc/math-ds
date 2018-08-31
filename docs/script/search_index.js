@@ -756,6 +756,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/cylindrical.js~cylindrical#setfromcartesiancoords",
+    "class/src/Cylindrical.js~Cylindrical.html#instance-method-setFromCartesianCoords",
+    "src/Cylindrical.js~Cylindrical#setFromCartesianCoords",
+    "method"
+  ],
+  [
     "src/cylindrical.js~cylindrical#setfromvector3",
     "class/src/Cylindrical.js~Cylindrical.html#instance-method-setFromVector3",
     "src/Cylindrical.js~Cylindrical#setFromVector3",
@@ -1998,6 +2004,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/spherical.js~spherical#setfromcartesiancoords",
+    "class/src/Spherical.js~Spherical.html#instance-method-setFromCartesianCoords",
+    "src/Spherical.js~Spherical#setFromCartesianCoords",
+    "method"
+  ],
+  [
     "src/spherical.js~spherical#setfromvector3",
     "class/src/Spherical.js~Spherical.html#instance-method-setFromVector3",
     "src/Spherical.js~Spherical#setFromVector3",
@@ -2221,13 +2233,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/vector2.js~vector2#height",
-    "class/src/Vector2.js~Vector2.html#instance-get-height",
+    "class/src/Vector2.js~Vector2.html#instance-set-height",
     "src/Vector2.js~Vector2#height",
     "member"
   ],
   [
     "src/vector2.js~vector2#height",
-    "class/src/Vector2.js~Vector2.html#instance-set-height",
+    "class/src/Vector2.js~Vector2.html#instance-get-height",
     "src/Vector2.js~Vector2#height",
     "member"
   ],
@@ -2622,6 +2634,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/vector3.js~vector3#setfromcylindricalcoords",
+    "class/src/Vector3.js~Vector3.html#instance-method-setFromCylindricalCoords",
+    "src/Vector3.js~Vector3#setFromCylindricalCoords",
+    "method"
+  ],
+  [
     "src/vector3.js~vector3#setfrommatrixcolumn",
     "class/src/Vector3.js~Vector3.html#instance-method-setFromMatrixColumn",
     "src/Vector3.js~Vector3#setFromMatrixColumn",
@@ -2643,6 +2661,12 @@ window.esdocSearchIndex = [
     "src/vector3.js~vector3#setfromspherical",
     "class/src/Vector3.js~Vector3.html#instance-method-setFromSpherical",
     "src/Vector3.js~Vector3#setFromSpherical",
+    "method"
+  ],
+  [
+    "src/vector3.js~vector3#setfromsphericalcoords",
+    "class/src/Vector3.js~Vector3.html#instance-method-setFromSphericalCoords",
+    "src/Vector3.js~Vector3#setFromSphericalCoords",
     "method"
   ],
   [
