@@ -376,7 +376,7 @@ export class Ray {
 
 	intersectsSphere(s) {
 
-		return (this.distanceToPoint(s.center) <= s.radius);
+		return (this.distanceSqToPoint(s.center) <= (s.radius * s.radius));
 
 	}
 
