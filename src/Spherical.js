@@ -144,10 +144,10 @@ export class Spherical {
 		} else {
 
 			// Calculate the equator angle around the positive Y-axis.
-			this.theta = Math.atan2(v.x, v.z);
+			this.theta = Math.atan2(x, z);
 
 			// Calculate the polar angle.
-			this.phi = Math.acos(Math.min(Math.max(v.y / this.radius, -1), 1));
+			this.phi = Math.acos(Math.min(Math.max(y / this.radius, -1), 1));
 
 		}
 
