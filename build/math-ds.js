@@ -1,5 +1,5 @@
 /**
- * math-ds v1.1.1 build Fri Aug 31 2018
+ * math-ds v1.1.2 build Wed Sep 26 2018
  * https://github.com/vanruesc/math-ds
  * Copyright 2018 Raoul van Rüschen, Zlib
  */
@@ -672,7 +672,7 @@
           max += p.normal.z * this.min.z;
         }
 
-        return min <= p.constant && max >= p.constant;
+        return min <= -p.constant && max >= -p.constant;
       }
     }, {
       key: "equals",
