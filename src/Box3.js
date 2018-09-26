@@ -535,7 +535,7 @@ export class Box3 {
 
 		}
 
-		return (min <= -plane.constant && max >= -plane.constant);
+		return (min <= -p.constant && max >= -p.constant);
 
 	}
 
