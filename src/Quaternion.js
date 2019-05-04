@@ -1,14 +1,4 @@
 import { RotationOrder } from "./RotationOrder.js";
-import { Vector3 } from "./Vector3.js";
-
-/**
- * A vector.
- *
- * @type {Vector3}
- * @private
- */
-
-const v = new Vector3();
 
 /**
  * A quaternion.
@@ -333,24 +323,29 @@ export class Quaternion {
 
 			if(Math.abs(vFrom.x) > Math.abs(vFrom.z)) {
 
-				v.set(-vFrom.y, vFrom.x, 0);
+				this.x = -vFrom.y;
+				this.y = vFrom.x;
+				this.z = 0;
+				this.w = r;
 
 			} else {
 
-				v.set(0, -vFrom.z, vFrom.y);
+				this.x = 0;
+				this.y = -vFrom.z;
+				this.z = vFrom.y;
+				this.w = r;
 
 			}
 
 		} else {
 
-			v.crossVectors(vFrom, vTo);
+			// crossVectors(vFrom, vTo)
+			this.x = vFrom.y * vTo.z - vFrom.z * vTo.y;
+			this.y = vFrom.z * vTo.x - vFrom.x * vTo.z;
+			this.z = vFrom.x * vTo.y - vFrom.y * vTo.x;
+			this.w = r;
 
 		}
-
-		this.x = v.x;
-		this.y = v.y;
-		this.z = v.z;
-		this.w = r;
 
 		return this.normalize();
 
