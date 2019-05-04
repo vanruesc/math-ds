@@ -11,35 +11,58 @@ const banner = `/**
  * Copyright ${date.slice(-4)} ${pkg.author.name}, ${pkg.license}
  */`;
 
+const production = (process.env.NODE_ENV === "production");
+
 const lib = {
 
-	input: pkg.module,
-	output: {
-		file: "build/" + pkg.name + ".js",
-		format: "umd",
-		name: pkg.name.replace(/-/g, "").toUpperCase(),
-		banner: banner,
-		globals: { three: "THREE" }
+	esm: {
+
+		input: "src/index.js",
+		plugins: [resolve()],
+		output: [{
+			file: pkg.main,
+			format: "esm"
+		}].concat(!production ? [] : [
+			{
+				file: pkg.module,
+				format: "esm",
+				banner: banner
+			}, {
+				file: pkg.main.replace(".js", ".min.js"),
+				format: "esm"
+			}
+		])
+
 	},
 
-	external: ["three"],
-	plugins: [resolve()].concat(process.env.NODE_ENV === "production" ? [babel()] : [])
+	umd: {
+
+		input: pkg.main,
+		plugins: production ? [babel()] : [],
+		output: {
+			file: pkg.main,
+			format: "umd",
+			name: pkg.name.replace(/-/g, "").toUpperCase(),
+			banner: banner
+		}
+
+	}
 
 };
 
-export default [lib].concat((process.env.NODE_ENV === "production") ? [
+export default [lib.esm, lib.umd].concat(production ? [{
 
-	Object.assign({}, lib, {
+	input: lib.esm.output[2].file,
+	plugins: [babel(), minify({
+		bannerNewLine: true,
+		comments: false
+	})],
+	output: {
+		file: lib.esm.output[2].file,
+		format: "umd",
+		name: pkg.name.replace(/-/g, "").toUpperCase(),
+		banner: banner
+	}
 
-		output: Object.assign({}, lib.output, {
-			file: "build/" + pkg.name + ".min.js"
-		}),
+}] : []);
 
-		plugins: [resolve(), babel(), minify({
-			bannerNewLine: true,
-			comments: false
-		})]
-
-	})
-
-] : []);

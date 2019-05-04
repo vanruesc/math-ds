@@ -4,7 +4,7 @@
 	"description": "Mathematical data structures.",
 	"homepage": "https://github.com/vanruesc/math-ds",
 	"main": "build/math-ds.js",
-	"module": "src/index.js",
+	"module": "build/math-ds.esm.js",
 	"sideEffects": false,
 	"license": "Zlib",
 
@@ -42,10 +42,7 @@
 		"url": "https://github.com/vanruesc/math-ds/issues"
 	},
 
-	"files": [
-		"src",
-		"build"
-	],
+	"files": ["build"],
 
 	"scripts": {
 		"ava": "ava",
