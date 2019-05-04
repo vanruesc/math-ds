@@ -2233,13 +2233,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/vector2.js~vector2#height",
-    "class/src/Vector2.js~Vector2.html#instance-set-height",
+    "class/src/Vector2.js~Vector2.html#instance-get-height",
     "src/Vector2.js~Vector2#height",
     "member"
   ],
   [
     "src/vector2.js~vector2#height",
-    "class/src/Vector2.js~Vector2.html#instance-get-height",
+    "class/src/Vector2.js~Vector2.html#instance-set-height",
     "src/Vector2.js~Vector2#height",
     "member"
   ],
@@ -2365,13 +2365,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/vector2.js~vector2#width",
-    "class/src/Vector2.js~Vector2.html#instance-set-width",
+    "class/src/Vector2.js~Vector2.html#instance-get-width",
     "src/Vector2.js~Vector2#width",
     "member"
   ],
   [
     "src/vector2.js~vector2#width",
-    "class/src/Vector2.js~Vector2.html#instance-get-width",
+    "class/src/Vector2.js~Vector2.html#instance-set-width",
     "src/Vector2.js~Vector2#width",
     "member"
   ],

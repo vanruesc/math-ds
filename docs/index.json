@@ -7585,7 +7585,7 @@
     "__docId__": 319,
     "kind": "file",
     "name": "src/Quaternion.js",
-    "content": "import { RotationOrder } from \"./RotationOrder.js\";\r\nimport { Vector3 } from \"./Vector3.js\";\r\n\r\n/**\r\n * A vector.\r\n *\r\n * @type {Vector3}\r\n * @private\r\n */\r\n\r\nconst v = new Vector3();\r\n\r\n/**\r\n * A quaternion.\r\n */\r\n\r\nexport class Quaternion {\r\n\r\n\t/**\r\n\t * Constructs a new quaternion.\r\n\t *\r\n\t * @param {Number} [x=0] - The X component.\r\n\t * @param {Number} [y=0] - The Y component.\r\n\t * @param {Number} [z=0] - The Z component.\r\n\t * @param {Number} [w=0] - The W component.\r\n\t */\r\n\r\n\tconstructor(x = 0, y = 0, z = 0, w = 0) {\r\n\r\n\t\t/**\r\n\t\t * The X component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.x = x;\r\n\r\n\t\t/**\r\n\t\t * The Y component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.y = y;\r\n\r\n\t\t/**\r\n\t\t * The Z component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.z = z;\r\n\r\n\t\t/**\r\n\t\t * The W component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.w = w;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the components of this quaternion.\r\n\t *\r\n\t * @param {Number} x - The X component.\r\n\t * @param {Number} y - The Y component.\r\n\t * @param {Number} z - The Z component.\r\n\t * @param {Number} w - The W component.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tset(x, y, z, w) {\r\n\r\n\t\tthis.x = x;\r\n\t\tthis.y = y;\r\n\t\tthis.z = z;\r\n\t\tthis.w = w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the components of the given quaternion.\r\n\t *\r\n\t * @param {Quaternion} q - The quaternion.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tcopy(q) {\r\n\r\n\t\tthis.x = q.x;\r\n\t\tthis.y = q.y;\r\n\t\tthis.z = q.z;\r\n\t\tthis.w = q.w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this quaternion.\r\n\t *\r\n\t * @return {Quaternion} The cloned quaternion.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor(this.x, this.y, this.z, this.w);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies values from an array.\r\n\t *\r\n\t * @param {Number[]} array - An array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tfromArray(array, offset = 0) {\r\n\r\n\t\tthis.x = array[offset];\r\n\t\tthis.y = array[offset + 1];\r\n\t\tthis.z = array[offset + 2];\r\n\t\tthis.w = array[offset + 3];\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Stores this quaternion in an array.\r\n\t *\r\n\t * @param {Array} [array] - A target array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Number[]} The array.\r\n\t */\r\n\r\n\ttoArray(array = [], offset = 0) {\r\n\r\n\t\tarray[offset] = this.x;\r\n\t\tarray[offset + 1] = this.y;\r\n\t\tarray[offset + 2] = this.z;\r\n\t\tarray[offset + 3] = this.w;\r\n\r\n\t\treturn array;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the components of this quaternion based on the given Euler angles.\r\n\t *\r\n\t * For more details see: https://goo.gl/XRD1kr\r\n\t *\r\n\t * @param {Euler} euler - The euler angles.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tsetFromEuler(euler) {\r\n\r\n\t\tconst x = euler.x;\r\n\t\tconst y = euler.y;\r\n\t\tconst z = euler.z;\r\n\r\n\t\tconst cos = Math.cos;\r\n\t\tconst sin = Math.sin;\r\n\r\n\t\tconst c1 = cos(x / 2);\r\n\t\tconst c2 = cos(y / 2);\r\n\t\tconst c3 = cos(z / 2);\r\n\r\n\t\tconst s1 = sin(x / 2);\r\n\t\tconst s2 = sin(y / 2);\r\n\t\tconst s3 = sin(z / 2);\r\n\r\n\t\tswitch(euler.order) {\r\n\r\n\t\t\tcase RotationOrder.XYZ:\r\n\t\t\t\tthis.x = s1 * c2 * c3 + c1 * s2 * s3;\r\n\t\t\t\tthis.y = c1 * s2 * c3 - s1 * c2 * s3;\r\n\t\t\t\tthis.z = c1 * c2 * s3 + s1 * s2 * c3;\r\n\t\t\t\tthis.w = c1 * c2 * c3 - s1 * s2 * s3;\r\n\t\t\t\tbreak;\r\n\r\n\t\t\tcase RotationOrder.YXZ:\r\n\t\t\t\tthis.x = s1 * c2 * c3 + c1 * s2 * s3;\r\n\t\t\t\tthis.y = c1 * s2 * c3 - s1 * c2 * s3;\r\n\t\t\t\tthis.z = c1 * c2 * s3 - s1 * s2 * c3;\r\n\t\t\t\tthis.w = c1 * c2 * c3 + s1 * s2 * s3;\r\n\t\t\t\tbreak;\r\n\r\n\t\t\tcase RotationOrder.ZXY:\r\n\t\t\t\tthis.x = s1 * c2 * c3 - c1 * s2 * s3;\r\n\t\t\t\tthis.y = c1 * s2 * c3 + s1 * c2 * s3;\r\n\t\t\t\tthis.z = c1 * c2 * s3 + s1 * s2 * c3;\r\n\t\t\t\tthis.w = c1 * c2 * c3 - s1 * s2 * s3;\r\n\t\t\t\tbreak;\r\n\r\n\t\t\tcase RotationOrder.ZYX:\r\n\t\t\t\tthis.x = s1 * c2 * c3 - c1 * s2 * s3;\r\n\t\t\t\tthis.y = c1 * s2 * c3 + s1 * c2 * s3;\r\n\t\t\t\tthis.z = c1 * c2 * s3 - s1 * s2 * c3;\r\n\t\t\t\tthis.w = c1 * c2 * c3 + s1 * s2 * s3;\r\n\t\t\t\tbreak;\r\n\r\n\t\t\tcase RotationOrder.YZX:\r\n\t\t\t\tthis.x = s1 * c2 * c3 + c1 * s2 * s3;\r\n\t\t\t\tthis.y = c1 * s2 * c3 + s1 * c2 * s3;\r\n\t\t\t\tthis.z = c1 * c2 * s3 - s1 * s2 * c3;\r\n\t\t\t\tthis.w = c1 * c2 * c3 - s1 * s2 * s3;\r\n\t\t\t\tbreak;\r\n\r\n\t\t\tcase RotationOrder.XZY:\r\n\t\t\t\tthis.x = s1 * c2 * c3 - c1 * s2 * s3;\r\n\t\t\t\tthis.y = c1 * s2 * c3 - s1 * c2 * s3;\r\n\t\t\t\tthis.z = c1 * c2 * s3 + s1 * s2 * c3;\r\n\t\t\t\tthis.w = c1 * c2 * c3 + s1 * s2 * s3;\r\n\t\t\t\tbreak;\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the components of this quaternion based on a given axis angle.\r\n\t *\r\n\t * For more information see:\r\n\t *  http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm\r\n\t *\r\n\t * @param {Vector3} axis - The axis. Assumed to be normalized.\r\n\t * @param {Number} angle - The angle in radians.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tsetFromAxisAngle(axis, angle) {\r\n\r\n\t\tconst halfAngle = angle / 2.0;\r\n\t\tconst s = Math.sin(halfAngle);\r\n\r\n\t\tthis.x = axis.x * s;\r\n\t\tthis.y = axis.y * s;\r\n\t\tthis.z = axis.z * s;\r\n\t\tthis.w = Math.cos(halfAngle);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the components of this quaternion based on a given rotation matrix.\r\n\t *\r\n\t * For more information see:\r\n\t *  http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm\r\n\t *\r\n\t * @param {Matrix4} m - The rotation matrix. The upper 3x3 is assumed to be a pure rotation matrix (i.e. unscaled).\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tsetFromRotationMatrix(m) {\r\n\r\n\t\tconst te = m.elements;\r\n\r\n\t\tconst m00 = te[0], m01 = te[4], m02 = te[8];\r\n\t\tconst m10 = te[1], m11 = te[5], m12 = te[9];\r\n\t\tconst m20 = te[2], m21 = te[6], m22 = te[10];\r\n\r\n\t\tconst trace = m00 + m11 + m22;\r\n\r\n\t\tlet s;\r\n\r\n\t\tif(trace > 0) {\r\n\r\n\t\t\ts = 0.5 / Math.sqrt(trace + 1.0);\r\n\r\n\t\t\tthis.w = 0.25 / s;\r\n\t\t\tthis.x = (m21 - m12) * s;\r\n\t\t\tthis.y = (m02 - m20) * s;\r\n\t\t\tthis.z = (m10 - m01) * s;\r\n\r\n\t\t} else if(m00 > m11 && m00 > m22) {\r\n\r\n\t\t\ts = 2.0 * Math.sqrt(1.0 + m00 - m11 - m22);\r\n\r\n\t\t\tthis.w = (m21 - m12) / s;\r\n\t\t\tthis.x = 0.25 * s;\r\n\t\t\tthis.y = (m01 + m10) / s;\r\n\t\t\tthis.z = (m02 + m20) / s;\r\n\r\n\t\t} else if(m11 > m22) {\r\n\r\n\t\t\ts = 2.0 * Math.sqrt(1.0 + m11 - m00 - m22);\r\n\r\n\t\t\tthis.w = (m02 - m20) / s;\r\n\t\t\tthis.x = (m01 + m10) / s;\r\n\t\t\tthis.y = 0.25 * s;\r\n\t\t\tthis.z = (m12 + m21) / s;\r\n\r\n\t\t} else {\r\n\r\n\t\t\ts = 2.0 * Math.sqrt(1.0 + m22 - m00 - m11);\r\n\r\n\t\t\tthis.w = (m10 - m01) / s;\r\n\t\t\tthis.x = (m02 + m20) / s;\r\n\t\t\tthis.y = (m12 + m21) / s;\r\n\t\t\tthis.z = 0.25 * s;\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the components of this quaternion based on unit vectors.\r\n\t *\r\n\t * @param {Vector3} vFrom - A unit vector. Assumed to be normalized.\r\n\t * @param {Vector3} vTo - A unit vector. Assumed to be normalized.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tsetFromUnitVectors(vFrom, vTo) {\r\n\r\n\t\tlet r = vFrom.dot(vTo) + 1;\r\n\r\n\t\tif(r < 1e-6) {\r\n\r\n\t\t\tr = 0;\r\n\r\n\t\t\tif(Math.abs(vFrom.x) > Math.abs(vFrom.z)) {\r\n\r\n\t\t\t\tv.set(-vFrom.y, vFrom.x, 0);\r\n\r\n\t\t\t} else {\r\n\r\n\t\t\t\tv.set(0, -vFrom.z, vFrom.y);\r\n\r\n\t\t\t}\r\n\r\n\t\t} else {\r\n\r\n\t\t\tv.crossVectors(vFrom, vTo);\r\n\r\n\t\t}\r\n\r\n\t\tthis.x = v.x;\r\n\t\tthis.y = v.y;\r\n\t\tthis.z = v.z;\r\n\t\tthis.w = r;\r\n\r\n\t\treturn this.normalize();\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the angle to another quaternion.\r\n\t *\r\n\t * @param {Quaternion} q - A quaternion.\r\n\t * @return {Number} The angle in radians.\r\n\t */\r\n\r\n\tangleTo(q) {\r\n\r\n\t\treturn 2.0 * Math.acos(Math.abs(Math.min(Math.max(this.dot(q), -1.0), 1.0)));\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Rotates this quaternion towards the given one by a given step size.\r\n\t *\r\n\t * @param {Quaternion} q - The target quaternion.\r\n\t * @param {Number} step - The step size.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\trotateTowards(q, step) {\r\n\r\n\t\tconst angle = this.angleTo(q);\r\n\r\n\t\tif(angle !== 0.0) {\r\n\r\n\t\t\tthis.slerp(q, Math.min(1.0, step / angle));\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Inverts this quaternion. The quaternion is assumed to have unit length.\r\n\t *\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tinvert() {\r\n\r\n\t\treturn this.conjugate();\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Conjugates this quaternion.\r\n\t *\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tconjugate() {\r\n\r\n\t\tthis.x *= -1;\r\n\t\tthis.y *= -1;\r\n\t\tthis.z *= -1;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the squared length of this quaternion.\r\n\t *\r\n\t * @return {Number} The squared length.\r\n\t */\r\n\r\n\tlengthSquared() {\r\n\r\n\t\treturn this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the length of this quaternion.\r\n\t *\r\n\t * @return {Number} The length.\r\n\t */\r\n\r\n\tlength() {\r\n\r\n\t\treturn Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Normalizes this quaternion.\r\n\t *\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tnormalize() {\r\n\r\n\t\tconst l = this.length();\r\n\r\n\t\tlet invLength;\r\n\r\n\t\tif(l === 0) {\r\n\r\n\t\t\tthis.x = 0;\r\n\t\t\tthis.y = 0;\r\n\t\t\tthis.z = 0;\r\n\t\t\tthis.w = 1;\r\n\r\n\t\t} else {\r\n\r\n\t\t\tinvLength = 1.0 / l;\r\n\r\n\t\t\tthis.x = this.x * invLength;\r\n\t\t\tthis.y = this.y * invLength;\r\n\t\t\tthis.z = this.z * invLength;\r\n\t\t\tthis.w = this.w * invLength;\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the dot product with a given vector.\r\n\t *\r\n\t * @param {Vector4} v - A vector.\r\n\t * @return {Number} The dot product.\r\n\t */\r\n\r\n\tdot(v) {\r\n\r\n\t\treturn this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies the given quaternions and stores the result in this quaternion.\r\n\t *\r\n\t * For more details see:\r\n\t *  http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm\r\n\t *\r\n\t * @param {Quaternion} a - A quaternion.\r\n\t * @param {Quaternion} b - Another quaternion.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tmultiplyQuaternions(a, b) {\r\n\r\n\t\tconst qax = a.x, qay = a.y, qaz = a.z, qaw = a.w;\r\n\t\tconst qbx = b.x, qby = b.y, qbz = b.z, qbw = b.w;\r\n\r\n\t\tthis.x = qax * qbw + qaw * qbx + qay * qbz - qaz * qby;\r\n\t\tthis.y = qay * qbw + qaw * qby + qaz * qbx - qax * qbz;\r\n\t\tthis.z = qaz * qbw + qaw * qbz + qax * qby - qay * qbx;\r\n\t\tthis.w = qaw * qbw - qax * qbx - qay * qby - qaz * qbz;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies this quaternion with the given one and stores the result in\r\n\t * this quaternion.\r\n\t *\r\n\t * @param {Quaternion} q - A quaternion.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tmultiply(q) {\r\n\r\n\t\treturn this.multiplyQuaternions(this, q);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies the given quaternion with this one and stores the result in\r\n\t * this quaternion.\r\n\t *\r\n\t * @param {Quaternion} q - A quaternion.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tpremultiply(q) {\r\n\r\n\t\treturn this.multiplyQuaternions(q, this);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Performs a spherical linear interpolation towards the given quaternion.\r\n\t *\r\n\t * For more details see:\r\n\t *  http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/\r\n\t *\r\n\t * @param {Quaternion} q - A quaternion.\r\n\t * @param {Number} t - The slerp factor.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tslerp(q, t) {\r\n\r\n\t\tconst x = this.x, y = this.y, z = this.z, w = this.w;\r\n\r\n\t\tlet cosHalfTheta, sinHalfThetaSquared, sinHalfTheta, halfTheta;\r\n\t\tlet s, ratioA, ratioB;\r\n\r\n\t\tif(t === 1) {\r\n\r\n\t\t\tthis.copy(q);\r\n\r\n\t\t} else if(t > 0) {\r\n\r\n\t\t\tcosHalfTheta = w * q.w + x * q.x + y * q.y + z * q.z;\r\n\r\n\t\t\tif(cosHalfTheta < 0.0) {\r\n\r\n\t\t\t\tthis.w = -q.w;\r\n\t\t\t\tthis.x = -q.x;\r\n\t\t\t\tthis.y = -q.y;\r\n\t\t\t\tthis.z = -q.z;\r\n\r\n\t\t\t\tcosHalfTheta = -cosHalfTheta;\r\n\r\n\t\t\t} else {\r\n\r\n\t\t\t\tthis.copy(q);\r\n\r\n\t\t\t}\r\n\r\n\t\t\tif(cosHalfTheta >= 1.0) {\r\n\r\n\t\t\t\tthis.w = w;\r\n\t\t\t\tthis.x = x;\r\n\t\t\t\tthis.y = y;\r\n\t\t\t\tthis.z = z;\r\n\r\n\t\t\t} else {\r\n\r\n\t\t\t\tsinHalfThetaSquared = 1.0 - cosHalfTheta * cosHalfTheta;\r\n\t\t\t\ts = 1.0 - t;\r\n\r\n\t\t\t\tif(sinHalfThetaSquared <= Number.EPSILON) {\r\n\r\n\t\t\t\t\tthis.w = s * w + t * this.w;\r\n\t\t\t\t\tthis.x = s * x + t * this.x;\r\n\t\t\t\t\tthis.y = s * y + t * this.y;\r\n\t\t\t\t\tthis.z = s * z + t * this.z;\r\n\r\n\t\t\t\t\tthis.normalize();\r\n\r\n\t\t\t\t} else {\r\n\r\n\t\t\t\t\tsinHalfTheta = Math.sqrt(sinHalfThetaSquared);\r\n\t\t\t\t\thalfTheta = Math.atan2(sinHalfTheta, cosHalfTheta);\r\n\t\t\t\t\tratioA = Math.sin(s * halfTheta) / sinHalfTheta;\r\n\t\t\t\t\tratioB = Math.sin(t * halfTheta) / sinHalfTheta;\r\n\r\n\t\t\t\t\tthis.w = (w * ratioA + this.w * ratioB);\r\n\t\t\t\t\tthis.x = (x * ratioA + this.x * ratioB);\r\n\t\t\t\t\tthis.y = (y * ratioA + this.y * ratioB);\r\n\t\t\t\t\tthis.z = (z * ratioA + this.z * ratioB);\r\n\r\n\t\t\t\t}\r\n\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if this quaternions equals the given one.\r\n\t *\r\n\t * @param {Quaternion} q - A quaternion.\r\n\t * @return {Boolean} Whether the quaternions are equal.\r\n\t */\r\n\r\n\tequals(q) {\r\n\r\n\t\treturn (q.x === this.x) && (q.y === this.y) && (q.z === this.z) && (q.w === this.w);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Performs a spherical linear interpolation.\r\n\t *\r\n\t * @param {Quaternion} qa - The base quaternion.\r\n\t * @param {Quaternion} qb - The target quaternion.\r\n\t * @param {Quaternion} qr - A quaternion to store the result in.\r\n\t * @param {Number} t - The slerp factor.\r\n\t * @return {Quaternion} The resulting quaternion.\r\n\t */\r\n\r\n\tstatic slerp(qa, qb, qr, t) {\r\n\r\n\t\treturn qr.copy(qa).slerp(qb, t);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Performs an array-based spherical linear interpolation.\r\n\t *\r\n\t * @param {Number[]} dst - An array to store the result in.\r\n\t * @param {Number} dstOffset - An offset into the destination array.\r\n\t * @param {Number[]} src0 - An array that contains the base quaternion values.\r\n\t * @param {Number} srcOffset0 - An offset into the base array.\r\n\t * @param {Number[]} src1 - An array that contains the target quaternion values.\r\n\t * @param {Number} srcOffset1 - An offset into the target array.\r\n\t * @param {Number} t - The slerp factor.\r\n\t */\r\n\r\n\tstatic slerpFlat(dst, dstOffset, src0, srcOffset0, src1, srcOffset1, t) {\r\n\r\n\t\tconst x1 = src1[srcOffset1];\r\n\t\tconst y1 = src1[srcOffset1 + 1];\r\n\t\tconst z1 = src1[srcOffset1 + 2];\r\n\t\tconst w1 = src1[srcOffset1 + 3];\r\n\r\n\t\tlet x0 = src0[srcOffset0];\r\n\t\tlet y0 = src0[srcOffset0 + 1];\r\n\t\tlet z0 = src0[srcOffset0 + 2];\r\n\t\tlet w0 = src0[srcOffset0 + 3];\r\n\r\n\t\tlet s, f;\r\n\t\tlet sin, cos, sqrSin;\r\n\t\tlet dir, len, tDir;\r\n\r\n\t\tif(w0 !== w1 || x0 !== x1 || y0 !== y1 || z0 !== z1) {\r\n\r\n\t\t\ts = 1.0 - t;\r\n\t\t\tcos = x0 * x1 + y0 * y1 + z0 * z1 + w0 * w1;\r\n\r\n\t\t\tdir = (cos >= 0) ? 1 : -1;\r\n\t\t\tsqrSin = 1.0 - cos * cos;\r\n\r\n\t\t\t// Skip the Slerp for tiny steps to avoid numeric problems.\r\n\t\t\tif(sqrSin > Number.EPSILON) {\r\n\r\n\t\t\t\tsin = Math.sqrt(sqrSin);\r\n\t\t\t\tlen = Math.atan2(sin, cos * dir);\r\n\r\n\t\t\t\ts = Math.sin(s * len) / sin;\r\n\t\t\t\tt = Math.sin(t * len) / sin;\r\n\r\n\t\t\t}\r\n\r\n\t\t\ttDir = t * dir;\r\n\r\n\t\t\tx0 = x0 * s + x1 * tDir;\r\n\t\t\ty0 = y0 * s + y1 * tDir;\r\n\t\t\tz0 = z0 * s + z1 * tDir;\r\n\t\t\tw0 = w0 * s + w1 * tDir;\r\n\r\n\t\t\t// Normalize in case a lerp has just been performed.\r\n\t\t\tif(s === 1.0 - t) {\r\n\r\n\t\t\t\tf = 1.0 / Math.sqrt(x0 * x0 + y0 * y0 + z0 * z0 + w0 * w0);\r\n\r\n\t\t\t\tx0 *= f;\r\n\t\t\t\ty0 *= f;\r\n\t\t\t\tz0 *= f;\r\n\t\t\t\tw0 *= f;\r\n\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\tdst[dstOffset] = x0;\r\n\t\tdst[dstOffset + 1] = y0;\r\n\t\tdst[dstOffset + 2] = z0;\r\n\t\tdst[dstOffset + 3] = w0;\r\n\r\n\t}\r\n\r\n}\r\n",
+    "content": "import { RotationOrder } from \"./RotationOrder.js\";\r\n\r\n/**\r\n * A quaternion.\r\n */\r\n\r\nexport class Quaternion {\r\n\r\n\t/**\r\n\t * Constructs a new quaternion.\r\n\t *\r\n\t * @param {Number} [x=0] - The X component.\r\n\t * @param {Number} [y=0] - The Y component.\r\n\t * @param {Number} [z=0] - The Z component.\r\n\t * @param {Number} [w=0] - The W component.\r\n\t */\r\n\r\n\tconstructor(x = 0, y = 0, z = 0, w = 0) {\r\n\r\n\t\t/**\r\n\t\t * The X component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.x = x;\r\n\r\n\t\t/**\r\n\t\t * The Y component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.y = y;\r\n\r\n\t\t/**\r\n\t\t * The Z component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.z = z;\r\n\r\n\t\t/**\r\n\t\t * The W component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.w = w;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the components of this quaternion.\r\n\t *\r\n\t * @param {Number} x - The X component.\r\n\t * @param {Number} y - The Y component.\r\n\t * @param {Number} z - The Z component.\r\n\t * @param {Number} w - The W component.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tset(x, y, z, w) {\r\n\r\n\t\tthis.x = x;\r\n\t\tthis.y = y;\r\n\t\tthis.z = z;\r\n\t\tthis.w = w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the components of the given quaternion.\r\n\t *\r\n\t * @param {Quaternion} q - The quaternion.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tcopy(q) {\r\n\r\n\t\tthis.x = q.x;\r\n\t\tthis.y = q.y;\r\n\t\tthis.z = q.z;\r\n\t\tthis.w = q.w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this quaternion.\r\n\t *\r\n\t * @return {Quaternion} The cloned quaternion.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor(this.x, this.y, this.z, this.w);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies values from an array.\r\n\t *\r\n\t * @param {Number[]} array - An array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tfromArray(array, offset = 0) {\r\n\r\n\t\tthis.x = array[offset];\r\n\t\tthis.y = array[offset + 1];\r\n\t\tthis.z = array[offset + 2];\r\n\t\tthis.w = array[offset + 3];\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Stores this quaternion in an array.\r\n\t *\r\n\t * @param {Array} [array] - A target array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Number[]} The array.\r\n\t */\r\n\r\n\ttoArray(array = [], offset = 0) {\r\n\r\n\t\tarray[offset] = this.x;\r\n\t\tarray[offset + 1] = this.y;\r\n\t\tarray[offset + 2] = this.z;\r\n\t\tarray[offset + 3] = this.w;\r\n\r\n\t\treturn array;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the components of this quaternion based on the given Euler angles.\r\n\t *\r\n\t * For more details see: https://goo.gl/XRD1kr\r\n\t *\r\n\t * @param {Euler} euler - The euler angles.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tsetFromEuler(euler) {\r\n\r\n\t\tconst x = euler.x;\r\n\t\tconst y = euler.y;\r\n\t\tconst z = euler.z;\r\n\r\n\t\tconst cos = Math.cos;\r\n\t\tconst sin = Math.sin;\r\n\r\n\t\tconst c1 = cos(x / 2);\r\n\t\tconst c2 = cos(y / 2);\r\n\t\tconst c3 = cos(z / 2);\r\n\r\n\t\tconst s1 = sin(x / 2);\r\n\t\tconst s2 = sin(y / 2);\r\n\t\tconst s3 = sin(z / 2);\r\n\r\n\t\tswitch(euler.order) {\r\n\r\n\t\t\tcase RotationOrder.XYZ:\r\n\t\t\t\tthis.x = s1 * c2 * c3 + c1 * s2 * s3;\r\n\t\t\t\tthis.y = c1 * s2 * c3 - s1 * c2 * s3;\r\n\t\t\t\tthis.z = c1 * c2 * s3 + s1 * s2 * c3;\r\n\t\t\t\tthis.w = c1 * c2 * c3 - s1 * s2 * s3;\r\n\t\t\t\tbreak;\r\n\r\n\t\t\tcase RotationOrder.YXZ:\r\n\t\t\t\tthis.x = s1 * c2 * c3 + c1 * s2 * s3;\r\n\t\t\t\tthis.y = c1 * s2 * c3 - s1 * c2 * s3;\r\n\t\t\t\tthis.z = c1 * c2 * s3 - s1 * s2 * c3;\r\n\t\t\t\tthis.w = c1 * c2 * c3 + s1 * s2 * s3;\r\n\t\t\t\tbreak;\r\n\r\n\t\t\tcase RotationOrder.ZXY:\r\n\t\t\t\tthis.x = s1 * c2 * c3 - c1 * s2 * s3;\r\n\t\t\t\tthis.y = c1 * s2 * c3 + s1 * c2 * s3;\r\n\t\t\t\tthis.z = c1 * c2 * s3 + s1 * s2 * c3;\r\n\t\t\t\tthis.w = c1 * c2 * c3 - s1 * s2 * s3;\r\n\t\t\t\tbreak;\r\n\r\n\t\t\tcase RotationOrder.ZYX:\r\n\t\t\t\tthis.x = s1 * c2 * c3 - c1 * s2 * s3;\r\n\t\t\t\tthis.y = c1 * s2 * c3 + s1 * c2 * s3;\r\n\t\t\t\tthis.z = c1 * c2 * s3 - s1 * s2 * c3;\r\n\t\t\t\tthis.w = c1 * c2 * c3 + s1 * s2 * s3;\r\n\t\t\t\tbreak;\r\n\r\n\t\t\tcase RotationOrder.YZX:\r\n\t\t\t\tthis.x = s1 * c2 * c3 + c1 * s2 * s3;\r\n\t\t\t\tthis.y = c1 * s2 * c3 + s1 * c2 * s3;\r\n\t\t\t\tthis.z = c1 * c2 * s3 - s1 * s2 * c3;\r\n\t\t\t\tthis.w = c1 * c2 * c3 - s1 * s2 * s3;\r\n\t\t\t\tbreak;\r\n\r\n\t\t\tcase RotationOrder.XZY:\r\n\t\t\t\tthis.x = s1 * c2 * c3 - c1 * s2 * s3;\r\n\t\t\t\tthis.y = c1 * s2 * c3 - s1 * c2 * s3;\r\n\t\t\t\tthis.z = c1 * c2 * s3 + s1 * s2 * c3;\r\n\t\t\t\tthis.w = c1 * c2 * c3 + s1 * s2 * s3;\r\n\t\t\t\tbreak;\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the components of this quaternion based on a given axis angle.\r\n\t *\r\n\t * For more information see:\r\n\t *  http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm\r\n\t *\r\n\t * @param {Vector3} axis - The axis. Assumed to be normalized.\r\n\t * @param {Number} angle - The angle in radians.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tsetFromAxisAngle(axis, angle) {\r\n\r\n\t\tconst halfAngle = angle / 2.0;\r\n\t\tconst s = Math.sin(halfAngle);\r\n\r\n\t\tthis.x = axis.x * s;\r\n\t\tthis.y = axis.y * s;\r\n\t\tthis.z = axis.z * s;\r\n\t\tthis.w = Math.cos(halfAngle);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the components of this quaternion based on a given rotation matrix.\r\n\t *\r\n\t * For more information see:\r\n\t *  http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm\r\n\t *\r\n\t * @param {Matrix4} m - The rotation matrix. The upper 3x3 is assumed to be a pure rotation matrix (i.e. unscaled).\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tsetFromRotationMatrix(m) {\r\n\r\n\t\tconst te = m.elements;\r\n\r\n\t\tconst m00 = te[0], m01 = te[4], m02 = te[8];\r\n\t\tconst m10 = te[1], m11 = te[5], m12 = te[9];\r\n\t\tconst m20 = te[2], m21 = te[6], m22 = te[10];\r\n\r\n\t\tconst trace = m00 + m11 + m22;\r\n\r\n\t\tlet s;\r\n\r\n\t\tif(trace > 0) {\r\n\r\n\t\t\ts = 0.5 / Math.sqrt(trace + 1.0);\r\n\r\n\t\t\tthis.w = 0.25 / s;\r\n\t\t\tthis.x = (m21 - m12) * s;\r\n\t\t\tthis.y = (m02 - m20) * s;\r\n\t\t\tthis.z = (m10 - m01) * s;\r\n\r\n\t\t} else if(m00 > m11 && m00 > m22) {\r\n\r\n\t\t\ts = 2.0 * Math.sqrt(1.0 + m00 - m11 - m22);\r\n\r\n\t\t\tthis.w = (m21 - m12) / s;\r\n\t\t\tthis.x = 0.25 * s;\r\n\t\t\tthis.y = (m01 + m10) / s;\r\n\t\t\tthis.z = (m02 + m20) / s;\r\n\r\n\t\t} else if(m11 > m22) {\r\n\r\n\t\t\ts = 2.0 * Math.sqrt(1.0 + m11 - m00 - m22);\r\n\r\n\t\t\tthis.w = (m02 - m20) / s;\r\n\t\t\tthis.x = (m01 + m10) / s;\r\n\t\t\tthis.y = 0.25 * s;\r\n\t\t\tthis.z = (m12 + m21) / s;\r\n\r\n\t\t} else {\r\n\r\n\t\t\ts = 2.0 * Math.sqrt(1.0 + m22 - m00 - m11);\r\n\r\n\t\t\tthis.w = (m10 - m01) / s;\r\n\t\t\tthis.x = (m02 + m20) / s;\r\n\t\t\tthis.y = (m12 + m21) / s;\r\n\t\t\tthis.z = 0.25 * s;\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the components of this quaternion based on unit vectors.\r\n\t *\r\n\t * @param {Vector3} vFrom - A unit vector. Assumed to be normalized.\r\n\t * @param {Vector3} vTo - A unit vector. Assumed to be normalized.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tsetFromUnitVectors(vFrom, vTo) {\r\n\r\n\t\tlet r = vFrom.dot(vTo) + 1;\r\n\r\n\t\tif(r < 1e-6) {\r\n\r\n\t\t\tr = 0;\r\n\r\n\t\t\tif(Math.abs(vFrom.x) > Math.abs(vFrom.z)) {\r\n\r\n\t\t\t\tthis.x = -vFrom.y;\r\n\t\t\t\tthis.y = vFrom.x;\r\n\t\t\t\tthis.z = 0;\r\n\t\t\t\tthis.w = r;\r\n\r\n\t\t\t} else {\r\n\r\n\t\t\t\tthis.x = 0;\r\n\t\t\t\tthis.y = -vFrom.z;\r\n\t\t\t\tthis.z = vFrom.y;\r\n\t\t\t\tthis.w = r;\r\n\r\n\t\t\t}\r\n\r\n\t\t} else {\r\n\r\n\t\t\t// crossVectors(vFrom, vTo)\r\n\t\t\tthis.x = vFrom.y * vTo.z - vFrom.z * vTo.y;\r\n\t\t\tthis.y = vFrom.z * vTo.x - vFrom.x * vTo.z;\r\n\t\t\tthis.z = vFrom.x * vTo.y - vFrom.y * vTo.x;\r\n\t\t\tthis.w = r;\r\n\r\n\t\t}\r\n\r\n\t\treturn this.normalize();\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the angle to another quaternion.\r\n\t *\r\n\t * @param {Quaternion} q - A quaternion.\r\n\t * @return {Number} The angle in radians.\r\n\t */\r\n\r\n\tangleTo(q) {\r\n\r\n\t\treturn 2.0 * Math.acos(Math.abs(Math.min(Math.max(this.dot(q), -1.0), 1.0)));\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Rotates this quaternion towards the given one by a given step size.\r\n\t *\r\n\t * @param {Quaternion} q - The target quaternion.\r\n\t * @param {Number} step - The step size.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\trotateTowards(q, step) {\r\n\r\n\t\tconst angle = this.angleTo(q);\r\n\r\n\t\tif(angle !== 0.0) {\r\n\r\n\t\t\tthis.slerp(q, Math.min(1.0, step / angle));\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Inverts this quaternion. The quaternion is assumed to have unit length.\r\n\t *\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tinvert() {\r\n\r\n\t\treturn this.conjugate();\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Conjugates this quaternion.\r\n\t *\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tconjugate() {\r\n\r\n\t\tthis.x *= -1;\r\n\t\tthis.y *= -1;\r\n\t\tthis.z *= -1;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the squared length of this quaternion.\r\n\t *\r\n\t * @return {Number} The squared length.\r\n\t */\r\n\r\n\tlengthSquared() {\r\n\r\n\t\treturn this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the length of this quaternion.\r\n\t *\r\n\t * @return {Number} The length.\r\n\t */\r\n\r\n\tlength() {\r\n\r\n\t\treturn Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Normalizes this quaternion.\r\n\t *\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tnormalize() {\r\n\r\n\t\tconst l = this.length();\r\n\r\n\t\tlet invLength;\r\n\r\n\t\tif(l === 0) {\r\n\r\n\t\t\tthis.x = 0;\r\n\t\t\tthis.y = 0;\r\n\t\t\tthis.z = 0;\r\n\t\t\tthis.w = 1;\r\n\r\n\t\t} else {\r\n\r\n\t\t\tinvLength = 1.0 / l;\r\n\r\n\t\t\tthis.x = this.x * invLength;\r\n\t\t\tthis.y = this.y * invLength;\r\n\t\t\tthis.z = this.z * invLength;\r\n\t\t\tthis.w = this.w * invLength;\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the dot product with a given vector.\r\n\t *\r\n\t * @param {Vector4} v - A vector.\r\n\t * @return {Number} The dot product.\r\n\t */\r\n\r\n\tdot(v) {\r\n\r\n\t\treturn this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies the given quaternions and stores the result in this quaternion.\r\n\t *\r\n\t * For more details see:\r\n\t *  http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm\r\n\t *\r\n\t * @param {Quaternion} a - A quaternion.\r\n\t * @param {Quaternion} b - Another quaternion.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tmultiplyQuaternions(a, b) {\r\n\r\n\t\tconst qax = a.x, qay = a.y, qaz = a.z, qaw = a.w;\r\n\t\tconst qbx = b.x, qby = b.y, qbz = b.z, qbw = b.w;\r\n\r\n\t\tthis.x = qax * qbw + qaw * qbx + qay * qbz - qaz * qby;\r\n\t\tthis.y = qay * qbw + qaw * qby + qaz * qbx - qax * qbz;\r\n\t\tthis.z = qaz * qbw + qaw * qbz + qax * qby - qay * qbx;\r\n\t\tthis.w = qaw * qbw - qax * qbx - qay * qby - qaz * qbz;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies this quaternion with the given one and stores the result in\r\n\t * this quaternion.\r\n\t *\r\n\t * @param {Quaternion} q - A quaternion.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tmultiply(q) {\r\n\r\n\t\treturn this.multiplyQuaternions(this, q);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies the given quaternion with this one and stores the result in\r\n\t * this quaternion.\r\n\t *\r\n\t * @param {Quaternion} q - A quaternion.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tpremultiply(q) {\r\n\r\n\t\treturn this.multiplyQuaternions(q, this);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Performs a spherical linear interpolation towards the given quaternion.\r\n\t *\r\n\t * For more details see:\r\n\t *  http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/\r\n\t *\r\n\t * @param {Quaternion} q - A quaternion.\r\n\t * @param {Number} t - The slerp factor.\r\n\t * @return {Quaternion} This quaternion.\r\n\t */\r\n\r\n\tslerp(q, t) {\r\n\r\n\t\tconst x = this.x, y = this.y, z = this.z, w = this.w;\r\n\r\n\t\tlet cosHalfTheta, sinHalfThetaSquared, sinHalfTheta, halfTheta;\r\n\t\tlet s, ratioA, ratioB;\r\n\r\n\t\tif(t === 1) {\r\n\r\n\t\t\tthis.copy(q);\r\n\r\n\t\t} else if(t > 0) {\r\n\r\n\t\t\tcosHalfTheta = w * q.w + x * q.x + y * q.y + z * q.z;\r\n\r\n\t\t\tif(cosHalfTheta < 0.0) {\r\n\r\n\t\t\t\tthis.w = -q.w;\r\n\t\t\t\tthis.x = -q.x;\r\n\t\t\t\tthis.y = -q.y;\r\n\t\t\t\tthis.z = -q.z;\r\n\r\n\t\t\t\tcosHalfTheta = -cosHalfTheta;\r\n\r\n\t\t\t} else {\r\n\r\n\t\t\t\tthis.copy(q);\r\n\r\n\t\t\t}\r\n\r\n\t\t\tif(cosHalfTheta >= 1.0) {\r\n\r\n\t\t\t\tthis.w = w;\r\n\t\t\t\tthis.x = x;\r\n\t\t\t\tthis.y = y;\r\n\t\t\t\tthis.z = z;\r\n\r\n\t\t\t} else {\r\n\r\n\t\t\t\tsinHalfThetaSquared = 1.0 - cosHalfTheta * cosHalfTheta;\r\n\t\t\t\ts = 1.0 - t;\r\n\r\n\t\t\t\tif(sinHalfThetaSquared <= Number.EPSILON) {\r\n\r\n\t\t\t\t\tthis.w = s * w + t * this.w;\r\n\t\t\t\t\tthis.x = s * x + t * this.x;\r\n\t\t\t\t\tthis.y = s * y + t * this.y;\r\n\t\t\t\t\tthis.z = s * z + t * this.z;\r\n\r\n\t\t\t\t\tthis.normalize();\r\n\r\n\t\t\t\t} else {\r\n\r\n\t\t\t\t\tsinHalfTheta = Math.sqrt(sinHalfThetaSquared);\r\n\t\t\t\t\thalfTheta = Math.atan2(sinHalfTheta, cosHalfTheta);\r\n\t\t\t\t\tratioA = Math.sin(s * halfTheta) / sinHalfTheta;\r\n\t\t\t\t\tratioB = Math.sin(t * halfTheta) / sinHalfTheta;\r\n\r\n\t\t\t\t\tthis.w = (w * ratioA + this.w * ratioB);\r\n\t\t\t\t\tthis.x = (x * ratioA + this.x * ratioB);\r\n\t\t\t\t\tthis.y = (y * ratioA + this.y * ratioB);\r\n\t\t\t\t\tthis.z = (z * ratioA + this.z * ratioB);\r\n\r\n\t\t\t\t}\r\n\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if this quaternions equals the given one.\r\n\t *\r\n\t * @param {Quaternion} q - A quaternion.\r\n\t * @return {Boolean} Whether the quaternions are equal.\r\n\t */\r\n\r\n\tequals(q) {\r\n\r\n\t\treturn (q.x === this.x) && (q.y === this.y) && (q.z === this.z) && (q.w === this.w);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Performs a spherical linear interpolation.\r\n\t *\r\n\t * @param {Quaternion} qa - The base quaternion.\r\n\t * @param {Quaternion} qb - The target quaternion.\r\n\t * @param {Quaternion} qr - A quaternion to store the result in.\r\n\t * @param {Number} t - The slerp factor.\r\n\t * @return {Quaternion} The resulting quaternion.\r\n\t */\r\n\r\n\tstatic slerp(qa, qb, qr, t) {\r\n\r\n\t\treturn qr.copy(qa).slerp(qb, t);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Performs an array-based spherical linear interpolation.\r\n\t *\r\n\t * @param {Number[]} dst - An array to store the result in.\r\n\t * @param {Number} dstOffset - An offset into the destination array.\r\n\t * @param {Number[]} src0 - An array that contains the base quaternion values.\r\n\t * @param {Number} srcOffset0 - An offset into the base array.\r\n\t * @param {Number[]} src1 - An array that contains the target quaternion values.\r\n\t * @param {Number} srcOffset1 - An offset into the target array.\r\n\t * @param {Number} t - The slerp factor.\r\n\t */\r\n\r\n\tstatic slerpFlat(dst, dstOffset, src0, srcOffset0, src1, srcOffset1, t) {\r\n\r\n\t\tconst x1 = src1[srcOffset1];\r\n\t\tconst y1 = src1[srcOffset1 + 1];\r\n\t\tconst z1 = src1[srcOffset1 + 2];\r\n\t\tconst w1 = src1[srcOffset1 + 3];\r\n\r\n\t\tlet x0 = src0[srcOffset0];\r\n\t\tlet y0 = src0[srcOffset0 + 1];\r\n\t\tlet z0 = src0[srcOffset0 + 2];\r\n\t\tlet w0 = src0[srcOffset0 + 3];\r\n\r\n\t\tlet s, f;\r\n\t\tlet sin, cos, sqrSin;\r\n\t\tlet dir, len, tDir;\r\n\r\n\t\tif(w0 !== w1 || x0 !== x1 || y0 !== y1 || z0 !== z1) {\r\n\r\n\t\t\ts = 1.0 - t;\r\n\t\t\tcos = x0 * x1 + y0 * y1 + z0 * z1 + w0 * w1;\r\n\r\n\t\t\tdir = (cos >= 0) ? 1 : -1;\r\n\t\t\tsqrSin = 1.0 - cos * cos;\r\n\r\n\t\t\t// Skip the Slerp for tiny steps to avoid numeric problems.\r\n\t\t\tif(sqrSin > Number.EPSILON) {\r\n\r\n\t\t\t\tsin = Math.sqrt(sqrSin);\r\n\t\t\t\tlen = Math.atan2(sin, cos * dir);\r\n\r\n\t\t\t\ts = Math.sin(s * len) / sin;\r\n\t\t\t\tt = Math.sin(t * len) / sin;\r\n\r\n\t\t\t}\r\n\r\n\t\t\ttDir = t * dir;\r\n\r\n\t\t\tx0 = x0 * s + x1 * tDir;\r\n\t\t\ty0 = y0 * s + y1 * tDir;\r\n\t\t\tz0 = z0 * s + z1 * tDir;\r\n\t\t\tw0 = w0 * s + w1 * tDir;\r\n\r\n\t\t\t// Normalize in case a lerp has just been performed.\r\n\t\t\tif(s === 1.0 - t) {\r\n\r\n\t\t\t\tf = 1.0 / Math.sqrt(x0 * x0 + y0 * y0 + z0 * z0 + w0 * w0);\r\n\r\n\t\t\t\tx0 *= f;\r\n\t\t\t\ty0 *= f;\r\n\t\t\t\tz0 *= f;\r\n\t\t\t\tw0 *= f;\r\n\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\tdst[dstOffset] = x0;\r\n\t\tdst[dstOffset + 1] = y0;\r\n\t\tdst[dstOffset + 2] = z0;\r\n\t\tdst[dstOffset + 3] = w0;\r\n\r\n\t}\r\n\r\n}\r\n",
     "static": true,
     "longname": "D:/Sourcecode/JavaScript/math-ds/src/Quaternion.js",
     "access": "public",
@@ -7594,29 +7594,6 @@
   },
   {
     "__docId__": 320,
-    "kind": "variable",
-    "name": "v",
-    "memberof": "src/Quaternion.js",
-    "static": true,
-    "longname": "src/Quaternion.js~v",
-    "access": "private",
-    "export": false,
-    "importPath": "math-ds/src/Quaternion.js",
-    "importStyle": null,
-    "description": "A vector.",
-    "lineNumber": 11,
-    "type": {
-      "nullable": null,
-      "types": [
-        "Vector3"
-      ],
-      "spread": false,
-      "description": null
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 321,
     "kind": "class",
     "name": "Quaternion",
     "memberof": "src/Quaternion.js",
@@ -7627,11 +7604,11 @@
     "importPath": "math-ds/src/Quaternion.js",
     "importStyle": "{Quaternion}",
     "description": "A quaternion.",
-    "lineNumber": 17,
+    "lineNumber": 7,
     "interface": false
   },
   {
-    "__docId__": 322,
+    "__docId__": 321,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -7641,7 +7618,7 @@
     "longname": "src/Quaternion.js~Quaternion#constructor",
     "access": "public",
     "description": "Constructs a new quaternion.",
-    "lineNumber": 28,
+    "lineNumber": 18,
     "params": [
       {
         "nullable": null,
@@ -7694,7 +7671,7 @@
     ]
   },
   {
-    "__docId__": 323,
+    "__docId__": 322,
     "kind": "member",
     "name": "x",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -7702,7 +7679,26 @@
     "longname": "src/Quaternion.js~Quaternion#x",
     "access": "public",
     "description": "The X component.",
-    "lineNumber": 36,
+    "lineNumber": 26,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 323,
+    "kind": "member",
+    "name": "y",
+    "memberof": "src/Quaternion.js~Quaternion",
+    "static": false,
+    "longname": "src/Quaternion.js~Quaternion#y",
+    "access": "public",
+    "description": "The Y component.",
+    "lineNumber": 34,
     "type": {
       "nullable": null,
       "types": [
@@ -7715,13 +7711,13 @@
   {
     "__docId__": 324,
     "kind": "member",
-    "name": "y",
+    "name": "z",
     "memberof": "src/Quaternion.js~Quaternion",
     "static": false,
-    "longname": "src/Quaternion.js~Quaternion#y",
+    "longname": "src/Quaternion.js~Quaternion#z",
     "access": "public",
-    "description": "The Y component.",
-    "lineNumber": 44,
+    "description": "The Z component.",
+    "lineNumber": 42,
     "type": {
       "nullable": null,
       "types": [
@@ -7734,13 +7730,13 @@
   {
     "__docId__": 325,
     "kind": "member",
-    "name": "z",
+    "name": "w",
     "memberof": "src/Quaternion.js~Quaternion",
     "static": false,
-    "longname": "src/Quaternion.js~Quaternion#z",
+    "longname": "src/Quaternion.js~Quaternion#w",
     "access": "public",
-    "description": "The Z component.",
-    "lineNumber": 52,
+    "description": "The W component.",
+    "lineNumber": 50,
     "type": {
       "nullable": null,
       "types": [
@@ -7752,25 +7748,6 @@
   },
   {
     "__docId__": 326,
-    "kind": "member",
-    "name": "w",
-    "memberof": "src/Quaternion.js~Quaternion",
-    "static": false,
-    "longname": "src/Quaternion.js~Quaternion#w",
-    "access": "public",
-    "description": "The W component.",
-    "lineNumber": 60,
-    "type": {
-      "nullable": null,
-      "types": [
-        "Number"
-      ],
-      "spread": false,
-      "description": null
-    }
-  },
-  {
-    "__docId__": 327,
     "kind": "method",
     "name": "set",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -7780,7 +7757,7 @@
     "longname": "src/Quaternion.js~Quaternion#set",
     "access": "public",
     "description": "Sets the components of this quaternion.",
-    "lineNumber": 74,
+    "lineNumber": 64,
     "params": [
       {
         "nullable": null,
@@ -7833,7 +7810,7 @@
     }
   },
   {
-    "__docId__": 332,
+    "__docId__": 331,
     "kind": "method",
     "name": "copy",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -7843,7 +7820,7 @@
     "longname": "src/Quaternion.js~Quaternion#copy",
     "access": "public",
     "description": "Copies the components of the given quaternion.",
-    "lineNumber": 92,
+    "lineNumber": 82,
     "params": [
       {
         "nullable": null,
@@ -7866,7 +7843,7 @@
     }
   },
   {
-    "__docId__": 337,
+    "__docId__": 336,
     "kind": "method",
     "name": "clone",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -7876,7 +7853,7 @@
     "longname": "src/Quaternion.js~Quaternion#clone",
     "access": "public",
     "description": "Clones this quaternion.",
-    "lineNumber": 109,
+    "lineNumber": 99,
     "return": {
       "nullable": null,
       "types": [
@@ -7888,7 +7865,7 @@
     "params": []
   },
   {
-    "__docId__": 338,
+    "__docId__": 337,
     "kind": "method",
     "name": "fromArray",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -7898,7 +7875,7 @@
     "longname": "src/Quaternion.js~Quaternion#fromArray",
     "access": "public",
     "description": "Copies values from an array.",
-    "lineNumber": 123,
+    "lineNumber": 113,
     "params": [
       {
         "nullable": null,
@@ -7931,7 +7908,7 @@
     }
   },
   {
-    "__docId__": 343,
+    "__docId__": 342,
     "kind": "method",
     "name": "toArray",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -7941,7 +7918,7 @@
     "longname": "src/Quaternion.js~Quaternion#toArray",
     "access": "public",
     "description": "Stores this quaternion in an array.",
-    "lineNumber": 142,
+    "lineNumber": 132,
     "params": [
       {
         "nullable": null,
@@ -7974,7 +7951,7 @@
     }
   },
   {
-    "__docId__": 344,
+    "__docId__": 343,
     "kind": "method",
     "name": "setFromEuler",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -7984,7 +7961,7 @@
     "longname": "src/Quaternion.js~Quaternion#setFromEuler",
     "access": "public",
     "description": "Sets the components of this quaternion based on the given Euler angles.\n\nFor more details see: https://goo.gl/XRD1kr",
-    "lineNumber": 162,
+    "lineNumber": 152,
     "params": [
       {
         "nullable": null,
@@ -8007,7 +7984,7 @@
     }
   },
   {
-    "__docId__": 369,
+    "__docId__": 368,
     "kind": "method",
     "name": "setFromAxisAngle",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8017,7 +7994,7 @@
     "longname": "src/Quaternion.js~Quaternion#setFromAxisAngle",
     "access": "public",
     "description": "Sets the components of this quaternion based on a given axis angle.\n\nFor more information see:\n http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm",
-    "lineNumber": 240,
+    "lineNumber": 230,
     "params": [
       {
         "nullable": null,
@@ -8050,7 +8027,7 @@
     }
   },
   {
-    "__docId__": 374,
+    "__docId__": 373,
     "kind": "method",
     "name": "setFromRotationMatrix",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8060,7 +8037,7 @@
     "longname": "src/Quaternion.js~Quaternion#setFromRotationMatrix",
     "access": "public",
     "description": "Sets the components of this quaternion based on a given rotation matrix.\n\nFor more information see:\n http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm",
-    "lineNumber": 264,
+    "lineNumber": 254,
     "params": [
       {
         "nullable": null,
@@ -8083,7 +8060,7 @@
     }
   },
   {
-    "__docId__": 391,
+    "__docId__": 390,
     "kind": "method",
     "name": "setFromUnitVectors",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8093,7 +8070,7 @@
     "longname": "src/Quaternion.js~Quaternion#setFromUnitVectors",
     "access": "public",
     "description": "Sets the components of this quaternion based on unit vectors.",
-    "lineNumber": 326,
+    "lineNumber": 316,
     "params": [
       {
         "nullable": null,
@@ -8126,7 +8103,7 @@
     }
   },
   {
-    "__docId__": 396,
+    "__docId__": 403,
     "kind": "method",
     "name": "angleTo",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8136,7 +8113,7 @@
     "longname": "src/Quaternion.js~Quaternion#angleTo",
     "access": "public",
     "description": "Calculates the angle to another quaternion.",
-    "lineNumber": 366,
+    "lineNumber": 361,
     "params": [
       {
         "nullable": null,
@@ -8159,7 +8136,7 @@
     }
   },
   {
-    "__docId__": 397,
+    "__docId__": 404,
     "kind": "method",
     "name": "rotateTowards",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8169,7 +8146,7 @@
     "longname": "src/Quaternion.js~Quaternion#rotateTowards",
     "access": "public",
     "description": "Rotates this quaternion towards the given one by a given step size.",
-    "lineNumber": 380,
+    "lineNumber": 375,
     "params": [
       {
         "nullable": null,
@@ -8202,7 +8179,7 @@
     }
   },
   {
-    "__docId__": 398,
+    "__docId__": 405,
     "kind": "method",
     "name": "invert",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8212,7 +8189,7 @@
     "longname": "src/Quaternion.js~Quaternion#invert",
     "access": "public",
     "description": "Inverts this quaternion. The quaternion is assumed to have unit length.",
-    "lineNumber": 400,
+    "lineNumber": 395,
     "return": {
       "nullable": null,
       "types": [
@@ -8224,7 +8201,7 @@
     "params": []
   },
   {
-    "__docId__": 399,
+    "__docId__": 406,
     "kind": "method",
     "name": "conjugate",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8234,7 +8211,7 @@
     "longname": "src/Quaternion.js~Quaternion#conjugate",
     "access": "public",
     "description": "Conjugates this quaternion.",
-    "lineNumber": 412,
+    "lineNumber": 407,
     "return": {
       "nullable": null,
       "types": [
@@ -8246,7 +8223,7 @@
     "params": []
   },
   {
-    "__docId__": 403,
+    "__docId__": 410,
     "kind": "method",
     "name": "lengthSquared",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8256,7 +8233,7 @@
     "longname": "src/Quaternion.js~Quaternion#lengthSquared",
     "access": "public",
     "description": "Calculates the squared length of this quaternion.",
-    "lineNumber": 428,
+    "lineNumber": 423,
     "return": {
       "nullable": null,
       "types": [
@@ -8268,7 +8245,7 @@
     "params": []
   },
   {
-    "__docId__": 404,
+    "__docId__": 411,
     "kind": "method",
     "name": "length",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8278,7 +8255,7 @@
     "longname": "src/Quaternion.js~Quaternion#length",
     "access": "public",
     "description": "Calculates the length of this quaternion.",
-    "lineNumber": 440,
+    "lineNumber": 435,
     "return": {
       "nullable": null,
       "types": [
@@ -8290,7 +8267,7 @@
     "params": []
   },
   {
-    "__docId__": 405,
+    "__docId__": 412,
     "kind": "method",
     "name": "normalize",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8300,7 +8277,7 @@
     "longname": "src/Quaternion.js~Quaternion#normalize",
     "access": "public",
     "description": "Normalizes this quaternion.",
-    "lineNumber": 452,
+    "lineNumber": 447,
     "return": {
       "nullable": null,
       "types": [
@@ -8312,7 +8289,7 @@
     "params": []
   },
   {
-    "__docId__": 414,
+    "__docId__": 421,
     "kind": "method",
     "name": "dot",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8322,7 +8299,7 @@
     "longname": "src/Quaternion.js~Quaternion#dot",
     "access": "public",
     "description": "Calculates the dot product with a given vector.",
-    "lineNumber": 487,
+    "lineNumber": 482,
     "params": [
       {
         "nullable": null,
@@ -8345,7 +8322,7 @@
     }
   },
   {
-    "__docId__": 415,
+    "__docId__": 422,
     "kind": "method",
     "name": "multiplyQuaternions",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8355,7 +8332,7 @@
     "longname": "src/Quaternion.js~Quaternion#multiplyQuaternions",
     "access": "public",
     "description": "Multiplies the given quaternions and stores the result in this quaternion.\n\nFor more details see:\n http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm",
-    "lineNumber": 504,
+    "lineNumber": 499,
     "params": [
       {
         "nullable": null,
@@ -8388,7 +8365,7 @@
     }
   },
   {
-    "__docId__": 420,
+    "__docId__": 427,
     "kind": "method",
     "name": "multiply",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8398,7 +8375,7 @@
     "longname": "src/Quaternion.js~Quaternion#multiply",
     "access": "public",
     "description": "Multiplies this quaternion with the given one and stores the result in\nthis quaternion.",
-    "lineNumber": 526,
+    "lineNumber": 521,
     "params": [
       {
         "nullable": null,
@@ -8421,7 +8398,7 @@
     }
   },
   {
-    "__docId__": 421,
+    "__docId__": 428,
     "kind": "method",
     "name": "premultiply",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8431,7 +8408,7 @@
     "longname": "src/Quaternion.js~Quaternion#premultiply",
     "access": "public",
     "description": "Multiplies the given quaternion with this one and stores the result in\nthis quaternion.",
-    "lineNumber": 540,
+    "lineNumber": 535,
     "params": [
       {
         "nullable": null,
@@ -8454,7 +8431,7 @@
     }
   },
   {
-    "__docId__": 422,
+    "__docId__": 429,
     "kind": "method",
     "name": "slerp",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8464,7 +8441,7 @@
     "longname": "src/Quaternion.js~Quaternion#slerp",
     "access": "public",
     "description": "Performs a spherical linear interpolation towards the given quaternion.\n\nFor more details see:\n http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/",
-    "lineNumber": 557,
+    "lineNumber": 552,
     "params": [
       {
         "nullable": null,
@@ -8497,7 +8474,7 @@
     }
   },
   {
-    "__docId__": 439,
+    "__docId__": 446,
     "kind": "method",
     "name": "equals",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8507,7 +8484,7 @@
     "longname": "src/Quaternion.js~Quaternion#equals",
     "access": "public",
     "description": "Checks if this quaternions equals the given one.",
-    "lineNumber": 637,
+    "lineNumber": 632,
     "params": [
       {
         "nullable": null,
@@ -8530,7 +8507,7 @@
     }
   },
   {
-    "__docId__": 440,
+    "__docId__": 447,
     "kind": "method",
     "name": "slerp",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8540,7 +8517,7 @@
     "longname": "src/Quaternion.js~Quaternion.slerp",
     "access": "public",
     "description": "Performs a spherical linear interpolation.",
-    "lineNumber": 653,
+    "lineNumber": 648,
     "params": [
       {
         "nullable": null,
@@ -8593,7 +8570,7 @@
     }
   },
   {
-    "__docId__": 441,
+    "__docId__": 448,
     "kind": "method",
     "name": "slerpFlat",
     "memberof": "src/Quaternion.js~Quaternion",
@@ -8603,7 +8580,7 @@
     "longname": "src/Quaternion.js~Quaternion.slerpFlat",
     "access": "public",
     "description": "Performs an array-based spherical linear interpolation.",
-    "lineNumber": 671,
+    "lineNumber": 666,
     "params": [
       {
         "nullable": null,
@@ -8679,7 +8656,7 @@
     "return": null
   },
   {
-    "__docId__": 442,
+    "__docId__": 449,
     "kind": "file",
     "name": "src/Ray.js",
     "content": "import { Vector3 } from \"./Vector3.js\";\r\n\r\n/**\r\n * A list of vectors.\r\n *\r\n * @type {Vector3[]}\r\n * @private\r\n */\r\n\r\nconst v = [\r\n\tnew Vector3(),\r\n\tnew Vector3(),\r\n\tnew Vector3(),\r\n\tnew Vector3()\r\n];\r\n\r\n/**\r\n * A ray.\r\n */\r\n\r\nexport class Ray {\r\n\r\n\t/**\r\n\t * Constructs a new ray.\r\n\t *\r\n\t * @param {Vector3} [origin] - The origin.\r\n\t * @param {Vector3} [direction] - The direction.\r\n\t */\r\n\r\n\tconstructor(origin = new Vector3(), direction = new Vector3()) {\r\n\r\n\t\t/**\r\n\t\t * The origin.\r\n\t\t *\r\n\t\t * @type {Vector3}\r\n\t\t */\r\n\r\n\t\tthis.origin = origin;\r\n\r\n\t\t/**\r\n\t\t * The direction.\r\n\t\t *\r\n\t\t * @type {Vector3}\r\n\t\t */\r\n\r\n\t\tthis.direction = direction;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the origin and the direction.\r\n\t *\r\n\t * @param {Vector3} origin - The origin.\r\n\t * @param {Vector3} direction - The direction. Should be normalized.\r\n\t * @return {Ray} This ray.\r\n\t */\r\n\r\n\tset(origin, direction) {\r\n\r\n\t\tthis.origin.copy(origin);\r\n\t\tthis.direction.copy(direction);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the given ray.\r\n\t *\r\n\t * @param {Ray} r - A ray.\r\n\t * @return {Ray} This ray.\r\n\t */\r\n\r\n\tcopy(r) {\r\n\r\n\t\tthis.origin.copy(r.origin);\r\n\t\tthis.direction.copy(r.direction);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this ray.\r\n\t *\r\n\t * @return {Ray} The cloned ray.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor().copy(this);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Computes a point along the ray based on a given scalar t.\r\n\t *\r\n\t * @param {Number} t - The scalar.\r\n\t * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.\r\n\t * @return {Vector3} The point.\r\n\t */\r\n\r\n\tat(t, target = new Vector3()) {\r\n\r\n\t\treturn target.copy(this.direction).multiplyScalar(t).add(this.origin);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Rotates this ray to look at the given target.\r\n\t *\r\n\t * @param {Vector3} target - A point to look at.\r\n\t * @return {Ray} This ray.\r\n\t */\r\n\r\n\tlookAt(target) {\r\n\r\n\t\tthis.direction.copy(target).sub(this.origin).normalize();\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Moves the origin along the ray by a given scalar t.\r\n\t *\r\n\t * @param {Number} t - The scalar.\r\n\t * @return {Ray} This ray.\r\n\t */\r\n\r\n\trecast(t) {\r\n\r\n\t\tthis.origin.copy(this.at(t, v[0]));\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Finds the closest point along this ray to a given point.\r\n\t *\r\n\t * @param {Vector3} p - A point.\r\n\t * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.\r\n\t * @return {Vector3} The point.\r\n\t */\r\n\r\n\tclosestPointToPoint(p, target = new Vector3()) {\r\n\r\n\t\tconst directionDistance = target.subVectors(p, this.origin).dot(this.direction);\r\n\r\n\t\treturn (directionDistance >= 0.0) ?\r\n\t\t\ttarget.copy(this.direction).multiplyScalar(directionDistance).add(this.origin) :\r\n\t\t\ttarget.copy(this.origin);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the squared distance from this ray to the given point.\r\n\t *\r\n\t * @param {Vector3} p - The point.\r\n\t * @return {Number} The squared distance.\r\n\t */\r\n\r\n\tdistanceSquaredToPoint(p) {\r\n\r\n\t\tconst directionDistance = v[0].subVectors(p, this.origin).dot(this.direction);\r\n\r\n\t\t// Check if the point is behind the ray.\r\n\t\treturn (directionDistance < 0.0) ?\r\n\t\t\tthis.origin.distanceToSquared(p) :\r\n\t\t\tv[0].copy(this.direction).multiplyScalar(directionDistance).add(this.origin).distanceToSquared(p);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the distance from this ray to the given point.\r\n\t *\r\n\t * @param {Vector3} p - The point.\r\n\t * @return {Number} The distance.\r\n\t */\r\n\r\n\tdistanceToPoint(p) {\r\n\r\n\t\treturn Math.sqrt(this.distanceSquaredToPoint(p));\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the distance from this ray to the given plane.\r\n\t *\r\n\t * @param {Plane} p - The plane.\r\n\t * @return {Number} The distance, or null if the denominator is zero.\r\n\t */\r\n\r\n\tdistanceToPlane(p) {\r\n\r\n\t\tconst denominator = p.normal.dot(this.direction);\r\n\r\n\t\tconst t = (denominator !== 0.0) ?\r\n\t\t\t-(this.origin.dot(p.normal) + p.constant) / denominator :\r\n\t\t\t((p.distanceToPoint(this.origin) === 0.0) ? 0.0 : -1.0);\r\n\r\n\t\treturn (t >= 0.0) ? t : null;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the distance from this ray to a given line segment.\r\n\t *\r\n\t * Based on:\r\n\t *  http://www.geometrictools.com/GTEngine/Include/Mathematics/GteDistRaySegment.h\r\n\t *\r\n\t * @param {Vector3} v0 - The start of the segment.\r\n\t * @param {Vector3} v1 - The end of the segment.\r\n\t * @param {Vector3} [pointOnRay] - If provided, the point on this Ray that is closest to the segment will be stored in this vector.\r\n\t * @param {Vector3} [pointOnSegment] - If provided, the point on the line segment that is closest to this ray will be stored in this vector.\r\n\t * @return {Number} The smallest distance between the ray and the segment defined by v0 and v1.\r\n\t */\r\n\r\n\tdistanceSquaredToSegment(v0, v1, pointOnRay, pointOnSegment) {\r\n\r\n\t\tconst segCenter = v[0].copy(v0).add(v1).multiplyScalar(0.5);\r\n\t\tconst segDir = v[1].copy(v1).sub(v0).normalize();\r\n\t\tconst diff = v[2].copy(this.origin).sub(segCenter);\r\n\r\n\t\tconst segExtent = v0.distanceTo(v1) * 0.5;\r\n\t\tconst a01 = -this.direction.dot(segDir);\r\n\t\tconst b0 = diff.dot(this.direction);\r\n\t\tconst b1 = -diff.dot(segDir);\r\n\t\tconst c = diff.lengthSq();\r\n\t\tconst det = Math.abs(1.0 - a01 * a01);\r\n\r\n\t\tlet s0, s1, extDet, invDet, sqrDist;\r\n\r\n\t\tif(det > 0.0) {\r\n\r\n\t\t\t// The ray and segment are not parallel.\r\n\t\t\ts0 = a01 * b1 - b0;\r\n\t\t\ts1 = a01 * b0 - b1;\r\n\t\t\textDet = segExtent * det;\r\n\r\n\t\t\tif(s0 >= 0.0) {\r\n\r\n\t\t\t\tif(s1 >= -extDet) {\r\n\r\n\t\t\t\t\tif(s1 <= extDet) {\r\n\r\n\t\t\t\t\t\t// Region 0.\r\n\t\t\t\t\t\t// Minimum at interior points of ray and segment.\r\n\t\t\t\t\t\tinvDet = 1.0 / det;\r\n\t\t\t\t\t\ts0 *= invDet;\r\n\t\t\t\t\t\ts1 *= invDet;\r\n\t\t\t\t\t\tsqrDist = s0 * (s0 + a01 * s1 + 2.0 * b0) + s1 * (a01 * s0 + s1 + 2.0 * b1) + c;\r\n\r\n\t\t\t\t\t} else {\r\n\r\n\t\t\t\t\t\t// Region 1.\r\n\t\t\t\t\t\ts1 = segExtent;\r\n\t\t\t\t\t\ts0 = Math.max(0.0, -(a01 * s1 + b0));\r\n\t\t\t\t\t\tsqrDist = -s0 * s0 + s1 * (s1 + 2.0 * b1) + c;\r\n\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t} else {\r\n\r\n\t\t\t\t\t// Region 5.\r\n\t\t\t\t\ts1 = -segExtent;\r\n\t\t\t\t\ts0 = Math.max(0.0, -(a01 * s1 + b0));\r\n\t\t\t\t\tsqrDist = -s0 * s0 + s1 * (s1 + 2.0 * b1) + c;\r\n\r\n\t\t\t\t}\r\n\r\n\t\t\t} else {\r\n\r\n\t\t\t\tif(s1 <= -extDet) {\r\n\r\n\t\t\t\t\t// Region 4.\r\n\t\t\t\t\ts0 = Math.max(0.0, -(-a01 * segExtent + b0));\r\n\t\t\t\t\ts1 = (s0 > 0.0) ? -segExtent : Math.min(Math.max(-segExtent, -b1), segExtent);\r\n\t\t\t\t\tsqrDist = -s0 * s0 + s1 * (s1 + 2.0 * b1) + c;\r\n\r\n\t\t\t\t} else if(s1 <= extDet) {\r\n\r\n\t\t\t\t\t// Region 3.\r\n\t\t\t\t\ts0 = 0.0;\r\n\t\t\t\t\ts1 = Math.min(Math.max(-segExtent, -b1), segExtent);\r\n\t\t\t\t\tsqrDist = s1 * (s1 + 2.0 * b1) + c;\r\n\r\n\t\t\t\t} else {\r\n\r\n\t\t\t\t\t// Region 2.\r\n\t\t\t\t\ts0 = Math.max(0.0, -(a01 * segExtent + b0));\r\n\t\t\t\t\ts1 = (s0 > 0.0) ? segExtent : Math.min(Math.max(-segExtent, -b1), segExtent);\r\n\t\t\t\t\tsqrDist = -s0 * s0 + s1 * (s1 + 2.0 * b1) + c;\r\n\r\n\t\t\t\t}\r\n\r\n\t\t\t}\r\n\r\n\t\t} else {\r\n\r\n\t\t\t// Ray and segment are parallel.\r\n\t\t\ts1 = (a01 > 0.0) ? -segExtent : segExtent;\r\n\t\t\ts0 = Math.max(0.0, -(a01 * s1 + b0));\r\n\t\t\tsqrDist = -s0 * s0 + s1 * (s1 + 2.0 * b1) + c;\r\n\r\n\t\t}\r\n\r\n\t\tif(pointOnRay !== undefined) {\r\n\r\n\t\t\tpointOnRay.copy(this.direction).multiplyScalar(s0).add(this.origin);\r\n\r\n\t\t}\r\n\r\n\t\tif(pointOnSegment !== undefined) {\r\n\r\n\t\t\tpointOnSegment.copy(segDir).multiplyScalar(s1).add(segCenter);\r\n\r\n\t\t}\r\n\r\n\t\treturn sqrDist;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Finds the point where this ray intersects the given sphere.\r\n\t *\r\n\t * @param {Sphere} s - A sphere.\r\n\t * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.\r\n\t * @return {Vector3} The point of intersection, or null if there is none.\r\n\t */\r\n\r\n\tintersectSphere(s, target = new Vector3()) {\r\n\r\n\t\tconst ab = v[0].subVectors(s.center, this.origin);\r\n\t\tconst tca = ab.dot(this.direction);\r\n\t\tconst d2 = ab.dot(ab) - tca * tca;\r\n\t\tconst radius2 = s.radius * s.radius;\r\n\r\n\t\tlet result = null;\r\n\t\tlet thc, t0, t1;\r\n\r\n\t\tif(d2 <= radius2) {\r\n\r\n\t\t\tthc = Math.sqrt(radius2 - d2);\r\n\r\n\t\t\t// t0 = first intersection point - entrance on front of sphere.\r\n\t\t\tt0 = tca - thc;\r\n\r\n\t\t\t// t1 = second intersection point - exit point on back of sphere.\r\n\t\t\tt1 = tca + thc;\r\n\r\n\t\t\t// Check if both t0 and t1 are behind the ray - if so, return null.\r\n\t\t\tif(t0 >= 0.0 || t1 >= 0.0) {\r\n\r\n\t\t\t\t/* Check if t0 is behind the ray. If it is, the ray is inside the\r\n\t\t\t\tsphere, so return the second exit point scaled by t1 in order to always\r\n\t\t\t\treturn an intersection point that is in front of the ray. If t0 is in\r\n\t\t\t\tfront of the ray, return the first collision point scaled by t0. */\r\n\t\t\t\tresult = (t0 < 0.0) ? this.at(t1, target) : this.at(t0, target);\r\n\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\treturn result;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Determines whether this ray intersects the given sphere.\r\n\t *\r\n\t * @param {Sphere} s - A sphere.\r\n\t * @return {Boolean} Whether this ray intersects the given sphere.\r\n\t */\r\n\r\n\tintersectsSphere(s) {\r\n\r\n\t\treturn (this.distanceSqToPoint(s.center) <= (s.radius * s.radius));\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Finds the point where this ray intersects the given plane.\r\n\t *\r\n\t * @param {Plane} p - A plane.\r\n\t * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.\r\n\t * @return {Vector3} The point of intersection, or null if there is none.\r\n\t */\r\n\r\n\tintersectPlane(p, target = new Vector3()) {\r\n\r\n\t\tconst t = this.distanceToPlane(p);\r\n\r\n\t\treturn (t === null) ? null : this.at(t, target);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Determines whether this ray intersects the given plane.\r\n\t *\r\n\t * @param {Plane} p - A plane.\r\n\t * @return {Boolean} Whether this ray intersects the given plane.\r\n\t */\r\n\r\n\tintersectsPlane(p) {\r\n\r\n\t\tconst distanceToPoint = p.distanceToPoint(this.origin);\r\n\r\n\t\treturn (distanceToPoint === 0.0 || p.normal.dot(this.direction) * distanceToPoint < 0.0);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Finds the point where this ray intersects the given box.\r\n\t *\r\n\t * @param {Plane} b - A box.\r\n\t * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.\r\n\t * @return {Vector3} The point of intersection, or null if there is none.\r\n\t */\r\n\r\n\tintersectBox(b, target = new Vector3()) {\r\n\r\n\t\tconst origin = this.origin;\r\n\t\tconst direction = this.direction;\r\n\t\tconst min = b.min;\r\n\t\tconst max = b.max;\r\n\r\n\t\tconst invDirX = 1.0 / direction.x;\r\n\t\tconst invDirY = 1.0 / direction.y;\r\n\t\tconst invDirZ = 1.0 / direction.z;\r\n\r\n\t\tlet result = null;\r\n\t\tlet tmin, tmax, tymin, tymax, tzmin, tzmax;\r\n\r\n\t\tif(invDirX >= 0.0) {\r\n\r\n\t\t\ttmin = (min.x - origin.x) * invDirX;\r\n\t\t\ttmax = (max.x - origin.x) * invDirX;\r\n\r\n\t\t} else {\r\n\r\n\t\t\ttmin = (max.x - origin.x) * invDirX;\r\n\t\t\ttmax = (min.x - origin.x) * invDirX;\r\n\r\n\t\t}\r\n\r\n\t\tif(invDirY >= 0.0) {\r\n\r\n\t\t\ttymin = (min.y - origin.y) * invDirY;\r\n\t\t\ttymax = (max.y - origin.y) * invDirY;\r\n\r\n\t\t} else {\r\n\r\n\t\t\ttymin = (max.y - origin.y) * invDirY;\r\n\t\t\ttymax = (min.y - origin.y) * invDirY;\r\n\r\n\t\t}\r\n\r\n\t\tif(tmin <= tymax && tymin <= tmax) {\r\n\r\n\t\t\t/* Handle the case where tmin or tmax is NaN (result of 0 * Infinity).\r\n\t\t\tNote: x !== x returns true if x is NaN. */\r\n\t\t\tif(tymin > tmin || tmin !== tmin) {\r\n\r\n\t\t\t\ttmin = tymin;\r\n\r\n\t\t\t}\r\n\r\n\t\t\tif(tymax < tmax || tmax !== tmax) {\r\n\r\n\t\t\t\ttmax = tymax;\r\n\r\n\t\t\t}\r\n\r\n\t\t\tif(invDirZ >= 0.0) {\r\n\r\n\t\t\t\ttzmin = (min.z - origin.z) * invDirZ;\r\n\t\t\t\ttzmax = (max.z - origin.z) * invDirZ;\r\n\r\n\t\t\t} else {\r\n\r\n\t\t\t\ttzmin = (max.z - origin.z) * invDirZ;\r\n\t\t\t\ttzmax = (min.z - origin.z) * invDirZ;\r\n\r\n\t\t\t}\r\n\r\n\t\t\tif(tmin <= tzmax && tzmin <= tmax) {\r\n\r\n\t\t\t\tif(tzmin > tmin || tmin !== tmin) {\r\n\r\n\t\t\t\t\ttmin = tzmin;\r\n\r\n\t\t\t\t}\r\n\r\n\t\t\t\tif(tzmax < tmax || tmax !== tmax) {\r\n\r\n\t\t\t\t\ttmax = tzmax;\r\n\r\n\t\t\t\t}\r\n\r\n\t\t\t\t// Return the closest point (positive side).\r\n\t\t\t\tif(tmax >= 0.0) {\r\n\r\n\t\t\t\t\tresult = this.at((tmin >= 0.0) ? tmin : tmax, target);\r\n\r\n\t\t\t\t}\r\n\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\treturn result;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Determines whether this ray intersects the given box.\r\n\t *\r\n\t * @param {Box3} b - A box.\r\n\t * @return {Boolean} Whether this ray intersects the given box.\r\n\t */\r\n\r\n\tintersectsBox(b) {\r\n\r\n\t\treturn (this.intersectBox(b, v[0]) !== null);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Finds the point where this ray intersects the given triangle.\r\n\t *\r\n\t * Based on:\r\n\t *  http://www.geometrictools.com/GTEngine/Include/Mathematics/GteIntrRay3Triangle3.h\r\n\t *\r\n\t * @param {Vector3} a - A triangle vertex.\r\n\t * @param {Vector3} b - A triangle vertex.\r\n\t * @param {Vector3} c - A triangle vertex.\r\n\t * @param {Boolean} [backfaceCulling=false] - Whether backface culling should be considered.\r\n\t * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.\r\n\t * @return {Vector3} The point of intersection, or null if there is none.\r\n\t */\r\n\r\n\tintersectTriangle(a, b, c, backfaceCulling, target) {\r\n\r\n\t\tconst direction = this.direction;\r\n\r\n\t\t// Compute the offset origin, edges, and normal.\r\n\t\tconst diff = v[0];\r\n\t\tconst edge1 = v[1];\r\n\t\tconst edge2 = v[2];\r\n\t\tconst normal = v[3];\r\n\r\n\t\tlet result = null;\r\n\t\tlet DdN, sign, DdQxE2, DdE1xQ, QdN;\r\n\r\n\t\tedge1.subVectors(b, a);\r\n\t\tedge2.subVectors(c, a);\r\n\t\tnormal.crossVectors(edge1, edge2);\r\n\r\n\t\t/* Solve Q + t * D = b1 * E1 + b2 * E2\r\n\t\t * (Q = kDiff, D = ray direction, E1 = kEdge1, E2 = kEdge2,\r\n\t\t * N = Cross(E1, E2)):\r\n\t\t *\r\n\t\t *   | Dot(D, N) | * b1 = sign(Dot(D, N)) * Dot(D, Cross(Q, E2))\r\n\t\t *   | Dot(D, N) | * b2 = sign(Dot(D, N)) * Dot(D, Cross(E1, Q))\r\n\t\t *   | Dot(D, N) | * t = -sign(Dot(D, N)) * Dot(Q, N)\r\n\t\t */\r\n\r\n\t\tDdN = direction.dot(normal);\r\n\r\n\t\t// Discard coplanar constellations and cull backfaces.\r\n\t\tif(DdN !== 0.0 && !(backfaceCulling && DdN > 0.0)) {\r\n\r\n\t\t\tif(DdN > 0.0) {\r\n\r\n\t\t\t\tsign = 1.0;\r\n\r\n\t\t\t} else {\r\n\r\n\t\t\t\tsign = -1.0;\r\n\t\t\t\tDdN = -DdN;\r\n\r\n\t\t\t}\r\n\r\n\t\t\tdiff.subVectors(this.origin, a);\r\n\t\t\tDdQxE2 = sign * direction.dot(edge2.crossVectors(diff, edge2));\r\n\r\n\t\t\t// b1 < 0, no intersection.\r\n\t\t\tif(DdQxE2 >= 0.0) {\r\n\r\n\t\t\t\tDdE1xQ = sign * direction.dot(edge1.cross(diff));\r\n\r\n\t\t\t\t// b2 < 0, or b1 + b2 > 1, no intersection.\r\n\t\t\t\tif(DdE1xQ >= 0.0 && DdQxE2 + DdE1xQ <= DdN) {\r\n\r\n\t\t\t\t\t// The line intersects the triangle, check if the ray does.\r\n\t\t\t\t\tQdN = -sign * diff.dot(normal);\r\n\r\n\t\t\t\t\t// t < 0, no intersection.\r\n\t\t\t\t\tif(QdN >= 0.0) {\r\n\r\n\t\t\t\t\t\t// Ray intersects triangle.\r\n\t\t\t\t\t\tresult = this.at(QdN / DdN, target);\r\n\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t}\r\n\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\treturn result;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Applies the given matrix to this ray.\r\n\t *\r\n\t * @param {Matrix4} m - A matrix.\r\n\t * @return {Ray} This ray.\r\n\t */\r\n\r\n\tapplyMatrix4(m) {\r\n\r\n\t\tthis.origin.applyMatrix4(m);\r\n\t\tthis.direction.transformDirection(m);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if this ray equals the given one.\r\n\t *\r\n\t * @param {Ray} r - A ray.\r\n\t * @return {Boolean} Whether the rays are equal.\r\n\t */\r\n\r\n\tequals(r) {\r\n\r\n\t\treturn (r.origin.equals(this.origin) && r.direction.equals(this.direction));\r\n\r\n\t}\r\n\r\n}\r\n",
@@ -8690,7 +8667,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 443,
+    "__docId__": 450,
     "kind": "variable",
     "name": "v",
     "memberof": "src/Ray.js",
@@ -8713,7 +8690,7 @@
     "ignore": true
   },
   {
-    "__docId__": 444,
+    "__docId__": 451,
     "kind": "class",
     "name": "Ray",
     "memberof": "src/Ray.js",
@@ -8728,7 +8705,7 @@
     "interface": false
   },
   {
-    "__docId__": 445,
+    "__docId__": 452,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/Ray.js~Ray",
@@ -8763,7 +8740,7 @@
     ]
   },
   {
-    "__docId__": 446,
+    "__docId__": 453,
     "kind": "member",
     "name": "origin",
     "memberof": "src/Ray.js~Ray",
@@ -8782,7 +8759,7 @@
     }
   },
   {
-    "__docId__": 447,
+    "__docId__": 454,
     "kind": "member",
     "name": "direction",
     "memberof": "src/Ray.js~Ray",
@@ -8801,7 +8778,7 @@
     }
   },
   {
-    "__docId__": 448,
+    "__docId__": 455,
     "kind": "method",
     "name": "set",
     "memberof": "src/Ray.js~Ray",
@@ -8844,7 +8821,7 @@
     }
   },
   {
-    "__docId__": 449,
+    "__docId__": 456,
     "kind": "method",
     "name": "copy",
     "memberof": "src/Ray.js~Ray",
@@ -8877,7 +8854,7 @@
     }
   },
   {
-    "__docId__": 450,
+    "__docId__": 457,
     "kind": "method",
     "name": "clone",
     "memberof": "src/Ray.js~Ray",
@@ -8899,7 +8876,7 @@
     "params": []
   },
   {
-    "__docId__": 451,
+    "__docId__": 458,
     "kind": "method",
     "name": "at",
     "memberof": "src/Ray.js~Ray",
@@ -8942,7 +8919,7 @@
     }
   },
   {
-    "__docId__": 452,
+    "__docId__": 459,
     "kind": "method",
     "name": "lookAt",
     "memberof": "src/Ray.js~Ray",
@@ -8975,7 +8952,7 @@
     }
   },
   {
-    "__docId__": 453,
+    "__docId__": 460,
     "kind": "method",
     "name": "recast",
     "memberof": "src/Ray.js~Ray",
@@ -9008,7 +8985,7 @@
     }
   },
   {
-    "__docId__": 454,
+    "__docId__": 461,
     "kind": "method",
     "name": "closestPointToPoint",
     "memberof": "src/Ray.js~Ray",
@@ -9051,7 +9028,7 @@
     }
   },
   {
-    "__docId__": 455,
+    "__docId__": 462,
     "kind": "method",
     "name": "distanceSquaredToPoint",
     "memberof": "src/Ray.js~Ray",
@@ -9084,7 +9061,7 @@
     }
   },
   {
-    "__docId__": 456,
+    "__docId__": 463,
     "kind": "method",
     "name": "distanceToPoint",
     "memberof": "src/Ray.js~Ray",
@@ -9117,7 +9094,7 @@
     }
   },
   {
-    "__docId__": 457,
+    "__docId__": 464,
     "kind": "method",
     "name": "distanceToPlane",
     "memberof": "src/Ray.js~Ray",
@@ -9150,7 +9127,7 @@
     }
   },
   {
-    "__docId__": 458,
+    "__docId__": 465,
     "kind": "method",
     "name": "distanceSquaredToSegment",
     "memberof": "src/Ray.js~Ray",
@@ -9213,7 +9190,7 @@
     }
   },
   {
-    "__docId__": 459,
+    "__docId__": 466,
     "kind": "method",
     "name": "intersectSphere",
     "memberof": "src/Ray.js~Ray",
@@ -9256,7 +9233,7 @@
     }
   },
   {
-    "__docId__": 460,
+    "__docId__": 467,
     "kind": "method",
     "name": "intersectsSphere",
     "memberof": "src/Ray.js~Ray",
@@ -9289,7 +9266,7 @@
     }
   },
   {
-    "__docId__": 461,
+    "__docId__": 468,
     "kind": "method",
     "name": "intersectPlane",
     "memberof": "src/Ray.js~Ray",
@@ -9332,7 +9309,7 @@
     }
   },
   {
-    "__docId__": 462,
+    "__docId__": 469,
     "kind": "method",
     "name": "intersectsPlane",
     "memberof": "src/Ray.js~Ray",
@@ -9365,7 +9342,7 @@
     }
   },
   {
-    "__docId__": 463,
+    "__docId__": 470,
     "kind": "method",
     "name": "intersectBox",
     "memberof": "src/Ray.js~Ray",
@@ -9408,7 +9385,7 @@
     }
   },
   {
-    "__docId__": 464,
+    "__docId__": 471,
     "kind": "method",
     "name": "intersectsBox",
     "memberof": "src/Ray.js~Ray",
@@ -9441,7 +9418,7 @@
     }
   },
   {
-    "__docId__": 465,
+    "__docId__": 472,
     "kind": "method",
     "name": "intersectTriangle",
     "memberof": "src/Ray.js~Ray",
@@ -9516,7 +9493,7 @@
     }
   },
   {
-    "__docId__": 466,
+    "__docId__": 473,
     "kind": "method",
     "name": "applyMatrix4",
     "memberof": "src/Ray.js~Ray",
@@ -9549,7 +9526,7 @@
     }
   },
   {
-    "__docId__": 467,
+    "__docId__": 474,
     "kind": "method",
     "name": "equals",
     "memberof": "src/Ray.js~Ray",
@@ -9582,7 +9559,7 @@
     }
   },
   {
-    "__docId__": 468,
+    "__docId__": 475,
     "kind": "file",
     "name": "src/RotationOrder.js",
     "content": "/**\r\n * An enumeration of Euler rotation orders.\r\n *\r\n * @type {Object}\r\n * @property {String} XYZ - X -> Y -> Z.\r\n * @property {String} YZX - Y -> Z -> X.\r\n * @property {String} ZXY - Z -> X -> Y.\r\n * @property {String} XZY - X -> Z -> Y.\r\n * @property {String} YXZ - Y -> X -> Z.\r\n * @property {String} ZYX - Z -> Y -> X.\r\n */\r\n\r\nexport const RotationOrder = {\r\n\r\n\tXYZ: \"XYZ\",\r\n\tYZX: \"YZX\",\r\n\tZXY: \"ZXY\",\r\n\tXZY: \"XZY\",\r\n\tYXZ: \"YXZ\",\r\n\tZYX: \"ZYX\"\r\n\r\n};\r\n",
@@ -9593,7 +9570,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 469,
+    "__docId__": 476,
     "kind": "variable",
     "name": "RotationOrder",
     "memberof": "src/RotationOrder.js",
@@ -9677,7 +9654,7 @@
     }
   },
   {
-    "__docId__": 470,
+    "__docId__": 477,
     "kind": "file",
     "name": "src/Sphere.js",
     "content": "import { Box3 } from \"./Box3.js\";\r\nimport { Vector3 } from \"./Vector3.js\";\r\n\r\n/**\r\n * A box.\r\n *\r\n * @type {Box3}\r\n * @private\r\n */\r\n\r\nconst box = new Box3();\r\n\r\n/**\r\n * A vector.\r\n *\r\n * @type {Vector3}\r\n * @private\r\n */\r\n\r\nconst v = new Vector3();\r\n\r\n/**\r\n * A sphere.\r\n */\r\n\r\nexport class Sphere {\r\n\r\n\t/**\r\n\t * Constructs a new sphere.\r\n\t *\r\n\t * @param {Vector3} [center] - The center.\r\n\t * @param {Number} [radius] - The radius.\r\n\t */\r\n\r\n\tconstructor(center = new Vector3(), radius = 0) {\r\n\r\n\t\t/**\r\n\t\t * The center.\r\n\t\t *\r\n\t\t * @type {Vector3}\r\n\t\t */\r\n\r\n\t\tthis.center = center;\r\n\r\n\t\t/**\r\n\t\t * The radius.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.radius = radius;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the center and the radius.\r\n\t *\r\n\t * @param {Vector3} center - The center.\r\n\t * @param {Number} radius - The radius.\r\n\t * @return {Sphere} This sphere.\r\n\t */\r\n\r\n\tset(center, radius) {\r\n\r\n\t\tthis.center.copy(center);\r\n\t\tthis.radius = radius;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the given sphere.\r\n\t *\r\n\t * @param {Sphere} s - A sphere.\r\n\t * @return {Sphere} This sphere.\r\n\t */\r\n\r\n\tcopy(s) {\r\n\r\n\t\tthis.center.copy(s.center);\r\n\t\tthis.radius = s.radius;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this sphere.\r\n\t *\r\n\t * @return {Sphere} The cloned sphere.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor().copy(this);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this sphere from points.\r\n\t *\r\n\t * @param {Vector3[]} points - The points.\r\n\t * @param {Vector3} [center] - An optional center.\r\n\t * @return {Sphere} This sphere.\r\n\t */\r\n\r\n\tsetFromPoints(points, center = box.setFromPoints(points).getCenter(this.center)) {\r\n\r\n\t\tlet maxRadiusSq = 0;\r\n\t\tlet i, l;\r\n\r\n\t\tfor(i = 0, l = points.length; i < l; ++i) {\r\n\r\n\t\t\tmaxRadiusSq = Math.max(maxRadiusSq, center.distanceToSquared(points[i]));\r\n\r\n\t\t}\r\n\r\n\t\tthis.radius = Math.sqrt(maxRadiusSq);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Computes the bounding sphere of the given box.\r\n\t *\r\n\t * @param {Box3} box - A box.\r\n\t * @return {Sphere} This pshere.\r\n\t */\r\n\r\n\tsetFromBox(box) {\r\n\r\n\t\tbox.getCenter(this.center);\r\n\t\tthis.radius = box.getSize(v).length() * 0.5;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if this sphere is empty.\r\n\t *\r\n\t * @return {Boolean} Whether this sphere is empty.\r\n\t */\r\n\r\n\tisEmpty() {\r\n\r\n\t\treturn (this.radius <= 0);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Translates this sphere.\r\n\t *\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Sphere} This sphere.\r\n\t */\r\n\r\n\ttranslate(offset) {\r\n\r\n\t\tthis.center.add(offset);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clamps the given point to this sphere.\r\n\t *\r\n\t * @param {Vector3} p - A point.\r\n\t * @param {Vector3} [target] - A target vector. If none is provided, a new one will be created.\r\n\t * @return {Vector3} The clamped point.\r\n\t */\r\n\r\n\tclampPoint(p, target = new Vector3()) {\r\n\r\n\t\tconst deltaLengthSq = this.center.distanceToSquared(p);\r\n\r\n\t\ttarget.copy(p);\r\n\r\n\t\tif(deltaLengthSq > (this.radius * this.radius)) {\r\n\r\n\t\t\ttarget.sub(this.center).normalize();\r\n\t\t\ttarget.multiplyScalar(this.radius).add(this.center);\r\n\r\n\t\t}\r\n\r\n\t\treturn target;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the distance from this sphere to the given point.\r\n\t *\r\n\t * @param {Vector3} p - A point.\r\n\t * @return {Number} The distance.\r\n\t */\r\n\r\n\tdistanceToPoint(p) {\r\n\r\n\t\treturn (p.distanceTo(this.center) - this.radius);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if the given point lies inside this sphere.\r\n\t *\r\n\t * @param {Vector3} p - A point.\r\n\t * @return {Boolean} Whether this sphere contains the point.\r\n\t */\r\n\r\n\tcontainsPoint(p) {\r\n\r\n\t\treturn (p.distanceToSquared(this.center) <= (this.radius * this.radius));\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if the this sphere intersects with the given one.\r\n\t *\r\n\t * @param {Sphere} s - A sphere.\r\n\t * @return {Boolean} Whether this sphere intersects with the given one.\r\n\t */\r\n\r\n\tintersectsSphere(s) {\r\n\r\n\t\tconst radiusSum = this.radius + s.radius;\r\n\r\n\t\treturn s.center.distanceToSquared(this.center) <= (radiusSum * radiusSum);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if the this sphere intersects with the given box.\r\n\t *\r\n\t * @param {Box3} b - A box.\r\n\t * @return {Boolean} Whether this sphere intersects with the given box.\r\n\t */\r\n\r\n\tintersectsBox(b) {\r\n\r\n\t\treturn b.intersectsSphere(this);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if the this sphere intersects with the given plane.\r\n\t *\r\n\t * @param {Plane} p - A plane.\r\n\t * @return {Boolean} Whether this sphere intersects with the given plane.\r\n\t */\r\n\r\n\tintersectsPlane(p) {\r\n\r\n\t\treturn (Math.abs(p.distanceToPoint(this.center)) <= this.radius);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if this sphere equals the given one.\r\n\t *\r\n\t * @param {Sphere} s - A sphere.\r\n\t * @return {Boolean} Whether the spheres are equal.\r\n\t */\r\n\r\n\tequals(s) {\r\n\r\n\t\treturn (s.center.equals(this.center) && (s.radius === this.radius));\r\n\r\n\t}\r\n\r\n}\r\n",
@@ -9688,7 +9665,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 471,
+    "__docId__": 478,
     "kind": "variable",
     "name": "box",
     "memberof": "src/Sphere.js",
@@ -9711,7 +9688,7 @@
     "ignore": true
   },
   {
-    "__docId__": 472,
+    "__docId__": 479,
     "kind": "variable",
     "name": "v",
     "memberof": "src/Sphere.js",
@@ -9734,7 +9711,7 @@
     "ignore": true
   },
   {
-    "__docId__": 473,
+    "__docId__": 480,
     "kind": "class",
     "name": "Sphere",
     "memberof": "src/Sphere.js",
@@ -9749,7 +9726,7 @@
     "interface": false
   },
   {
-    "__docId__": 474,
+    "__docId__": 481,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/Sphere.js~Sphere",
@@ -9784,7 +9761,7 @@
     ]
   },
   {
-    "__docId__": 475,
+    "__docId__": 482,
     "kind": "member",
     "name": "center",
     "memberof": "src/Sphere.js~Sphere",
@@ -9803,7 +9780,7 @@
     }
   },
   {
-    "__docId__": 476,
+    "__docId__": 483,
     "kind": "member",
     "name": "radius",
     "memberof": "src/Sphere.js~Sphere",
@@ -9822,7 +9799,7 @@
     }
   },
   {
-    "__docId__": 477,
+    "__docId__": 484,
     "kind": "method",
     "name": "set",
     "memberof": "src/Sphere.js~Sphere",
@@ -9865,7 +9842,7 @@
     }
   },
   {
-    "__docId__": 479,
+    "__docId__": 486,
     "kind": "method",
     "name": "copy",
     "memberof": "src/Sphere.js~Sphere",
@@ -9898,7 +9875,7 @@
     }
   },
   {
-    "__docId__": 481,
+    "__docId__": 488,
     "kind": "method",
     "name": "clone",
     "memberof": "src/Sphere.js~Sphere",
@@ -9920,7 +9897,7 @@
     "params": []
   },
   {
-    "__docId__": 482,
+    "__docId__": 489,
     "kind": "method",
     "name": "setFromPoints",
     "memberof": "src/Sphere.js~Sphere",
@@ -9963,7 +9940,7 @@
     }
   },
   {
-    "__docId__": 484,
+    "__docId__": 491,
     "kind": "method",
     "name": "setFromBox",
     "memberof": "src/Sphere.js~Sphere",
@@ -9996,7 +9973,7 @@
     }
   },
   {
-    "__docId__": 486,
+    "__docId__": 493,
     "kind": "method",
     "name": "isEmpty",
     "memberof": "src/Sphere.js~Sphere",
@@ -10018,7 +9995,7 @@
     "params": []
   },
   {
-    "__docId__": 487,
+    "__docId__": 494,
     "kind": "method",
     "name": "translate",
     "memberof": "src/Sphere.js~Sphere",
@@ -10051,7 +10028,7 @@
     }
   },
   {
-    "__docId__": 488,
+    "__docId__": 495,
     "kind": "method",
     "name": "clampPoint",
     "memberof": "src/Sphere.js~Sphere",
@@ -10094,7 +10071,7 @@
     }
   },
   {
-    "__docId__": 489,
+    "__docId__": 496,
     "kind": "method",
     "name": "distanceToPoint",
     "memberof": "src/Sphere.js~Sphere",
@@ -10127,7 +10104,7 @@
     }
   },
   {
-    "__docId__": 490,
+    "__docId__": 497,
     "kind": "method",
     "name": "containsPoint",
     "memberof": "src/Sphere.js~Sphere",
@@ -10160,7 +10137,7 @@
     }
   },
   {
-    "__docId__": 491,
+    "__docId__": 498,
     "kind": "method",
     "name": "intersectsSphere",
     "memberof": "src/Sphere.js~Sphere",
@@ -10193,7 +10170,7 @@
     }
   },
   {
-    "__docId__": 492,
+    "__docId__": 499,
     "kind": "method",
     "name": "intersectsBox",
     "memberof": "src/Sphere.js~Sphere",
@@ -10226,7 +10203,7 @@
     }
   },
   {
-    "__docId__": 493,
+    "__docId__": 500,
     "kind": "method",
     "name": "intersectsPlane",
     "memberof": "src/Sphere.js~Sphere",
@@ -10259,7 +10236,7 @@
     }
   },
   {
-    "__docId__": 494,
+    "__docId__": 501,
     "kind": "method",
     "name": "equals",
     "memberof": "src/Sphere.js~Sphere",
@@ -10292,7 +10269,7 @@
     }
   },
   {
-    "__docId__": 495,
+    "__docId__": 502,
     "kind": "file",
     "name": "src/Spherical.js",
     "content": "/**\r\n * A spherical coordinate system.\r\n *\r\n * For details see: https://en.wikipedia.org/wiki/Spherical_coordinate_system\r\n *\r\n * The poles (phi) are at the positive and negative Y-axis. The equator starts\r\n * at positive Z.\r\n */\r\n\r\nexport class Spherical {\r\n\r\n\t/**\r\n\t * Constructs a new spherical system.\r\n\t *\r\n\t * @param {Number} [radius=1] - The radius of the sphere.\r\n\t * @param {Number} [phi=0] - The polar angle phi.\r\n\t * @param {Number} [theta=0] - The equator angle theta.\r\n\t */\r\n\r\n\tconstructor(radius = 1, phi = 0, theta = 0) {\r\n\r\n\t\t/**\r\n\t\t * The radius of the sphere.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.radius = radius;\r\n\r\n\t\t/**\r\n\t\t * The polar angle, up and down towards the top and bottom pole.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.phi = phi;\r\n\r\n\t\t/**\r\n\t\t * The angle around the equator of the sphere.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.theta = theta;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this spherical system.\r\n\t *\r\n\t * @param {Number} radius - The radius.\r\n\t * @param {Number} phi - Phi.\r\n\t * @param {Number} theta - Theta.\r\n\t * @return {Spherical} This spherical system.\r\n\t */\r\n\r\n\tset(radius, phi, theta) {\r\n\r\n\t\tthis.radius = radius;\r\n\t\tthis.phi = phi;\r\n\t\tthis.theta = theta;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the values of the given spherical system.\r\n\t *\r\n\t * @param {Spherical} s - A spherical system.\r\n\t * @return {Spherical} This spherical system.\r\n\t */\r\n\r\n\tcopy(s) {\r\n\r\n\t\tthis.radius = s.radius;\r\n\t\tthis.phi = s.phi;\r\n\t\tthis.theta = s.theta;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this spherical system.\r\n\t *\r\n\t * @return {Spherical} The cloned spherical system.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor().copy(this);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Restricts phi to `[1e-6, PI - 1e-6]`.\r\n\t *\r\n\t * @return {Spherical} This spherical system.\r\n\t */\r\n\r\n\tmakeSafe() {\r\n\r\n\t\tthis.phi = Math.max(1e-6, Math.min(Math.PI - 1e-6, this.phi));\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this spherical system based on a vector.\r\n\t *\r\n\t * The radius is set to the vector's length while phi and theta are set from\r\n\t * its direction.\r\n\t *\r\n\t * @param {Vector3} v - The vector.\r\n\t * @return {Spherical} This spherical system.\r\n\t */\r\n\r\n\tsetFromVector3(v) {\r\n\r\n\t\treturn this.setFromCartesianCoords(v.x, v.y, v.z);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this spherical system based on cartesian coordinates.\r\n\t *\r\n\t * @param {Number} x - The X coordinate.\r\n\t * @param {Number} y - The Y coordinate.\r\n\t * @param {Number} z - The Z coordinate.\r\n\t * @return {Spherical} This spherical system.\r\n\t */\r\n\r\n\tsetFromCartesianCoords(x, y, z) {\r\n\r\n\t\tthis.radius = Math.sqrt(x * x + y * y + z * z);\r\n\r\n\t\tif(this.radius === 0) {\r\n\r\n\t\t\tthis.theta = 0;\r\n\t\t\tthis.phi = 0;\r\n\r\n\t\t} else {\r\n\r\n\t\t\t// Calculate the equator angle around the positive Y-axis.\r\n\t\t\tthis.theta = Math.atan2(x, z);\r\n\r\n\t\t\t// Calculate the polar angle.\r\n\t\t\tthis.phi = Math.acos(Math.min(Math.max(y / this.radius, -1), 1));\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n}\r\n",
@@ -10303,7 +10280,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 496,
+    "__docId__": 503,
     "kind": "class",
     "name": "Spherical",
     "memberof": "src/Spherical.js",
@@ -10318,7 +10295,7 @@
     "interface": false
   },
   {
-    "__docId__": 497,
+    "__docId__": 504,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/Spherical.js~Spherical",
@@ -10369,7 +10346,7 @@
     ]
   },
   {
-    "__docId__": 498,
+    "__docId__": 505,
     "kind": "member",
     "name": "radius",
     "memberof": "src/Spherical.js~Spherical",
@@ -10388,7 +10365,7 @@
     }
   },
   {
-    "__docId__": 499,
+    "__docId__": 506,
     "kind": "member",
     "name": "phi",
     "memberof": "src/Spherical.js~Spherical",
@@ -10407,7 +10384,7 @@
     }
   },
   {
-    "__docId__": 500,
+    "__docId__": 507,
     "kind": "member",
     "name": "theta",
     "memberof": "src/Spherical.js~Spherical",
@@ -10426,7 +10403,7 @@
     }
   },
   {
-    "__docId__": 501,
+    "__docId__": 508,
     "kind": "method",
     "name": "set",
     "memberof": "src/Spherical.js~Spherical",
@@ -10479,7 +10456,7 @@
     }
   },
   {
-    "__docId__": 505,
+    "__docId__": 512,
     "kind": "method",
     "name": "copy",
     "memberof": "src/Spherical.js~Spherical",
@@ -10512,7 +10489,7 @@
     }
   },
   {
-    "__docId__": 509,
+    "__docId__": 516,
     "kind": "method",
     "name": "clone",
     "memberof": "src/Spherical.js~Spherical",
@@ -10534,7 +10511,7 @@
     "params": []
   },
   {
-    "__docId__": 510,
+    "__docId__": 517,
     "kind": "method",
     "name": "makeSafe",
     "memberof": "src/Spherical.js~Spherical",
@@ -10556,7 +10533,7 @@
     "params": []
   },
   {
-    "__docId__": 512,
+    "__docId__": 519,
     "kind": "method",
     "name": "setFromVector3",
     "memberof": "src/Spherical.js~Spherical",
@@ -10589,7 +10566,7 @@
     }
   },
   {
-    "__docId__": 513,
+    "__docId__": 520,
     "kind": "method",
     "name": "setFromCartesianCoords",
     "memberof": "src/Spherical.js~Spherical",
@@ -10642,7 +10619,7 @@
     }
   },
   {
-    "__docId__": 519,
+    "__docId__": 526,
     "kind": "file",
     "name": "src/SymmetricMatrix3.js",
     "content": "/**\r\n * A symmetric 3x3 matrix.\r\n */\r\n\r\nexport class SymmetricMatrix3 {\r\n\r\n\t/**\r\n\t * Constructs a new symmetric matrix.\r\n\t */\r\n\r\n\tconstructor() {\r\n\r\n\t\t/**\r\n\t\t * The matrix elements.\r\n\t\t *\r\n\t\t * @type {Float32Array}\r\n\t\t */\r\n\r\n\t\tthis.elements = new Float32Array([\r\n\r\n\t\t\t1, 0, 0,\r\n\t\t\t1, 0,\r\n\t\t\t1\r\n\r\n\t\t]);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this matrix.\r\n\t *\r\n\t * @param {Number} m00 - The value of the first row, first column.\r\n\t * @param {Number} m01 - The value of the first row, second column and the second row, first column.\r\n\t * @param {Number} m02 - The value of the first row, third column and the third row, first column.\r\n\t * @param {Number} m11 - The value of the second row, second column.\r\n\t * @param {Number} m12 - The value of the second row, third column and third row, second column.\r\n\t * @param {Number} m22 - The value of the third row, third column.\r\n\t * @return {SymmetricMatrix3} This matrix.\r\n\t */\r\n\r\n\tset(m00, m01, m02, m11, m12, m22) {\r\n\r\n\t\tconst e = this.elements;\r\n\r\n\t\te[0] = m00;\r\n\t\te[1] = m01; e[3] = m11;\r\n\t\te[2] = m02; e[4] = m12; e[5] = m22;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this matrix to the identity matrix.\r\n\t *\r\n\t * @return {SymmetricMatrix3} This matrix.\r\n\t */\r\n\r\n\tidentity() {\r\n\r\n\t\tthis.set(\r\n\r\n\t\t\t1, 0, 0,\r\n\t\t\t1, 0,\r\n\t\t\t1\r\n\r\n\t\t);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the values of a given symmetric matrix.\r\n\t *\r\n\t * @param {SymmetricMatrix3} m - A matrix.\r\n\t * @return {SymmetricMatrix3} This matrix.\r\n\t */\r\n\r\n\tcopy(m) {\r\n\r\n\t\tconst me = m.elements;\r\n\r\n\t\tthis.set(\r\n\r\n\t\t\tme[0], me[1], me[2],\r\n\t\t\tme[3], me[4],\r\n\t\t\tme[5]\r\n\r\n\t\t);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this matrix.\r\n\t *\r\n\t * @return {SymmetricMatrix3} A clone of this matrix.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor().copy(this);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies this symmetric matrix into a given 3x3 matrix.\r\n\t *\r\n\t * @param {Matrix3} m - The target matrix.\r\n\t */\r\n\r\n\ttoMatrix3(m) {\r\n\r\n\t\tconst me = m.elements;\r\n\r\n\t\tm.set(\r\n\r\n\t\t\tme[0], me[1], me[2],\r\n\t\t\tme[1], me[3], me[4],\r\n\t\t\tme[2], me[4], me[5]\r\n\r\n\t\t);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds the values of a given symmetric matrix to this one.\r\n\t *\r\n\t * @param {SymmetricMatrix3} m - A matrix.\r\n\t * @return {SymmetricMatrix3} This matrix.\r\n\t */\r\n\r\n\tadd(m) {\r\n\r\n\t\tconst te = this.elements;\r\n\t\tconst me = m.elements;\r\n\r\n\t\tte[0] += me[0];\r\n\t\tte[1] += me[1]; te[3] += me[3];\r\n\t\tte[2] += me[2]; te[4] += me[4]; te[5] += me[5];\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the Frobenius norm of this matrix.\r\n\t *\r\n\t * @return {Number} The norm of this matrix.\r\n\t */\r\n\r\n\tnorm() {\r\n\r\n\t\tconst e = this.elements;\r\n\r\n\t\tconst m01m01 = e[1] * e[1];\r\n\t\tconst m02m02 = e[2] * e[2];\r\n\t\tconst m12m12 = e[4] * e[4];\r\n\r\n\t\treturn Math.sqrt(\r\n\r\n\t\t\te[0] * e[0] + m01m01 + m02m02 +\r\n\t\t\tm01m01 + e[3] * e[3] + m12m12 +\r\n\t\t\tm02m02 + m12m12 + e[5] * e[5]\r\n\r\n\t\t);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the absolute sum of all matrix components except for the main\r\n\t * diagonal.\r\n\t *\r\n\t * @return {Number} The offset of this matrix.\r\n\t */\r\n\r\n\toff() {\r\n\r\n\t\tconst e = this.elements;\r\n\r\n\t\treturn Math.sqrt(2 * (\r\n\r\n\t\t\t// Diagonal = [0, 3, 5].\r\n\t\t\te[1] * e[1] + e[2] * e[2] + e[4] * e[4]\r\n\r\n\t\t));\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Applies this symmetric matrix to a vector.\r\n\t *\r\n\t * @param {Vector3} v - The vector to modify.\r\n\t * @return {Vector3} The modified vector.\r\n\t */\r\n\r\n\tapplyToVector3(v) {\r\n\r\n\t\tconst x = v.x, y = v.y, z = v.z;\r\n\t\tconst e = this.elements;\r\n\r\n\t\tv.x = e[0] * x + e[1] * y + e[2] * z;\r\n\t\tv.y = e[1] * x + e[3] * y + e[4] * z;\r\n\t\tv.z = e[2] * x + e[4] * y + e[5] * z;\r\n\r\n\t\treturn v;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if this matrix equals the given one.\r\n\t *\r\n\t * @param {SymmetricMatrix3} m - A matrix.\r\n\t * @return {Boolean} Whether the matrices are equal.\r\n\t */\r\n\r\n\tequals(m) {\r\n\r\n\t\tconst te = this.elements;\r\n\t\tconst me = m.elements;\r\n\r\n\t\tlet result = true;\r\n\t\tlet i;\r\n\r\n\t\tfor(i = 0; result && i < 6; ++i) {\r\n\r\n\t\t\tif(te[i] !== me[i]) {\r\n\r\n\t\t\t\tresult = false;\r\n\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\treturn result;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the linear index of an element from this matrix.\r\n\t *\r\n\t * Let N be the dimension of the symmetric matrix:\r\n\t *\r\n\t *     index = N * (N - 1) / 2 - (N - i) * (N - i - 1) / 2 + j\r\n\t *\r\n\t * @param {Number} i - The row.\r\n\t * @param {Number} j - The column.\r\n\t * @return {Number} The index into the elements of this matrix.\r\n\t */\r\n\r\n\tstatic calculateIndex(i, j) {\r\n\r\n\t\treturn (3 - (3 - i) * (2 - i) / 2 + j);\r\n\r\n\t}\r\n\r\n}\r\n",
@@ -10653,7 +10630,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 520,
+    "__docId__": 527,
     "kind": "class",
     "name": "SymmetricMatrix3",
     "memberof": "src/SymmetricMatrix3.js",
@@ -10668,7 +10645,7 @@
     "interface": false
   },
   {
-    "__docId__": 521,
+    "__docId__": 528,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/SymmetricMatrix3.js~SymmetricMatrix3",
@@ -10681,7 +10658,7 @@
     "lineNumber": 11
   },
   {
-    "__docId__": 522,
+    "__docId__": 529,
     "kind": "member",
     "name": "elements",
     "memberof": "src/SymmetricMatrix3.js~SymmetricMatrix3",
@@ -10700,7 +10677,7 @@
     }
   },
   {
-    "__docId__": 523,
+    "__docId__": 530,
     "kind": "method",
     "name": "set",
     "memberof": "src/SymmetricMatrix3.js~SymmetricMatrix3",
@@ -10783,7 +10760,7 @@
     }
   },
   {
-    "__docId__": 524,
+    "__docId__": 531,
     "kind": "method",
     "name": "identity",
     "memberof": "src/SymmetricMatrix3.js~SymmetricMatrix3",
@@ -10805,7 +10782,7 @@
     "params": []
   },
   {
-    "__docId__": 525,
+    "__docId__": 532,
     "kind": "method",
     "name": "copy",
     "memberof": "src/SymmetricMatrix3.js~SymmetricMatrix3",
@@ -10838,7 +10815,7 @@
     }
   },
   {
-    "__docId__": 526,
+    "__docId__": 533,
     "kind": "method",
     "name": "clone",
     "memberof": "src/SymmetricMatrix3.js~SymmetricMatrix3",
@@ -10860,7 +10837,7 @@
     "params": []
   },
   {
-    "__docId__": 527,
+    "__docId__": 534,
     "kind": "method",
     "name": "toMatrix3",
     "memberof": "src/SymmetricMatrix3.js~SymmetricMatrix3",
@@ -10886,7 +10863,7 @@
     "return": null
   },
   {
-    "__docId__": 528,
+    "__docId__": 535,
     "kind": "method",
     "name": "add",
     "memberof": "src/SymmetricMatrix3.js~SymmetricMatrix3",
@@ -10919,7 +10896,7 @@
     }
   },
   {
-    "__docId__": 529,
+    "__docId__": 536,
     "kind": "method",
     "name": "norm",
     "memberof": "src/SymmetricMatrix3.js~SymmetricMatrix3",
@@ -10941,7 +10918,7 @@
     "params": []
   },
   {
-    "__docId__": 530,
+    "__docId__": 537,
     "kind": "method",
     "name": "off",
     "memberof": "src/SymmetricMatrix3.js~SymmetricMatrix3",
@@ -10963,7 +10940,7 @@
     "params": []
   },
   {
-    "__docId__": 531,
+    "__docId__": 538,
     "kind": "method",
     "name": "applyToVector3",
     "memberof": "src/SymmetricMatrix3.js~SymmetricMatrix3",
@@ -10996,7 +10973,7 @@
     }
   },
   {
-    "__docId__": 532,
+    "__docId__": 539,
     "kind": "method",
     "name": "equals",
     "memberof": "src/SymmetricMatrix3.js~SymmetricMatrix3",
@@ -11029,7 +11006,7 @@
     }
   },
   {
-    "__docId__": 533,
+    "__docId__": 540,
     "kind": "method",
     "name": "calculateIndex",
     "memberof": "src/SymmetricMatrix3.js~SymmetricMatrix3",
@@ -11072,7 +11049,7 @@
     }
   },
   {
-    "__docId__": 534,
+    "__docId__": 541,
     "kind": "file",
     "name": "src/Vector2.js",
     "content": "/**\r\n * A vector with two components.\r\n */\r\n\r\nexport class Vector2 {\r\n\r\n\t/**\r\n\t * Constructs a new vector.\r\n\t *\r\n\t * @param {Number} [x=0] - The X component.\r\n\t * @param {Number} [y=0] - The Y component.\r\n\t */\r\n\r\n\tconstructor(x = 0, y = 0) {\r\n\r\n\t\t/**\r\n\t\t * The X component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.x = x;\r\n\r\n\t\t/**\r\n\t\t * The Y component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.y = y;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * The width. This is an alias for X.\r\n\t *\r\n\t * @type {Number}\r\n\t */\r\n\r\n\tget width() {\r\n\r\n\t\treturn this.x;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the width.\r\n\t *\r\n\t * @type {Number}\r\n\t */\r\n\r\n\tset width(value) {\r\n\r\n\t\treturn this.x = value;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * The height. This is an alias for Y.\r\n\t *\r\n\t * @type {Number}\r\n\t */\r\n\r\n\tget height() {\r\n\r\n\t\treturn this.y;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the height.\r\n\t *\r\n\t * @type {Number}\r\n\t */\r\n\r\n\tset height(value) {\r\n\r\n\t\treturn this.y = value;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this vector\r\n\t *\r\n\t * @param {Number} x - The X component.\r\n\t * @param {Number} y - The Y component.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tset(x, y) {\r\n\r\n\t\tthis.x = x;\r\n\t\tthis.y = y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the values of another vector.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tcopy(v) {\r\n\r\n\t\tthis.x = v.x;\r\n\t\tthis.y = v.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this vector.\r\n\t *\r\n\t * @return {Vector2} A clone of this vector.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor(this.x, this.y);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies values from an array.\r\n\t *\r\n\t * @param {Number[]} array - An array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tfromArray(array, offset = 0) {\r\n\r\n\t\tthis.x = array[offset];\r\n\t\tthis.y = array[offset + 1];\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Stores this vector in an array.\r\n\t *\r\n\t * @param {Array} [array] - A target array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Number[]} The array.\r\n\t */\r\n\r\n\ttoArray(array = [], offset = 0) {\r\n\r\n\t\tarray[offset] = this.x;\r\n\t\tarray[offset + 1] = this.y;\r\n\r\n\t\treturn array;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a vector to this one.\r\n\t *\r\n\t * @param {Vector2} v - The vector to add.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tadd(v) {\r\n\r\n\t\tthis.x += v.x;\r\n\t\tthis.y += v.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a scalar to this vector.\r\n\t *\r\n\t * @param {Number} s - The scalar to add.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\taddScalar(s) {\r\n\r\n\t\tthis.x += s;\r\n\t\tthis.y += s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the sum of two given vectors.\r\n\t *\r\n\t * @param {Vector2} a - A vector.\r\n\t * @param {Vector2} b - Another vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\taddVectors(a, b) {\r\n\r\n\t\tthis.x = a.x + b.x;\r\n\t\tthis.y = a.y + b.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a scaled vector to this one.\r\n\t *\r\n\t * @param {Vector2} v - The vector to scale and add.\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\taddScaledVector(v, s) {\r\n\r\n\t\tthis.x += v.x * s;\r\n\t\tthis.y += v.y * s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Subtracts a vector from this vector.\r\n\t *\r\n\t * @param {Vector2} v - The vector to subtract.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tsub(v) {\r\n\r\n\t\tthis.x -= v.x;\r\n\t\tthis.y -= v.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Subtracts a scalar from this vector.\r\n\t *\r\n\t * @param {Number} s - The scalar to subtract.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tsubScalar(s) {\r\n\r\n\t\tthis.x -= s;\r\n\t\tthis.y -= s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the difference between two given vectors.\r\n\t *\r\n\t * @param {Vector2} a - A vector.\r\n\t * @param {Vector2} b - A second vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tsubVectors(a, b) {\r\n\r\n\t\tthis.x = a.x - b.x;\r\n\t\tthis.y = a.y - b.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies this vector with another vector.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tmultiply(v) {\r\n\r\n\t\tthis.x *= v.x;\r\n\t\tthis.y *= v.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies this vector with a given scalar.\r\n\t *\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tmultiplyScalar(s) {\r\n\r\n\t\tthis.x *= s;\r\n\t\tthis.y *= s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Divides this vector by another vector.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tdivide(v) {\r\n\r\n\t\tthis.x /= v.x;\r\n\t\tthis.y /= v.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Divides this vector by a given scalar.\r\n\t *\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tdivideScalar(s) {\r\n\r\n\t\tthis.x /= s;\r\n\t\tthis.y /= s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Applies the given matrix to this vector.\r\n\t *\r\n\t * @param {Matrix3} m - A matrix.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tapplyMatrix3(m) {\r\n\r\n\t\tconst x = this.x, y = this.y;\r\n\t\tconst e = m.elements;\r\n\r\n\t\tthis.x = e[0] * x + e[3] * y + e[6];\r\n\t\tthis.y = e[1] * x + e[4] * y + e[7];\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the dot product with another vector.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Number} The dot product.\r\n\t */\r\n\r\n\tdot(v) {\r\n\r\n\t\treturn this.x * v.x + this.y * v.y;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the cross product with another vector.\r\n\t *\r\n\t * This method calculates a scalar that would result from a regular 3D cross\r\n\t * product of the input vectors, while taking their Z values implicitly as 0.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Number} The cross product.\r\n\t */\r\n\r\n\tcross(v) {\r\n\r\n\t\treturn this.x * v.y - this.y * v.x;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the Manhattan length of this vector.\r\n\t *\r\n\t * @return {Number} The length.\r\n\t */\r\n\r\n\tmanhattanLength() {\r\n\r\n\t\treturn Math.abs(this.x) + Math.abs(this.y);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the squared length of this vector.\r\n\t *\r\n\t * @return {Number} The squared length.\r\n\t */\r\n\r\n\tlengthSquared() {\r\n\r\n\t\treturn this.x * this.x + this.y * this.y;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the length of this vector.\r\n\t *\r\n\t * @return {Number} The length.\r\n\t */\r\n\r\n\tlength() {\r\n\r\n\t\treturn Math.sqrt(this.x * this.x + this.y * this.y);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the Manhattan distance to a given vector.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Number} The squared distance.\r\n\t */\r\n\r\n\tmanhattanDistanceTo(v) {\r\n\r\n\t\treturn Math.abs(this.x - v.x) + Math.abs(this.y - v.y);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the squared distance to a given vector.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Number} The squared distance.\r\n\t */\r\n\r\n\tdistanceToSquared(v) {\r\n\r\n\t\tconst dx = this.x - v.x;\r\n\t\tconst dy = this.y - v.y;\r\n\r\n\t\treturn dx * dx + dy * dy;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the distance to a given vector.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Number} The distance.\r\n\t */\r\n\r\n\tdistanceTo(v) {\r\n\r\n\t\treturn Math.sqrt(this.distanceToSquared(v));\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Normalizes this vector.\r\n\t *\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tnormalize() {\r\n\r\n\t\treturn this.divideScalar(this.length());\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the length of this vector.\r\n\t *\r\n\t * @param {Number} length - The new length.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tsetLength(length) {\r\n\r\n\t\treturn this.normalize().multiplyScalar(length);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adopts the min value for each component of this vector and the given one.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tmin(v) {\r\n\r\n\t\tthis.x = Math.min(this.x, v.x);\r\n\t\tthis.y = Math.min(this.y, v.y);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * adopts the max value for each component of this vector and the given one.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tmax(v) {\r\n\r\n\t\tthis.x = Math.max(this.x, v.x);\r\n\t\tthis.y = Math.max(this.y, v.y);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clamps this vector.\r\n\t *\r\n\t * @param {Vector2} min - A vector, assumed to be smaller than max.\r\n\t * @param {Vector2} max - A vector, assumed to be greater than min.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tclamp(min, max) {\r\n\r\n\t\tthis.x = Math.max(min.x, Math.min(max.x, this.x));\r\n\t\tthis.y = Math.max(min.y, Math.min(max.y, this.y));\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Floors this vector.\r\n\t *\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tfloor() {\r\n\r\n\t\tthis.x = Math.floor(this.x);\r\n\t\tthis.y = Math.floor(this.y);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Ceils this vector.\r\n\t *\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tceil() {\r\n\r\n\t\tthis.x = Math.ceil(this.x);\r\n\t\tthis.y = Math.ceil(this.y);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Rounds this vector.\r\n\t *\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tround() {\r\n\r\n\t\tthis.x = Math.round(this.x);\r\n\t\tthis.y = Math.round(this.y);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Negates this vector.\r\n\t *\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tnegate() {\r\n\r\n\t\tthis.x = -this.x;\r\n\t\tthis.y = -this.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Computes the angle in radians with respect to the positive X-axis.\r\n\t *\r\n\t * @return {Number} The angle.\r\n\t */\r\n\r\n\tangle() {\r\n\r\n\t\tlet angle = Math.atan2(this.y, this.x);\r\n\r\n\t\tif(angle < 0) {\r\n\r\n\t\t\tangle += 2 * Math.PI;\r\n\r\n\t\t}\r\n\r\n\t\treturn angle;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Lerps towards the given vector.\r\n\t *\r\n\t * @param {Vector2} v - The target vector.\r\n\t * @param {Number} alpha - The lerp factor.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tlerp(v, alpha) {\r\n\r\n\t\tthis.x += (v.x - this.x) * alpha;\r\n\t\tthis.y += (v.y - this.y) * alpha;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the lerp result of the given vectors.\r\n\t *\r\n\t * @param {Vector2} v1 - A base vector.\r\n\t * @param {Vector2} v2 - The target vector.\r\n\t * @param {Number} alpha - The lerp factor.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\tlerpVectors(v1, v2, alpha) {\r\n\r\n\t\treturn this.subVectors(v2, v1).multiplyScalar(alpha).add(v1);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Rotates this vector around a given center.\r\n\t *\r\n\t * @param {Vector2} center - The center.\r\n\t * @param {Number} angle - The rotation in radians.\r\n\t * @return {Vector2} This vector.\r\n\t */\r\n\r\n\trotateAround(center, angle) {\r\n\r\n\t\tconst c = Math.cos(angle), s = Math.sin(angle);\r\n\r\n\t\tconst x = this.x - center.x;\r\n\t\tconst y = this.y - center.y;\r\n\r\n\t\tthis.x = x * c - y * s + center.x;\r\n\t\tthis.y = x * s + y * c + center.y;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if this vector equals the given one.\r\n\t *\r\n\t * @param {Vector2} v - A vector.\r\n\t * @return {Boolean} Whether this vector equals the given one.\r\n\t */\r\n\r\n\tequals(v) {\r\n\r\n\t\treturn (v.x === this.x && v.y === this.y);\r\n\r\n\t}\r\n\r\n}\r\n",
@@ -11083,7 +11060,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 535,
+    "__docId__": 542,
     "kind": "class",
     "name": "Vector2",
     "memberof": "src/Vector2.js",
@@ -11098,7 +11075,7 @@
     "interface": false
   },
   {
-    "__docId__": 536,
+    "__docId__": 543,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/Vector2.js~Vector2",
@@ -11137,7 +11114,7 @@
     ]
   },
   {
-    "__docId__": 537,
+    "__docId__": 544,
     "kind": "member",
     "name": "x",
     "memberof": "src/Vector2.js~Vector2",
@@ -11156,7 +11133,7 @@
     }
   },
   {
-    "__docId__": 538,
+    "__docId__": 545,
     "kind": "member",
     "name": "y",
     "memberof": "src/Vector2.js~Vector2",
@@ -11175,7 +11152,7 @@
     }
   },
   {
-    "__docId__": 539,
+    "__docId__": 546,
     "kind": "get",
     "name": "width",
     "memberof": "src/Vector2.js~Vector2",
@@ -11196,7 +11173,7 @@
     }
   },
   {
-    "__docId__": 540,
+    "__docId__": 547,
     "kind": "set",
     "name": "width",
     "memberof": "src/Vector2.js~Vector2",
@@ -11217,7 +11194,7 @@
     }
   },
   {
-    "__docId__": 541,
+    "__docId__": 548,
     "kind": "get",
     "name": "height",
     "memberof": "src/Vector2.js~Vector2",
@@ -11238,7 +11215,7 @@
     }
   },
   {
-    "__docId__": 542,
+    "__docId__": 549,
     "kind": "set",
     "name": "height",
     "memberof": "src/Vector2.js~Vector2",
@@ -11259,7 +11236,7 @@
     }
   },
   {
-    "__docId__": 543,
+    "__docId__": 550,
     "kind": "method",
     "name": "set",
     "memberof": "src/Vector2.js~Vector2",
@@ -11302,7 +11279,7 @@
     }
   },
   {
-    "__docId__": 546,
+    "__docId__": 553,
     "kind": "method",
     "name": "copy",
     "memberof": "src/Vector2.js~Vector2",
@@ -11335,7 +11312,7 @@
     }
   },
   {
-    "__docId__": 549,
+    "__docId__": 556,
     "kind": "method",
     "name": "clone",
     "memberof": "src/Vector2.js~Vector2",
@@ -11357,7 +11334,7 @@
     "params": []
   },
   {
-    "__docId__": 550,
+    "__docId__": 557,
     "kind": "method",
     "name": "fromArray",
     "memberof": "src/Vector2.js~Vector2",
@@ -11400,7 +11377,7 @@
     }
   },
   {
-    "__docId__": 553,
+    "__docId__": 560,
     "kind": "method",
     "name": "toArray",
     "memberof": "src/Vector2.js~Vector2",
@@ -11443,7 +11420,7 @@
     }
   },
   {
-    "__docId__": 554,
+    "__docId__": 561,
     "kind": "method",
     "name": "add",
     "memberof": "src/Vector2.js~Vector2",
@@ -11476,7 +11453,7 @@
     }
   },
   {
-    "__docId__": 557,
+    "__docId__": 564,
     "kind": "method",
     "name": "addScalar",
     "memberof": "src/Vector2.js~Vector2",
@@ -11509,7 +11486,7 @@
     }
   },
   {
-    "__docId__": 560,
+    "__docId__": 567,
     "kind": "method",
     "name": "addVectors",
     "memberof": "src/Vector2.js~Vector2",
@@ -11552,7 +11529,7 @@
     }
   },
   {
-    "__docId__": 563,
+    "__docId__": 570,
     "kind": "method",
     "name": "addScaledVector",
     "memberof": "src/Vector2.js~Vector2",
@@ -11595,7 +11572,7 @@
     }
   },
   {
-    "__docId__": 566,
+    "__docId__": 573,
     "kind": "method",
     "name": "sub",
     "memberof": "src/Vector2.js~Vector2",
@@ -11628,7 +11605,7 @@
     }
   },
   {
-    "__docId__": 569,
+    "__docId__": 576,
     "kind": "method",
     "name": "subScalar",
     "memberof": "src/Vector2.js~Vector2",
@@ -11661,7 +11638,7 @@
     }
   },
   {
-    "__docId__": 572,
+    "__docId__": 579,
     "kind": "method",
     "name": "subVectors",
     "memberof": "src/Vector2.js~Vector2",
@@ -11704,7 +11681,7 @@
     }
   },
   {
-    "__docId__": 575,
+    "__docId__": 582,
     "kind": "method",
     "name": "multiply",
     "memberof": "src/Vector2.js~Vector2",
@@ -11737,7 +11714,7 @@
     }
   },
   {
-    "__docId__": 578,
+    "__docId__": 585,
     "kind": "method",
     "name": "multiplyScalar",
     "memberof": "src/Vector2.js~Vector2",
@@ -11770,7 +11747,7 @@
     }
   },
   {
-    "__docId__": 581,
+    "__docId__": 588,
     "kind": "method",
     "name": "divide",
     "memberof": "src/Vector2.js~Vector2",
@@ -11803,7 +11780,7 @@
     }
   },
   {
-    "__docId__": 584,
+    "__docId__": 591,
     "kind": "method",
     "name": "divideScalar",
     "memberof": "src/Vector2.js~Vector2",
@@ -11836,7 +11813,7 @@
     }
   },
   {
-    "__docId__": 587,
+    "__docId__": 594,
     "kind": "method",
     "name": "applyMatrix3",
     "memberof": "src/Vector2.js~Vector2",
@@ -11869,7 +11846,7 @@
     }
   },
   {
-    "__docId__": 590,
+    "__docId__": 597,
     "kind": "method",
     "name": "dot",
     "memberof": "src/Vector2.js~Vector2",
@@ -11902,7 +11879,7 @@
     }
   },
   {
-    "__docId__": 591,
+    "__docId__": 598,
     "kind": "method",
     "name": "cross",
     "memberof": "src/Vector2.js~Vector2",
@@ -11935,7 +11912,7 @@
     }
   },
   {
-    "__docId__": 592,
+    "__docId__": 599,
     "kind": "method",
     "name": "manhattanLength",
     "memberof": "src/Vector2.js~Vector2",
@@ -11957,7 +11934,7 @@
     "params": []
   },
   {
-    "__docId__": 593,
+    "__docId__": 600,
     "kind": "method",
     "name": "lengthSquared",
     "memberof": "src/Vector2.js~Vector2",
@@ -11979,7 +11956,7 @@
     "params": []
   },
   {
-    "__docId__": 594,
+    "__docId__": 601,
     "kind": "method",
     "name": "length",
     "memberof": "src/Vector2.js~Vector2",
@@ -12001,7 +11978,7 @@
     "params": []
   },
   {
-    "__docId__": 595,
+    "__docId__": 602,
     "kind": "method",
     "name": "manhattanDistanceTo",
     "memberof": "src/Vector2.js~Vector2",
@@ -12034,7 +12011,7 @@
     }
   },
   {
-    "__docId__": 596,
+    "__docId__": 603,
     "kind": "method",
     "name": "distanceToSquared",
     "memberof": "src/Vector2.js~Vector2",
@@ -12067,7 +12044,7 @@
     }
   },
   {
-    "__docId__": 597,
+    "__docId__": 604,
     "kind": "method",
     "name": "distanceTo",
     "memberof": "src/Vector2.js~Vector2",
@@ -12100,7 +12077,7 @@
     }
   },
   {
-    "__docId__": 598,
+    "__docId__": 605,
     "kind": "method",
     "name": "normalize",
     "memberof": "src/Vector2.js~Vector2",
@@ -12122,7 +12099,7 @@
     "params": []
   },
   {
-    "__docId__": 599,
+    "__docId__": 606,
     "kind": "method",
     "name": "setLength",
     "memberof": "src/Vector2.js~Vector2",
@@ -12155,7 +12132,7 @@
     }
   },
   {
-    "__docId__": 600,
+    "__docId__": 607,
     "kind": "method",
     "name": "min",
     "memberof": "src/Vector2.js~Vector2",
@@ -12188,7 +12165,7 @@
     }
   },
   {
-    "__docId__": 603,
+    "__docId__": 610,
     "kind": "method",
     "name": "max",
     "memberof": "src/Vector2.js~Vector2",
@@ -12221,7 +12198,7 @@
     }
   },
   {
-    "__docId__": 606,
+    "__docId__": 613,
     "kind": "method",
     "name": "clamp",
     "memberof": "src/Vector2.js~Vector2",
@@ -12264,7 +12241,7 @@
     }
   },
   {
-    "__docId__": 609,
+    "__docId__": 616,
     "kind": "method",
     "name": "floor",
     "memberof": "src/Vector2.js~Vector2",
@@ -12286,7 +12263,7 @@
     "params": []
   },
   {
-    "__docId__": 612,
+    "__docId__": 619,
     "kind": "method",
     "name": "ceil",
     "memberof": "src/Vector2.js~Vector2",
@@ -12308,7 +12285,7 @@
     "params": []
   },
   {
-    "__docId__": 615,
+    "__docId__": 622,
     "kind": "method",
     "name": "round",
     "memberof": "src/Vector2.js~Vector2",
@@ -12330,7 +12307,7 @@
     "params": []
   },
   {
-    "__docId__": 618,
+    "__docId__": 625,
     "kind": "method",
     "name": "negate",
     "memberof": "src/Vector2.js~Vector2",
@@ -12352,7 +12329,7 @@
     "params": []
   },
   {
-    "__docId__": 621,
+    "__docId__": 628,
     "kind": "method",
     "name": "angle",
     "memberof": "src/Vector2.js~Vector2",
@@ -12374,7 +12351,7 @@
     "params": []
   },
   {
-    "__docId__": 622,
+    "__docId__": 629,
     "kind": "method",
     "name": "lerp",
     "memberof": "src/Vector2.js~Vector2",
@@ -12417,7 +12394,7 @@
     }
   },
   {
-    "__docId__": 625,
+    "__docId__": 632,
     "kind": "method",
     "name": "lerpVectors",
     "memberof": "src/Vector2.js~Vector2",
@@ -12470,7 +12447,7 @@
     }
   },
   {
-    "__docId__": 626,
+    "__docId__": 633,
     "kind": "method",
     "name": "rotateAround",
     "memberof": "src/Vector2.js~Vector2",
@@ -12513,7 +12490,7 @@
     }
   },
   {
-    "__docId__": 629,
+    "__docId__": 636,
     "kind": "method",
     "name": "equals",
     "memberof": "src/Vector2.js~Vector2",
@@ -12546,7 +12523,7 @@
     }
   },
   {
-    "__docId__": 630,
+    "__docId__": 637,
     "kind": "file",
     "name": "src/Vector3.js",
     "content": "/**\r\n * A vector with three components.\r\n */\r\n\r\nexport class Vector3 {\r\n\r\n\t/**\r\n\t * Constructs a new vector.\r\n\t *\r\n\t * @param {Number} [x=0] - The X component.\r\n\t * @param {Number} [y=0] - The Y component.\r\n\t * @param {Number} [z=0] - The Z component.\r\n\t */\r\n\r\n\tconstructor(x = 0, y = 0, z = 0) {\r\n\r\n\t\t/**\r\n\t\t * The X component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.x = x;\r\n\r\n\t\t/**\r\n\t\t * The Y component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.y = y;\r\n\r\n\t\t/**\r\n\t\t * The Z component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.z = z;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this vector\r\n\t *\r\n\t * @param {Number} x - The X component.\r\n\t * @param {Number} y - The Y component.\r\n\t * @param {Number} z - The Z component.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tset(x, y, z) {\r\n\r\n\t\tthis.x = x;\r\n\t\tthis.y = y;\r\n\t\tthis.z = z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the values of another vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tcopy(v) {\r\n\r\n\t\tthis.x = v.x;\r\n\t\tthis.y = v.y;\r\n\t\tthis.z = v.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this vector.\r\n\t *\r\n\t * @return {Vector3} A clone of this vector.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor(this.x, this.y, this.z);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies values from an array.\r\n\t *\r\n\t * @param {Number[]} array - An array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tfromArray(array, offset = 0) {\r\n\r\n\t\tthis.x = array[offset];\r\n\t\tthis.y = array[offset + 1];\r\n\t\tthis.z = array[offset + 2];\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Stores this vector in an array.\r\n\t *\r\n\t * @param {Array} [array] - A target array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Number[]} The array.\r\n\t */\r\n\r\n\ttoArray(array = [], offset = 0) {\r\n\r\n\t\tarray[offset] = this.x;\r\n\t\tarray[offset + 1] = this.y;\r\n\t\tarray[offset + 2] = this.z;\r\n\r\n\t\treturn array;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this vector based on a spherical description.\r\n\t *\r\n\t * @param {Spherical} s - A spherical description.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsetFromSpherical(s) {\r\n\r\n\t\tthis.setFromSphericalCoords(s.radius, s.phi, s.theta);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this vector based on spherical coordinates.\r\n\t *\r\n\t * @param {Number} radius - The radius.\r\n\t * @param {Number} phi - The polar angle.\r\n\t * @param {Number} theta - The angle around the equator of the sphere.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsetFromSphericalCoords(radius, phi, theta) {\r\n\r\n\t\tconst sinPhiRadius = Math.sin(phi) * radius;\r\n\r\n\t\tthis.x = sinPhiRadius * Math.sin(theta);\r\n\t\tthis.y = Math.cos(phi) * radius;\r\n\t\tthis.z = sinPhiRadius * Math.cos(theta);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this vector based on a cylindrical description.\r\n\t *\r\n\t * @param {Cylindrical} c - A cylindrical description.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsetFromCylindrical(c) {\r\n\r\n\t\tthis.setFromCylindricalCoords(c.radius, c.theta, c.y);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this vector based on cylindrical coordinates.\r\n\t *\r\n\t * @param {Number} radius - The radius.\r\n\t * @param {Number} theta - Theta.\r\n\t * @param {Number} y - The height.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsetFromCylindricalCoords(radius, theta, y) {\r\n\r\n\t\tthis.x = radius * Math.sin(theta);\r\n\t\tthis.y = y;\r\n\t\tthis.z = radius * Math.cos(theta);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the values of a matrix column.\r\n\t *\r\n\t * @param {Matrix4} m - A 4x4 matrix.\r\n\t * @param {Number} index - A column index of the range [0, 2].\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsetFromMatrixColumn(m, index) {\r\n\r\n\t\treturn this.fromArray(m.elements, index * 4);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Extracts the position from a matrix.\r\n\t *\r\n\t * @param {Matrix4} m - A 4x4 matrix.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsetFromMatrixPosition(m) {\r\n\r\n\t\tconst me = m.elements;\r\n\r\n\t\tthis.x = me[12];\r\n\t\tthis.y = me[13];\r\n\t\tthis.z = me[14];\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Extracts the scale from a matrix.\r\n\t *\r\n\t * @param {Matrix4} m - A 4x4 matrix.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsetFromMatrixScale(m) {\r\n\r\n\t\tconst sx = this.setFromMatrixColumn(m, 0).length();\r\n\t\tconst sy = this.setFromMatrixColumn(m, 1).length();\r\n\t\tconst sz = this.setFromMatrixColumn(m, 2).length();\r\n\r\n\t\tthis.x = sx;\r\n\t\tthis.y = sy;\r\n\t\tthis.z = sz;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a vector to this one.\r\n\t *\r\n\t * @param {Vector3} v - The vector to add.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tadd(v) {\r\n\r\n\t\tthis.x += v.x;\r\n\t\tthis.y += v.y;\r\n\t\tthis.z += v.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a scalar to this vector.\r\n\t *\r\n\t * @param {Number} s - The scalar to add.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\taddScalar(s) {\r\n\r\n\t\tthis.x += s;\r\n\t\tthis.y += s;\r\n\t\tthis.z += s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the sum of two given vectors.\r\n\t *\r\n\t * @param {Vector3} a - A vector.\r\n\t * @param {Vector3} b - Another vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\taddVectors(a, b) {\r\n\r\n\t\tthis.x = a.x + b.x;\r\n\t\tthis.y = a.y + b.y;\r\n\t\tthis.z = a.z + b.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a scaled vector to this one.\r\n\t *\r\n\t * @param {Vector3} v - The vector to scale and add.\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\taddScaledVector(v, s) {\r\n\r\n\t\tthis.x += v.x * s;\r\n\t\tthis.y += v.y * s;\r\n\t\tthis.z += v.z * s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Subtracts a vector from this vector.\r\n\t *\r\n\t * @param {Vector3} v - The vector to subtract.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsub(v) {\r\n\r\n\t\tthis.x -= v.x;\r\n\t\tthis.y -= v.y;\r\n\t\tthis.z -= v.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Subtracts a scalar from this vector.\r\n\t *\r\n\t * @param {Number} s - The scalar to subtract.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsubScalar(s) {\r\n\r\n\t\tthis.x -= s;\r\n\t\tthis.y -= s;\r\n\t\tthis.z -= s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the difference between two given vectors.\r\n\t *\r\n\t * @param {Vector3} a - A vector.\r\n\t * @param {Vector3} b - A second vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsubVectors(a, b) {\r\n\r\n\t\tthis.x = a.x - b.x;\r\n\t\tthis.y = a.y - b.y;\r\n\t\tthis.z = a.z - b.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies this vector with another vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tmultiply(v) {\r\n\r\n\t\tthis.x *= v.x;\r\n\t\tthis.y *= v.y;\r\n\t\tthis.z *= v.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies this vector with a given scalar.\r\n\t *\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tmultiplyScalar(s) {\r\n\r\n\t\tthis.x *= s;\r\n\t\tthis.y *= s;\r\n\t\tthis.z *= s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the product of two given vectors.\r\n\t *\r\n\t * @param {Vector3} a - A vector.\r\n\t * @param {Vector3} b - Another vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tmultiplyVectors(a, b) {\r\n\r\n\t\tthis.x = a.x * b.x;\r\n\t\tthis.y = a.y * b.y;\r\n\t\tthis.z = a.z * b.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Divides this vector by another vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tdivide(v) {\r\n\r\n\t\tthis.x /= v.x;\r\n\t\tthis.y /= v.y;\r\n\t\tthis.z /= v.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Divides this vector by a given scalar.\r\n\t *\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tdivideScalar(s) {\r\n\r\n\t\tthis.x /= s;\r\n\t\tthis.y /= s;\r\n\t\tthis.z /= s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the cross product of the given vectors.\r\n\t *\r\n\t * @param {Vector3} a - A vector.\r\n\t * @param {Vector3} b - Another vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tcrossVectors(a, b) {\r\n\r\n\t\tconst ax = a.x, ay = a.y, az = a.z;\r\n\t\tconst bx = b.x, by = b.y, bz = b.z;\r\n\r\n\t\tthis.x = ay * bz - az * by;\r\n\t\tthis.y = az * bx - ax * bz;\r\n\t\tthis.z = ax * by - ay * bx;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the cross product of this vector and the given one.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tcross(v) {\r\n\r\n\t\treturn this.crossVectors(this, v);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Applies a matrix to this direction vector.\r\n\t *\r\n\t * @param {Matrix4} m - A matrix.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\ttransformDirection(m) {\r\n\r\n\t\tconst x = this.x, y = this.y, z = this.z;\r\n\t\tconst e = m.elements;\r\n\r\n\t\tthis.x = e[0] * x + e[4] * y + e[8] * z;\r\n\t\tthis.y = e[1] * x + e[5] * y + e[9] * z;\r\n\t\tthis.z = e[2] * x + e[6] * y + e[10] * z;\r\n\r\n\t\treturn this.normalize();\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Applies a matrix to this vector.\r\n\t *\r\n\t * @param {Matrix3} m - A matrix.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tapplyMatrix3(m) {\r\n\r\n\t\tconst x = this.x, y = this.y, z = this.z;\r\n\t\tconst e = m.elements;\r\n\r\n\t\tthis.x = e[0] * x + e[3] * y + e[6] * z;\r\n\t\tthis.y = e[1] * x + e[4] * y + e[7] * z;\r\n\t\tthis.z = e[2] * x + e[5] * y + e[8] * z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Applies a matrix to this vector.\r\n\t *\r\n\t * @param {Matrix4} m - A matrix.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tapplyMatrix4(m) {\r\n\r\n\t\tconst x = this.x, y = this.y, z = this.z;\r\n\t\tconst e = m.elements;\r\n\r\n\t\tthis.x = e[0] * x + e[4] * y + e[8] * z + e[12];\r\n\t\tthis.y = e[1] * x + e[5] * y + e[9] * z + e[13];\r\n\t\tthis.z = e[2] * x + e[6] * y + e[10] * z + e[14];\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Applies a quaternion to this vector.\r\n\t *\r\n\t * @param {Quaternion} q - A quaternion.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tapplyQuaternion(q) {\r\n\r\n\t\tconst x = this.x, y = this.y, z = this.z;\r\n\t\tconst qx = q.x, qy = q.y, qz = q.z, qw = q.w;\r\n\r\n\t\t// Calculate: quaternion * vector.\r\n\t\tconst ix = qw * x + qy * z - qz * y;\r\n\t\tconst iy = qw * y + qz * x - qx * z;\r\n\t\tconst iz = qw * z + qx * y - qy * x;\r\n\t\tconst iw = -qx * x - qy * y - qz * z;\r\n\r\n\t\t// Calculate: result * inverse quaternion.\r\n\t\tthis.x = ix * qw + iw * -qx + iy * -qz - iz * -qy;\r\n\t\tthis.y = iy * qw + iw * -qy + iz * -qx - ix * -qz;\r\n\t\tthis.z = iz * qw + iw * -qz + ix * -qy - iy * -qx;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Negates this vector.\r\n\t *\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tnegate() {\r\n\r\n\t\tthis.x = -this.x;\r\n\t\tthis.y = -this.y;\r\n\t\tthis.z = -this.z;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the dot product with another vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Number} The dot product.\r\n\t */\r\n\r\n\tdot(v) {\r\n\r\n\t\treturn this.x * v.x + this.y * v.y + this.z * v.z;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Reflects this vector. The given plane normal is assumed to be normalized.\r\n\t *\r\n\t * @param {Vector3} n - A normal.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\treflect(n) {\r\n\r\n\t\tconst nx = n.x;\r\n\t\tconst ny = n.y;\r\n\t\tconst nz = n.z;\r\n\r\n\t\tthis.sub(n.multiplyScalar(2 * this.dot(n)));\r\n\r\n\t\t// Restore the normal.\r\n\t\tn.set(nx, ny, nz);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Computes the angle to the given vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Number} The angle in radians.\r\n\t */\r\n\r\n\tangleTo(v) {\r\n\r\n\t\tconst theta = this.dot(v) / (Math.sqrt(this.lengthSquared() * v.lengthSquared()));\r\n\r\n\t\t// Clamp to avoid numerical problems.\r\n\t\treturn Math.acos(Math.min(Math.max(theta, -1), 1));\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the Manhattan length of this vector.\r\n\t *\r\n\t * @return {Number} The length.\r\n\t */\r\n\r\n\tmanhattanLength() {\r\n\r\n\t\treturn Math.abs(this.x) + Math.abs(this.y) + Math.abs(this.z);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the squared length of this vector.\r\n\t *\r\n\t * @return {Number} The squared length.\r\n\t */\r\n\r\n\tlengthSquared() {\r\n\r\n\t\treturn this.x * this.x + this.y * this.y + this.z * this.z;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the length of this vector.\r\n\t *\r\n\t * @return {Number} The length.\r\n\t */\r\n\r\n\tlength() {\r\n\r\n\t\treturn Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the Manhattan distance to a given vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Number} The distance.\r\n\t */\r\n\r\n\tmanhattanDistanceTo(v) {\r\n\r\n\t\treturn Math.abs(this.x - v.x) + Math.abs(this.y - v.y) + Math.abs(this.z - v.z);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the squared distance to a given vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Number} The squared distance.\r\n\t */\r\n\r\n\tdistanceToSquared(v) {\r\n\r\n\t\tconst dx = this.x - v.x;\r\n\t\tconst dy = this.y - v.y;\r\n\t\tconst dz = this.z - v.z;\r\n\r\n\t\treturn dx * dx + dy * dy + dz * dz;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the distance to a given vector.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Number} The distance.\r\n\t */\r\n\r\n\tdistanceTo(v) {\r\n\r\n\t\treturn Math.sqrt(this.distanceToSquared(v));\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Normalizes this vector.\r\n\t *\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tnormalize() {\r\n\r\n\t\treturn this.divideScalar(this.length());\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the length of this vector.\r\n\t *\r\n\t * @param {Number} length - The new length.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tsetLength(length) {\r\n\r\n\t\treturn this.normalize().multiplyScalar(length);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adopts the min value for each component of this vector and the given one.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tmin(v) {\r\n\r\n\t\tthis.x = Math.min(this.x, v.x);\r\n\t\tthis.y = Math.min(this.y, v.y);\r\n\t\tthis.z = Math.min(this.z, v.z);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adopts the max value for each component of this vector and the given one.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tmax(v) {\r\n\r\n\t\tthis.x = Math.max(this.x, v.x);\r\n\t\tthis.y = Math.max(this.y, v.y);\r\n\t\tthis.z = Math.max(this.z, v.z);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clamps this vector.\r\n\t *\r\n\t * @param {Vector3} min - The lower bounds. Assumed to be smaller than max.\r\n\t * @param {Vector3} max - The upper bounds. Assumed to be greater than min.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tclamp(min, max) {\r\n\r\n\t\tthis.x = Math.max(min.x, Math.min(max.x, this.x));\r\n\t\tthis.y = Math.max(min.y, Math.min(max.y, this.y));\r\n\t\tthis.z = Math.max(min.z, Math.min(max.z, this.z));\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Floors this vector.\r\n\t *\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tfloor() {\r\n\r\n\t\tthis.x = Math.floor(this.x);\r\n\t\tthis.y = Math.floor(this.y);\r\n\t\tthis.z = Math.floor(this.z);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Ceils this vector.\r\n\t *\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tceil() {\r\n\r\n\t\tthis.x = Math.ceil(this.x);\r\n\t\tthis.y = Math.ceil(this.y);\r\n\t\tthis.z = Math.ceil(this.z);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Rounds this vector.\r\n\t *\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tround() {\r\n\r\n\t\tthis.x = Math.round(this.x);\r\n\t\tthis.y = Math.round(this.y);\r\n\t\tthis.z = Math.round(this.z);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Lerps towards the given vector.\r\n\t *\r\n\t * @param {Vector3} v - The target vector.\r\n\t * @param {Number} alpha - The lerp factor.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tlerp(v, alpha) {\r\n\r\n\t\tthis.x += (v.x - this.x) * alpha;\r\n\t\tthis.y += (v.y - this.y) * alpha;\r\n\t\tthis.z += (v.z - this.z) * alpha;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the lerp result of the given vectors.\r\n\t *\r\n\t * @param {Vector3} v1 - A base vector.\r\n\t * @param {Vector3} v2 - The target vector.\r\n\t * @param {Number} alpha - The lerp factor.\r\n\t * @return {Vector3} This vector.\r\n\t */\r\n\r\n\tlerpVectors(v1, v2, alpha) {\r\n\r\n\t\treturn this.subVectors(v2, v1).multiplyScalar(alpha).add(v1);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if this vector equals the given one.\r\n\t *\r\n\t * @param {Vector3} v - A vector.\r\n\t * @return {Boolean} Whether this vector equals the given one.\r\n\t */\r\n\r\n\tequals(v) {\r\n\r\n\t\treturn (v.x === this.x && v.y === this.y && v.z === this.z);\r\n\r\n\t}\r\n\r\n}\r\n",
@@ -12557,7 +12534,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 631,
+    "__docId__": 638,
     "kind": "class",
     "name": "Vector3",
     "memberof": "src/Vector3.js",
@@ -12572,7 +12549,7 @@
     "interface": false
   },
   {
-    "__docId__": 632,
+    "__docId__": 639,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/Vector3.js~Vector3",
@@ -12623,7 +12600,7 @@
     ]
   },
   {
-    "__docId__": 633,
+    "__docId__": 640,
     "kind": "member",
     "name": "x",
     "memberof": "src/Vector3.js~Vector3",
@@ -12642,7 +12619,7 @@
     }
   },
   {
-    "__docId__": 634,
+    "__docId__": 641,
     "kind": "member",
     "name": "y",
     "memberof": "src/Vector3.js~Vector3",
@@ -12661,7 +12638,7 @@
     }
   },
   {
-    "__docId__": 635,
+    "__docId__": 642,
     "kind": "member",
     "name": "z",
     "memberof": "src/Vector3.js~Vector3",
@@ -12680,7 +12657,7 @@
     }
   },
   {
-    "__docId__": 636,
+    "__docId__": 643,
     "kind": "method",
     "name": "set",
     "memberof": "src/Vector3.js~Vector3",
@@ -12733,7 +12710,7 @@
     }
   },
   {
-    "__docId__": 640,
+    "__docId__": 647,
     "kind": "method",
     "name": "copy",
     "memberof": "src/Vector3.js~Vector3",
@@ -12766,7 +12743,7 @@
     }
   },
   {
-    "__docId__": 644,
+    "__docId__": 651,
     "kind": "method",
     "name": "clone",
     "memberof": "src/Vector3.js~Vector3",
@@ -12788,7 +12765,7 @@
     "params": []
   },
   {
-    "__docId__": 645,
+    "__docId__": 652,
     "kind": "method",
     "name": "fromArray",
     "memberof": "src/Vector3.js~Vector3",
@@ -12831,7 +12808,7 @@
     }
   },
   {
-    "__docId__": 649,
+    "__docId__": 656,
     "kind": "method",
     "name": "toArray",
     "memberof": "src/Vector3.js~Vector3",
@@ -12874,7 +12851,7 @@
     }
   },
   {
-    "__docId__": 650,
+    "__docId__": 657,
     "kind": "method",
     "name": "setFromSpherical",
     "memberof": "src/Vector3.js~Vector3",
@@ -12907,7 +12884,7 @@
     }
   },
   {
-    "__docId__": 651,
+    "__docId__": 658,
     "kind": "method",
     "name": "setFromSphericalCoords",
     "memberof": "src/Vector3.js~Vector3",
@@ -12960,7 +12937,7 @@
     }
   },
   {
-    "__docId__": 655,
+    "__docId__": 662,
     "kind": "method",
     "name": "setFromCylindrical",
     "memberof": "src/Vector3.js~Vector3",
@@ -12993,7 +12970,7 @@
     }
   },
   {
-    "__docId__": 656,
+    "__docId__": 663,
     "kind": "method",
     "name": "setFromCylindricalCoords",
     "memberof": "src/Vector3.js~Vector3",
@@ -13046,7 +13023,7 @@
     }
   },
   {
-    "__docId__": 660,
+    "__docId__": 667,
     "kind": "method",
     "name": "setFromMatrixColumn",
     "memberof": "src/Vector3.js~Vector3",
@@ -13089,7 +13066,7 @@
     }
   },
   {
-    "__docId__": 661,
+    "__docId__": 668,
     "kind": "method",
     "name": "setFromMatrixPosition",
     "memberof": "src/Vector3.js~Vector3",
@@ -13122,7 +13099,7 @@
     }
   },
   {
-    "__docId__": 665,
+    "__docId__": 672,
     "kind": "method",
     "name": "setFromMatrixScale",
     "memberof": "src/Vector3.js~Vector3",
@@ -13155,7 +13132,7 @@
     }
   },
   {
-    "__docId__": 669,
+    "__docId__": 676,
     "kind": "method",
     "name": "add",
     "memberof": "src/Vector3.js~Vector3",
@@ -13188,7 +13165,7 @@
     }
   },
   {
-    "__docId__": 673,
+    "__docId__": 680,
     "kind": "method",
     "name": "addScalar",
     "memberof": "src/Vector3.js~Vector3",
@@ -13221,7 +13198,7 @@
     }
   },
   {
-    "__docId__": 677,
+    "__docId__": 684,
     "kind": "method",
     "name": "addVectors",
     "memberof": "src/Vector3.js~Vector3",
@@ -13264,7 +13241,7 @@
     }
   },
   {
-    "__docId__": 681,
+    "__docId__": 688,
     "kind": "method",
     "name": "addScaledVector",
     "memberof": "src/Vector3.js~Vector3",
@@ -13307,7 +13284,7 @@
     }
   },
   {
-    "__docId__": 685,
+    "__docId__": 692,
     "kind": "method",
     "name": "sub",
     "memberof": "src/Vector3.js~Vector3",
@@ -13340,7 +13317,7 @@
     }
   },
   {
-    "__docId__": 689,
+    "__docId__": 696,
     "kind": "method",
     "name": "subScalar",
     "memberof": "src/Vector3.js~Vector3",
@@ -13373,7 +13350,7 @@
     }
   },
   {
-    "__docId__": 693,
+    "__docId__": 700,
     "kind": "method",
     "name": "subVectors",
     "memberof": "src/Vector3.js~Vector3",
@@ -13416,7 +13393,7 @@
     }
   },
   {
-    "__docId__": 697,
+    "__docId__": 704,
     "kind": "method",
     "name": "multiply",
     "memberof": "src/Vector3.js~Vector3",
@@ -13449,7 +13426,7 @@
     }
   },
   {
-    "__docId__": 701,
+    "__docId__": 708,
     "kind": "method",
     "name": "multiplyScalar",
     "memberof": "src/Vector3.js~Vector3",
@@ -13482,7 +13459,7 @@
     }
   },
   {
-    "__docId__": 705,
+    "__docId__": 712,
     "kind": "method",
     "name": "multiplyVectors",
     "memberof": "src/Vector3.js~Vector3",
@@ -13525,7 +13502,7 @@
     }
   },
   {
-    "__docId__": 709,
+    "__docId__": 716,
     "kind": "method",
     "name": "divide",
     "memberof": "src/Vector3.js~Vector3",
@@ -13558,7 +13535,7 @@
     }
   },
   {
-    "__docId__": 713,
+    "__docId__": 720,
     "kind": "method",
     "name": "divideScalar",
     "memberof": "src/Vector3.js~Vector3",
@@ -13591,7 +13568,7 @@
     }
   },
   {
-    "__docId__": 717,
+    "__docId__": 724,
     "kind": "method",
     "name": "crossVectors",
     "memberof": "src/Vector3.js~Vector3",
@@ -13634,7 +13611,7 @@
     }
   },
   {
-    "__docId__": 721,
+    "__docId__": 728,
     "kind": "method",
     "name": "cross",
     "memberof": "src/Vector3.js~Vector3",
@@ -13667,7 +13644,7 @@
     }
   },
   {
-    "__docId__": 722,
+    "__docId__": 729,
     "kind": "method",
     "name": "transformDirection",
     "memberof": "src/Vector3.js~Vector3",
@@ -13700,7 +13677,7 @@
     }
   },
   {
-    "__docId__": 726,
+    "__docId__": 733,
     "kind": "method",
     "name": "applyMatrix3",
     "memberof": "src/Vector3.js~Vector3",
@@ -13733,7 +13710,7 @@
     }
   },
   {
-    "__docId__": 730,
+    "__docId__": 737,
     "kind": "method",
     "name": "applyMatrix4",
     "memberof": "src/Vector3.js~Vector3",
@@ -13766,7 +13743,7 @@
     }
   },
   {
-    "__docId__": 734,
+    "__docId__": 741,
     "kind": "method",
     "name": "applyQuaternion",
     "memberof": "src/Vector3.js~Vector3",
@@ -13799,7 +13776,7 @@
     }
   },
   {
-    "__docId__": 738,
+    "__docId__": 745,
     "kind": "method",
     "name": "negate",
     "memberof": "src/Vector3.js~Vector3",
@@ -13821,7 +13798,7 @@
     "params": []
   },
   {
-    "__docId__": 742,
+    "__docId__": 749,
     "kind": "method",
     "name": "dot",
     "memberof": "src/Vector3.js~Vector3",
@@ -13854,7 +13831,7 @@
     }
   },
   {
-    "__docId__": 743,
+    "__docId__": 750,
     "kind": "method",
     "name": "reflect",
     "memberof": "src/Vector3.js~Vector3",
@@ -13887,7 +13864,7 @@
     }
   },
   {
-    "__docId__": 744,
+    "__docId__": 751,
     "kind": "method",
     "name": "angleTo",
     "memberof": "src/Vector3.js~Vector3",
@@ -13920,7 +13897,7 @@
     }
   },
   {
-    "__docId__": 745,
+    "__docId__": 752,
     "kind": "method",
     "name": "manhattanLength",
     "memberof": "src/Vector3.js~Vector3",
@@ -13942,7 +13919,7 @@
     "params": []
   },
   {
-    "__docId__": 746,
+    "__docId__": 753,
     "kind": "method",
     "name": "lengthSquared",
     "memberof": "src/Vector3.js~Vector3",
@@ -13964,7 +13941,7 @@
     "params": []
   },
   {
-    "__docId__": 747,
+    "__docId__": 754,
     "kind": "method",
     "name": "length",
     "memberof": "src/Vector3.js~Vector3",
@@ -13986,7 +13963,7 @@
     "params": []
   },
   {
-    "__docId__": 748,
+    "__docId__": 755,
     "kind": "method",
     "name": "manhattanDistanceTo",
     "memberof": "src/Vector3.js~Vector3",
@@ -14019,7 +13996,7 @@
     }
   },
   {
-    "__docId__": 749,
+    "__docId__": 756,
     "kind": "method",
     "name": "distanceToSquared",
     "memberof": "src/Vector3.js~Vector3",
@@ -14052,7 +14029,7 @@
     }
   },
   {
-    "__docId__": 750,
+    "__docId__": 757,
     "kind": "method",
     "name": "distanceTo",
     "memberof": "src/Vector3.js~Vector3",
@@ -14085,7 +14062,7 @@
     }
   },
   {
-    "__docId__": 751,
+    "__docId__": 758,
     "kind": "method",
     "name": "normalize",
     "memberof": "src/Vector3.js~Vector3",
@@ -14107,7 +14084,7 @@
     "params": []
   },
   {
-    "__docId__": 752,
+    "__docId__": 759,
     "kind": "method",
     "name": "setLength",
     "memberof": "src/Vector3.js~Vector3",
@@ -14140,7 +14117,7 @@
     }
   },
   {
-    "__docId__": 753,
+    "__docId__": 760,
     "kind": "method",
     "name": "min",
     "memberof": "src/Vector3.js~Vector3",
@@ -14173,7 +14150,7 @@
     }
   },
   {
-    "__docId__": 757,
+    "__docId__": 764,
     "kind": "method",
     "name": "max",
     "memberof": "src/Vector3.js~Vector3",
@@ -14206,7 +14183,7 @@
     }
   },
   {
-    "__docId__": 761,
+    "__docId__": 768,
     "kind": "method",
     "name": "clamp",
     "memberof": "src/Vector3.js~Vector3",
@@ -14249,7 +14226,7 @@
     }
   },
   {
-    "__docId__": 765,
+    "__docId__": 772,
     "kind": "method",
     "name": "floor",
     "memberof": "src/Vector3.js~Vector3",
@@ -14271,7 +14248,7 @@
     "params": []
   },
   {
-    "__docId__": 769,
+    "__docId__": 776,
     "kind": "method",
     "name": "ceil",
     "memberof": "src/Vector3.js~Vector3",
@@ -14293,7 +14270,7 @@
     "params": []
   },
   {
-    "__docId__": 773,
+    "__docId__": 780,
     "kind": "method",
     "name": "round",
     "memberof": "src/Vector3.js~Vector3",
@@ -14315,7 +14292,7 @@
     "params": []
   },
   {
-    "__docId__": 777,
+    "__docId__": 784,
     "kind": "method",
     "name": "lerp",
     "memberof": "src/Vector3.js~Vector3",
@@ -14358,7 +14335,7 @@
     }
   },
   {
-    "__docId__": 781,
+    "__docId__": 788,
     "kind": "method",
     "name": "lerpVectors",
     "memberof": "src/Vector3.js~Vector3",
@@ -14411,7 +14388,7 @@
     }
   },
   {
-    "__docId__": 782,
+    "__docId__": 789,
     "kind": "method",
     "name": "equals",
     "memberof": "src/Vector3.js~Vector3",
@@ -14444,7 +14421,7 @@
     }
   },
   {
-    "__docId__": 783,
+    "__docId__": 790,
     "kind": "file",
     "name": "src/Vector4.js",
     "content": "/**\r\n * A vector with four components.\r\n */\r\n\r\nexport class Vector4 {\r\n\r\n\t/**\r\n\t * Constructs a new vector.\r\n\t *\r\n\t * @param {Number} [x=0] - The X component.\r\n\t * @param {Number} [y=0] - The Y component.\r\n\t * @param {Number} [z=0] - The Z component.\r\n\t * @param {Number} [w=0] - The W component.\r\n\t */\r\n\r\n\tconstructor(x = 0, y = 0, z = 0, w = 0) {\r\n\r\n\t\t/**\r\n\t\t * The X component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.x = x;\r\n\r\n\t\t/**\r\n\t\t * The Y component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.y = y;\r\n\r\n\t\t/**\r\n\t\t * The Z component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.z = z;\r\n\r\n\t\t/**\r\n\t\t * The W component.\r\n\t\t *\r\n\t\t * @type {Number}\r\n\t\t */\r\n\r\n\t\tthis.w = w;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the values of this vector\r\n\t *\r\n\t * @param {Number} x - The X component.\r\n\t * @param {Number} y - The Y component.\r\n\t * @param {Number} z - The Z component.\r\n\t * @param {Number} w - The W component.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tset(x, y, z, w) {\r\n\r\n\t\tthis.x = x;\r\n\t\tthis.y = y;\r\n\t\tthis.z = z;\r\n\t\tthis.w = w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies the values of another vector.\r\n\t *\r\n\t * @param {Vector4} v - A vector.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tcopy(v) {\r\n\r\n\t\tthis.x = v.x;\r\n\t\tthis.y = v.y;\r\n\t\tthis.z = v.z;\r\n\t\tthis.w = v.w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clones this vector.\r\n\t *\r\n\t * @return {Vector4} A clone of this vector.\r\n\t */\r\n\r\n\tclone() {\r\n\r\n\t\treturn new this.constructor(this.x, this.y, this.z, this.w);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Copies values from an array.\r\n\t *\r\n\t * @param {Number[]} array - An array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tfromArray(array, offset = 0) {\r\n\r\n\t\tthis.x = array[offset];\r\n\t\tthis.y = array[offset + 1];\r\n\t\tthis.z = array[offset + 2];\r\n\t\tthis.w = array[offset + 3];\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Stores this vector in an array.\r\n\t *\r\n\t * @param {Array} [array] - A target array.\r\n\t * @param {Number} offset - An offset.\r\n\t * @return {Number[]} The array.\r\n\t */\r\n\r\n\ttoArray(array = [], offset = 0) {\r\n\r\n\t\tarray[offset] = this.x;\r\n\t\tarray[offset + 1] = this.y;\r\n\t\tarray[offset + 2] = this.z;\r\n\t\tarray[offset + 3] = this.w;\r\n\r\n\t\treturn array;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Stores the axis angle from the given quaternion in this vector.\r\n\t *\r\n\t * For more details see:\r\n\t *  http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToAngle/index.htm\r\n\t *\r\n\t * @param {Quaternion} q - A quaternion. Assumed to be normalized\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tsetAxisAngleFromQuaternion(q) {\r\n\r\n\t\tthis.w = 2 * Math.acos(q.w);\r\n\r\n\t\tconst s = Math.sqrt(1 - q.w * q.w);\r\n\r\n\t\tif(s < 1e-4) {\r\n\r\n\t\t\tthis.x = 1;\r\n\t\t\tthis.y = 0;\r\n\t\t\tthis.z = 0;\r\n\r\n\t\t} else {\r\n\r\n\t\t\tthis.x = q.x / s;\r\n\t\t\tthis.y = q.y / s;\r\n\t\t\tthis.z = q.z / s;\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Stores the axis angle from the given rotation matrix in this vector.\r\n\t *\r\n\t * For more details see:\r\n\t *  http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToAngle/index.htm\r\n\t *\r\n\t * @param {Matrix4} m - A matrix. The upper 3x3 must be a pure rotation matrix (i.e. unscaled).\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tsetAxisAngleFromRotationMatrix(m) {\r\n\r\n\t\t// Margin to allow for rounding errors.\r\n\t\tconst E = 0.01;\r\n\t\t// Margin to distinguish between 0 and 180 degrees.\r\n\t\tconst H = 0.1;\r\n\r\n\t\tconst me = m.elements;\r\n\t\tconst m00 = me[0], m01 = me[4], m02 = me[8];\r\n\t\tconst m10 = me[1], m11 = me[5], m12 = me[9];\r\n\t\tconst m20 = me[2], m21 = me[6], m22 = me[10];\r\n\r\n\t\tlet angle;\r\n\t\tlet x, y, z;\r\n\t\tlet xx, yy, zz;\r\n\t\tlet xy, xz, yz;\r\n\t\tlet s;\r\n\r\n\t\tif((Math.abs(m01 - m10) < E) && (Math.abs(m02 - m20) < E) && (Math.abs(m12 - m21) < E)) {\r\n\r\n\t\t\t/* Singularity found. First, check for identity matrix which must have +1\r\n\t\t\tfor all terms in the leading diagonal and zero in other terms. */\r\n\t\t\tif((Math.abs(m01 + m10) < H) && (Math.abs(m02 + m20) < H) && (Math.abs(m12 + m21) < H) && (Math.abs(m00 + m11 + m22 - 3) < H)) {\r\n\r\n\t\t\t\t// This singularity is the identity matrix. The angle is zero.\r\n\t\t\t\tthis.set(1, 0, 0, 0);\r\n\r\n\t\t\t} else {\r\n\r\n\t\t\t\t// The angle is 180.\r\n\t\t\t\tangle = Math.PI;\r\n\r\n\t\t\t\txx = (m00 + 1) / 2;\r\n\t\t\t\tyy = (m11 + 1) / 2;\r\n\t\t\t\tzz = (m22 + 1) / 2;\r\n\t\t\t\txy = (m01 + m10) / 4;\r\n\t\t\t\txz = (m02 + m20) / 4;\r\n\t\t\t\tyz = (m12 + m21) / 4;\r\n\r\n\t\t\t\tif((xx > yy) && (xx > zz)) {\r\n\r\n\t\t\t\t\t// m00 is the largest diagonal term.\r\n\t\t\t\t\tif(xx < E) {\r\n\r\n\t\t\t\t\t\tx = 0;\r\n\t\t\t\t\t\ty = 0.707106781;\r\n\t\t\t\t\t\tz = 0.707106781;\r\n\r\n\t\t\t\t\t} else {\r\n\r\n\t\t\t\t\t\tx = Math.sqrt(xx);\r\n\t\t\t\t\t\ty = xy / x;\r\n\t\t\t\t\t\tz = xz / x;\r\n\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t} else if(yy > zz) {\r\n\r\n\t\t\t\t\t// m11 is the largest diagonal term.\r\n\t\t\t\t\tif(yy < E) {\r\n\r\n\t\t\t\t\t\tx = 0.707106781;\r\n\t\t\t\t\t\ty = 0;\r\n\t\t\t\t\t\tz = 0.707106781;\r\n\r\n\t\t\t\t\t} else {\r\n\r\n\t\t\t\t\t\ty = Math.sqrt(yy);\r\n\t\t\t\t\t\tx = xy / y;\r\n\t\t\t\t\t\tz = yz / y;\r\n\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t} else {\r\n\r\n\t\t\t\t\t// m22 is the largest diagonal term.\r\n\t\t\t\t\tif(zz < E) {\r\n\r\n\t\t\t\t\t\tx = 0.707106781;\r\n\t\t\t\t\t\ty = 0.707106781;\r\n\t\t\t\t\t\tz = 0;\r\n\r\n\t\t\t\t\t} else {\r\n\r\n\t\t\t\t\t\tz = Math.sqrt(zz);\r\n\t\t\t\t\t\tx = xz / z;\r\n\t\t\t\t\t\ty = yz / z;\r\n\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t}\r\n\r\n\t\t\t\tthis.set(x, y, z, angle);\r\n\r\n\t\t\t}\r\n\r\n\t\t} else {\r\n\r\n\t\t\t// There are no singularities.\r\n\t\t\ts = Math.sqrt(\r\n\t\t\t\t(m21 - m12) * (m21 - m12) +\r\n\t\t\t\t(m02 - m20) * (m02 - m20) +\r\n\t\t\t\t(m10 - m01) * (m10 - m01)\r\n\t\t\t);\r\n\r\n\t\t\t// Prevent division by zero.\r\n\t\t\tif(Math.abs(s) < 0.001) {\r\n\r\n\t\t\t\ts = 1;\r\n\r\n\t\t\t}\r\n\r\n\t\t\tthis.x = (m21 - m12) / s;\r\n\t\t\tthis.y = (m02 - m20) / s;\r\n\t\t\tthis.z = (m10 - m01) / s;\r\n\t\t\tthis.w = Math.acos((m00 + m11 + m22 - 1) / 2);\r\n\r\n\t\t}\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a vector to this one.\r\n\t *\r\n\t * @param {Vector4} v - The vector to add.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tadd(v) {\r\n\r\n\t\tthis.x += v.x;\r\n\t\tthis.y += v.y;\r\n\t\tthis.z += v.z;\r\n\t\tthis.w += v.w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a scalar to this vector.\r\n\t *\r\n\t * @param {Number} s - The scalar to add.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\taddScalar(s) {\r\n\r\n\t\tthis.x += s;\r\n\t\tthis.y += s;\r\n\t\tthis.z += s;\r\n\t\tthis.w += s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the sum of two given vectors.\r\n\t *\r\n\t * @param {Vector4} a - A vector.\r\n\t * @param {Vector4} b - Another vector.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\taddVectors(a, b) {\r\n\r\n\t\tthis.x = a.x + b.x;\r\n\t\tthis.y = a.y + b.y;\r\n\t\tthis.z = a.z + b.z;\r\n\t\tthis.w = a.w + b.w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adds a scaled vector to this one.\r\n\t *\r\n\t * @param {Vector4} v - The vector to scale and add.\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\taddScaledVector(v, s) {\r\n\r\n\t\tthis.x += v.x * s;\r\n\t\tthis.y += v.y * s;\r\n\t\tthis.z += v.z * s;\r\n\t\tthis.w += v.w * s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Subtracts a vector from this vector.\r\n\t *\r\n\t * @param {Vector4} v - The vector to subtract.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tsub(v) {\r\n\r\n\t\tthis.x -= v.x;\r\n\t\tthis.y -= v.y;\r\n\t\tthis.z -= v.z;\r\n\t\tthis.w -= v.w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Subtracts a scalar from this vector.\r\n\t *\r\n\t * @param {Number} s - The scalar to subtract.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tsubScalar(s) {\r\n\r\n\t\tthis.x -= s;\r\n\t\tthis.y -= s;\r\n\t\tthis.z -= s;\r\n\t\tthis.w -= s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the difference between two given vectors.\r\n\t *\r\n\t * @param {Vector4} a - A vector.\r\n\t * @param {Vector4} b - A second vector.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tsubVectors(a, b) {\r\n\r\n\t\tthis.x = a.x - b.x;\r\n\t\tthis.y = a.y - b.y;\r\n\t\tthis.z = a.z - b.z;\r\n\t\tthis.w = a.w - b.w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies this vector with another vector.\r\n\t *\r\n\t * @param {Vector4} v - A vector.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tmultiply(v) {\r\n\r\n\t\tthis.x *= v.x;\r\n\t\tthis.y *= v.y;\r\n\t\tthis.z *= v.z;\r\n\t\tthis.w *= v.w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Multiplies this vector with a given scalar.\r\n\t *\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tmultiplyScalar(s) {\r\n\r\n\t\tthis.x *= s;\r\n\t\tthis.y *= s;\r\n\t\tthis.z *= s;\r\n\t\tthis.w *= s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the product of two given vectors.\r\n\t *\r\n\t * @param {Vector4} a - A vector.\r\n\t * @param {Vector4} b - Another vector.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tmultiplyVectors(a, b) {\r\n\r\n\t\tthis.x = a.x * b.x;\r\n\t\tthis.y = a.y * b.y;\r\n\t\tthis.z = a.z * b.z;\r\n\t\tthis.w = a.w * b.w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Divides this vector by another vector.\r\n\t *\r\n\t * @param {Vector4} v - A vector.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tdivide(v) {\r\n\r\n\t\tthis.x /= v.x;\r\n\t\tthis.y /= v.y;\r\n\t\tthis.z /= v.z;\r\n\t\tthis.w /= v.w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Divides this vector by a given scalar.\r\n\t *\r\n\t * @param {Number} s - A scalar.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tdivideScalar(s) {\r\n\r\n\t\tthis.x /= s;\r\n\t\tthis.y /= s;\r\n\t\tthis.z /= s;\r\n\t\tthis.w /= s;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Applies a matrix to this vector.\r\n\t *\r\n\t * @param {Matrix4} m - A matrix.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tapplyMatrix4(m) {\r\n\r\n\t\tconst x = this.x, y = this.y, z = this.z, w = this.w;\r\n\t\tconst e = m.elements;\r\n\r\n\t\tthis.x = e[0] * x + e[4] * y + e[8] * z + e[12] * w;\r\n\t\tthis.y = e[1] * x + e[5] * y + e[9] * z + e[13] * w;\r\n\t\tthis.z = e[2] * x + e[6] * y + e[10] * z + e[14] * w;\r\n\t\tthis.w = e[3] * x + e[7] * y + e[11] * z + e[15] * w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Negates this vector.\r\n\t *\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tnegate() {\r\n\r\n\t\tthis.x = -this.x;\r\n\t\tthis.y = -this.y;\r\n\t\tthis.z = -this.z;\r\n\t\tthis.w = -this.w;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the dot product with another vector.\r\n\t *\r\n\t * @param {Vector4} v - A vector.\r\n\t * @return {Number} The dot product.\r\n\t */\r\n\r\n\tdot(v) {\r\n\r\n\t\treturn this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the Manhattan length of this vector.\r\n\t *\r\n\t * @return {Number} The length.\r\n\t */\r\n\r\n\tmanhattanLength() {\r\n\r\n\t\treturn Math.abs(this.x) + Math.abs(this.y) + Math.abs(this.z) + Math.abs(this.w);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the squared length of this vector.\r\n\t *\r\n\t * @return {Number} The squared length.\r\n\t */\r\n\r\n\tlengthSquared() {\r\n\r\n\t\treturn (\r\n\t\t\tthis.x * this.x +\r\n\t\t\tthis.y * this.y +\r\n\t\t\tthis.z * this.z +\r\n\t\t\tthis.w * this.w\r\n\t\t);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the length of this vector.\r\n\t *\r\n\t * @return {Number} The length.\r\n\t */\r\n\r\n\tlength() {\r\n\r\n\t\treturn Math.sqrt(\r\n\t\t\tthis.x * this.x +\r\n\t\t\tthis.y * this.y +\r\n\t\t\tthis.z * this.z +\r\n\t\t\tthis.w * this.w\r\n\t\t);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the Manhattan distance to a given vector.\r\n\t *\r\n\t * @param {Vector4} v - A vector.\r\n\t * @return {Number} The distance.\r\n\t */\r\n\r\n\tmanhattanDistanceTo(v) {\r\n\r\n\t\treturn (\r\n\t\t\tMath.abs(this.x - v.x) +\r\n\t\t\tMath.abs(this.y - v.y) +\r\n\t\t\tMath.abs(this.z - v.z) +\r\n\t\t\tMath.abs(this.w - v.w)\r\n\t\t);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the squared distance to a given vector.\r\n\t *\r\n\t * @param {Vector4} v - A vector.\r\n\t * @return {Number} The squared distance.\r\n\t */\r\n\r\n\tdistanceToSquared(v) {\r\n\r\n\t\tconst dx = this.x - v.x;\r\n\t\tconst dy = this.y - v.y;\r\n\t\tconst dz = this.z - v.z;\r\n\t\tconst dw = this.w - v.w;\r\n\r\n\t\treturn dx * dx + dy * dy + dz * dz + dw * dw;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Calculates the distance to a given vector.\r\n\t *\r\n\t * @param {Vector4} v - A vector.\r\n\t * @return {Number} The distance.\r\n\t */\r\n\r\n\tdistanceTo(v) {\r\n\r\n\t\treturn Math.sqrt(this.distanceToSquared(v));\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Normalizes this vector.\r\n\t *\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tnormalize() {\r\n\r\n\t\treturn this.divideScalar(this.length());\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets the length of this vector.\r\n\t *\r\n\t * @param {Number} length - The new length.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tsetLength(length) {\r\n\r\n\t\treturn this.normalize().multiplyScalar(length);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adopts the min value for each component of this vector and the given one.\r\n\t *\r\n\t * @param {Vector4} v - A vector.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tmin(v) {\r\n\r\n\t\tthis.x = Math.min(this.x, v.x);\r\n\t\tthis.y = Math.min(this.y, v.y);\r\n\t\tthis.z = Math.min(this.z, v.z);\r\n\t\tthis.w = Math.min(this.w, v.w);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Adopts the max value for each component of this vector and the given one.\r\n\t *\r\n\t * @param {Vector4} v - A vector.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tmax(v) {\r\n\r\n\t\tthis.x = Math.max(this.x, v.x);\r\n\t\tthis.y = Math.max(this.y, v.y);\r\n\t\tthis.z = Math.max(this.z, v.z);\r\n\t\tthis.w = Math.max(this.w, v.w);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Clamps this vector.\r\n\t *\r\n\t * @param {Vector4} min - The lower bounds. Assumed to be smaller than max.\r\n\t * @param {Vector4} max - The upper bounds. Assumed to be greater than min.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tclamp(min, max) {\r\n\r\n\t\tthis.x = Math.max(min.x, Math.min(max.x, this.x));\r\n\t\tthis.y = Math.max(min.y, Math.min(max.y, this.y));\r\n\t\tthis.z = Math.max(min.z, Math.min(max.z, this.z));\r\n\t\tthis.w = Math.max(min.w, Math.min(max.w, this.w));\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Floors this vector.\r\n\t *\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tfloor() {\r\n\r\n\t\tthis.x = Math.floor(this.x);\r\n\t\tthis.y = Math.floor(this.y);\r\n\t\tthis.z = Math.floor(this.z);\r\n\t\tthis.w = Math.floor(this.w);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Ceils this vector.\r\n\t *\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tceil() {\r\n\r\n\t\tthis.x = Math.ceil(this.x);\r\n\t\tthis.y = Math.ceil(this.y);\r\n\t\tthis.z = Math.ceil(this.z);\r\n\t\tthis.w = Math.ceil(this.w);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Rounds this vector.\r\n\t *\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tround() {\r\n\r\n\t\tthis.x = Math.round(this.x);\r\n\t\tthis.y = Math.round(this.y);\r\n\t\tthis.z = Math.round(this.z);\r\n\t\tthis.w = Math.round(this.w);\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Lerps towards the given vector.\r\n\t *\r\n\t * @param {Vector4} v - The target vector.\r\n\t * @param {Number} alpha - The lerp factor.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tlerp(v, alpha) {\r\n\r\n\t\tthis.x += (v.x - this.x) * alpha;\r\n\t\tthis.y += (v.y - this.y) * alpha;\r\n\t\tthis.z += (v.z - this.z) * alpha;\r\n\t\tthis.w += (v.w - this.w) * alpha;\r\n\r\n\t\treturn this;\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Sets this vector to the lerp result of the given vectors.\r\n\t *\r\n\t * @param {Vector4} v1 - A base vector.\r\n\t * @param {Vector4} v2 - The target vector.\r\n\t * @param {Number} alpha - The lerp factor.\r\n\t * @return {Vector4} This vector.\r\n\t */\r\n\r\n\tlerpVectors(v1, v2, alpha) {\r\n\r\n\t\treturn this.subVectors(v2, v1).multiplyScalar(alpha).add(v1);\r\n\r\n\t}\r\n\r\n\t/**\r\n\t * Checks if this vector equals the given one.\r\n\t *\r\n\t * @param {Vector4} v - A vector.\r\n\t * @return {Boolean} Whether this vector equals the given one.\r\n\t */\r\n\r\n\tequals(v) {\r\n\r\n\t\treturn (v.x === this.x && v.y === this.y && v.z === this.z && v.w === this.w);\r\n\r\n\t}\r\n\r\n}\r\n",
@@ -14455,7 +14432,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 784,
+    "__docId__": 791,
     "kind": "class",
     "name": "Vector4",
     "memberof": "src/Vector4.js",
@@ -14470,7 +14447,7 @@
     "interface": false
   },
   {
-    "__docId__": 785,
+    "__docId__": 792,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/Vector4.js~Vector4",
@@ -14533,7 +14510,7 @@
     ]
   },
   {
-    "__docId__": 786,
+    "__docId__": 793,
     "kind": "member",
     "name": "x",
     "memberof": "src/Vector4.js~Vector4",
@@ -14552,7 +14529,7 @@
     }
   },
   {
-    "__docId__": 787,
+    "__docId__": 794,
     "kind": "member",
     "name": "y",
     "memberof": "src/Vector4.js~Vector4",
@@ -14571,7 +14548,7 @@
     }
   },
   {
-    "__docId__": 788,
+    "__docId__": 795,
     "kind": "member",
     "name": "z",
     "memberof": "src/Vector4.js~Vector4",
@@ -14590,7 +14567,7 @@
     }
   },
   {
-    "__docId__": 789,
+    "__docId__": 796,
     "kind": "member",
     "name": "w",
     "memberof": "src/Vector4.js~Vector4",
@@ -14609,7 +14586,7 @@
     }
   },
   {
-    "__docId__": 790,
+    "__docId__": 797,
     "kind": "method",
     "name": "set",
     "memberof": "src/Vector4.js~Vector4",
@@ -14672,7 +14649,7 @@
     }
   },
   {
-    "__docId__": 795,
+    "__docId__": 802,
     "kind": "method",
     "name": "copy",
     "memberof": "src/Vector4.js~Vector4",
@@ -14705,7 +14682,7 @@
     }
   },
   {
-    "__docId__": 800,
+    "__docId__": 807,
     "kind": "method",
     "name": "clone",
     "memberof": "src/Vector4.js~Vector4",
@@ -14727,7 +14704,7 @@
     "params": []
   },
   {
-    "__docId__": 801,
+    "__docId__": 808,
     "kind": "method",
     "name": "fromArray",
     "memberof": "src/Vector4.js~Vector4",
@@ -14770,7 +14747,7 @@
     }
   },
   {
-    "__docId__": 806,
+    "__docId__": 813,
     "kind": "method",
     "name": "toArray",
     "memberof": "src/Vector4.js~Vector4",
@@ -14813,7 +14790,7 @@
     }
   },
   {
-    "__docId__": 807,
+    "__docId__": 814,
     "kind": "method",
     "name": "setAxisAngleFromQuaternion",
     "memberof": "src/Vector4.js~Vector4",
@@ -14846,7 +14823,7 @@
     }
   },
   {
-    "__docId__": 815,
+    "__docId__": 822,
     "kind": "method",
     "name": "setAxisAngleFromRotationMatrix",
     "memberof": "src/Vector4.js~Vector4",
@@ -14879,7 +14856,7 @@
     }
   },
   {
-    "__docId__": 820,
+    "__docId__": 827,
     "kind": "method",
     "name": "add",
     "memberof": "src/Vector4.js~Vector4",
@@ -14912,7 +14889,7 @@
     }
   },
   {
-    "__docId__": 825,
+    "__docId__": 832,
     "kind": "method",
     "name": "addScalar",
     "memberof": "src/Vector4.js~Vector4",
@@ -14945,7 +14922,7 @@
     }
   },
   {
-    "__docId__": 830,
+    "__docId__": 837,
     "kind": "method",
     "name": "addVectors",
     "memberof": "src/Vector4.js~Vector4",
@@ -14988,7 +14965,7 @@
     }
   },
   {
-    "__docId__": 835,
+    "__docId__": 842,
     "kind": "method",
     "name": "addScaledVector",
     "memberof": "src/Vector4.js~Vector4",
@@ -15031,7 +15008,7 @@
     }
   },
   {
-    "__docId__": 840,
+    "__docId__": 847,
     "kind": "method",
     "name": "sub",
     "memberof": "src/Vector4.js~Vector4",
@@ -15064,7 +15041,7 @@
     }
   },
   {
-    "__docId__": 845,
+    "__docId__": 852,
     "kind": "method",
     "name": "subScalar",
     "memberof": "src/Vector4.js~Vector4",
@@ -15097,7 +15074,7 @@
     }
   },
   {
-    "__docId__": 850,
+    "__docId__": 857,
     "kind": "method",
     "name": "subVectors",
     "memberof": "src/Vector4.js~Vector4",
@@ -15140,7 +15117,7 @@
     }
   },
   {
-    "__docId__": 855,
+    "__docId__": 862,
     "kind": "method",
     "name": "multiply",
     "memberof": "src/Vector4.js~Vector4",
@@ -15173,7 +15150,7 @@
     }
   },
   {
-    "__docId__": 860,
+    "__docId__": 867,
     "kind": "method",
     "name": "multiplyScalar",
     "memberof": "src/Vector4.js~Vector4",
@@ -15206,7 +15183,7 @@
     }
   },
   {
-    "__docId__": 865,
+    "__docId__": 872,
     "kind": "method",
     "name": "multiplyVectors",
     "memberof": "src/Vector4.js~Vector4",
@@ -15249,7 +15226,7 @@
     }
   },
   {
-    "__docId__": 870,
+    "__docId__": 877,
     "kind": "method",
     "name": "divide",
     "memberof": "src/Vector4.js~Vector4",
@@ -15282,7 +15259,7 @@
     }
   },
   {
-    "__docId__": 875,
+    "__docId__": 882,
     "kind": "method",
     "name": "divideScalar",
     "memberof": "src/Vector4.js~Vector4",
@@ -15315,7 +15292,7 @@
     }
   },
   {
-    "__docId__": 880,
+    "__docId__": 887,
     "kind": "method",
     "name": "applyMatrix4",
     "memberof": "src/Vector4.js~Vector4",
@@ -15348,7 +15325,7 @@
     }
   },
   {
-    "__docId__": 885,
+    "__docId__": 892,
     "kind": "method",
     "name": "negate",
     "memberof": "src/Vector4.js~Vector4",
@@ -15370,7 +15347,7 @@
     "params": []
   },
   {
-    "__docId__": 890,
+    "__docId__": 897,
     "kind": "method",
     "name": "dot",
     "memberof": "src/Vector4.js~Vector4",
@@ -15403,7 +15380,7 @@
     }
   },
   {
-    "__docId__": 891,
+    "__docId__": 898,
     "kind": "method",
     "name": "manhattanLength",
     "memberof": "src/Vector4.js~Vector4",
@@ -15425,7 +15402,7 @@
     "params": []
   },
   {
-    "__docId__": 892,
+    "__docId__": 899,
     "kind": "method",
     "name": "lengthSquared",
     "memberof": "src/Vector4.js~Vector4",
@@ -15447,7 +15424,7 @@
     "params": []
   },
   {
-    "__docId__": 893,
+    "__docId__": 900,
     "kind": "method",
     "name": "length",
     "memberof": "src/Vector4.js~Vector4",
@@ -15469,7 +15446,7 @@
     "params": []
   },
   {
-    "__docId__": 894,
+    "__docId__": 901,
     "kind": "method",
     "name": "manhattanDistanceTo",
     "memberof": "src/Vector4.js~Vector4",
@@ -15502,7 +15479,7 @@
     }
   },
   {
-    "__docId__": 895,
+    "__docId__": 902,
     "kind": "method",
     "name": "distanceToSquared",
     "memberof": "src/Vector4.js~Vector4",
@@ -15535,7 +15512,7 @@
     }
   },
   {
-    "__docId__": 896,
+    "__docId__": 903,
     "kind": "method",
     "name": "distanceTo",
     "memberof": "src/Vector4.js~Vector4",
@@ -15568,7 +15545,7 @@
     }
   },
   {
-    "__docId__": 897,
+    "__docId__": 904,
     "kind": "method",
     "name": "normalize",
     "memberof": "src/Vector4.js~Vector4",
@@ -15590,7 +15567,7 @@
     "params": []
   },
   {
-    "__docId__": 898,
+    "__docId__": 905,
     "kind": "method",
     "name": "setLength",
     "memberof": "src/Vector4.js~Vector4",
@@ -15623,7 +15600,7 @@
     }
   },
   {
-    "__docId__": 899,
+    "__docId__": 906,
     "kind": "method",
     "name": "min",
     "memberof": "src/Vector4.js~Vector4",
@@ -15656,7 +15633,7 @@
     }
   },
   {
-    "__docId__": 904,
+    "__docId__": 911,
     "kind": "method",
     "name": "max",
     "memberof": "src/Vector4.js~Vector4",
@@ -15689,7 +15666,7 @@
     }
   },
   {
-    "__docId__": 909,
+    "__docId__": 916,
     "kind": "method",
     "name": "clamp",
     "memberof": "src/Vector4.js~Vector4",
@@ -15732,7 +15709,7 @@
     }
   },
   {
-    "__docId__": 914,
+    "__docId__": 921,
     "kind": "method",
     "name": "floor",
     "memberof": "src/Vector4.js~Vector4",
@@ -15754,7 +15731,7 @@
     "params": []
   },
   {
-    "__docId__": 919,
+    "__docId__": 926,
     "kind": "method",
     "name": "ceil",
     "memberof": "src/Vector4.js~Vector4",
@@ -15776,7 +15753,7 @@
     "params": []
   },
   {
-    "__docId__": 924,
+    "__docId__": 931,
     "kind": "method",
     "name": "round",
     "memberof": "src/Vector4.js~Vector4",
@@ -15798,7 +15775,7 @@
     "params": []
   },
   {
-    "__docId__": 929,
+    "__docId__": 936,
     "kind": "method",
     "name": "lerp",
     "memberof": "src/Vector4.js~Vector4",
@@ -15841,7 +15818,7 @@
     }
   },
   {
-    "__docId__": 934,
+    "__docId__": 941,
     "kind": "method",
     "name": "lerpVectors",
     "memberof": "src/Vector4.js~Vector4",
@@ -15894,7 +15871,7 @@
     }
   },
   {
-    "__docId__": 935,
+    "__docId__": 942,
     "kind": "method",
     "name": "equals",
     "memberof": "src/Vector4.js~Vector4",
@@ -15936,7 +15913,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\r\n\t\"name\": \"math-ds\",\r\n\t\"version\": \"1.1.2\",\r\n\t\"description\": \"Mathematical data structures.\",\r\n\t\"homepage\": \"https://github.com/vanruesc/math-ds\",\r\n\t\"main\": \"build/math-ds.js\",\r\n\t\"module\": \"src/index.js\",\r\n\t\"sideEffects\": false,\r\n\t\"license\": \"Zlib\",\r\n\r\n\t\"keywords\": [\r\n\t\t\"mathematical\",\r\n\t\t\"data\",\r\n\t\t\"structures\",\r\n\t\t\"vector\",\r\n\t\t\"matrix\",\r\n\t\t\"aabb\",\r\n\t\t\"line\",\r\n\t\t\"euler\",\r\n\t\t\"frustum\",\r\n\t\t\"quaternion\",\r\n\t\t\"plane\",\r\n\t\t\"ray\",\r\n\t\t\"sphere\",\r\n\t\t\"spherical\",\r\n\t\t\"cylindrical\",\r\n\t\t\"2d\",\r\n\t\t\"3d\"\r\n\t],\r\n\r\n\t\"author\": {\r\n\t\t\"name\": \"Raoul van Rüschen\",\r\n\t\t\"email\": \"vanruesc@outlook.de\"\r\n\t},\r\n\r\n\t\"repository\": {\r\n\t\t\"type\": \"git\",\r\n\t\t\"url\": \"https://github.com/vanruesc/math-ds.git\"\r\n\t},\r\n\r\n\t\"bugs\": {\r\n\t\t\"url\": \"https://github.com/vanruesc/math-ds/issues\"\r\n\t},\r\n\r\n\t\"files\": [\r\n\t\t\"src\",\r\n\t\t\"build\"\r\n\t],\r\n\r\n\t\"scripts\": {\r\n\t\t\"ava\": \"ava\",\r\n\t\t\"lint\": \"npm run lint:lib && npm run lint:test\",\r\n\t\t\"lint:config\": \"eslint rollup.config.js\",\r\n\t\t\"lint:lib\": \"eslint src\",\r\n\t\t\"lint:test\": \"eslint test\",\r\n\t\t\"build\": \"rollup -c\",\r\n\t\t\"build:production\": \"cross-env NODE_ENV=production rollup -c\",\r\n\t\t\"doc\": \"esdoc\",\r\n\t\t\"pretest\": \"npm run lint && npm run build:production\",\r\n\t\t\"test\": \"npm run ava\",\r\n\t\t\"prepack\": \"npm test\"\r\n\t},\r\n\r\n\t\"ava\": {\r\n\t\t\"failFast\": true,\r\n\t\t\"files\": [\"test/**/*.js\"]\r\n\t},\r\n\r\n\t\"eslintConfig\": {\r\n\t\t\"extends\": \"delta\"\r\n\t},\r\n\r\n\t\"devDependencies\": {\r\n\t\t\"@babel/core\": \"7.x.x\",\r\n\t\t\"@babel/preset-env\": \"7.x.x\",\r\n\t\t\"ava\": \"0.x.x\",\r\n\t\t\"cross-env\": \"5.x.x\",\r\n\t\t\"esdoc\": \"1.x.x\",\r\n\t\t\"esdoc-standard-plugin\": \"1.x.x\",\r\n\t\t\"eslint\": \"5.x.x\",\r\n\t\t\"eslint-config-delta\": \"0.x.x\",\r\n\t\t\"rollup\": \"0.x.x\",\r\n\t\t\"rollup-plugin-babel\": \"4.x.x\",\r\n\t\t\"rollup-plugin-babel-minify\": \"6.x.x\",\r\n\t\t\"rollup-plugin-node-resolve\": \"3.x.x\"\r\n\t}\r\n}\r\n",
+    "content": "{\r\n\t\"name\": \"math-ds\",\r\n\t\"version\": \"1.1.3\",\r\n\t\"description\": \"Mathematical data structures.\",\r\n\t\"homepage\": \"https://github.com/vanruesc/math-ds\",\r\n\t\"main\": \"build/math-ds.js\",\r\n\t\"module\": \"build/math-ds.esm.js\",\r\n\t\"sideEffects\": false,\r\n\t\"license\": \"Zlib\",\r\n\r\n\t\"keywords\": [\r\n\t\t\"mathematical\",\r\n\t\t\"data\",\r\n\t\t\"structures\",\r\n\t\t\"vector\",\r\n\t\t\"matrix\",\r\n\t\t\"aabb\",\r\n\t\t\"line\",\r\n\t\t\"euler\",\r\n\t\t\"frustum\",\r\n\t\t\"quaternion\",\r\n\t\t\"plane\",\r\n\t\t\"ray\",\r\n\t\t\"sphere\",\r\n\t\t\"spherical\",\r\n\t\t\"cylindrical\",\r\n\t\t\"2d\",\r\n\t\t\"3d\"\r\n\t],\r\n\r\n\t\"author\": {\r\n\t\t\"name\": \"Raoul van Rüschen\",\r\n\t\t\"email\": \"vanruesc@outlook.de\"\r\n\t},\r\n\r\n\t\"repository\": {\r\n\t\t\"type\": \"git\",\r\n\t\t\"url\": \"https://github.com/vanruesc/math-ds.git\"\r\n\t},\r\n\r\n\t\"bugs\": {\r\n\t\t\"url\": \"https://github.com/vanruesc/math-ds/issues\"\r\n\t},\r\n\r\n\t\"files\": [\"build\"],\r\n\r\n\t\"scripts\": {\r\n\t\t\"ava\": \"ava\",\r\n\t\t\"lint\": \"npm run lint:lib && npm run lint:test\",\r\n\t\t\"lint:config\": \"eslint rollup.config.js\",\r\n\t\t\"lint:lib\": \"eslint src\",\r\n\t\t\"lint:test\": \"eslint test\",\r\n\t\t\"build\": \"rollup -c\",\r\n\t\t\"build:production\": \"cross-env NODE_ENV=production rollup -c\",\r\n\t\t\"doc\": \"esdoc\",\r\n\t\t\"pretest\": \"npm run lint && npm run build:production\",\r\n\t\t\"test\": \"npm run ava\",\r\n\t\t\"prepack\": \"npm test\"\r\n\t},\r\n\r\n\t\"ava\": {\r\n\t\t\"failFast\": true,\r\n\t\t\"files\": [\"test/**/*.js\"]\r\n\t},\r\n\r\n\t\"eslintConfig\": {\r\n\t\t\"extends\": \"delta\"\r\n\t},\r\n\r\n\t\"devDependencies\": {\r\n\t\t\"@babel/core\": \"7.x.x\",\r\n\t\t\"@babel/preset-env\": \"7.x.x\",\r\n\t\t\"ava\": \"1.x.x\",\r\n\t\t\"cross-env\": \"5.x.x\",\r\n\t\t\"esdoc\": \"1.x.x\",\r\n\t\t\"esdoc-standard-plugin\": \"1.x.x\",\r\n\t\t\"eslint\": \"5.x.x\",\r\n\t\t\"eslint-config-delta\": \"0.x.x\",\r\n\t\t\"rollup\": \"1.x.x\",\r\n\t\t\"rollup-plugin-babel\": \"4.x.x\",\r\n\t\t\"rollup-plugin-babel-minify\": \"8.x.x\",\r\n\t\t\"rollup-plugin-node-resolve\": \"4.x.x\"\r\n\t}\r\n}\r\n",
     "longname": "D:\\Sourcecode\\JavaScript\\math-ds\\package.json",
     "name": "package.json",
     "static": true,
