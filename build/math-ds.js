@@ -1,13 +1,13 @@
 /**
- * math-ds v1.1.2 build Wed Sep 26 2018
+ * math-ds v1.1.3 build Sat May 04 2019
  * https://github.com/vanruesc/math-ds
- * Copyright 2018 Raoul van Rüschen, Zlib
+ * Copyright 2019 Raoul van Rüschen, Zlib
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (factory((global.MATHDS = {})));
-}(this, (function (exports) { 'use strict';
+  (global = global || self, factory(global.MATHDS = {}));
+}(this, function (exports) { 'use strict';
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -451,6 +451,7 @@
 
   var v = new Vector3();
   var points = [new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3(), new Vector3()];
+
   var Box3 = function () {
     function Box3() {
       var min = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Vector3(Infinity, Infinity, Infinity);
@@ -686,6 +687,7 @@
 
   var box = new Box3();
   var v$1 = new Vector3();
+
   var Sphere = function () {
     function Sphere() {
       var center = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Vector3();
@@ -1094,6 +1096,7 @@
   }();
 
   var v$2 = new Vector2();
+
   var Box2 = function () {
     function Box2() {
       var min = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Vector2(Infinity, Infinity);
@@ -1602,7 +1605,6 @@
     ZYX: "ZYX"
   };
 
-  var v$3 = new Vector3();
   var Quaternion = function () {
     function Quaternion() {
       var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
@@ -1787,18 +1789,23 @@
           r = 0;
 
           if (Math.abs(vFrom.x) > Math.abs(vFrom.z)) {
-            v$3.set(-vFrom.y, vFrom.x, 0);
+            this.x = -vFrom.y;
+            this.y = vFrom.x;
+            this.z = 0;
+            this.w = r;
           } else {
-            v$3.set(0, -vFrom.z, vFrom.y);
+            this.x = 0;
+            this.y = -vFrom.z;
+            this.z = vFrom.y;
+            this.w = r;
           }
         } else {
-          v$3.crossVectors(vFrom, vTo);
+          this.x = vFrom.y * vTo.z - vFrom.z * vTo.y;
+          this.y = vFrom.z * vTo.x - vFrom.x * vTo.z;
+          this.z = vFrom.x * vTo.y - vFrom.y * vTo.x;
+          this.w = r;
         }
 
-        this.x = v$3.x;
-        this.y = v$3.y;
-        this.z = v$3.z;
-        this.w = r;
         return this.normalize();
       }
     }, {
@@ -2017,6 +2024,7 @@
 
   var m = new Matrix3();
   var q = new Quaternion();
+
   var Euler = function () {
     function Euler() {
       var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
@@ -2227,6 +2235,7 @@
 
   var a = new Vector3();
   var b = new Vector3();
+
   var Plane = function () {
     function Plane() {
       var normal = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Vector3(1, 0, 0);
@@ -2366,7 +2375,8 @@
     return Plane;
   }();
 
-  var v$4 = new Vector3();
+  var v$3 = new Vector3();
+
   var Frustum = function () {
     function Frustum() {
       var p0 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Plane();
@@ -2469,11 +2479,11 @@
 
         for (i = 0; i < 6; ++i) {
           plane = planes[i];
-          v$4.x = plane.normal.x > 0.0 ? max.x : min.x;
-          v$4.y = plane.normal.y > 0.0 ? max.y : min.y;
-          v$4.z = plane.normal.z > 0.0 ? max.z : min.z;
+          v$3.x = plane.normal.x > 0.0 ? max.x : min.x;
+          v$3.y = plane.normal.y > 0.0 ? max.y : min.y;
+          v$3.z = plane.normal.z > 0.0 ? max.z : min.z;
 
-          if (plane.distanceToPoint(v$4) < 0.0) {
+          if (plane.distanceToPoint(v$3) < 0.0) {
             return false;
           }
         }
@@ -2503,6 +2513,7 @@
 
   var a$1 = new Vector3();
   var b$1 = new Vector3();
+
   var Line3 = function () {
     function Line3() {
       var start = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Vector3();
@@ -2591,6 +2602,7 @@
   var a$2 = new Vector3();
   var b$2 = new Vector3();
   var c = new Vector3();
+
   var Matrix4 = function () {
     function Matrix4() {
       _classCallCheck(this, Matrix4);
@@ -3351,7 +3363,8 @@
     return Matrix4;
   }();
 
-  var v$5 = [new Vector3(), new Vector3(), new Vector3(), new Vector3()];
+  var v$4 = [new Vector3(), new Vector3(), new Vector3(), new Vector3()];
+
   var Ray = function () {
     function Ray() {
       var origin = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Vector3();
@@ -3397,7 +3410,7 @@
     }, {
       key: "recast",
       value: function recast(t) {
-        this.origin.copy(this.at(t, v$5[0]));
+        this.origin.copy(this.at(t, v$4[0]));
         return this;
       }
     }, {
@@ -3410,8 +3423,8 @@
     }, {
       key: "distanceSquaredToPoint",
       value: function distanceSquaredToPoint(p) {
-        var directionDistance = v$5[0].subVectors(p, this.origin).dot(this.direction);
-        return directionDistance < 0.0 ? this.origin.distanceToSquared(p) : v$5[0].copy(this.direction).multiplyScalar(directionDistance).add(this.origin).distanceToSquared(p);
+        var directionDistance = v$4[0].subVectors(p, this.origin).dot(this.direction);
+        return directionDistance < 0.0 ? this.origin.distanceToSquared(p) : v$4[0].copy(this.direction).multiplyScalar(directionDistance).add(this.origin).distanceToSquared(p);
       }
     }, {
       key: "distanceToPoint",
@@ -3428,9 +3441,9 @@
     }, {
       key: "distanceSquaredToSegment",
       value: function distanceSquaredToSegment(v0, v1, pointOnRay, pointOnSegment) {
-        var segCenter = v$5[0].copy(v0).add(v1).multiplyScalar(0.5);
-        var segDir = v$5[1].copy(v1).sub(v0).normalize();
-        var diff = v$5[2].copy(this.origin).sub(segCenter);
+        var segCenter = v$4[0].copy(v0).add(v1).multiplyScalar(0.5);
+        var segDir = v$4[1].copy(v1).sub(v0).normalize();
+        var diff = v$4[2].copy(this.origin).sub(segCenter);
         var segExtent = v0.distanceTo(v1) * 0.5;
         var a01 = -this.direction.dot(segDir);
         var b0 = diff.dot(this.direction);
@@ -3496,7 +3509,7 @@
       key: "intersectSphere",
       value: function intersectSphere(s) {
         var target = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new Vector3();
-        var ab = v$5[0].subVectors(s.center, this.origin);
+        var ab = v$4[0].subVectors(s.center, this.origin);
         var tca = ab.dot(this.direction);
         var d2 = ab.dot(ab) - tca * tca;
         var radius2 = s.radius * s.radius;
@@ -3600,16 +3613,16 @@
     }, {
       key: "intersectsBox",
       value: function intersectsBox(b) {
-        return this.intersectBox(b, v$5[0]) !== null;
+        return this.intersectBox(b, v$4[0]) !== null;
       }
     }, {
       key: "intersectTriangle",
       value: function intersectTriangle(a, b, c, backfaceCulling, target) {
         var direction = this.direction;
-        var diff = v$5[0];
-        var edge1 = v$5[1];
-        var edge2 = v$5[2];
-        var normal = v$5[3];
+        var diff = v$4[0];
+        var edge1 = v$4[1];
+        var edge2 = v$4[2];
+        var normal = v$4[3];
         var result = null;
         var DdN, sign, DdQxE2, DdE1xQ, QdN;
         edge1.subVectors(b, a);
@@ -4261,8 +4274,8 @@
   exports.Matrix4 = Matrix4;
   exports.Plane = Plane;
   exports.Quaternion = Quaternion;
-  exports.RotationOrder = RotationOrder;
   exports.Ray = Ray;
+  exports.RotationOrder = RotationOrder;
   exports.Sphere = Sphere;
   exports.Spherical = Spherical;
   exports.SymmetricMatrix3 = SymmetricMatrix3;
@@ -4272,4 +4285,4 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
