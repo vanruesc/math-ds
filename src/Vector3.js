@@ -133,7 +133,7 @@ export class Vector3 {
 
 	setFromSpherical(s) {
 
-		this.setFromSphericalCoords(s.radius, s.phi, s.theta);
+		return this.setFromSphericalCoords(s.radius, s.phi, s.theta);
 
 	}
 
@@ -167,7 +167,7 @@ export class Vector3 {
 
 	setFromCylindrical(c) {
 
-		this.setFromCylindricalCoords(c.radius, c.theta, c.y);
+		return this.setFromCylindricalCoords(c.radius, c.theta, c.y);
 
 	}
 
