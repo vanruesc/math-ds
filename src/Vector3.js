@@ -541,6 +541,19 @@ export class Vector3 {
 	}
 
 	/**
+	 * Applies a normal matrix to this vector and normalizes it.
+	 *
+	 * @param {Matrix3} m - A normal matrix.
+	 * @return {Vector3} This vector.
+	 */
+
+	applyNormalMatrix(m) {
+
+		return this.applyMatrix3(m).normalize();
+
+	}
+
+	/**
 	 * Applies a matrix to this vector.
 	 *
 	 * @param {Matrix4} m - A matrix.
