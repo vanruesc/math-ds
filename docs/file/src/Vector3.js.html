@@ -187,7 +187,7 @@ export class Vector3 {
 
 	setFromSpherical(s) {
 
-		this.setFromSphericalCoords(s.radius, s.phi, s.theta);
+		return this.setFromSphericalCoords(s.radius, s.phi, s.theta);
 
 	}
 
@@ -221,7 +221,7 @@ export class Vector3 {
 
 	setFromCylindrical(c) {
 
-		this.setFromCylindricalCoords(c.radius, c.theta, c.y);
+		return this.setFromCylindricalCoords(c.radius, c.theta, c.y);
 
 	}
 
@@ -247,8 +247,22 @@ export class Vector3 {
 	/**
 	 * Copies the values of a matrix column.
 	 *
-	 * @param {Matrix4} m - A 4x4 matrix.
+	 * @param {Matrix4} m - A 3x3 matrix.
 	 * @param {Number} index - A column index of the range [0, 2].
+	 * @return {Vector3} This vector.
+	 */
+
+	setFromMatrix3Column(m, index) {
+
+		return this.fromArray(m.elements, index * 3);
+
+	}
+
+	/**
+	 * Copies the values of a matrix column.
+	 *
+	 * @param {Matrix4} m - A 4x4 matrix.
+	 * @param {Number} index - A column index of the range [0, 3].
 	 * @return {Vector3} This vector.
 	 */
 
@@ -577,6 +591,19 @@ export class Vector3 {
 		this.z = e[2] * x + e[5] * y + e[8] * z;
 
 		return this;
+
+	}
+
+	/**
+	 * Applies a normal matrix to this vector and normalizes it.
+	 *
+	 * @param {Matrix3} m - A normal matrix.
+	 * @return {Vector3} This vector.
+	 */
+
+	applyNormalMatrix(m) {
+
+		return this.applyMatrix3(m).normalize();
 
 	}
 

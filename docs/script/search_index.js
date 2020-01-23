@@ -948,6 +948,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/frustum.js~frustum#setfromprojectionmatrix",
+    "class/src/Frustum.js~Frustum.html#instance-method-setFromProjectionMatrix",
+    "src/Frustum.js~Frustum#setFromProjectionMatrix",
+    "method"
+  ],
+  [
     "src/line3.js",
     "file/src/Line3.js.html",
     "src/Line3.js",
@@ -2436,6 +2442,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/vector3.js~vector3#applynormalmatrix",
+    "class/src/Vector3.js~Vector3.html#instance-method-applyNormalMatrix",
+    "src/Vector3.js~Vector3#applyNormalMatrix",
+    "method"
+  ],
+  [
     "src/vector3.js~vector3#applyquaternion",
     "class/src/Vector3.js~Vector3.html#instance-method-applyQuaternion",
     "src/Vector3.js~Vector3#applyQuaternion",
@@ -2637,6 +2649,12 @@ window.esdocSearchIndex = [
     "src/vector3.js~vector3#setfromcylindricalcoords",
     "class/src/Vector3.js~Vector3.html#instance-method-setFromCylindricalCoords",
     "src/Vector3.js~Vector3#setFromCylindricalCoords",
+    "method"
+  ],
+  [
+    "src/vector3.js~vector3#setfrommatrix3column",
+    "class/src/Vector3.js~Vector3.html#instance-method-setFromMatrix3Column",
+    "src/Vector3.js~Vector3#setFromMatrix3Column",
     "method"
   ],
   [

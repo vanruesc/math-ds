@@ -6684,10 +6684,10 @@
                                 }
                               },
                               "extra": {
-                                "rawValue": 0.00001,
-                                "raw": "1e-5"
+                                "rawValue": 1e-7,
+                                "raw": "1e-7"
                               },
-                              "value": 0.00001
+                              "value": 1e-7
                             }
                           }
                         }
@@ -28675,7 +28675,7 @@
         "binop": null,
         "updateContext": null
       },
-      "value": 0.00001,
+      "value": 1e-7,
       "start": 4049,
       "end": 4053,
       "loc": {

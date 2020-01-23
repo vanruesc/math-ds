@@ -1,7 +1,8 @@
 /**
- * math-ds v1.1.3 build Sat May 04 2019
+ * math-ds v1.1.4 build Thu Jan 23 2020
  * https://github.com/vanruesc/math-ds
- * Copyright 2019 Raoul van Rüschen, Zlib
+ * Copyright 2020 Raoul van Rüschen
+ * @license Zlib
  */
 /**
  * A vector with three components.
@@ -138,7 +139,7 @@ class Vector3 {
 
 	setFromSpherical(s) {
 
-		this.setFromSphericalCoords(s.radius, s.phi, s.theta);
+		return this.setFromSphericalCoords(s.radius, s.phi, s.theta);
 
 	}
 
@@ -172,7 +173,7 @@ class Vector3 {
 
 	setFromCylindrical(c) {
 
-		this.setFromCylindricalCoords(c.radius, c.theta, c.y);
+		return this.setFromCylindricalCoords(c.radius, c.theta, c.y);
 
 	}
 
@@ -198,8 +199,22 @@ class Vector3 {
 	/**
 	 * Copies the values of a matrix column.
 	 *
-	 * @param {Matrix4} m - A 4x4 matrix.
+	 * @param {Matrix4} m - A 3x3 matrix.
 	 * @param {Number} index - A column index of the range [0, 2].
+	 * @return {Vector3} This vector.
+	 */
+
+	setFromMatrix3Column(m, index) {
+
+		return this.fromArray(m.elements, index * 3);
+
+	}
+
+	/**
+	 * Copies the values of a matrix column.
+	 *
+	 * @param {Matrix4} m - A 4x4 matrix.
+	 * @param {Number} index - A column index of the range [0, 3].
 	 * @return {Vector3} This vector.
 	 */
 
@@ -528,6 +543,19 @@ class Vector3 {
 		this.z = e[2] * x + e[5] * y + e[8] * z;
 
 		return this;
+
+	}
+
+	/**
+	 * Applies a normal matrix to this vector and normalizes it.
+	 *
+	 * @param {Matrix3} m - A normal matrix.
+	 * @return {Vector3} This vector.
+	 */
+
+	applyNormalMatrix(m) {
+
+		return this.applyMatrix3(m).normalize();
 
 	}
 
@@ -4354,7 +4382,7 @@ class Euler {
 		const m10 = te[1], m11 = te[5], m12 = te[9];
 		const m20 = te[2], m21 = te[6], m22 = te[10];
 
-		const THRESHOLD = 1.0 - 1e-5;
+		const THRESHOLD = 1.0 - 1e-7;
 
 		switch(order) {
 
@@ -5015,13 +5043,27 @@ class Frustum {
 	}
 
 	/**
-	 * Sets this frustm based on a given 4x4 matrix.
+	 * Sets this frustum based on a given projection matrix.
+	 *
+	 * @param {Matrix4} m - A matrix.
+	 * @return {Frustum} This frustum.
+	 * @deprecated Use setFromPerspectiveMatrix instead.
+	 */
+
+	setFromMatrix(m) {
+
+		return this.setFromProjectionMatrix(m);
+
+	}
+
+	/**
+	 * Sets this frustum based on a given projection matrix.
 	 *
 	 * @param {Matrix4} m - A matrix.
 	 * @return {Frustum} This frustum.
 	 */
 
-	setFromMatrix(m) {
+	setFromProjectionMatrix(m) {
 
 		const planes = this.planes;
 
@@ -6591,7 +6633,7 @@ class Ray {
 	 * @param {Vector3} [direction] - The direction.
 	 */
 
-	constructor(origin = new Vector3(), direction = new Vector3()) {
+	constructor(origin = new Vector3(), direction = new Vector3(0, 0, -1)) {
 
 		/**
 		 * The origin.
@@ -8481,11 +8523,5 @@ class Vector4 {
 	}
 
 }
-
-/**
- * Mathematical data structures.
- *
- * @module math-ds
- */
 
 export { Box2, Box3, Cylindrical, Euler, Frustum, Line3, Matrix3, Matrix4, Plane, Quaternion, Ray, RotationOrder, Sphere, Spherical, SymmetricMatrix3, Vector2, Vector3, Vector4 };

@@ -1,13 +1,14 @@
 /**
- * math-ds v1.1.3 build Sat May 04 2019
+ * math-ds v1.1.4 build Thu Jan 23 2020
  * https://github.com/vanruesc/math-ds
- * Copyright 2019 Raoul van Rüschen, Zlib
+ * Copyright 2020 Raoul van Rüschen
+ * @license Zlib
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
   (global = global || self, factory(global.MATHDS = {}));
-}(this, function (exports) { 'use strict';
+}(this, (function (exports) { 'use strict';
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -87,7 +88,7 @@
     }, {
       key: "setFromSpherical",
       value: function setFromSpherical(s) {
-        this.setFromSphericalCoords(s.radius, s.phi, s.theta);
+        return this.setFromSphericalCoords(s.radius, s.phi, s.theta);
       }
     }, {
       key: "setFromSphericalCoords",
@@ -101,7 +102,7 @@
     }, {
       key: "setFromCylindrical",
       value: function setFromCylindrical(c) {
-        this.setFromCylindricalCoords(c.radius, c.theta, c.y);
+        return this.setFromCylindricalCoords(c.radius, c.theta, c.y);
       }
     }, {
       key: "setFromCylindricalCoords",
@@ -110,6 +111,11 @@
         this.y = y;
         this.z = radius * Math.cos(theta);
         return this;
+      }
+    }, {
+      key: "setFromMatrix3Column",
+      value: function setFromMatrix3Column(m, index) {
+        return this.fromArray(m.elements, index * 3);
       }
     }, {
       key: "setFromMatrixColumn",
@@ -274,6 +280,11 @@
         this.y = e[1] * x + e[4] * y + e[7] * z;
         this.z = e[2] * x + e[5] * y + e[8] * z;
         return this;
+      }
+    }, {
+      key: "applyNormalMatrix",
+      value: function applyNormalMatrix(m) {
+        return this.applyMatrix3(m).normalize();
       }
     }, {
       key: "applyMatrix4",
@@ -2103,7 +2114,7 @@
         var m20 = te[2],
             m21 = te[6],
             m22 = te[10];
-        var THRESHOLD = 1.0 - 1e-5;
+        var THRESHOLD = 1.0 - 1e-7;
 
         switch (order) {
           case RotationOrder.XYZ:
@@ -2423,6 +2434,11 @@
     }, {
       key: "setFromMatrix",
       value: function setFromMatrix(m) {
+        return this.setFromProjectionMatrix(m);
+      }
+    }, {
+      key: "setFromProjectionMatrix",
+      value: function setFromProjectionMatrix(m) {
         var planes = this.planes;
         var me = m.elements;
         var me0 = me[0],
@@ -3368,7 +3384,7 @@
   var Ray = function () {
     function Ray() {
       var origin = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Vector3();
-      var direction = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new Vector3();
+      var direction = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new Vector3(0, 0, -1);
 
       _classCallCheck(this, Ray);
 
@@ -4285,4 +4301,4 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
