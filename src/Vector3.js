@@ -193,8 +193,22 @@ export class Vector3 {
 	/**
 	 * Copies the values of a matrix column.
 	 *
-	 * @param {Matrix4} m - A 4x4 matrix.
+	 * @param {Matrix4} m - A 3x3 matrix.
 	 * @param {Number} index - A column index of the range [0, 2].
+	 * @return {Vector3} This vector.
+	 */
+
+	setFromMatrix3Column(m, index) {
+
+		return this.fromArray(m.elements, index * 3);
+
+	}
+
+	/**
+	 * Copies the values of a matrix column.
+	 *
+	 * @param {Matrix4} m - A 4x4 matrix.
+	 * @param {Number} index - A column index of the range [0, 3].
 	 * @return {Vector3} This vector.
 	 */
 
