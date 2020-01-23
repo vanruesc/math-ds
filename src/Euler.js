@@ -205,7 +205,7 @@ export class Euler {
 		const m10 = te[1], m11 = te[5], m12 = te[9];
 		const m20 = te[2], m21 = te[6], m22 = te[10];
 
-		const THRESHOLD = 1.0 - 1e-5;
+		const THRESHOLD = 1.0 - 1e-7;
 
 		switch(order) {
 
