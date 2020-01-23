@@ -109,13 +109,27 @@ export class Frustum {
 	}
 
 	/**
-	 * Sets this frustm based on a given 4x4 matrix.
+	 * Sets this frustum based on a given projection matrix.
+	 *
+	 * @param {Matrix4} m - A matrix.
+	 * @return {Frustum} This frustum.
+	 * @deprecated Use setFromPerspectiveMatrix instead.
+	 */
+
+	setFromMatrix(m) {
+
+		return this.setFromProjectionMatrix(m);
+
+	}
+
+	/**
+	 * Sets this frustum based on a given projection matrix.
 	 *
 	 * @param {Matrix4} m - A matrix.
 	 * @return {Frustum} This frustum.
 	 */
 
-	setFromMatrix(m) {
+	setFromProjectionMatrix(m) {
 
 		const planes = this.planes;
 
