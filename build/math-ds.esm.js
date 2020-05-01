@@ -1,5 +1,5 @@
 /**
- * math-ds v1.2.0 build Fri May 01 2020
+ * math-ds v1.2.1 build Fri May 01 2020
  * https://github.com/vanruesc/math-ds
  * Copyright 2020 Raoul van Rüschen
  * @license Zlib
@@ -682,10 +682,10 @@ class Vector3 {
 
 	angleTo(v) {
 
-		const theta = this.dot(v) / (Math.sqrt(this.lengthSquared() * v.lengthSquared()));
+		const denominator = Math.sqrt(this.lengthSquared() * v.lengthSquared());
 
-		// Clamp to avoid numerical problems.
-		return Math.acos(Math.min(Math.max(theta, -1), 1));
+		return (denominator === 0.0) ? (Math.PI * 0.5) :
+			Math.acos(Math.min(Math.max(this.dot(v) / denominator, -1), 1));
 
 	}
 
@@ -2388,15 +2388,7 @@ class Vector2 {
 
 	angle() {
 
-		let angle = Math.atan2(this.y, this.x);
-
-		if(angle < 0) {
-
-			angle += 2 * Math.PI;
-
-		}
-
-		return angle;
+		return Math.atan2(-this.y, -this.x) + Math.PI;
 
 	}
 
