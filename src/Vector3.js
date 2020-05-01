@@ -676,10 +676,10 @@ export class Vector3 {
 
 	angleTo(v) {
 
-		const theta = this.dot(v) / (Math.sqrt(this.lengthSquared() * v.lengthSquared()));
+		const denominator = Math.sqrt(this.lengthSquared() * v.lengthSquared());
 
-		// Clamp to avoid numerical problems.
-		return Math.acos(Math.min(Math.max(theta, -1), 1));
+		return (denominator === 0.0) ? (Math.PI * 0.5) :
+			Math.acos(Math.min(Math.max(this.dot(v) / denominator, -1), 1));
 
 	}
 
