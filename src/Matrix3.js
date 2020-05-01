@@ -305,9 +305,7 @@ export class Matrix3 {
 
 		} else {
 
-			console.error("Can't invert matrix, determinant is zero", matrix);
-
-			this.identity();
+			this.set(0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 		}
 
