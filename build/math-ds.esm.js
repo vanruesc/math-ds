@@ -1,5 +1,5 @@
 /**
- * math-ds v1.1.4 build Thu Jan 23 2020
+ * math-ds v1.2.0 build Fri May 01 2020
  * https://github.com/vanruesc/math-ds
  * Copyright 2020 Raoul van Rüschen
  * @license Zlib
@@ -60,6 +60,22 @@ class Vector3 {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+
+		return this;
+
+	}
+
+	/**
+	 * Randomizes the values of this vector
+	 *
+	 * @return {Vector3} This vector.
+	 */
+
+	random() {
+
+		this.x = Math.random();
+		this.y = Math.random();
+		this.z = Math.random();
 
 		return this;
 
@@ -1849,6 +1865,21 @@ class Vector2 {
 	}
 
 	/**
+	 * Randomizes the values of this vector
+	 *
+	 * @return {Vector2} This vector.
+	 */
+
+	random() {
+
+		this.x = Math.random();
+		this.y = Math.random();
+
+		return this;
+
+	}
+
+	/**
 	 * Copies the values of another vector.
 	 *
 	 * @param {Vector2} v - A vector.
@@ -3301,9 +3332,7 @@ class Matrix3 {
 
 		} else {
 
-			console.error("Can't invert matrix, determinant is zero", matrix);
-
-			this.identity();
+			this.set(0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 		}
 
@@ -6177,9 +6206,7 @@ class Matrix4 {
 
 		} else {
 
-			console.error("Can't invert matrix, determinant is zero", matrix);
-
-			this.identity();
+			this.set(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 		}
 
@@ -7744,6 +7771,23 @@ class Vector4 {
 	}
 
 	/**
+	 * Randomizes the values of this vector
+	 *
+	 * @return {Vector4} This vector.
+	 */
+
+	random() {
+
+		this.x = Math.random();
+		this.y = Math.random();
+		this.z = Math.random();
+		this.w = Math.random();
+
+		return this;
+
+	}
+
+	/**
 	 * Copies the values of another vector.
 	 *
 	 * @param {Vector4} v - A vector.
@@ -7859,6 +7903,7 @@ class Vector4 {
 
 		// Margin to allow for rounding errors.
 		const E = 0.01;
+
 		// Margin to distinguish between 0 and 180 degrees.
 		const H = 0.1;
 

@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 454,
-  "actualCount": 454,
+  "expectCount": 457,
+  "actualCount": 457,
   "files": {
     "src/Box2.js": {
       "expectCount": 27,
@@ -79,18 +79,18 @@
       "undocumentLines": []
     },
     "src/Vector2.js": {
-      "expectCount": 47,
-      "actualCount": 47,
+      "expectCount": 48,
+      "actualCount": 48,
       "undocumentLines": []
     },
     "src/Vector3.js": {
-      "expectCount": 58,
-      "actualCount": 58,
+      "expectCount": 59,
+      "actualCount": 59,
       "undocumentLines": []
     },
     "src/Vector4.js": {
-      "expectCount": 45,
-      "actualCount": 45,
+      "expectCount": 46,
+      "actualCount": 46,
       "undocumentLines": []
     }
   }

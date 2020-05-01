@@ -1,5 +1,5 @@
 /**
- * math-ds v1.1.4 build Thu Jan 23 2020
+ * math-ds v1.2.0 build Fri May 01 2020
  * https://github.com/vanruesc/math-ds
  * Copyright 2020 Raoul van Rüschen
  * @license Zlib
@@ -51,6 +51,14 @@
         this.x = x;
         this.y = y;
         this.z = z;
+        return this;
+      }
+    }, {
+      key: "random",
+      value: function random() {
+        this.x = Math.random();
+        this.y = Math.random();
+        this.z = Math.random();
         return this;
       }
     }, {
@@ -830,6 +838,13 @@
         return this;
       }
     }, {
+      key: "random",
+      value: function random() {
+        this.x = Math.random();
+        this.y = Math.random();
+        return this;
+      }
+    }, {
       key: "copy",
       value: function copy(v) {
         this.x = v.x;
@@ -1520,8 +1535,7 @@
           te[7] = (n21 * n13 - n23 * n11) * invDet;
           te[8] = (n22 * n11 - n21 * n12) * invDet;
         } else {
-          console.error("Can't invert matrix, determinant is zero", matrix);
-          this.identity();
+          this.set(0, 0, 0, 0, 0, 0, 0, 0, 0);
         }
 
         return this;
@@ -3109,8 +3123,7 @@
           te[14] = (n03 * n11 * n20 - n01 * n13 * n20 - n03 * n10 * n21 + n00 * n13 * n21 + n01 * n10 * n23 - n00 * n11 * n23) * invDet;
           te[15] = (n01 * n12 * n20 - n02 * n11 * n20 + n02 * n10 * n21 - n00 * n12 * n21 - n01 * n10 * n22 + n00 * n11 * n22) * invDet;
         } else {
-          console.error("Can't invert matrix, determinant is zero", matrix);
-          this.identity();
+          this.set(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         }
 
         return this;
@@ -3885,6 +3898,15 @@
         this.y = y;
         this.z = z;
         this.w = w;
+        return this;
+      }
+    }, {
+      key: "random",
+      value: function random() {
+        this.x = Math.random();
+        this.y = Math.random();
+        this.z = Math.random();
+        this.w = Math.random();
         return this;
       }
     }, {

@@ -1,110 +1,110 @@
 window.esdocSearchIndex = [
   [
-    "math-ds/src/box2.js~box2",
+    "math-ds~box2",
     "class/src/Box2.js~Box2.html",
-    "<span>Box2</span> <span class=\"search-result-import-path\">math-ds/src/Box2.js</span>",
+    "<span>Box2</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/box3.js~box3",
+    "math-ds~box3",
     "class/src/Box3.js~Box3.html",
-    "<span>Box3</span> <span class=\"search-result-import-path\">math-ds/src/Box3.js</span>",
+    "<span>Box3</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/cylindrical.js~cylindrical",
+    "math-ds~cylindrical",
     "class/src/Cylindrical.js~Cylindrical.html",
-    "<span>Cylindrical</span> <span class=\"search-result-import-path\">math-ds/src/Cylindrical.js</span>",
+    "<span>Cylindrical</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/euler.js~euler",
+    "math-ds~euler",
     "class/src/Euler.js~Euler.html",
-    "<span>Euler</span> <span class=\"search-result-import-path\">math-ds/src/Euler.js</span>",
+    "<span>Euler</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/frustum.js~frustum",
+    "math-ds~frustum",
     "class/src/Frustum.js~Frustum.html",
-    "<span>Frustum</span> <span class=\"search-result-import-path\">math-ds/src/Frustum.js</span>",
+    "<span>Frustum</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/line3.js~line3",
+    "math-ds~line3",
     "class/src/Line3.js~Line3.html",
-    "<span>Line3</span> <span class=\"search-result-import-path\">math-ds/src/Line3.js</span>",
+    "<span>Line3</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/matrix3.js~matrix3",
+    "math-ds~matrix3",
     "class/src/Matrix3.js~Matrix3.html",
-    "<span>Matrix3</span> <span class=\"search-result-import-path\">math-ds/src/Matrix3.js</span>",
+    "<span>Matrix3</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/matrix4.js~matrix4",
+    "math-ds~matrix4",
     "class/src/Matrix4.js~Matrix4.html",
-    "<span>Matrix4</span> <span class=\"search-result-import-path\">math-ds/src/Matrix4.js</span>",
+    "<span>Matrix4</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/plane.js~plane",
+    "math-ds~plane",
     "class/src/Plane.js~Plane.html",
-    "<span>Plane</span> <span class=\"search-result-import-path\">math-ds/src/Plane.js</span>",
+    "<span>Plane</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/quaternion.js~quaternion",
+    "math-ds~quaternion",
     "class/src/Quaternion.js~Quaternion.html",
-    "<span>Quaternion</span> <span class=\"search-result-import-path\">math-ds/src/Quaternion.js</span>",
+    "<span>Quaternion</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/ray.js~ray",
+    "math-ds~ray",
     "class/src/Ray.js~Ray.html",
-    "<span>Ray</span> <span class=\"search-result-import-path\">math-ds/src/Ray.js</span>",
+    "<span>Ray</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/rotationorder.js~rotationorder",
+    "math-ds~rotationorder",
     "variable/index.html#static-variable-RotationOrder",
-    "<span>RotationOrder</span> <span class=\"search-result-import-path\">math-ds/src/RotationOrder.js</span>",
+    "<span>RotationOrder</span> <span class=\"search-result-import-path\">math-ds</span>",
     "variable"
   ],
   [
-    "math-ds/src/sphere.js~sphere",
+    "math-ds~sphere",
     "class/src/Sphere.js~Sphere.html",
-    "<span>Sphere</span> <span class=\"search-result-import-path\">math-ds/src/Sphere.js</span>",
+    "<span>Sphere</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/spherical.js~spherical",
+    "math-ds~spherical",
     "class/src/Spherical.js~Spherical.html",
-    "<span>Spherical</span> <span class=\"search-result-import-path\">math-ds/src/Spherical.js</span>",
+    "<span>Spherical</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/symmetricmatrix3.js~symmetricmatrix3",
+    "math-ds~symmetricmatrix3",
     "class/src/SymmetricMatrix3.js~SymmetricMatrix3.html",
-    "<span>SymmetricMatrix3</span> <span class=\"search-result-import-path\">math-ds/src/SymmetricMatrix3.js</span>",
+    "<span>SymmetricMatrix3</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/vector2.js~vector2",
+    "math-ds~vector2",
     "class/src/Vector2.js~Vector2.html",
-    "<span>Vector2</span> <span class=\"search-result-import-path\">math-ds/src/Vector2.js</span>",
+    "<span>Vector2</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/vector3.js~vector3",
+    "math-ds~vector3",
     "class/src/Vector3.js~Vector3.html",
-    "<span>Vector3</span> <span class=\"search-result-import-path\">math-ds/src/Vector3.js</span>",
+    "<span>Vector3</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
-    "math-ds/src/vector4.js~vector4",
+    "math-ds~vector4",
     "class/src/Vector4.js~Vector4.html",
-    "<span>Vector4</span> <span class=\"search-result-import-path\">math-ds/src/Vector4.js</span>",
+    "<span>Vector4</span> <span class=\"search-result-import-path\">math-ds</span>",
     "class"
   ],
   [
@@ -975,12 +975,6 @@ window.esdocSearchIndex = [
     "src/line3.js~line3#closestpointtopoint",
     "class/src/Line3.js~Line3.html#instance-method-closestPointToPoint",
     "src/Line3.js~Line3#closestPointToPoint",
-    "method"
-  ],
-  [
-    "src/line3.js~line3#closestpointtopointparameter",
-    "class/src/Line3.js~Line3.html#instance-method-closestPointToPointParameter",
-    "src/Line3.js~Line3#closestPointToPointParameter",
     "method"
   ],
   [
@@ -2322,6 +2316,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/vector2.js~vector2#random",
+    "class/src/Vector2.js~Vector2.html#instance-method-random",
+    "src/Vector2.js~Vector2#random",
+    "method"
+  ],
+  [
     "src/vector2.js~vector2#rotatearound",
     "class/src/Vector2.js~Vector2.html#instance-method-rotateAround",
     "src/Vector2.js~Vector2#rotateAround",
@@ -2619,6 +2619,12 @@ window.esdocSearchIndex = [
     "src/vector3.js~vector3#normalize",
     "class/src/Vector3.js~Vector3.html#instance-method-normalize",
     "src/Vector3.js~Vector3#normalize",
+    "method"
+  ],
+  [
+    "src/vector3.js~vector3#random",
+    "class/src/Vector3.js~Vector3.html#instance-method-random",
+    "src/Vector3.js~Vector3#random",
     "method"
   ],
   [
@@ -2931,6 +2937,12 @@ window.esdocSearchIndex = [
     "src/vector4.js~vector4#normalize",
     "class/src/Vector4.js~Vector4.html#instance-method-normalize",
     "src/Vector4.js~Vector4#normalize",
+    "method"
+  ],
+  [
+    "src/vector4.js~vector4#random",
+    "class/src/Vector4.js~Vector4.html#instance-method-random",
+    "src/Vector4.js~Vector4#random",
     "method"
   ],
   [

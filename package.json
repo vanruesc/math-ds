@@ -1,10 +1,13 @@
 {
 	"name": "math-ds",
-	"version": "1.1.4",
+	"version": "1.2.0",
 	"description": "Mathematical data structures.",
 	"homepage": "https://github.com/vanruesc/math-ds",
 	"main": "build/math-ds.js",
 	"module": "build/math-ds.esm.js",
+	"exports": {
+		".": "./build/math-ds.esm.js"
+	},
 	"sideEffects": false,
 	"license": "Zlib",
 	"keywords": [
@@ -42,40 +45,41 @@
 	],
 	"scripts": {
 		"ava": "ava",
-		"lint": "npm run lint:lib && npm run lint:test",
-		"lint:config": "eslint *.js",
-		"lint:lib": "eslint src",
-		"lint:test": "eslint test",
 		"build": "rollup -c",
-		"build:production": "cross-env NODE_ENV=production rollup -c",
+		"build:production": "cross-env NODE_ENV=production npm run build",
 		"watch": "rollup -c -w",
 		"doc": "rimraf docs && esdoc",
-		"pretest": "npm run lint && npm run build:production",
+		"pretest": "npm run build:production",
 		"test": "ava",
 		"prepack": "npm test && npm run doc"
 	},
 	"ava": {
 		"failFast": true,
-		"files": ["test/**/*.js"],
-		"require": ["esm"]
+		"files": [
+			"test/**/*.js"
+		],
+		"require": [
+			"esm"
+		]
 	},
 	"eslintConfig": {
-		"extends": "aether"
+		"extends": "delta"
 	},
 	"devDependencies": {
 		"@babel/core": "7.x.x",
 		"@babel/preset-env": "7.x.x",
+		"@rollup/plugin-babel": "5.x.x",
 		"@rollup/plugin-node-resolve": "7.x.x",
 		"ava": "3.x.x",
-		"cross-env": "6.x.x",
+		"cross-env": "7.x.x",
 		"esdoc": "1.x.x",
+		"esdoc-importpath-plugin": "1.x.x",
 		"esdoc-standard-plugin": "1.x.x",
-		"eslint": "6.x.x",
-		"eslint-config-aether": "1.x.x",
+		"eslint-config-delta": "1.x.x",
 		"esm": "3.x.x",
 		"rimraf": "3.x.x",
-		"rollup": "1.x.x",
-		"rollup-plugin-babel": "4.x.x",
+		"rollup": "2.x.x",
+		"rollup-plugin-eslint": "6.x.x",
 		"rollup-plugin-terser": "5.x.x"
 	}
 }
