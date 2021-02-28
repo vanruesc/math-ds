@@ -4,6 +4,8 @@
 [![npm version](https://badge.fury.io/js/math-ds.svg)](http://badge.fury.io/js/math-ds)
 [![Dependencies](https://david-dm.org/vanruesc/math-ds.svg?branch=master)](https://david-dm.org/vanruesc/math-ds)
 
+:warning: __No longer maintained: Please use [three's math classes](https://github.com/mrdoob/three.js/tree/dev/src/math) instead.__ :warning:
+
 A collection of mathematical data structures.
 
 *[API Reference](http://vanruesc.github.io/math-ds/docs)*
